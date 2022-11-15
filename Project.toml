@@ -1,0 +1,10 @@
+name = "ParameterEstimation"
+uuid = "b4cd1eb8-1e24-11e8-3319-93036a3eb9f3"
+version = "0.1.0"
+authors = ["Ilia Ilmer <iilmer@gradcenter.cuny.edu>"]
+
+[deps]
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+HomotopyContinuation = "f213a82b-91d6-5c5d-acf7-10f1c761b327"
+LinearSolve = "7ed4a6bd-45f5-4d41-b270-4a48e9bafcae"
+ModelingToolkit = "961ee093-0014-501f-94e3-6117800e7a78"
