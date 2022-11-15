@@ -1,3 +1,4 @@
+using Statistics, Plots
 
 f(t) = sin(t)
 N = 50
@@ -29,5 +30,6 @@ end
 plot!(x, best_g.(x))
 
 plot(errors)
+
 
 println("Best n: $best_n")
