@@ -2,7 +2,7 @@ using ModelingToolkit
 using DifferentialEquations, Plots
 
 @parameters k1 k2 k3
-@variables t r(t) w(t)
+@variables t r(t) w(t) y1(t)
 D = Differential(t)
 
 u0 = [100.0, 100.0]
