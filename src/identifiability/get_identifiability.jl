@@ -21,13 +21,14 @@ function get_identifiability(ode::ModelingToolkit.ODESystem; params_to_assess=[]
 
     @info "Post-Processing: Converting Nemo output to ModelingToolkit types"
     out = Dict()
-    for (id_type, pars) in pairs(res)
+    for (id_type, pars) in pairs(res["identifiability"])
         out[id_type] = [ModelingToolkit.Num(substitute(nemo2mtk[each], t => 0)) for each in pars]
     end
-    return out
+    res["identifiability"] = out
+    return res
 end
 
-function SIAN.identifiability_ode(ode, params_to_assess; p=0.99, p_mod=0, infolevel=0, weighted_ordering=false, local_only=false)
+function identifiability_ode(ode, params_to_assess; p=0.99, p_mod=0, infolevel=0, weighted_ordering=false, local_only=false)
 
     @info "Solving the problem"
 
@@ -259,9 +260,9 @@ function SIAN.identifiability_ode(ode, params_to_assess; p=0.99, p_mod=0, infole
             "nonidentifiable" => Set(SIAN.get_order_var(th, non_jet_ring)[1] for th in setdiff(params_to_assess_, theta_l))
         )
         @info "=== Summary ==="
-        @info "Globally identifiable parameters:                 [$(join(result["globally"], ", "))]"
-        @info "Locally but not globally identifiable parameters: [$(join(result["locally_not_globally"], ", "))]"
-        @info "Not identifiable parameters:                      [$(join(result["nonidentifiable"], ", "))]"
+        @info "Globally identifiable parameters:                 [$(join(id_result["globally"], ", "))]"
+        @info "Locally but not globally identifiable parameters: [$(join(id_result["locally_not_globally"], ", "))]"
+        @info "Not identifiable parameters:                      [$(join(id_result["nonidentifiable"], ", "))]"
         @info "==============="
 
         full_result = Dict(
@@ -269,6 +270,6 @@ function SIAN.identifiability_ode(ode, params_to_assess; p=0.99, p_mod=0, infole
             "Q" => Q,
             "identifiability" => id_result,
         )
-        return result
+        return full_result
     end
 end
