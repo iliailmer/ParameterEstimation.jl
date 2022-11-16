@@ -12,6 +12,8 @@ LinearSolve = "7ed4a6bd-45f5-4d41-b270-4a48e9bafcae"
 ModelingToolkit = "961ee093-0014-501f-94e3-6117800e7a78"
 Nemo = "2edaba10-b0f1-5616-af89-8c11ac63239a"
 SIAN = "cf7bdac0-b945-4905-b5ad-bc3f1a757483"
+Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
+TaylorSeries = "6aa5eb33-94cf-58f4-a9d0-e4b2c4fc25ea"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 
