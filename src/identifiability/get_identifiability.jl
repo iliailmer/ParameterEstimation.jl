@@ -199,6 +199,7 @@ function identifiability_ode(ode, params_to_assess; p=0.99, p_mod=0, infolevel=0
         for poly in Et_hat
             Et_x_vars = union(Et_x_vars, Set(vars(poly)))
         end
+        Et_x_vars = setdiff(Et_x_vars, not_int_cond_params)
         Q_hat = evaluate(Q, u_hat[1], u_hat[2])
         vrs_sorted = vcat(sort([e for e in Et_x_vars], lt=(x, y) -> SIAN.compare_diff_var(x, y, all_indets, n + m + u, s)), z_aux, sort(not_int_cond_params, rev=true))
 
@@ -265,9 +266,18 @@ function identifiability_ode(ode, params_to_assess; p=0.99, p_mod=0, infolevel=0
         @info "Not identifiable parameters:                      [$(join(id_result["nonidentifiable"], ", "))]"
         @info "==============="
 
+        # modify Y_eq for estimation purposes
+        y_derivative_dict = Dict()
+        for each in Y_eq
+            name, order = SIAN.get_order_var(each[2], non_jet_ring)
+            y_derivative_dict[each[1]] = order
+        end
+
         full_result = Dict(
             "Et" => Et,
             "Q" => Q,
+            "Y_eq" => y_derivative_dict,
+            "vars" => vrs_sorted,
             "identifiability" => id_result,
         )
         return full_result
