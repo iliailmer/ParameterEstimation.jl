@@ -10,6 +10,7 @@ import SIAN
 import Nemo
 import Nemo: fmpq_mpoly, total_degree, vars, var_index, evaluate
 import HomotopyContinuation
+import HomotopyContinuation: Expression
 
 import Groebner
 import Groebner: groebner
