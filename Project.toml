@@ -19,6 +19,7 @@ TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 
 [compat]
 DifferentialEquations = "7"
+Groebner = "0.2"
 HomotopyContinuation = "2.6"
 LinearSolve = "1"
 ModelingToolkit = "8"
