@@ -1,4 +1,4 @@
-function nemo2hc(expr_tree::Union{Expr,Symbol})
+function nemo2hc(expr_tree::Union{Expr, Symbol})
     #traverse expr_tree
     if typeof(expr_tree) == Symbol
         return HomotopyContinuation.variables(expr_tree)[1]

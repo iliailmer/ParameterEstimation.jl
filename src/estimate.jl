@@ -1,4 +1,5 @@
-function estimate(model::ModelingToolkit.ODESystem, data_sample=[], time_interval=[], measured_states::Vector{Equation}=[], interpolation_degree::Int=1)
+function estimate(model::ModelingToolkit.ODESystem, data_sample = [], time_interval = [],
+                  measured_states::Vector{Equation} = [], interpolation_degree::Int = 1)
     if length(data_sample) == 0
         error("No data sample provided")
     end
@@ -12,7 +13,8 @@ function estimate(model::ModelingToolkit.ODESystem, data_sample=[], time_interva
         error("No time interval provided")
     end
 
-    identifiability_result = get_identifiability(model; measured_quantities=measured_states)
+    identifiability_result = get_identifiability(model;
+                                                 measured_quantities = measured_states)
     parameters = ModelingToolkit.parameters(model)
     states = ModelingToolkit.states(model)
     num_parameters = length(parameters) + length(states)
@@ -22,7 +24,5 @@ function estimate(model::ModelingToolkit.ODESystem, data_sample=[], time_interva
     data_interpolator = interpolate(tsteps, data_sample, interpolation_degree)
 end
 
-
 function interpolate(identifiability_result::Dict, num_parameters::Int)
-
 end
