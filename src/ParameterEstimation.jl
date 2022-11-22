@@ -1,5 +1,7 @@
 module ParameterEstimation
 
+using LinearAlgebra
+
 import ModelingToolkit
 import ModelingToolkit: substitute
 
@@ -21,6 +23,7 @@ include("rational_interpolation/rational_interpolation.jl")
 include("rational_interpolation/construct_equations.jl")
 
 include("identifiability/get_identifiability.jl")
+include("identifiability/transcendence_basis.jl")
 
 include("utils.jl")
 export get_identifiability

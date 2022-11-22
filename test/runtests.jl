@@ -2,6 +2,7 @@ using Test
 using TestSetExtensions
 using ModelingToolkit
 using ParameterEstimation
+using Nemo
 
 @info "Testing started"
 
