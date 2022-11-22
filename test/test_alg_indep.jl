@@ -1,4 +1,4 @@
-@testset "Check transcendence basis of `ODESystem` object" begin
+@testset "Check size of transcendence_basis of polynomial systems" begin
     R, (a, b, c) = PolynomialRing(Nemo.QQ, ["a", "b", "c"]; ordering = :degrevlex)
     Et = [a + b, a + b + c]
     vals = [1, 1, 1]
