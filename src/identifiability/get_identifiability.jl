@@ -180,15 +180,20 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             theta_l = vcat(theta_l, param_0)
         end
     end
+    alg_indep = algebraic_independence(Et_eval_base, x_theta_vars, all_x_theta_vars_subs)
+    @info "Found Pivots: [$(join(alg_indep, ", "))]"
 
     if length(theta_l) == 0
+        @warn "No identifiable parameters found!"
         @info "=== Summary ==="
         @info "Globally identifiable parameters:                 []"
         @info "Locally but not globally identifiable parameters: []"
         @info "Not identifiable parameters:                      [$(join(params_to_assess, ", "))]"
-        return Dict("locally_identifiable" => [], "globally_identifiable" => [],
-                    "non_identifiable" => Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                              for th in params_to_assess))
+        return Dict("id_result" => Dict("locally_identifiable" => [],
+                                        "globally_identifiable" => [],
+                                        "non_identifiable" => Set(SIAN.get_order_var(th,
+                                                                                     non_jet_ring)[1]
+                                                                  for th in params_to_assess)))
     else
         @info "Locally identifiable parameters: [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in theta_l], ", "))]"
         @info "Not identifiable parameters:     [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in setdiff(params_to_assess_, theta_l)], ", "))]"
@@ -209,7 +214,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         # (a) ------------
         deg_variety = foldl(*, [BigInt(total_degree(e)) for e in Et])
         D2 = floor(BigInt,
-                   6 * length(theta_l) * deg_variety * (1 + 2 * d0 * maximum(beta)) /
+                   3 / 4 * 6 * length(theta_l) * deg_variety *
+                   (1 + 2 * d0 * maximum(beta)) /
                    (1 - p))
         # (b, c) ---------
         sample = SIAN.sample_point(D2, x_vars, y_vars, u_variables, all_params, X_eq, Y_eq,
@@ -221,6 +227,13 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         # (d) ------------
         Et_hat = [evaluate(e, vcat(y_hat[1], u_hat[1]), vcat(y_hat[2], u_hat[2]))
                   for e in Et]
+        transcendence_substitutions = Array{Nemo.fmpq}(undef, 0)
+        for (idx, var) in enumerate(theta_hat[1])
+            if var in alg_indep
+                push!(transcendence_substitutions, theta_hat[2][idx])
+            end
+        end
+        Et_hat = [evaluate(e, alg_indep, transcendence_substitutions) for e in Et_hat]
         Et_x_vars = Set{fmpq_mpoly}()
         for poly in Et_hat
             Et_x_vars = union(Et_x_vars, Set(vars(poly)))
@@ -314,15 +327,18 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         # modify Y_eq for estimation purposes
         y_derivative_dict = Dict()
         for each in Y_eq
-            name, order = SIAN.get_order_var(each[2], non_jet_ring)
+            name, order = SIAN.get_order_var(each[1], non_jet_ring)
             y_derivative_dict[each[1]] = order
         end
 
-        full_result = Dict("Et" => Et,
+        full_result = Dict("Et" => [evaluate(e, alg_indep, transcendence_substitutions)
+                                    for e in Et],
                            "Q" => Q,
                            "Y_eq" => y_derivative_dict,
                            "vars" => vrs_sorted,
                            "vals" => all_subs,
+                           "transcendence_basis_subs" => vcat(alg_indep,
+                                                              transcendence_substitutions),
                            "identifiability" => id_result)
         return full_result
     end
