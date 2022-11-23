@@ -182,8 +182,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     end
     x_theta_vars_reorder = vcat(theta_l,
                                 reverse([x for x in x_theta_vars if !(x in theta_l)]))
-    alg_indep = algebraic_independence(Et_eval_base, x_theta_vars_reorder,
-                                       all_x_theta_vars_subs)
+    Et_ids, alg_indep = algebraic_independence(Et_eval_base, x_theta_vars_reorder,
+                                               all_x_theta_vars_subs)
     @info "Found Pivots: [$(join(alg_indep, ", "))]"
 
     if length(theta_l) == 0
@@ -333,9 +333,9 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             name, order = SIAN.get_order_var(each[1], non_jet_ring)
             y_derivative_dict[each[1]] = order
         end
-
+        Et_ = [Et[idx] for idx in Et_ids]
         full_result = Dict("Et" => [evaluate(e, alg_indep, transcendence_substitutions)
-                                    for e in Et],
+                                    for e in Et_],
                            "Q" => Q,
                            "Y_eq" => y_derivative_dict,
                            "vars" => vrs_sorted,
