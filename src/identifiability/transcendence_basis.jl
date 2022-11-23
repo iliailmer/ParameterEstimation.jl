@@ -15,5 +15,17 @@ function algebraic_independence(Et::Vector{Nemo.fmpq_mpoly},
             push!(pivots, indets[pivot_col[2]])
         end
     end
-    return setdiff(indets, pivots)
+    current_idx = 1
+    output_rows = Jacobian[current_idx, :]
+    current_rank = 1
+    output_ids = [1]
+    for current_idx in 2:length(Et)
+        current = [output_rows; Jacobian[current_idx, :]]
+        if Nemo.rank(current) > current_rank
+            output_rows = current
+            push!(output_ids, current_idx)
+            current_rank += 1
+        end
+    end
+    return output_ids, setdiff(indets, pivots)
 end
