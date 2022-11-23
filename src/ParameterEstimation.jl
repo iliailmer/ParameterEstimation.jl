@@ -12,7 +12,8 @@ import SIAN
 import Nemo
 import Nemo: fmpq_mpoly, total_degree, vars, var_index, evaluate
 import HomotopyContinuation
-import HomotopyContinuation: Expression
+import HomotopyContinuation: Expression, System
+import TaylorSeries: Taylor1
 
 import Groebner
 import Groebner: groebner
@@ -25,7 +26,8 @@ include("rational_interpolation/construct_equations.jl")
 include("identifiability/get_identifiability.jl")
 include("identifiability/transcendence_basis.jl")
 
+include("estimate.jl")
 include("utils.jl")
-export get_identifiability
+export get_identifiability, estimate
 
 end
