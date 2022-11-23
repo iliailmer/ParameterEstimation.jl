@@ -6,7 +6,12 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
     if typeof(expr_tree) == Expr
         if expr_tree.head == :call
             if expr_tree.args[1] in [:+, :-, :*, :/, :^]
-                return reduce(eval(expr_tree.args[1]), map(nemo2hc, expr_tree.args[2:end]))
+                if length(expr_tree.args) == 2
+                    return eval(expr_tree.args[1])(nemo2hc(expr_tree.args[2]))
+                else
+                    return reduce(eval(expr_tree.args[1]),
+                                  map(nemo2hc, expr_tree.args[2:end]))
+                end
             end
         end
     end
