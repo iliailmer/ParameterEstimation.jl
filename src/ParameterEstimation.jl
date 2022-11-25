@@ -1,24 +1,24 @@
 module ParameterEstimation
+using ProgressMeter
 
 using LinearAlgebra
 
-import ModelingToolkit
-import ModelingToolkit: substitute
+using ModelingToolkit
+import DifferentialEquations: Tsit5
 
-import LinearSolve
-import LinearSolve: LinearProblem, solve
-import SIAN
+using LinearSolve
+using SIAN
 
-import Nemo
-import Nemo: fmpq_mpoly, total_degree, vars, var_index, evaluate
-import HomotopyContinuation
-import HomotopyContinuation: Expression, System
+using Nemo
+# import Nemo: fmpq_mpoly, total_degree, vars, var_index, evaluate
+
+using HomotopyContinuation
+
 import TaylorSeries: Taylor1
 
-import Groebner
-import Groebner: groebner
+using Groebner
 
-import LinearAlgebra
+using LinearAlgebra
 
 include("rational_interpolation/rational_interpolation.jl")
 include("rational_interpolation/construct_equations.jl")
@@ -28,6 +28,7 @@ include("identifiability/transcendence_basis.jl")
 
 include("estimate.jl")
 include("utils.jl")
+include("metrics.jl")
 export get_identifiability, estimate
 
 end
