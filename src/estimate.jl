@@ -62,3 +62,33 @@ function estimate(model::ModelingToolkit.ODESystem,
     end
     return all_solutions_dict
 end
+
+function filter_solutions(results, model::ModelingToolkit.ODESystem, time_interval = [],
+                          data_sample = [])
+    @info "Filtering"
+    min_error = 1e+10
+    best_estimate = nothing
+    @showprogress for (i, each_result) in enumerate(results)
+        initial_conditions = [each_result[s] for s in ModelingToolkit.states(model)]
+        parameter_values = [each_result[p] for p in ModelingToolkit.parameters(model)]
+        prob = ModelingToolkit.ODEProblem(model, initial_conditions, time_interval,
+                                          parameter_values)
+        ode_solution = ModelingToolkit.solve(prob, Tsit5(),
+                                             p = parameter_values,
+                                             saveat = range(time_interval[1],
+                                                            time_interval[2],
+                                                            length = length(data_sample)))
+        if ode_solution.retcode == ReturnCode.Success
+            err = ParameterEstimation.mean_abs_err(ode_solution[1, :], data_sample)
+            @info "\tSolution $i, error $err"
+        else
+            err = 1e+10
+            @info "\tSolution $i, error ∞, probably unstable"
+        end
+        if err < min_error
+            min_error = err
+            best_estimate = each_result
+        end
+    end
+    return best_estimate
+end
