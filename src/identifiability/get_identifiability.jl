@@ -83,8 +83,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     @info "Truncating"
 
     # (a) -----------------------
-    d0 = BigInt(maximum(vcat([total_degree(SIAN.unpack_fraction(Q * eq[2])[1])
-                              for eq in eqs], total_degree(Q))))
+    d0 = BigInt(maximum(vcat([Nemo.total_degree(SIAN.unpack_fraction(Q * eq[2])[1])
+                              for eq in eqs], Nemo.total_degree(Q))))
 
     # (b) -----------------------
     D1 = floor(BigInt,
@@ -169,11 +169,12 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
 
     theta_l = Array{fmpq_mpoly}(undef, 0)
     params_to_assess_ = [SIAN.add_to_var(param, Rjet, 0) for param in params_to_assess]
-    Et_eval_base = [evaluate(e, vcat(u_hat[1], y_hat[1]), vcat(u_hat[2], y_hat[2]))
+    Et_eval_base = [Nemo.evaluate(e, vcat(u_hat[1], y_hat[1]), vcat(u_hat[2], y_hat[2]))
                     for e in Et]
     for param_0 in params_to_assess_
         other_params = [v for v in x_theta_vars if v != param_0]
-        Et_subs = [evaluate(e, [param_0], [evaluate(param_0, all_x_theta_vars_subs)])
+        Et_subs = [Nemo.evaluate(e, [param_0],
+                                 [Nemo.evaluate(param_0, all_x_theta_vars_subs)])
                    for e in Et_eval_base]
         JacX = SIAN.jacobi_matrix(Et_subs, other_params, all_x_theta_vars_subs)
         if LinearAlgebra.rank(JacX) != max_rank
@@ -215,7 +216,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         # 3. Randomize.
         @info "Randomizing"
         # (a) ------------
-        deg_variety = foldl(*, [BigInt(total_degree(e)) for e in Et])
+        deg_variety = foldl(*, [BigInt(Nemo.total_degree(e)) for e in Et])
         D2 = floor(BigInt,
                    3 / 4 * 6 * length(theta_l) * deg_variety *
                    (1 + 2 * d0 * maximum(beta)) /
@@ -228,7 +229,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         theta_hat = sample[3]
 
         # (d) ------------
-        Et_hat = [evaluate(e, vcat(y_hat[1], u_hat[1]), vcat(y_hat[2], u_hat[2]))
+        Et_hat = [Nemo.evaluate(e, vcat(y_hat[1], u_hat[1]), vcat(y_hat[2], u_hat[2]))
                   for e in Et]
         transcendence_substitutions = Array{Nemo.fmpq}(undef, 0)
         for (idx, var) in enumerate(theta_hat[1])
@@ -236,13 +237,13 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                 push!(transcendence_substitutions, theta_hat[2][idx])
             end
         end
-        Et_hat = [evaluate(e, alg_indep, transcendence_substitutions) for e in Et_hat]
+        Et_hat = [Nemo.evaluate(e, alg_indep, transcendence_substitutions) for e in Et_hat]
         Et_x_vars = Set{fmpq_mpoly}()
         for poly in Et_hat
             Et_x_vars = union(Et_x_vars, Set(vars(poly)))
         end
         Et_x_vars = setdiff(Et_x_vars, not_int_cond_params)
-        Q_hat = evaluate(Q, u_hat[1], u_hat[2])
+        Q_hat = Nemo.evaluate(Q, u_hat[1], u_hat[2])
         vrs_sorted = vcat(sort([e for e in Et_x_vars],
                                lt = (x, y) -> SIAN.compare_diff_var(x, y, all_indets,
                                                                     n + m + u, s)), z_aux,
@@ -334,7 +335,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             y_derivative_dict[each[1]] = order
         end
         Et_ = [Et[idx] for idx in Et_ids]
-        full_result = Dict("Et" => [evaluate(e, alg_indep, transcendence_substitutions)
+        full_result = Dict("Et" => [Nemo.evaluate(e, alg_indep,
+                                                  transcendence_substitutions)
                                     for e in Et_],
                            "Q" => Q,
                            "Y_eq" => y_derivative_dict,
