@@ -36,8 +36,7 @@ function estimate(model::ModelingToolkit.ODESystem,
     polynomial_system = System(HomotopyContinuation.evaluate(ParameterEstimation.nemo2hc.(identifiability_result["Et"]),
                                                              y_derivs_vals))
     @info "HomotopyContinuations: solving $(length(polynomial_system)) polynomial equations in $(length(polynomial_system.variables)) variables"
-    results = HomotopyContinuation.solve(polynomial_system)
-    Base.show(results)
+    results = HomotopyContinuation.solve(polynomial_system; show_progress = false)
 
     all_solutions = HomotopyContinuation.real_solutions(results)
     if length(all_solutions) == 0
@@ -90,5 +89,38 @@ function filter_solutions(results, model::ModelingToolkit.ODESystem, time_interv
             best_estimate = each_result
         end
     end
-    return best_estimate
+    return best_estimate, min_error
+end
+
+function estimate_over_degrees(model::ModelingToolkit.ODESystem,
+                               measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
+                                                                                              ModelingToolkit.Equation
+                                                                                              }([]),
+                               data_sample = [],
+                               time_interval = [])
+    degree_range = 1:(length(data_sample) - 1)
+    @info "Estimating over degrees between 1 and $(length(data_sample))"
+    logger = ConsoleLogger(stdout, Logging.Error)
+    estimates = nothing
+    with_logger(logger) do
+        estimates = @showprogress pmap(x -> (x => filter_solutions(estimate(model,
+                                                                            measured_quantities,
+                                                                            data_sample,
+                                                                            time_interval,
+                                                                            x), model,
+                                                                   time_interval,
+                                                                   data_sample)),
+                                       degree_range)
+    end
+    best_solution = nothing
+    for each in estimates
+        if best_solution == nothing
+            best_solution = each
+        else
+            if each[2][2] < best_solution[2][2]
+                best_solution = each
+            end
+        end
+    end
+    return best_solution
 end
