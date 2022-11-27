@@ -1,5 +1,5 @@
 module ParameterEstimation
-using ProgressMeter
+using ProgressMeter, Distributed, Logging
 
 using LinearAlgebra
 
