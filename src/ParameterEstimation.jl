@@ -1,5 +1,6 @@
 module ParameterEstimation
-using ProgressMeter, Distributed, Logging
+using Distributed
+using ProgressMeter, Logging
 
 using LinearAlgebra
 
@@ -30,5 +31,4 @@ include("estimate.jl")
 include("utils.jl")
 include("metrics.jl")
 export get_identifiability, estimate
-
 end
