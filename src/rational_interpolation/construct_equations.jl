@@ -1,6 +1,7 @@
-function differentiate_interpolated(interpolated_function, diff_order::Int)
+function differentiate_interpolated(interpolated_function, diff_order::Int,
+                                    t::Union{Float16, Float32, Float64} = 0.0)
     τ = Taylor1(diff_order + 1)
-    taylor_expantion = interpolated_function(τ)
+    taylor_expantion = interpolated_function(τ - t)
     return taylor_expantion
 end
 
