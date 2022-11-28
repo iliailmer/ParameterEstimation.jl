@@ -4,7 +4,8 @@ function estimate(model::ModelingToolkit.ODESystem,
                                                                                  }([]),
                   data_sample = [],
                   time_interval = [],
-                  interpolation_degree::Int = 1)
+                  interpolation_degree::Int = 1,
+                  interpolation_point::Union{Float16, Float32, Float64} = 0.0)
     if length(measured_quantities) == 0
         error("No measured states provided")
     end
@@ -27,7 +28,8 @@ function estimate(model::ModelingToolkit.ODESystem,
     tsteps = range(time_interval[1], time_interval[2], length = length(data_sample))
     @info "Interpolating sample data"
     I = ParameterEstimation.interpolate(tsteps, data_sample, interpolation_degree)
-    dIdt = ParameterEstimation.differentiate_interpolated(I, num_parameters + 1)
+    dIdt = ParameterEstimation.differentiate_interpolated(I, num_parameters + 1,
+                                                          interpolation_point)
     err = sum(abs.(data_sample - I.(tsteps))) / length(tsteps)
     @info "Mean Absolute error in interpolation: $err"
 
@@ -63,22 +65,27 @@ function estimate(model::ModelingToolkit.ODESystem,
 end
 
 function filter_solutions(results, model::ModelingToolkit.ODESystem, time_interval = [],
-                          data_sample = [])
+                          data_sample = [],
+                          starting_point::Union{Float16, Float32, Float64} = 0.0)
     @info "Filtering"
+    @assert starting_point<time_interval[2] "Starting point $(starting_point) must be less than time interval end"
+
     min_error = 1e+10
     best_estimate = nothing
+    time_step = (time_interval[2] - time_interval[1]) / length(data_sample)
+    new_length = Int(floor((time_interval[2] - starting_point) / time_step))
     @showprogress for (i, each_result) in enumerate(results)
         initial_conditions = [each_result[s] for s in ModelingToolkit.states(model)]
         parameter_values = [each_result[p] for p in ModelingToolkit.parameters(model)]
-        prob = ModelingToolkit.ODEProblem(model, initial_conditions, time_interval,
+        prob = ModelingToolkit.ODEProblem(model, initial_conditions,
+                                          (starting_point, time_interval[2]),
                                           parameter_values)
         ode_solution = ModelingToolkit.solve(prob, Tsit5(),
-                                             p = parameter_values,
-                                             saveat = range(time_interval[1],
-                                                            time_interval[2],
-                                                            length = length(data_sample)))
+                                             p = parameter_values)
+        range_ = range(starting_point, time_interval[2], length = new_length)
         if ode_solution.retcode == ReturnCode.Success
-            err = ParameterEstimation.mean_abs_err(ode_solution[1, :], data_sample)
+            err = ParameterEstimation.mean_abs_err(ode_solution(range_)[1, :],
+                                                   data_sample[(end - new_length + 1):end])
             @info "\tSolution $i, error $err"
         else
             err = 1e+10
