@@ -26,7 +26,7 @@ function interpolate(identifiability_result, data_sample, time_interval,
                      measured_quantities,
                      interpolation_degree::Int = 1,
                      diff_order::Int = 1)
-    polynomial_system = identifiability_result["Et"]
+    polynomial_system = identifiability_result["polynomial_system"]
     for (key, sample) in pairs(data_sample)
         y_function_name = map(x -> replace(string(x.lhs), "(t)" => ""),
                               filter(x -> string(x.rhs) == string(key),
