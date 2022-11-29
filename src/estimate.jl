@@ -54,21 +54,22 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                degree_range = nothing) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
     degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
-    @info "Estimating over degrees between 1 and $(length(degree_range))"
+
     logger = ConsoleLogger(stdout, Logging.Error)
     estimates = nothing
     identifiability_result = ParameterEstimation.get_identifiability(model;
                                                                      measured_quantities = measured_quantities)
+    @info "Estimating over degrees between 1 and $(length(degree_range))"
     with_logger(logger) do
-        estimates = @showprogress pmap(x -> (x => filter_solutions(estimate(model,
-                                                                            measured_quantities,
-                                                                            data_sample,
-                                                                            time_interval,
-                                                                            identifiability_result,
-                                                                            x), model,
-                                                                   data_sample,
-                                                                   time_interval)),
-                                       degree_range)
+        estimates = @showprogress map(x -> (x => filter_solutions(estimate(model,
+                                                                           measured_quantities,
+                                                                           data_sample,
+                                                                           time_interval,
+                                                                           identifiability_result,
+                                                                           x), model,
+                                                                  data_sample,
+                                                                  time_interval)),
+                                      degree_range)
     end
     best_solution = nothing
     for each in estimates
@@ -93,8 +94,12 @@ function filter_solutions(results, model::ModelingToolkit.ODESystem,
     tsteps = range(time_interval[1], time_interval[2],
                    length = length(first(values(data_sample))))
     @showprogress for (i, each_result) in enumerate(results)
-        initial_conditions = [each_result[s] for s in ModelingToolkit.states(model)]
-        parameter_values = [each_result[p] for p in ModelingToolkit.parameters(model)]
+        initial_conditions = filter(x -> x !== nothing,
+                                    [get(each_result, s, nothing)
+                                     for s in ModelingToolkit.states(model)])
+        parameter_values = filter(x -> x !== nothing,
+                                  [get(each_result, p, nothing)
+                                   for p in ModelingToolkit.parameters(model)])
         prob = ModelingToolkit.ODEProblem(model, initial_conditions, time_interval,
                                           parameter_values)
         ode_solution = ModelingToolkit.solve(prob, Tsit5(),
