@@ -13,4 +13,5 @@ eqs = [D(x0) ~ -(a01 + a21) * x0 + a12 * x1, D(x1) ~ a21 * x0 - a12 * x1]
 
 de = ODESystem(eqs, t, name = :Test)
 measured_data = [y1 ~ x0]
-id_result = ParameterEstimation.get_identifiability(de; measured_quantities = measured_data)
+identifiability_result = ParameterEstimation.get_identifiability(de;
+                                                                 measured_quantities = measured_data)
