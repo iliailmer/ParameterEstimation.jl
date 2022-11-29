@@ -28,7 +28,7 @@ function interpolate(identifiability_result, data_sample, time_interval,
                      diff_order::Int = 1)
     polynomial_system = identifiability_result["Et"]
     for (key, sample) in pairs(data_sample)
-        y_function_name = map(x -> string(x.lhs)[1:(end - 3)],
+        y_function_name = map(x -> replace(string(x.lhs), "(t)" => ""),
                               filter(x -> string(x.rhs) == string(key),
                                      measured_quantities))[1]
         tsteps = range(time_interval[1], time_interval[2], length = length(sample))
@@ -41,12 +41,12 @@ function interpolate(identifiability_result, data_sample, time_interval,
             if occursin(y_function_name, string(y_func))
                 y_derivs_vals = Dict(ParameterEstimation.nemo2hc(y_func) => interpolant.dIdt[y_deriv_order] *
                                                                             factorial(y_deriv_order))
-                polynomial_system = System(HomotopyContinuation.evaluate(ParameterEstimation.nemo2hc.(polynomial_system),
-                                                                         y_derivs_vals))
+                polynomial_system = HomotopyContinuation.evaluate(ParameterEstimation.nemo2hc.(polynomial_system),
+                                                                  y_derivs_vals)
             end
         end
     end
-    return polynomial_system
+    return System(polynomial_system)
 end
 
 function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1)
