@@ -28,9 +28,12 @@ include("rational_interpolation/interpolant.jl")
 
 include("identifiability/get_identifiability.jl")
 include("identifiability/transcendence_basis.jl")
+include("identifiability/identifiability_data.jl")
 
 include("estimate.jl")
 include("utils.jl")
 include("metrics.jl")
+
 export get_identifiability, estimate
+
 end
