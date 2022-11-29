@@ -33,7 +33,7 @@ function get_identifiability(ode::ModelingToolkit.ODESystem; params_to_assess = 
                         for each in pars]
     end
     res["identifiability"] = out
-    return res
+    return ParameterEstimation.IdentifiabilityData(res)
 end
 
 function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolevel = 0,
@@ -193,11 +193,11 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         @info "Globally identifiable parameters:                 []"
         @info "Locally but not globally identifiable parameters: []"
         @info "Not identifiable parameters:                      [$(join(params_to_assess, ", "))]"
-        return Dict("id_result" => Dict("locally_identifiable" => [],
-                                        "globally_identifiable" => [],
-                                        "non_identifiable" => Set(SIAN.get_order_var(th,
-                                                                                     non_jet_ring)[1]
-                                                                  for th in params_to_assess)))
+        return Dict("identifiability_result" => Dict("locally_identifiable" => [],
+                                                     "globally_identifiable" => [],
+                                                     "non_identifiable" => Set(SIAN.get_order_var(th,
+                                                                                                  non_jet_ring)[1]
+                                                                               for th in params_to_assess)))
     else
         @info "Locally identifiable parameters: [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in theta_l], ", "))]"
         @info "Not identifiable parameters:     [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in setdiff(params_to_assess_, theta_l)], ", "))]"
@@ -314,18 +314,21 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                 end
             end
         end
-        id_result = Dict("globally" => Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                           for th in theta_g),
-                         "locally_not_globally" => Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                                       for th in setdiff(theta_l_new,
-                                                                         theta_g)),
-                         "nonidentifiable" => Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                                  for th in setdiff(params_to_assess_,
-                                                                    theta_l)))
+        identifiability_result = Dict("globally" => Set(SIAN.get_order_var(th,
+                                                                           non_jet_ring)[1]
+                                                        for th in theta_g),
+                                      "locally_not_globally" => Set(SIAN.get_order_var(th,
+                                                                                       non_jet_ring)[1]
+                                                                    for th in setdiff(theta_l_new,
+                                                                                      theta_g)),
+                                      "nonidentifiable" => Set(SIAN.get_order_var(th,
+                                                                                  non_jet_ring)[1]
+                                                               for th in setdiff(params_to_assess_,
+                                                                                 theta_l)))
         @info "=== Summary ==="
-        @info "Globally identifiable parameters:                 [$(join(id_result["globally"], ", "))]"
-        @info "Locally but not globally identifiable parameters: [$(join(id_result["locally_not_globally"], ", "))]"
-        @info "Not identifiable parameters:                      [$(join(id_result["nonidentifiable"], ", "))]"
+        @info "Globally identifiable parameters:                 [$(join(identifiability_result["globally"], ", "))]"
+        @info "Locally but not globally identifiable parameters: [$(join(identifiability_result["locally_not_globally"], ", "))]"
+        @info "Not identifiable parameters:                      [$(join(identifiability_result["nonidentifiable"], ", "))]"
         @info "==============="
 
         # modify Y_eq for estimation purposes
@@ -335,16 +338,19 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             y_derivative_dict[each[1]] = order
         end
         Et_ = [Et[idx] for idx in Et_ids]
-        full_result = Dict("Et" => [Nemo.evaluate(e, alg_indep,
-                                                  transcendence_substitutions)
-                                    for e in Et_],
-                           "Q" => Q,
+        full_result = Dict("polynomial_system" => [Nemo.evaluate(e, alg_indep,
+                                                                 transcendence_substitutions)
+                                                   for e in Et_],
+                           "denominator" => Q,
                            "Y_eq" => y_derivative_dict,
                            "vars" => vrs_sorted,
                            "vals" => all_subs,
                            "transcendence_basis_subs" => vcat(alg_indep,
                                                               transcendence_substitutions),
-                           "identifiability" => id_result)
+                           "identifiability" => identifiability_result,
+                           "basis" => gb,
+                           "weights" => weights,
+                           "non_jet_ring" => non_jet_ring)
         return full_result
     end
 end
