@@ -21,8 +21,10 @@ using Groebner
 
 using LinearAlgebra
 
+Float = Union{Float64, Float32, Float16}
+
 include("rational_interpolation/rational_interpolation.jl")
-include("rational_interpolation/construct_equations.jl")
+include("rational_interpolation/interpolant.jl")
 
 include("identifiability/get_identifiability.jl")
 include("identifiability/transcendence_basis.jl")
