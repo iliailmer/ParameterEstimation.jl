@@ -10,7 +10,7 @@ import DifferentialEquations: Tsit5
 using LinearSolve
 using SIAN
 
-using Nemo
+using Nemo, Singular
 # import Nemo: fmpq_mpoly, total_degree, vars, var_index, evaluate
 
 using HomotopyContinuation
@@ -29,6 +29,7 @@ include("rational_interpolation/interpolant.jl")
 include("identifiability/get_identifiability.jl")
 include("identifiability/transcendence_basis.jl")
 include("identifiability/identifiability_data.jl")
+include("identifiability/utils.jl")
 
 include("estimate.jl")
 include("utils.jl")
