@@ -33,6 +33,7 @@ function get_identifiability(ode::ModelingToolkit.ODESystem; params_to_assess = 
                         for each in pars]
     end
     res["identifiability"] = out
+    res["nemo_mtk"] = nemo2mtk
     return ParameterEstimation.IdentifiabilityData(res)
 end
 
@@ -314,6 +315,9 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                 end
             end
         end
+        id_res_nemo = Dict("globally" => theta_g,
+                           "locally_not_globally" => setdiff(theta_l_new, theta_g),
+                           "nonidentifiable" => setdiff(params_to_assess_, theta_l))
         identifiability_result = Dict("globally" => Set(SIAN.get_order_var(th,
                                                                            non_jet_ring)[1]
                                                         for th in theta_g),
@@ -347,6 +351,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                            "vals" => all_subs,
                            "transcendence_basis_subs" => vcat(alg_indep,
                                                               transcendence_substitutions),
+                           "identifiability_nemo" => id_res_nemo,
                            "identifiability" => identifiability_result,
                            "basis" => gb,
                            "weights" => weights,
