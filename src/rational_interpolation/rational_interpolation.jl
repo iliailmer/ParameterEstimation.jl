@@ -46,7 +46,13 @@ function interpolate(identifiability_result, data_sample, time_interval,
             end
         end
     end
-    return System(polynomial_system)
+    try
+        return System(polynomial_system)
+    catch KeyError
+        throw(ArgumentError("HomotopyContinuation threw a KeyError, it is likely that " *
+                            "you are using Unicode characters in your input. Consider " *
+                            "using ASCII characters instead."))
+    end
 end
 
 function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1)
