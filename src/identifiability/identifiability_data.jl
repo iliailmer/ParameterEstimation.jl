@@ -11,10 +11,13 @@ struct IdentifiabilityData
     weights::Dict{fmpq_mpoly, Int64}
     non_jet_ring::Nemo.FmpqMPolyRing
     nemo_mtk::Dict
+    solution_counts::Dict
     function IdentifiabilityData(input::Dict)
+        solution_counts = count_solutions(input)
         return new(input["polynomial_system"], input["denominator"], input["vars"],
                    input["vals"], input["identifiability_nemo"], input["identifiability"],
                    input["transcendence_basis_subs"], input["Y_eq"], input["basis"],
-                   input["weights"], input["non_jet_ring"], input["nemo_mtk"])
+                   input["weights"], input["non_jet_ring"], input["nemo_mtk"],
+                   solution_counts)
     end
 end
