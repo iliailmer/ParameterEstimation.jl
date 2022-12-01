@@ -6,40 +6,39 @@ using Nemo, HomotopyContinuation
 
 import ParameterEstimation
 
-@parameters k5 k6 k7 k8 k9 k10
-@variables t x4(t) x5(t) x6(t) x7(t) y1(t) y2(t)
+@parameters k1 k2 k3 k4 k5 k6 Ki
+@variables t x1(t) x2(t) x3(t) y1(t) y2(t)
 D = Differential(t)
 @named model = ODESystem([
-                             D(x4) ~ -k5 * x4 / (k6 + x4),
-                             D(x5) ~ k5 * x4 / (k6 + x4) - k7 * x5 / (k8 + x5 + x6),
-                             D(x6) ~ k7 * x5 / (k8 + x5 + x6) - k9 * x6 * (k10 - x6) / k10,
-                             #  D(x7) ~ k9 * x6 * (k10 - x6) / k10,
+                             D(x1) ~ k1 * Ki^2 / (Ki^2 + x3^2) - k2 * x1,
+                             D(x2) ~ k3 * x1 - k4 * x2,
+                             D(x3) ~ k5 * x2 - k6 * x3,
                          ])
 measured_quantities = [
-    y1 ~ x4,
-    y2 ~ x5,
+    y1 ~ x1,
+    y2 ~ x3,
 ]
 
-u0 = [1.0, -1.0, 1.0]
-time_interval = (0.0, 6.0)
-datasize = 50
+u0 = [1 / 10, 2 / 10, 25 / 10]
+time_interval = (-4, -2.0)
+datasize = 10
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
-p_true = [1, 1.3, 1.1, 1.2, 1.1, 1] # True Parameters
-states = [x4, x5, x6] #, x7]
-parameters = [k5, k6, k7, k8, k9, k10]
+p_true = [1, 1 / 10, 1, 1 / 10, 1, 1 / 10, 1] # True Parameters
+states = [x1, x2, x3]
+parameters = [k1, k2, k3, k4, k5, k6, Ki]
 
 prob_true = ODEProblem(model, u0, time_interval, p_true)
 solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
 
 data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_quantities)
-# plot(solution_true)
+plot(solution_true)
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
-interpolation_degree = 10
+interpolation_degree = 8
 results = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                        time_interval, identifiability_result,
                                        interpolation_degree)
-filtered = ParameterEstimation.filter_solutions(results, identifiability_result, model,
-                                                data_sample, time_interval)
+best = ParameterEstimation.filter_solutions(results, identifiability_result, model,
+                                            data_sample, time_interval)
 results = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                    time_interval)
+                                                    time_interval;)

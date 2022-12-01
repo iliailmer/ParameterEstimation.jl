@@ -23,8 +23,8 @@ solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = t
 data_sample = Dict(r => solution_true[r])
 
 interpolation_degree = 7
-identifiability_result = ParameterEstimation.get_identifiability(model;
-                                                                 measured_quantities = measured_quantities)
+identifiability_result = ParameterEstimation.check_identifiability(model;
+                                                                   measured_quantities = measured_quantities)
 results = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                        time_interval,
                                        identifiability_result,
