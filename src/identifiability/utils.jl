@@ -14,14 +14,14 @@ function Base.getindex(identifiability_result::IdentifiabilityData, key::String)
     return getproperty(identifiability_result, Symbol(key))
 end
 
-function count_solutions(identifiability_result::IdentifiabilityData)
+function count_solutions(identifiability_result)
     @info "Counting number of solutions per variable"
-    globally_id = identifiability_result.identifiability_nemo["globally"]
-    locally_not_globally_id = identifiability_result.identifiability_nemo["locally_not_globally"]
-    non_id = identifiability_result.identifiability_nemo["nonidentifiable"]
-    weights_table = identifiability_result.weights
-    non_jet_ring = identifiability_result.non_jet_ring
-    n2m = identifiability_result.nemo_mtk
+    globally_id = identifiability_result["identifiability_nemo"]["globally"]
+    locally_not_globally_id = identifiability_result["identifiability_nemo"]["locally_not_globally"]
+    non_id = identifiability_result["identifiability_nemo"]["nonidentifiable"]
+    weights_table = identifiability_result["weights"]
+    non_jet_ring = identifiability_result["non_jet_ring"]
+    n2m = identifiability_result["nemo_mtk"]
     solutions_table = Dict{Any, Int}()
     for param in globally_id
         v = SIAN.get_order_var(param, non_jet_ring)[1]
@@ -32,10 +32,10 @@ function count_solutions(identifiability_result::IdentifiabilityData)
         solutions_table[n2m[v]] = 0
     end
     # basis_lex = Groebner.fglm(identifiability_result.basis)
-    R = parent(identifiability_result.basis[1])
+    R = parent(identifiability_result["basis"][1])
     SR, svars = Singular.PolynomialRing(Singular.QQ, string.(gens(R)); ordering = :lex)
-    basis_sing = [ParameterEstimation.nemo2singular(identifiability_result.basis[i], SR)
-                  for i in 1:length(identifiability_result.basis)]
+    basis_sing = [ParameterEstimation.nemo2singular(identifiability_result["basis"][i], SR)
+                  for i in 1:length(identifiability_result["basis"])]
     locally_not_globally_id_sing = [ParameterEstimation.nemo2singular(locally_not_globally_id[i],
                                                                       SR)
                                     for i in 1:length(locally_not_globally_id)]

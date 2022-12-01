@@ -1,7 +1,7 @@
 function nemo2hc(expr_tree::Union{Expr, Symbol})
     #traverse expr_tree
     if typeof(expr_tree) == Symbol
-        return HomotopyContinuation.variables(expr_tree)[1]
+        return HomotopyContinuation.Expression(HomotopyContinuation.variables(expr_tree)[1])
     end
     if typeof(expr_tree) == Expr
         if expr_tree.head == :call
@@ -51,5 +51,16 @@ function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Ve
     end
     if interpolation_degree < 1
         error("Interpolation degree must be ≥ 1")
+    end
+end
+
+to_real(x::Number; tol = 1e-10) = abs(imag(x)) < tol ? real(x) : x
+function to_exact(x::Number; tol = 1e-10)
+    r = abs(real(x)) < tol ? 0 : real(x)
+    i = abs(imag(x)) < tol ? 0 : imag(x)
+    if i == 0
+        return r
+    else
+        return r + i * im
     end
 end
