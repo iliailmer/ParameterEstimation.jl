@@ -4,6 +4,12 @@ struct Estimate
     return_code::Any
 end
 
+function Base.show(io::IO, e::Estimate)
+    println(io, "Estimate: ", e.estimate)
+    println(io, "Error: ", e.err)
+    println(io, "Return Code: ", e.return_code)
+end
+
 function estimate(model::ModelingToolkit.ODESystem,
                   measured_quantities::Vector{ModelingToolkit.Equation},
                   data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
@@ -29,7 +35,7 @@ function estimate(model::ModelingToolkit.ODESystem,
     if length(all_solutions) == 0
         all_solutions = HomotopyContinuation.solutions(results)
         if length(all_solutions) == 0
-            @warn "No solutions found"
+            @warn "Interpolation degree $(interpolation_degree) No solutions found"
         end
     end
     all_solutions_dict = []
@@ -83,14 +89,14 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
             if best_solution == nothing
                 best_solution = each
             else
-                if each[2].err < best_solution[2][2]
+                if each[2].err < best_solution[2].err
                     best_solution = each
                 end
             end
         end
     end
     if best_solution != nothing
-        @info "Best estimate $(best_solution[2][1]) found at degree $(best_solution[1]) with error $(best_solution[2][2])"
+        @info "Best estimate $(best_solution[2].estimate) found at degree $(best_solution[1]) with error $(best_solution[2].err)"
         return best_solution
     else
         @warn "No solution found"
@@ -112,10 +118,10 @@ function filter_solutions(results, identifiability_result::IdentifiabilityData,
         return Estimate(results, min_error, ReturnCode.Terminated)
     end
     @showprogress for (i, each_result) in enumerate(results)
-        initial_conditions = filter(x -> x !== nothing,
+        initial_conditions = filter(x -> x != nothing,
                                     [get(each_result, s, nothing)
                                      for s in ModelingToolkit.states(model)])
-        parameter_values = filter(x -> x !== nothing,
+        parameter_values = filter(x -> x != nothing,
                                   [get(each_result, p, nothing)
                                    for p in ModelingToolkit.parameters(model)])
         prob = ModelingToolkit.ODEProblem(model, initial_conditions, time_interval,
@@ -138,7 +144,7 @@ function filter_solutions(results, identifiability_result::IdentifiabilityData,
         end
     end
     if best_estimate == nothing
-        @warn "No solutions found"
+        @warn "Could not find a good estimate."
     else
         @info "Best estimate: $(best_estimate), error: $(min_error)"
     end
