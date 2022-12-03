@@ -23,7 +23,7 @@ measured_quantities = [
 
 ic = [1.0, -1.0, 1.0]
 time_interval = (0.0, 2.0)
-datasize = 50
+datasize = 21
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1.3, 1.1, 1.2, 1, 1.2] # True Parameters
 
@@ -34,7 +34,7 @@ data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_qua
 plot(solution_true)
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
-interpolation_degree = 25
+interpolation_degree = 15
 results = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                        time_interval, identifiability_result,
                                        interpolation_degree)
