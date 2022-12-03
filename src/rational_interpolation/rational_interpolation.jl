@@ -55,7 +55,7 @@ function interpolate(identifiability_result, data_sample, time_interval,
     end
 end
 
-function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1)
+function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1) # TODO: make numer_degree optional
     numer_coef, denom_coef = rational_interpolation_coefficients(time, sample,
                                                                  numer_degree)
     numer_function(t) = sum(numer_coef[i] * t^(i - 1) for i in 1:length(numer_coef))
