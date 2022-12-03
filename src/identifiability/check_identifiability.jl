@@ -189,16 +189,17 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     @info "Found Pivots: [$(join(alg_indep, ", "))]"
 
     if length(theta_l) == 0
-        @warn "No identifiable parameters found!"
+        @error "No identifiable parameters found!"
         @info "=== Summary ==="
         @info "Globally identifiable parameters:                 []"
         @info "Locally but not globally identifiable parameters: []"
         @info "Not identifiable parameters:                      [$(join(params_to_assess, ", "))]"
-        return Dict("identifiability_result" => Dict("locally_identifiable" => [],
-                                                     "globally_identifiable" => [],
-                                                     "non_identifiable" => Set(SIAN.get_order_var(th,
-                                                                                                  non_jet_ring)[1]
-                                                                               for th in params_to_assess)))
+
+        return Dict("identifiability" => Dict("locally_identifiable" => [],
+                                              "globally_identifiable" => [],
+                                              "non_identifiable" => Set(SIAN.get_order_var(th,
+                                                                                           non_jet_ring)[1]
+                                                                        for th in params_to_assess)))
     else
         @info "Locally identifiable parameters: [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in theta_l], ", "))]"
         @info "Not identifiable parameters:     [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in setdiff(params_to_assess_, theta_l)], ", "))]"
