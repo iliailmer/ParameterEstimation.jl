@@ -1,25 +1,12 @@
 module ParameterEstimation
-using Distributed
-using ProgressMeter, Logging
-
-using LinearAlgebra
-
-using ModelingToolkit
 import DifferentialEquations: Tsit5
-
-using LinearSolve
-using SIAN
-
-using Nemo, Singular
-using .ReturnCode
-
-using HomotopyContinuation
-
 import TaylorSeries: Taylor1
 
-using Groebner
+using ProgressMeter, Logging, Printf
+using ModelingToolkit, LinearSolve, LinearAlgebra
+using SIAN, Nemo, Singular, HomotopyContinuation, Groebner
 
-using LinearAlgebra
+using .ReturnCode
 
 Float = Union{Float64, Float32, Float16}
 
@@ -31,7 +18,9 @@ include("identifiability/transcendence_basis.jl")
 include("identifiability/identifiability_data.jl")
 include("identifiability/utils.jl")
 
+include("result.jl")
 include("estimate.jl")
+
 include("utils.jl")
 include("metrics.jl")
 
