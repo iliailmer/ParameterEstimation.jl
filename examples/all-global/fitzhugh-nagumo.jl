@@ -24,5 +24,5 @@ prob_true = ODEProblem(model, u0, time_interval, p_true)
 solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
 data_sample = Dict(V => solution_true[V])
 
-results = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                    time_interval)
+res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+                                                time_interval)

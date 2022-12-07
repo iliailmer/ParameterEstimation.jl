@@ -31,15 +31,15 @@ prob_true = ODEProblem(model, ic, time_interval, p_true)
 solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
 
 data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_quantities)
-plot(solution_true)
+# plot(solution_true)
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
 interpolation_degree = 15
-results = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                        time_interval, identifiability_result,
                                        interpolation_degree)
-filtered = ParameterEstimation.filter_solutions(results, identifiability_result, model,
+filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
                                                 data_sample, time_interval)
 
-results = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                     time_interval)

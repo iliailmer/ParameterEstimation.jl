@@ -90,6 +90,10 @@ function filter_solutions(results::Vector{EstimationResult},
                           time_interval = Vector{T}(), id_combs = [];
                           topk = 1) where {T <: Float}
     @info "Filtering"
+    if length(results) == 0
+        @warn "No results to filter."
+        return results
+    end
     if all(each -> each.return_code == ReturnCode.Failure, results)
         return results
     end

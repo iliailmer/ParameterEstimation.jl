@@ -25,11 +25,11 @@ data_sample = Dict(r => solution_true[r])
 interpolation_degree = 7
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
-results = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                       time_interval,
-                                       identifiability_result,
-                                       interpolation_degree)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval,
+                                   identifiability_result,
+                                   interpolation_degree)
 best_result = ParameterEstimation.filter_solutions(results, model, data_sample,
                                                    time_interval)
-results = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                    time_interval)
+res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+                                                time_interval)

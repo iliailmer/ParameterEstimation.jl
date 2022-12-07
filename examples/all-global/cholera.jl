@@ -31,9 +31,9 @@ plot(solution_true)
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
 interpolation_degree = 10
-results = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                       time_interval, identifiability_result,
-                                       interpolation_degree)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval, identifiability_result,
+                                   interpolation_degree)
 
-results = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                    time_interval)
+res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+                                                time_interval)
