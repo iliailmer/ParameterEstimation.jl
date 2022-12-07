@@ -8,10 +8,10 @@ struct EstimationResult
         parameters = OrderedDict{Any, Any}()
         states = OrderedDict{Any, Any}()
         for p in ModelingToolkit.parameters(model)
-            parameters[p] = get(poly_sol, p, nothing)
+            parameters[ModelingToolkit.Num(p)] = get(poly_sol, p, nothing)
         end
         for s in ModelingToolkit.states(model)
-            states[s] = get(poly_sol, s, nothing)
+            states[ModelingToolkit.Num(s)] = get(poly_sol, s, nothing)
         end
         new(parameters, states, degree, nothing, return_code)
     end
@@ -39,6 +39,10 @@ function Base.show(io::IO, e::EstimationResult)
     println(io, "Initial Condition Estimates:\n\t",
             join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.states)], ", "))
     println(io, "Degree: ", e.degree)
-    println(io, "Error: ", @sprintf("%.4e", e.err))
+    if isequal(e.err, nothing)
+        println(io, "Error: Not yet calculated")
+    else
+        println(io, "Error: ", @sprintf("%.4e", e.err))
+    end
     println(io, "Return Code: ", e.return_code)
 end
