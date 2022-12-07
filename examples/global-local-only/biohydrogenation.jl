@@ -34,16 +34,32 @@ data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_qua
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
 interpolation_degree = 12
-results = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                       time_interval, identifiability_result,
-                                       interpolation_degree)
-filtered = ParameterEstimation.filter_solutions(results, identifiability_result, model,
-                                                data_sample, time_interval)
-results = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                    time_interval)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval, identifiability_result,
+                                   interpolation_degree)
+# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
+#                                                 data_sample, time_interval)
+# res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+#                                                     time_interval)
 
 id_combs = [k5, k6, k7, k9^2, k10 / k9, (-k10 * k9 - 2 * k8 * k9) / k10]
-tmp1 = [substitute(id_comb, results[1]) for id_comb in id_combs]
-tmp2 = [substitute(id_comb, results[2]) for id_comb in id_combs]
-tmp3 = [substitute(id_comb, results[3]) for id_comb in id_combs]
-tmp4 = [substitute(id_comb, results[4]) for id_comb in id_combs]
+
+similar_combinations = []
+for i in 1:length(res)
+    for j in (i + 1):length(res)
+        if isequal(substitute(id_combs, Dict(res[i].parameters)),
+                   substitute(id_combs, Dict(res[j].parameters)))
+            push!(similar_combinations, [res[i], res[j]])
+        end
+    end
+end
+filtered_results = []
+for group in similar_combinations
+    group_filtered = ParameterEstimation.filter_solutions(group, identifiability_result,
+                                                          model,
+                                                          data_sample, time_interval)
+    push!(filtered_results, group_filtered)
+end
+
+ParameterEstimation.solve_ode!(model, res, tsteps, data_sample)
+clustered = []
