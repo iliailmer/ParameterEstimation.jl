@@ -20,6 +20,7 @@ include("identifiability/utils.jl")
 
 include("result.jl")
 include("estimate.jl")
+include("filtering.jl")
 
 include("utils.jl")
 include("metrics.jl")
