@@ -1,3 +1,10 @@
+"""
+    EstimationResult
+
+A container for the results of an estimation.
+Contains the estimated parameters and initial conditions (state values at a given time), the degree of the rational interpolation used,
+the error between the estimated ODE solution and the sample data, and the return code.
+"""
 struct EstimationResult
     parameters::OrderedDict
     states::OrderedDict

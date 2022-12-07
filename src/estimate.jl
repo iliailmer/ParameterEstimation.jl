@@ -1,3 +1,28 @@
+"""
+    estimate(model::ModelingToolkit.ODESystem,
+             measured_quantities::Vector{ModelingToolkit.Equation},
+             data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+             time_interval = Vector{T}(),
+             identifiability_result = Dict{String, Any}(),
+             interpolation_degree::Int = 1; real_tol = 1e-10) where {T <: Float}
+
+Estimate the parameters of a model using the data sample `data_sample` and the
+measured quantities `measured_quantities`.
+
+# Arguments
+- `model::ModelingToolkit.ODESystem`: the model with parameters and initial conditions to be estimated.
+- `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities of the model. Used for identifiability assessment.
+- `data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
+                                                                The keys of the dictionary are the measured quantities
+                                                                and the values are the corresponding data samples.
+- `time_interval = Vector{T}()`: the time interval of the data sample.
+- `identifiability_result = Dict{String, Any}()`: the result of the identifiability assessment.
+- `interpolation_degree::Int = 1`: the degree of the polynomial interpolation.
+- `real_tol = 1e-10`: (optional) the tolerance for the real solutions of the polynomial system.
+
+# Returns
+- `EstimationResult`: the estimated parameters and initial conditions of the model.
+"""
 function estimate(model::ModelingToolkit.ODESystem,
                   measured_quantities::Vector{ModelingToolkit.Equation},
                   data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
@@ -47,6 +72,17 @@ function estimate(model::ModelingToolkit.ODESystem,
     return all_solutions_
 end
 
+# Path: src/estimate.jl
+"""
+    estimate_over_degrees(model::ModelingToolkit.ODESystem,
+                          measured_quantities::Vector{ModelingToolkit.Equation},
+                          data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                          time_interval = Vector{T}();
+                          degree_range = nothing, real_tol = 1e-10) where {T <: Float}
+
+Run estimation over a range of interpolation degrees. Return the best estimate according to a heuristic:
+    - the best estimate is the one with the smallest error between sample data and ODE solution with current parameters (estimates);
+"""
 function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
                                data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),

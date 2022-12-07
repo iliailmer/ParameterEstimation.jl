@@ -1,3 +1,9 @@
+"""
+    IdentifiabilityData
+
+A struct that contains the data from identifiability analysis.
+This is used for parameter estimation.
+"""
 struct IdentifiabilityData
     polynomial_system::Vector{Nemo.fmpq_mpoly}
     denomiantor::Nemo.fmpq_mpoly

@@ -1,3 +1,8 @@
+"""
+    nemo2hc(expr_tree::Union{Expr, Symbol})
+
+Converts a symbolic expression from Nemo to HomotopyContinuation format.
+"""
 function nemo2hc(expr_tree::Union{Expr, Symbol})
     #traverse expr_tree
     if typeof(expr_tree) == Symbol
@@ -25,12 +30,26 @@ function nemo2hc(expr_tree::Number)
     return expr_tree
 end
 
+"""
+    squarify_system(poly_system::Vector{Expression})
+
+Given a non-square polynomial system in `n` variables, takes first `n - 1` equations and
+adds a random linear combination of the remaining equations to the system.
+"""
 function squarify_system(poly_system::Vector{Expression})
     indets = HomotopyContinuation.variables(poly_system)
     M = randn(1, length(poly_system) - length(indets) + 1)
     return vcat(poly_system[1:(length(indets) - 1)], M * poly_system[length(indets):end])
 end
 
+"""
+    check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation}([]),
+                 data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                 time_interval = Vector{T}(),
+                 interpolation_degree::Int = 1) where {T <: Float}
+
+Checks that the inputs to `estimate` are valid.
+"""
 function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
                                                                                      ModelingToolkit.Equation
                                                                                      }([]),

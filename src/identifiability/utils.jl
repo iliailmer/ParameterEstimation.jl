@@ -14,6 +14,17 @@ function Base.getindex(identifiability_result::IdentifiabilityData, key::String)
     return getproperty(identifiability_result, Symbol(key))
 end
 
+"""
+    count_solutions(identifiability_result::IdentifiabilityData)
+
+Count the number of solutions for each parameter. This uses identifiability result from `identifiability_analysis`.
+The result corresponds to number of solutions for each locally identifiable parameter.
+
+Non-identifable parameters are assigned 0. Globally identifable parameters are assigned 1.
+
+# Arguments
+    - `identifiability_result::IdentifiabilityData`: Identifiability result from `identifiability_analysis`.
+"""
 function count_solutions(identifiability_result)
     @info "Counting number of solutions per variable"
     globally_id = identifiability_result["identifiability_nemo"]["globally"]

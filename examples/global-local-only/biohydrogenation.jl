@@ -60,6 +60,3 @@ for group in similar_combinations
                                                           data_sample, time_interval)
     push!(filtered_results, group_filtered)
 end
-
-ParameterEstimation.solve_ode!(model, res, tsteps, data_sample)
-clustered = []

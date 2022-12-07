@@ -1,7 +1,19 @@
+"""
+    rational_interpolation_coefficients(x, y, n)
+
+Perform a rational interpolation of the data `y` at the points `x` with numerator degree `n`.
+This function only returns the coefficients of the numerator and denominator polynomials.
+
+# Arguments
+- `x`: the points where the data is sampled (e.g. time points).
+- `y`: the data sample.
+- `n`: the degree of the numerator.
+
+# Returns
+- `c`: the coefficients of the numerator polynomial.
+- `d`: the coefficients of the denominator polynomial.
+"""
 function rational_interpolation_coefficients(x, y, n)
-    # x and y are vectors of length N
-    # n is numerator degree
-    # returns the coefficients of the numerator and denominator polynomials
     N = length(x)
     m = N - n - 1
     A = zeros(N, N)
@@ -22,6 +34,28 @@ function rational_interpolation_coefficients(x, y, n)
     end
 end
 
+"""
+    interpolate(identifiability_result, data_sample, time_interval,
+                measured_quantities,
+                interpolation_degree::Int = 1,
+                diff_order::Int = 1)
+
+This function performs the key step in parameter estimation.
+
+    It interpolates the data in `data_sample` and computes the `TaylorSeries` expansion.
+    These results are stored in the `Interpolant` object and are applied to the polynomial system in `identifiability_result`.
+
+# Arguments
+- `identifiability_result`: the result of the identifiability check.
+- `data_sample`: a dictionary of the data samples. The keys are the symbols of the measured quantities and the values are the data samples.
+- `time_interval`: the time interval where the data is sampled.
+- `measured_quantities`: the measured quantities (equations of the form `y ~ x`).
+- `interpolation_degree::Int = 1`: the degree of the numerator of the rational interpolation.
+- `diff_order::Int = 1`: the order of the derivative to be computed.
+
+# Returns
+- `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
+"""
 function interpolate(identifiability_result, data_sample, time_interval,
                      measured_quantities,
                      interpolation_degree::Int = 1,
@@ -55,6 +89,12 @@ function interpolate(identifiability_result, data_sample, time_interval,
     end
 end
 
+"""
+    interpolate(time, sample, numer_degree::Int, diff_order::Int = 1)
+
+This function performs a rational interpolation of the data `sample` at the points `time` with numerator degree `numer_degree`.
+It returns an `Interpolant` object that contains the interpolated function and its derivatives.
+"""
 function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1) # TODO: make numer_degree optional
     numer_coef, denom_coef = rational_interpolation_coefficients(time, sample,
                                                                  numer_degree)

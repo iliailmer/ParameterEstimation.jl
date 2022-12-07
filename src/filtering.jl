@@ -1,4 +1,24 @@
+"""
+    solve_ode(model, estimate::EstimationResult, tsteps, data_sample; solver = Tsit5(),
+              return_ode = false)
 
+Solves the ODE system `model` with the parameters and initial conditions given by `estimate`.
+Compute the error between the solution and the data sample. The error is recorded in the `EstimationResult`.
+
+# Arguments
+- `model`: the ODE system to be solved.
+- `estimate::EstimationResult`: the parameters and initial conditions of the ODE system.
+- `tsteps`: the time steps of the ODE system. See `ModelingToolkit.solve`.
+- `data_sample`: the data sample used for estimation (same functions as `measured_quantities`).
+                 The keys of the dictionary are the measured quantities
+                 and the values are the corresponding data samples.
+- `solver = Tsit5()`: (optional) the solver used to solve the ODE system, see `DifferentialEquations` for available solvers.
+- `return_ode = false`: (optional) whether to return the ODE solution.
+
+# Returns
+- ode_solution: the solution of the ODE system (if `return_ode` is set to `true`).
+- `EstimationResult`: the estimated parameters and initial conditions of the model.
+"""
 function solve_ode(model, estimate::EstimationResult, tsteps, data_sample; solver = Tsit5(),
                    return_ode = false)
     initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
@@ -28,12 +48,41 @@ function solve_ode(model, estimate::EstimationResult, tsteps, data_sample; solve
     end
 end
 
+"""
+    solve_ode!(model, estimates::Vector{EstimationResult}, tsteps, data_sample; solver = Tsit5())
+
+Run solve_ode for multiple estimates and store the results (error between solution and sample) in each estimate.
+This is done in-place.
+"""
 function solve_ode!(model, estimates::Vector{EstimationResult},
                     tsteps, data_sample; solver = Tsit5())
     estimates[:] = map(each -> solve_ode(model, each, tsteps, data_sample, solver = solver),
                        estimates)
 end
 
+"""
+    filter_solutions(results::Vector{EstimationResult},
+                     identifiability_result::IdentifiabilityData,
+                     model::ModelingToolkit.ODESystem,
+                     data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                     time_interval = Vector{T}(); topk = 1) where {T <: Float}
+
+Filter estimation results stored in `results` vector based on ODE solving and checking against the sample.
+In addition, takes into account global and local identifiability of parameters when filtering.
+
+# Arguments
+- `results::Vector{EstimationResult}`: the vector of estimation results.
+- `identifiability_result::IdentifiabilityData`: the result of identifiability analysis.
+- `model::ModelingToolkit.ODESystem`: the ODE system.
+- `data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
+                                                                The keys of the dictionary are the measured quantities
+                                                                and the values are the corresponding data samples.
+- `time_interval = Vector{T}()`: the time interval of the ODE system.
+- `topk = 1`: (optional) the number of best estimates to return.
+
+# Returns
+- `EstimationResult`: the best estimate (if `topk = 1`) or the vector of best estimates (if `topk > 1`).
+"""
 function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
@@ -59,5 +108,22 @@ function filter_solutions(results::Vector{EstimationResult},
     else
         @info "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
         return sorted[1:topk]
+    end
+end
+
+function cluster_estimates(model, res, tsteps, data_sample; ε = 1e-6)
+    # clusrers the estimates by their error
+    ParameterEstimation.solve_ode!(model, res, tsteps, data_sample)
+    clustered = Dict()
+    #nearest neighbor search by err
+    for i in 1:length(res)
+        for j in (i + 1):length(res)
+            if abs(res[i].err - res[j].err) < ε
+                if !haskey(clustered, i)
+                    clustered[i] = []
+                end
+                push!(clustered[i], res[j])
+            end
+        end
     end
 end
