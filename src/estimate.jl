@@ -111,21 +111,23 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                 push!(estimates, filtered)
             else
                 push!(estimates,
-                      EstimationResult(model, Dict(), deg, ReturnCode.Failure))
+                      [EstimationResult(model, Dict(), deg, ReturnCode.Failure)])
             end
         end
     end
+    #filter out the empty vectors
+    estimates = filter(x -> length(x) > 0, estimates)
+
+    #filter out the Failure results
+    estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
+
     best_solution = nothing
-    for est in estimates
-        if !(est isa Vector)
-            if est.return_code == ReturnCode.Success
-                if best_solution == nothing
-                    best_solution = est
-                else
-                    if est.err < best_solution.err
-                        best_solution = est
-                    end
-                end
+    for each in estimates
+        if best_solution == nothing
+            best_solution = each
+        else
+            if sum(x.err for x in each) < sum(x.err for x in best_solution)
+                best_solution = each
             end
         end
     end

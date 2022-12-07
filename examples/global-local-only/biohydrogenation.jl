@@ -30,6 +30,7 @@ solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = t
 
 data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_quantities)
 # plot(solution_true)
+id_combs = [k5, k6, k7, k9^2, k10 / k9, (-k10 * k9 - 2 * k8 * k9) / k10]
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
@@ -41,22 +42,5 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
 #                                                 data_sample, time_interval)
 # res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
 #                                                     time_interval)
-
-id_combs = [k5, k6, k7, k9^2, k10 / k9, (-k10 * k9 - 2 * k8 * k9) / k10]
-
-similar_combinations = []
-for i in 1:length(res)
-    for j in (i + 1):length(res)
-        if isequal(substitute(id_combs, Dict(res[i].parameters)),
-                   substitute(id_combs, Dict(res[j].parameters)))
-            push!(similar_combinations, [res[i], res[j]])
-        end
-    end
-end
-filtered_results = []
-for group in similar_combinations
-    group_filtered = ParameterEstimation.filter_solutions(group, identifiability_result,
-                                                          model,
-                                                          data_sample, time_interval)
-    push!(filtered_results, group_filtered)
-end
+filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
+                                                data_sample, time_interval)

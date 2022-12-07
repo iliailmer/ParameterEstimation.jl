@@ -40,13 +40,29 @@ function Base.getindex(sol::EstimationResult, k)
 end
 
 function Base.show(io::IO, e::EstimationResult)
-    println(io, "Parameter Estimates:\n\t",
-            join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.parameters)],
-                 ", "))
-    println(io, "Initial Condition Estimates:\n\t",
-            join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.states)], ", "))
+    if any(isnothing.(values(e.parameters)))
+        println(io, "Parameter Estimates:\n\t",
+                join([@sprintf("%s = %s", k, v) for (k, v) in pairs(e.parameters)],
+                     ", "))
+        println(io, "Initial Condition Estimates:\n\t",
+                join([@sprintf("%s = %s", k, v) for (k, v) in pairs(e.states)], ", "))
+    elseif !all(isreal.(values(e.parameters)))
+        println(io, "Parameter Estimates:\n\t",
+                join([@sprintf("%s = %.6f+%.6fim", k, real(v), imag(v))
+                      for (k, v) in pairs(e.parameters)],
+                     ", "))
+        println(io, "Initial Condition Estimates:\n\t",
+                join([@sprintf("%s = %.6f+%.6fim", k, real(v), imag(v))
+                      for (k, v) in pairs(e.states)], ", "))
+    else
+        println(io, "Parameter Estimates:\n\t",
+                join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.parameters)],
+                     ", "))
+        println(io, "Initial Condition Estimates:\n\t",
+                join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.states)], ", "))
+    end
     println(io, "Degree: ", e.degree)
-    if isequal(e.err, nothing)
+    if isnothing(e.err)
         println(io, "Error: Not yet calculated")
     else
         println(io, "Error: ", @sprintf("%.4e", e.err))

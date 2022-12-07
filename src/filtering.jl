@@ -87,7 +87,8 @@ function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
                           data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                          time_interval = Vector{T}(); topk = 1) where {T <: Float}
+                          time_interval = Vector{T}(), id_combs = [];
+                          topk = 1) where {T <: Float}
     @info "Filtering"
     if all(each -> each.return_code == ReturnCode.Failure, results)
         return results
@@ -100,15 +101,38 @@ function filter_solutions(results::Vector{EstimationResult},
         @warn "The model contains non-identifiable parameters, no filtering was done."
         return results
     end
-    solve_ode!(model, results, tsteps, data_sample)
-    sorted = sort(results, by = x -> x.err)
-    if topk == 1
-        @info "Best estimate yelds ODE solution error $(sorted[1].err)"
-        return sorted[1]
+    filtered_results = []
+    if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
+        if length(id_combs) == 0
+            clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
+                                                              data_sample)
+        else
+            clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
+                                                              data_sample, id_combs)
+        end
+        for (id, group) in pairs(clustered)
+            solve_ode!(model, group, tsteps, data_sample)
+            sorted = sort(group, by = x -> x.err)
+            if topk == 1
+                @info "Group $id. Best estimate yelds ODE solution error $(sorted[1].err)"
+                push!(filtered_results, sorted[1])
+            else
+                @info "Group $id. Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
+                push!(filtered_results, sorted[1:topk])
+            end
+        end
     else
-        @info "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
-        return sorted[1:topk]
+        solve_ode!(model, results, tsteps, data_sample)
+        sorted = sort(results, by = x -> x.err)
+        if topk == 1
+            @info "Best estimate yelds ODE solution error $(sorted[1].err)"
+            push!(filtered_results, sorted[1])
+        else
+            @info "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
+            push!(filtered_results, sorted[1:topk])
+        end
     end
+    return filtered_results
 end
 
 function cluster_estimates(model, res, tsteps, data_sample; ε = 1e-6)
@@ -120,10 +144,30 @@ function cluster_estimates(model, res, tsteps, data_sample; ε = 1e-6)
         for j in (i + 1):length(res)
             if abs(res[i].err - res[j].err) < ε
                 if !haskey(clustered, i)
+                    clustered[i] = Vector{ParameterEstimation.EstimationResult}([])
+                end
+                push!(clustered[i], res[j])
+            end
+        end
+    end
+    return clustered
+end
+
+function cluster_estimates(model, res, tsteps, data_sample, id_combs; ε = 1e-6)
+    # clusrers the estimates by their id_combs
+    ParameterEstimation.solve_ode!(model, res, tsteps, data_sample)
+    clustered = Dict()
+    #a la nearest neighbor search by err
+    for i in 1:length(res)
+        for j in (i + 1):length(res)
+            if isequal(substitute(id_combs, Dict(res[i].parameters)),
+                       substitute(id_combs, Dict(res[j].parameters)))
+                if !haskey(clustered, i)
                     clustered[i] = []
                 end
                 push!(clustered[i], res[j])
             end
         end
     end
+    return clustered
 end
