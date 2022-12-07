@@ -24,3 +24,32 @@ end
 function nemo2hc(expr_tree::Number)
     return expr_tree
 end
+
+function squarify_system(poly_system::Vector{Expression})
+    indets = HomotopyContinuation.variables(poly_system)
+    M = randn(1, length(poly_system) - length(indets) + 1)
+    return vcat(poly_system[1:(length(indets) - 1)], M * poly_system[length(indets):end])
+end
+
+function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
+                                                                                     ModelingToolkit.Equation
+                                                                                     }([]),
+                      data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                      time_interval = Vector{T}(),
+                      interpolation_degree::Int = 1) where {T <: Float}
+    if length(measured_quantities) == 0
+        error("No measured states provided")
+    end
+    if length(data_sample) == 0
+        error("No data sample provided")
+    end
+    if length(time_interval) > 2 || length(time_interval) == 1
+        error("Time interval must be of the form [start, end]")
+    end
+    if length(time_interval) == 0
+        error("No time interval provided")
+    end
+    if interpolation_degree < 1
+        error("Interpolation degree must be ≥ 1")
+    end
+end
