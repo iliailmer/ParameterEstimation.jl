@@ -23,14 +23,16 @@ function solve_ode(model, estimate::EstimationResult, tsteps, data_sample; solve
                    return_ode = false)
     initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
     parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
+    tspan = (estimate.at_time, tsteps[end])
     prob = ModelingToolkit.ODEProblem(model, initial_conditions,
-                                      (tsteps[1], tsteps[end]),
-                                      parameter_values)
-    ode_solution = ModelingToolkit.solve(prob, solver, saveat = tsteps)
+                                      tspan, parameter_values)
+    ode_solution = ModelingToolkit.solve(prob, solver,
+                                         saveat = range(tspan[1], tspan[2],
+                                                        length = length(tsteps)))
     if ode_solution.retcode == ReturnCode.Success
         err = 0
         for (key, sample) in data_sample
-            err += ParameterEstimation.mean_abs_err(ode_solution[key], sample)
+            err += ParameterEstimation.mean_abs_err(ode_solution(tsteps)[key], sample)
         end
         err /= length(data_sample)
     else
@@ -39,12 +41,12 @@ function solve_ode(model, estimate::EstimationResult, tsteps, data_sample; solve
     if return_ode
         return ode_solution,
                EstimationResult(estimate.parameters, estimate.states,
-                                estimate.degree, err,
-                                estimate.return_code)
+                                estimate.degree, estimate.at_time, err,
+                                estimate.interpolants, estimate.return_code)
     else
         return EstimationResult(estimate.parameters, estimate.states,
-                                estimate.degree, err,
-                                estimate.return_code)
+                                estimate.degree, estimate.at_time, err,
+                                estimate.interpolants, estimate.return_code)
     end
 end
 
@@ -97,7 +99,6 @@ function filter_solutions(results::Vector{EstimationResult},
     if all(each -> each.return_code == ReturnCode.Failure, results)
         return results
     end
-    min_error = 1e+10
     best_estimate = nothing
     tsteps = range(time_interval[1], time_interval[2],
                    length = length(first(values(data_sample))))
@@ -106,6 +107,7 @@ function filter_solutions(results::Vector{EstimationResult},
         return results
     end
     filtered_results = []
+    solve_ode!(model, results, tsteps, data_sample)
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
         if length(id_combs) == 0
             clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
@@ -115,7 +117,6 @@ function filter_solutions(results::Vector{EstimationResult},
                                                               data_sample, id_combs)
         end
         for (id, group) in pairs(clustered)
-            solve_ode!(model, group, tsteps, data_sample)
             sorted = sort(group, by = x -> x.err)
             if topk == 1
                 @info "Group $id. Best estimate yelds ODE solution error $(sorted[1].err)"
@@ -126,7 +127,6 @@ function filter_solutions(results::Vector{EstimationResult},
             end
         end
     else
-        solve_ode!(model, results, tsteps, data_sample)
         sorted = sort(results, by = x -> x.err)
         if topk == 1
             @info "Best estimate yelds ODE solution error $(sorted[1].err)"

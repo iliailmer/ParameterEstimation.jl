@@ -23,6 +23,25 @@ measured_quantities = [y1 ~ V]
 prob_true = ODEProblem(model, u0, time_interval, p_true)
 solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
 data_sample = Dict(V => solution_true[V])
+at_time = 0.0
+# interpolation_degree = 23
+# identifiability_result = ParameterEstimation.check_identifiability(model;
+#                                                                    measured_quantities = measured_quantities)
+# res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+#                                    time_interval, identifiability_result,
+#                                    interpolation_degree, at_time)
 
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval)
+# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
+#                                                 data_sample, time_interval)
+res = ParameterEstimation.estimate_over_degrees(model, measured_quantities,
+                                                data_sample,
+                                                time_interval, at_time)
+
+time_res = Dict()
+idx = 1
+for t in range(time_interval[1], time_interval[2], length = 10)
+    time_res[idx] = ParameterEstimation.estimate_over_degrees(model, measured_quantities,
+                                                              data_sample,
+                                                              time_interval, t)
+    idx += 1
+end

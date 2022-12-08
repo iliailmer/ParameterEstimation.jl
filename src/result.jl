@@ -8,10 +8,15 @@ the error between the estimated ODE solution and the sample data, and the return
 struct EstimationResult
     parameters::OrderedDict
     states::OrderedDict
-    degree::Int
+    degree::Int64
+    at_time::Float64
     err::Union{Nothing, Float64}
+    interpolants::Union{Nothing, Dict{Any, Interpolant}}
     return_code::Any
-    function EstimationResult(model, poly_sol, degree, return_code)
+    function EstimationResult(model::ModelingToolkit.ODESystem,
+                              poly_sol::Union{Dict, OrderedDict}, degree::Int64,
+                              at_time::Float64, interpolants::Dict{Any, Interpolant},
+                              return_code)
         parameters = OrderedDict{Any, Any}()
         states = OrderedDict{Any, Any}()
         for p in ModelingToolkit.parameters(model)
@@ -20,10 +25,11 @@ struct EstimationResult
         for s in ModelingToolkit.states(model)
             states[ModelingToolkit.Num(s)] = get(poly_sol, s, nothing)
         end
-        new(parameters, states, degree, nothing, return_code)
+        new(parameters, states, degree, at_time, nothing, interpolants, return_code)
     end
-    function EstimationResult(parameters, states, degree, err, return_code)
-        new(parameters, states, degree, err, return_code)
+    function EstimationResult(parameters::OrderedDict, states::OrderedDict, degree::Int64,
+                              at_time::Float64, err, interpolants, return_code)
+        new(parameters, states, degree, at_time, err, interpolants, return_code)
     end
 end
 
@@ -62,6 +68,7 @@ function Base.show(io::IO, e::EstimationResult)
                 join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.states)], ", "))
     end
     println(io, "Degree: ", e.degree)
+    println(io, "At Time: ", e.at_time)
     if isnothing(e.err)
         println(io, "Error: Not yet calculated")
     else

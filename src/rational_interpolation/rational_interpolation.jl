@@ -38,7 +38,8 @@ end
     interpolate(identifiability_result, data_sample, time_interval,
                 measured_quantities,
                 interpolation_degree::Int = 1,
-                diff_order::Int = 1)
+                diff_order::Int = 1,
+                at_t::Float = 0.0)
 
 This function performs the key step in parameter estimation.
 
@@ -52,6 +53,7 @@ This function performs the key step in parameter estimation.
 - `measured_quantities`: the measured quantities (equations of the form `y ~ x`).
 - `interpolation_degree::Int = 1`: the degree of the numerator of the rational interpolation.
 - `diff_order::Int = 1`: the order of the derivative to be computed.
+- `at_t::Float = 0.0`: the time point where the Taylor series expansion is computed.
 
 # Returns
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
@@ -59,8 +61,10 @@ This function performs the key step in parameter estimation.
 function interpolate(identifiability_result, data_sample, time_interval,
                      measured_quantities,
                      interpolation_degree::Int = 1,
-                     diff_order::Int = 1)
+                     diff_order::Int = 1,
+                     at_t::Float = 0.0)
     polynomial_system = identifiability_result["polynomial_system"]
+    interpolants = Dict{Any, Interpolant}()
     for (key, sample) in pairs(data_sample)
         y_function_name = map(x -> replace(string(x.lhs), "(t)" => ""),
                               filter(x -> string(x.rhs) == string(key),
@@ -68,7 +72,8 @@ function interpolate(identifiability_result, data_sample, time_interval,
         tsteps = range(time_interval[1], time_interval[2], length = length(sample))
         interpolant = ParameterEstimation.interpolate(tsteps, sample,
                                                       interpolation_degree,
-                                                      diff_order)
+                                                      diff_order, at_t)
+        interpolants[key] = interpolant
         err = sum(abs.(sample - interpolant.I.(tsteps))) / length(tsteps)
         @info "Mean Absolute error in interpolation: $err interpolating $key"
         for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
@@ -81,7 +86,7 @@ function interpolate(identifiability_result, data_sample, time_interval,
         end
     end
     try
-        return System(polynomial_system)
+        return System(polynomial_system), interpolants
     catch KeyError
         throw(ArgumentError("HomotopyContinuation threw a KeyError, it is likely that " *
                             "you are using Unicode characters in your input. Consider " *
@@ -95,18 +100,21 @@ end
 This function performs a rational interpolation of the data `sample` at the points `time` with numerator degree `numer_degree`.
 It returns an `Interpolant` object that contains the interpolated function and its derivatives.
 """
-function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1) # TODO: make numer_degree optional
+function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1,
+                     at_t::Float = 0.0)
+    # TODO: make numer_degree optional
     numer_coef, denom_coef = rational_interpolation_coefficients(time, sample,
                                                                  numer_degree)
     numer_function(t) = sum(numer_coef[i] * t^(i - 1) for i in 1:length(numer_coef))
     denom_function(t) = sum(denom_coef[i] * t^(i - 1) for i in 1:length(denom_coef))
     interpolated_function(t) = numer_function(t) / denom_function(t)
     return Interpolant(interpolated_function,
-                       differentiate_interpolated(interpolated_function, diff_order))
+                       differentiate_interpolated(interpolated_function, diff_order, at_t))
 end
 
-function differentiate_interpolated(interpolated_function, diff_order::Int)
+function differentiate_interpolated(interpolated_function, diff_order::Int,
+                                    at_t::Float = 0.0)
     τ = Taylor1(diff_order + 1)
-    taylor_expantion = interpolated_function(τ)
+    taylor_expantion = interpolated_function(τ - at_t)
     return taylor_expantion
 end
