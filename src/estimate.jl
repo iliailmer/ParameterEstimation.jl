@@ -4,7 +4,8 @@
              data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
              time_interval = Vector{T}(),
              identifiability_result = Dict{String, Any}(),
-             interpolation_degree::Int = 1; real_tol = 1e-10) where {T <: Float}
+             interpolation_degree::Int = 1, at_time::T = 0.0;
+             real_tol = 1e-10) where {T <: Float}
 
 Estimate the parameters of a model using the data sample `data_sample` and the
 measured quantities `measured_quantities`.
@@ -18,6 +19,7 @@ measured quantities `measured_quantities`.
 - `time_interval = Vector{T}()`: the time interval of the data sample.
 - `identifiability_result = Dict{String, Any}()`: the result of the identifiability assessment.
 - `interpolation_degree::Int = 1`: the degree of the polynomial interpolation.
+- `at_time::T = 0.0`: the time at which the parameters are estimated.
 - `real_tol = 1e-10`: (optional) the tolerance for the real solutions of the polynomial system.
 
 # Returns
@@ -28,19 +30,21 @@ function estimate(model::ModelingToolkit.ODESystem,
                   data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
                   time_interval = Vector{T}(),
                   identifiability_result = Dict{String, Any}(),
-                  interpolation_degree::Int = 1; real_tol = 1e-10) where {T <: Float}
+                  interpolation_degree::Int = 1, at_time::T = 0.0;
+                  real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval, interpolation_degree)
 
     parameters = ModelingToolkit.parameters(model)
     states = ModelingToolkit.states(model)
     num_parameters = length(parameters) + length(states)
     @info "Interpolating sample data"
-    polynomial_system = ParameterEstimation.interpolate(identifiability_result,
-                                                        data_sample,
-                                                        time_interval,
-                                                        measured_quantities,
-                                                        interpolation_degree,
-                                                        num_parameters + 1)
+    polynomial_system, interpolants = ParameterEstimation.interpolate(identifiability_result,
+                                                                      data_sample,
+                                                                      time_interval,
+                                                                      measured_quantities,
+                                                                      interpolation_degree,
+                                                                      num_parameters + 1,
+                                                                      at_time)
 
     @info "HomotopyContinuations: solving $(length(polynomial_system)) polynomial equations in $(length(polynomial_system.variables)) variables"
     results = HomotopyContinuation.solve(polynomial_system; show_progress = false)
@@ -65,10 +69,10 @@ function estimate(model::ModelingToolkit.ODESystem,
                 tmp[state_param_map[string(v)[1:(end - 2)]]] = sol[idx]
             end
         end
-        param_est = EstimationResult(model, tmp, interpolation_degree, ReturnCode.Success)
+        param_est = EstimationResult(model, tmp, interpolation_degree, at_time,
+                                     interpolants, ReturnCode.Success)
         push!(all_solutions_, param_est)
     end
-
     return all_solutions_
 end
 
@@ -77,7 +81,7 @@ end
     estimate_over_degrees(model::ModelingToolkit.ODESystem,
                           measured_quantities::Vector{ModelingToolkit.Equation},
                           data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                          time_interval = Vector{T}();
+                          time_interval = Vector{T}(), at_time::T = 0.0;
                           degree_range = nothing, real_tol = 1e-10) where {T <: Float}
 
 Run estimation over a range of interpolation degrees. Return the best estimate according to a heuristic:
@@ -86,7 +90,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
                                data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                               time_interval = Vector{T}();
+                               time_interval = Vector{T}(), at_time::T = 0.0;
                                degree_range = nothing, real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
     if degree_range == nothing
@@ -104,14 +108,18 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                   data_sample,
                                   time_interval,
                                   identifiability_result,
-                                  deg)
+                                  deg, at_time)
             if length(unfiltered) > 0
                 filtered = filter_solutions(unfiltered, identifiability_result, model,
                                             data_sample, time_interval)
                 push!(estimates, filtered)
             else
                 push!(estimates,
-                      [EstimationResult(model, Dict(), deg, ReturnCode.Failure)])
+                      [
+                          EstimationResult(model, Dict(), deg, at_time,
+                                           Dict{Any, Interpolant}(),
+                                           ReturnCode.Failure),
+                      ])
             end
         end
     end
@@ -132,7 +140,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
         end
     end
     if best_solution != nothing
-        @info "Best estimate found at degree $(best_solution.degree) with error $(best_solution.err)"
+        @info "Best estimate found at degree(s) $([x.degree for x in best_solution]) with error(s) $([x.err for x in best_solution])"
         return best_solution
     else
         @warn "No solution found"
