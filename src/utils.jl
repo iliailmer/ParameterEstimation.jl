@@ -1,7 +1,12 @@
+"""
+    nemo2hc(expr_tree::Union{Expr, Symbol})
+
+Converts a symbolic expression from Nemo to HomotopyContinuation format.
+"""
 function nemo2hc(expr_tree::Union{Expr, Symbol})
     #traverse expr_tree
     if typeof(expr_tree) == Symbol
-        return HomotopyContinuation.variables(expr_tree)[1]
+        return HomotopyContinuation.Expression(HomotopyContinuation.variables(expr_tree)[1])
     end
     if typeof(expr_tree) == Expr
         if expr_tree.head == :call
@@ -25,12 +30,26 @@ function nemo2hc(expr_tree::Number)
     return expr_tree
 end
 
+"""
+    squarify_system(poly_system::Vector{Expression})
+
+Given a non-square polynomial system in `n` variables, takes first `n - 1` equations and
+adds a random linear combination of the remaining equations to the system.
+"""
 function squarify_system(poly_system::Vector{Expression})
     indets = HomotopyContinuation.variables(poly_system)
     M = randn(1, length(poly_system) - length(indets) + 1)
     return vcat(poly_system[1:(length(indets) - 1)], M * poly_system[length(indets):end])
 end
 
+"""
+    check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation}([]),
+                 data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                 time_interval = Vector{T}(),
+                 interpolation_degree::Int = 1) where {T <: Float}
+
+Checks that the inputs to `estimate` are valid.
+"""
 function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
                                                                                      ModelingToolkit.Equation
                                                                                      }([]),
@@ -51,5 +70,16 @@ function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Ve
     end
     if interpolation_degree < 1
         error("Interpolation degree must be ≥ 1")
+    end
+end
+
+to_real(x::Number; tol = 1e-10) = abs(imag(x)) < tol ? real(x) : x
+function to_exact(x::Number; tol = 1e-10)
+    r = abs(real(x)) < tol ? 0 : real(x)
+    i = abs(imag(x)) < tol ? 0 : imag(x)
+    if i == 0
+        return r
+    else
+        return r + i * im
     end
 end

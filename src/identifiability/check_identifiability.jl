@@ -1,6 +1,29 @@
-function get_identifiability(ode::ModelingToolkit.ODESystem; params_to_assess = [],
-                             measured_quantities = Array{ModelingToolkit.Equation}[],
-                             infolevel = 0)
+"""
+    check_identifiability(ode::ModelingToolkit.ODESystem; measured_quantities = Array{ModelingToolkit.Equation}[],
+                          infolevel = 0)
+
+Check identifiability of parameters in the ODE system `ode` using the
+algorithm described in [1]. The function returns a `ParameterEstimation.IdentifiabilityData`
+object that contains the results of the identifiability analysis.
+
+# Arguments
+    - `ode::ModelingToolkit.ODESystem`: The ODE system to be analyzed
+    - `measured_quantities = Array{ModelingToolkit.Equation}[]`: A list of equations
+        that define the measured quantities. If not provided, the outputs of the ODE
+        system will be used.
+    - `infolevel::Int`: The level of information to be printed during the analysis.
+
+# References
+
+[1] - Global Identifiability of Differential Models (Communications on Pure and Applied Mathematics, Volume 73, Issue 9, Pages 1831-1879, 2020.), https://onlinelibrary.wiley.com/doi/abs/10.1002/cpa.21921
+
+[2] - SIAN: software for structural identifiability analysis of ODE models (Bioinformatics, Volume 35, Issue 16, Pages 2873--2874, 2019), https://academic.oup.com/bioinformatics/article/35/16/2873/5096881
+
+[3] - https://github.com/alexeyovchinnikov/SIAN-Julia
+"""
+function check_identifiability(ode::ModelingToolkit.ODESystem;
+                               measured_quantities = Array{ModelingToolkit.Equation}[],
+                               infolevel = 0)
     if length(measured_quantities) == 0
         if any(ModelingToolkit.isoutput(eq.lhs) for eq in ModelingToolkit.equations(ode))
             @info "Measured quantities are not provided, trying to find the outputs in input ODE."
@@ -12,14 +35,8 @@ function get_identifiability(ode::ModelingToolkit.ODESystem; params_to_assess = 
     end
     ode_prep, input_syms, gens_ = SIAN.PreprocessODE(ode, measured_quantities)
     t = ModelingToolkit.arguments(ModelingToolkit.states(ode)[1])[1]
-    if length(params_to_assess) == 0
-        params_to_assess_ = SIAN.get_parameters(ode_prep)
-        nemo2mtk = Dict(gens_ .=> input_syms)
-    else
-        params_to_assess_ = [SIAN.eval_at_nemo(each, Dict(input_syms .=> gens_))
-                             for each in params_to_assess]
-        nemo2mtk = Dict(params_to_assess_ .=> params_to_assess)
-    end
+    params_to_assess_ = SIAN.get_parameters(ode_prep)
+    nemo2mtk = Dict(gens_ .=> input_syms)
 
     res = ParameterEstimation.identifiability_ode(ode_prep, params_to_assess_; p = 0.99,
                                                   p_mod = 0, infolevel = infolevel,
@@ -33,9 +50,18 @@ function get_identifiability(ode::ModelingToolkit.ODESystem; params_to_assess = 
                         for each in pars]
     end
     res["identifiability"] = out
-    return res
+    res["nemo_mtk"] = nemo2mtk
+    return ParameterEstimation.IdentifiabilityData(res)
 end
 
+# Path: src/identifiability/identifiability_ode.jl
+"""
+    identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolevel = 0,
+                        weighted_ordering = false, local_only = false)
+
+Base function for identifiability assessment implmented in SIAN.jl. Detailed documentation is available in
+`check_identifiability` function as well as in https://github.com/alexeyovchinnikov/SIAN-Julia.
+"""
 function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolevel = 0,
                              weighted_ordering = false, local_only = false)
     @info "Solving the problem"
@@ -188,16 +214,17 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     @info "Found Pivots: [$(join(alg_indep, ", "))]"
 
     if length(theta_l) == 0
-        @warn "No identifiable parameters found!"
+        @error "No identifiable parameters found!"
         @info "=== Summary ==="
         @info "Globally identifiable parameters:                 []"
         @info "Locally but not globally identifiable parameters: []"
         @info "Not identifiable parameters:                      [$(join(params_to_assess, ", "))]"
-        return Dict("id_result" => Dict("locally_identifiable" => [],
-                                        "globally_identifiable" => [],
-                                        "non_identifiable" => Set(SIAN.get_order_var(th,
-                                                                                     non_jet_ring)[1]
-                                                                  for th in params_to_assess)))
+
+        return Dict("identifiability" => Dict("locally_identifiable" => [],
+                                              "globally_identifiable" => [],
+                                              "non_identifiable" => Set(SIAN.get_order_var(th,
+                                                                                           non_jet_ring)[1]
+                                                                        for th in params_to_assess)))
     else
         @info "Locally identifiable parameters: [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in theta_l], ", "))]"
         @info "Not identifiable parameters:     [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in setdiff(params_to_assess_, theta_l)], ", "))]"
@@ -267,7 +294,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             end
         end
         # 4. Determine.
-        @info "GB computation"
+        @info "Gröbner basis computation"
 
         if p_mod > 0
             Et_hat = [SIAN._reduce_poly_mod_p(e, p_mod) for e in Et_hat]
@@ -314,18 +341,24 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                 end
             end
         end
-        id_result = Dict("globally" => Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                           for th in theta_g),
-                         "locally_not_globally" => Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                                       for th in setdiff(theta_l_new,
-                                                                         theta_g)),
-                         "nonidentifiable" => Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                                  for th in setdiff(params_to_assess_,
-                                                                    theta_l)))
+        id_res_nemo = Dict("globally" => theta_g,
+                           "locally_not_globally" => setdiff(theta_l_new, theta_g),
+                           "nonidentifiable" => setdiff(params_to_assess_, theta_l))
+        identifiability_result = Dict("globally" => Set(SIAN.get_order_var(th,
+                                                                           non_jet_ring)[1]
+                                                        for th in theta_g),
+                                      "locally_not_globally" => Set(SIAN.get_order_var(th,
+                                                                                       non_jet_ring)[1]
+                                                                    for th in setdiff(theta_l_new,
+                                                                                      theta_g)),
+                                      "nonidentifiable" => Set(SIAN.get_order_var(th,
+                                                                                  non_jet_ring)[1]
+                                                               for th in setdiff(params_to_assess_,
+                                                                                 theta_l)))
         @info "=== Summary ==="
-        @info "Globally identifiable parameters:                 [$(join(id_result["globally"], ", "))]"
-        @info "Locally but not globally identifiable parameters: [$(join(id_result["locally_not_globally"], ", "))]"
-        @info "Not identifiable parameters:                      [$(join(id_result["nonidentifiable"], ", "))]"
+        @info "Globally identifiable parameters:                 [$(join(identifiability_result["globally"], ", "))]"
+        @info "Locally but not globally identifiable parameters: [$(join(identifiability_result["locally_not_globally"], ", "))]"
+        @info "Not identifiable parameters:                      [$(join(identifiability_result["nonidentifiable"], ", "))]"
         @info "==============="
 
         # modify Y_eq for estimation purposes
@@ -335,16 +368,20 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             y_derivative_dict[each[1]] = order
         end
         Et_ = [Et[idx] for idx in Et_ids]
-        full_result = Dict("Et" => [Nemo.evaluate(e, alg_indep,
-                                                  transcendence_substitutions)
-                                    for e in Et_],
-                           "Q" => Q,
+        full_result = Dict("polynomial_system" => [Nemo.evaluate(e, alg_indep,
+                                                                 transcendence_substitutions)
+                                                   for e in Et_],
+                           "denominator" => Q,
                            "Y_eq" => y_derivative_dict,
                            "vars" => vrs_sorted,
                            "vals" => all_subs,
                            "transcendence_basis_subs" => vcat(alg_indep,
                                                               transcendence_substitutions),
-                           "identifiability" => id_result)
+                           "identifiability_nemo" => id_res_nemo,
+                           "identifiability" => identifiability_result,
+                           "basis" => gb,
+                           "weights" => weights,
+                           "non_jet_ring" => non_jet_ring)
         return full_result
     end
 end

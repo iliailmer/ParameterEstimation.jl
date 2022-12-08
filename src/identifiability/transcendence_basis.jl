@@ -1,5 +1,15 @@
 """
-    function algebraic_independence(Et::Vector{Nemo.fmpq_mpoly}, indets::Vector{Nemo.fmpq_mpoly})
+    algebraic_independence(Et::Vector{Nemo.fmpq_mpoly},
+                           indets::Vector{Nemo.fmpq_mpoly},
+                           vals)
+
+Returns the indices of the equations in Et to be used for polynomial solving
+and the variables that form a transcendence basis.
+
+# Arguments
+- `Et::Vector{Nemo.fmpq_mpoly}`: The equations to be solved (must come from identifiability check).
+- `indets::Vector{Nemo.fmpq_mpoly}`: The indeterminates.
+- `vals::Vector{Nemo.fmpq_mpoly}`: The values of the indeterminates sampled by identifiability algorithm.
 """
 function algebraic_independence(Et::Vector{Nemo.fmpq_mpoly},
                                 indets::Vector{Nemo.fmpq_mpoly},
