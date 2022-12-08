@@ -29,7 +29,8 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                    time_interval,
                                    identifiability_result,
                                    interpolation_degree)
-best_result = ParameterEstimation.filter_solutions(results, model, data_sample,
+best_result = ParameterEstimation.filter_solutions(res, identifiability_result, model,
+                                                   data_sample,
                                                    time_interval)
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval)
