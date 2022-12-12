@@ -89,10 +89,10 @@ function sample_data(model::ModelingToolkit.ODESystem,
                      time_interval::Vector{T},
                      p_true::Vector{T},
                      u0::Vector{T},
-                     num_points::Int) where {T <: Float}
+                     num_points::Int; solver = AutoTsit5(Rosenbrock23())) where {T <: Float}
     tsteps = range(time_interval[1], time_interval[2], length = num_points)
     problem = ODEProblem(model, u0, time_interval, p_true)
-    solution_true = ModelingToolkit.solve(problem, Tsit5(), p = p_true, saveat = tsteps)
+    solution_true = ModelingToolkit.solve(problem, solver, p = p_true, saveat = tsteps)
     data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_data)
     return data_sample
 end

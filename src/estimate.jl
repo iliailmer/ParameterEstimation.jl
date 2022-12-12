@@ -91,7 +91,8 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
                                data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
                                time_interval = Vector{T}(), at_time::T = 0.0;
-                               degree_range = nothing, real_tol = 1e-10) where {T <: Float}
+                               solver = Tsit5(), degree_range = nothing,
+                               real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
     if degree_range == nothing
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
@@ -111,7 +112,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                   deg, at_time)
             if length(unfiltered) > 0
                 filtered = filter_solutions(unfiltered, identifiability_result, model,
-                                            data_sample, time_interval)
+                                            data_sample, time_interval; solver = solver)
                 push!(estimates, filtered)
             else
                 push!(estimates,

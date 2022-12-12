@@ -89,7 +89,7 @@ function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
                           data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                          time_interval = Vector{T}(), id_combs = [];
+                          time_interval = Vector{T}(), id_combs = []; solver = Tsit5(),
                           topk = 1) where {T <: Float}
     @info "Filtering"
     if length(results) == 0
@@ -107,7 +107,7 @@ function filter_solutions(results::Vector{EstimationResult},
         return results
     end
     filtered_results = []
-    solve_ode!(model, results, tsteps, data_sample)
+    solve_ode!(model, results, tsteps, data_sample; solver = solver)
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
         if length(id_combs) == 0
             clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
