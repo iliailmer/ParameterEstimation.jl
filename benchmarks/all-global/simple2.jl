@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations, Plots
-
 using ParameterEstimation
+solver = AutoTsit5(Rosenbrock23())
 
 @parameters a b
 @variables t x1(t) x2(t) y1(t) y2(t)

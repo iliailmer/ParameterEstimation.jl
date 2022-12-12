@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations, Plots
-
 using ParameterEstimation
+solver = AutoTsit5(Rosenbrock23())
 
 @parameters a b c d
 @variables t x1(t) x2(t) y1(t) y2(t)
@@ -20,6 +20,7 @@ measured_quantities = [
 ic = [1.0, -1.0]
 time_interval = (0.0, 10.0)
 datasize = 10
+p_true = [1.0, 2.0, 3.0, 4.0]
 tdata_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                                p_true, u0,
                                                datasize; solver = solver)
