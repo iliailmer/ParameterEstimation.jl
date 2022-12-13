@@ -1,7 +1,7 @@
-using Pkg
-Pkg.activate(; temp = true)
-Pkg.add(["ModelingToolkit", "Flux", "DiffEqFlux", "DifferentialEquations", "Plots"])
-Pkg.add(["Distributions", "Random"])
+# using Pkg
+# Pkg.activate(; temp = true)
+# Pkg.add(["ModelingToolkit", "Flux", "DiffEqFlux", "DifferentialEquations", "Plots"])
+# Pkg.add(["Distributions", "Random"])
 
 using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations, Plots
 using Distributions, Random
@@ -64,14 +64,16 @@ cb()
 
 Flux.train!(loss_rd, _params, data, opt, cb = cb)
 
-plot(solution_true[4, :], label = "True Solution: w")
-plot!(predict_rd()[:, 1], label = "Predicted Solution: w")
+println("Final Parameter Values: ")
+println(p)
+# plot(solution_true[4, :], label = "True Solution: w")
+# plot!(predict_rd()[:, 1], label = "Predicted Solution: w")
 
-plot(solution_true[5, :], label = "True Solution: z")
-plot!(predict_rd()[:, 2], label = "Predicted Solution: z")
+# plot(solution_true[5, :], label = "True Solution: z")
+# plot!(predict_rd()[:, 2], label = "Predicted Solution: z")
 
-plot(solution_true[1, :], label = "True Solution: x")
-plot!(predict_rd()[:, 3], label = "Predicted Solution: x")
+# plot(solution_true[1, :], label = "True Solution: x")
+# plot!(predict_rd()[:, 3], label = "Predicted Solution: x")
 
-plot(solution_true[2, :] .+ solution_true[3, :], label = "True Solution: y + v")
-plot!(predict_rd()[:, 4], label = "Predicted Solution: y + v")
+# plot(solution_true[2, :] .+ solution_true[3, :], label = "True Solution: y + v")
+# plot!(predict_rd()[:, 4], label = "Predicted Solution: y + v")
