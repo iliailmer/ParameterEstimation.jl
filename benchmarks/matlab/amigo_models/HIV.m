@@ -74,15 +74,15 @@ inputs.exps.n_exp=1;                          % Number of experiments
 
 inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
 
-inputs.exps.t_f{1}=1;                       % Experiments duration
+inputs.exps.t_f{1}=10;                       % Experiments duration
 
 
 inputs.exps.n_obs{1}=4;                       % Number of observables
 
 inputs.exps.obs_names{1}=char('Y1'); % Names of the observables
 inputs.exps.obs_names{2}=char('Y2'); % Names of the observables
-inputs.exps.obs_names{2}=char('Y3');
-inputs.exps.obs_names{2}=char('Y4');
+inputs.exps.obs_names{3}=char('Y3');
+inputs.exps.obs_names{4}=char('Y4');
 inputs.exps.obs{1}=char('Y1=w');
 inputs.exps.obs{2}=char('Y2=z');
 inputs.exps.obs{3}=char('Y3=x');
