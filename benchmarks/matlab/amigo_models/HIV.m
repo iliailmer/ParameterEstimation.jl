@@ -103,9 +103,9 @@ inputs.exps.exp_data{1}=[
 
 inputs.PEsol.id_global_theta=char('lm', 'd', 'beta', 'a', 'k', 'uu', 'c', 'q', 'b', 'h');
 
-inputs.PEsol.global_theta_max=1.*ones(1,3);
+inputs.PEsol.global_theta_max=1.*ones(1,10);
 
-inputs.PEsol.global_theta_min=0.0001.*ones(1,3);
+inputs.PEsol.global_theta_min=0.0001.*ones(1,10);
 
 %=============================================================
 
