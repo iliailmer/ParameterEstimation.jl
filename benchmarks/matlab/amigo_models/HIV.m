@@ -36,13 +36,13 @@ inputs.model.n_par=10;                                 % Number of model paramet
 
 %inputs.model.n_stimulus=0;                            % Number of inputs, stimuli or control variables
 
-inputs.model.st_names=char('x','y','vv','w','z');           % Names of the states
+inputs.model.st_names=char('x','yy','vv','w','z');           % Names of the states
 
 inputs.model.par_names=char('lm', 'd', 'beta', 'a', 'k', 'uu', 'c', 'q', 'b', 'h');             % Names of the parameters
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
-inputs.model.eqns=char('dx = lm - d * x - beta * x * vv;','dy = beta * x * vv - a * y;','dvv = k * y - uu * vv;','dw = c * x * y * w - c * q * y * w - b * w;','dz = c * q * y * w - h * z;');                                 % Equations describing system dynamics.
+inputs.model.eqns=char('dx = lm - d * x - beta * x * vv;','dyy = beta * x * vv - a * yy;','dvv = k * yy - uu * vv;','dw = c * x * yy * w - c * q * yy * w - b * w;','dz = c * q * yy * w - h * z;');                                 % Equations describing system dynamics.
 
                             %Time derivatives are regarded 'd'st_name''
 
@@ -86,7 +86,7 @@ inputs.exps.obs_names{2}=char('Y4');
 inputs.exps.obs{1}=char('Y1=w');
 inputs.exps.obs{2}=char('Y2=z');
 inputs.exps.obs{3}=char('Y3=x');
-inputs.exps.obs{4}=char('Y4=y+vv');
+inputs.exps.obs{4}=char('Y4=yy+vv');
 
 inputs.exps.t_con{1}=[0 10];                 % Input swithching times including:
 
