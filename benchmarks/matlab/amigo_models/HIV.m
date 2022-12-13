@@ -38,11 +38,11 @@ inputs.model.n_par=10;                                 % Number of model paramet
 
 inputs.model.st_names=char('x','y','v','w','z');           % Names of the states
 
-inputs.model.par_names=char('lm', 'd', 'beta', 'a', 'k', 'u', 'c', 'q', 'b', 'h');             % Names of the parameters
+inputs.model.par_names=char('lm', 'd', 'beta', 'a', 'k', 'uu', 'c', 'q', 'b', 'h');             % Names of the parameters
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
-inputs.model.eqns=char('dx = lm - d * x - beta * x * v;','dy = beta * x * v - a * y;','dv = k * y - u * v;','dw = c * x * y * w - c * q * y * w - b * w;','dz = c * q * y * w - h * z;');                                 % Equations describing system dynamics.
+inputs.model.eqns=char('dx = lm - d * x - beta * x * v;','dy = beta * x * v - a * y;','dv = k * y - uu * v;','dw = c * x * y * w - c * q * y * w - b * w;','dz = c * q * y * w - h * z;');                                 % Equations describing system dynamics.
 
                             %Time derivatives are regarded 'd'st_name''
 
@@ -139,7 +139,7 @@ input.exps.exp_data{4}=[ 2.0
 1.7695263845297464
 1.7258830104713447];
 
-inputs.PEsol.id_global_theta=char('lm', 'd', 'beta', 'a', 'k', 'u', 'c', 'q', 'b', 'h');
+inputs.PEsol.id_global_theta=char('lm', 'd', 'beta', 'a', 'k', 'uu', 'c', 'q', 'b', 'h');
 
 inputs.PEsol.global_theta_max=1.*ones(1,3);
 
