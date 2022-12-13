@@ -30,29 +30,27 @@ inputs.model.input_model_type='charmodelC';           % Model type- C
 
 
 
-inputs.model.n_st=2;                                  % Number of states
+inputs.model.n_st=4;                                  % Number of states
 
-inputs.model.n_par=3;                                 % Number of model parameters
+inputs.model.n_par=7;                                 % Number of model parameters
 
 %inputs.model.n_stimulus=0;                            % Number of inputs, stimuli or control variables
 
-inputs.model.st_names=char('r','w');           % Names of the states
+inputs.model.st_names=char('s','i','w','r');           % Names of the states
 
-inputs.model.par_names=char('k1','k2','k3');             % Names of the parameters
+inputs.model.par_names=char('mu', 'bi', 'bw', 'al', 'g', 'dz', 'k');             % Names of the parameters
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
 
 
-inputs.model.eqns=char('dr = k1*r-k2*r*w;', 'dw = k2*r*w-k3*w;');                                 % Equations describing system dynamics.
+inputs.model.eqns=char('ds = mu-bi*s*i-bw*s*w-mu*s+al*r;', 'di = bw*s*w+bi*s*i-g*i-mu*i;', 'dw = dz*(i-w);', 'dr = g*i-mu*r-al*r;');                                 % Equations describing system dynamics.
 
                             %Time derivatives are regarded 'd'st_name''
 
 
 
-
-
-inputs.model.par = [0.03 0.02 0.05];         % Nominal value for the parameters
+inputs.model.par = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5];         % Nominal value for the parameters
 
 
 
@@ -78,59 +76,71 @@ inputs.exps.n_exp=1;                          % Number of experiments
 
 
 
-inputs.exps.exp_y0{1}=[100 100];        % Initial conditions
+inputs.exps.exp_y0{1}=[1.0 -1.0 1.0 -1.0];        % Initial conditions
 
 inputs.exps.t_f{1}=1;                       % Experiments duration
 
 
+inputs.exps.n_obs{1}=2;                       % Number of observables
 
-inputs.exps.n_obs{1}=1;                       % Number of observables
+inputs.exps.obs_names{1}=char('Y1'); % Names of the observables
+inputs.exps.obs_names{2}=char('Y2'); % Names of the observables
 
-inputs.exps.obs_names{1}=char('Y'); % Names of the observables
-
-inputs.exps.obs{1}=char('Y=r');
+inputs.exps.obs{1}=char('Y1=i');
+inputs.exps.obs{2}=char('Y2=i+r+s');
 
 inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
 
 
 
-inputs.exps.n_s{1}=15;
+inputs.exps.n_s{1}=10;
 
 inputs.exps.data_type='real';
 
-inputs.exps.exp_data{1}=[  100.0
+inputs.exps.exp_data{1}=[  -1.0
 
-79.03977435176354
+-0.8092648314682347
 
-59.867435514174936
+-0.6543472773125947
 
-43.69264658316811
+-0.5287948634902843
 
-30.946893966636242
+-0.4272506071674625
 
-21.427912058914142
+-0.345277422010755
 
-14.602114275813614
+-0.27920548046562543
 
-9.84080581437385
+-0.2260254517821594
 
-6.585646485975749
+-0.18326588824081189
 
-4.387751459551335
+-0.14891564321154122];
 
-2.9166302545644553
+inputs.exps.exp_data{2}=[ -1.0
 
-1.9365082288487634
+  -0.789678621371463
 
-1.2852682654976015
+  -0.6014748067913444
 
-0.8535081597110623
+  -0.4330626140194678
 
-0.5671284049067747];
+  -0.28236069040891754
+
+  -0.14750684857127283
+
+  -0.026834090054262072
+
+  0.08114834641402857
+
+  0.1777754195777772
+
+  0.2642410943077605
+]
 
 
 
-inputs.PEsol.id_global_theta=char('k1', 'k2', 'k3');
+inputs.PEsol.id_global_theta=char('mu', 'bi', 'bw', 'al', 'g', 'dz', 'k');
 
 inputs.PEsol.global_theta_max=1.*ones(1,3);
 

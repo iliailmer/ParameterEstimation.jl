@@ -1,6 +1,6 @@
-
-using ModelingToolkit, DifferentialEquations, Plots
 using ParameterEstimation
+using ModelingToolkit, DifferentialEquations, Plots
+
 solver = AutoTsit5(Rosenbrock23())
 
 @parameters mu bi bw al g dz k
