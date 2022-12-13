@@ -8,7 +8,7 @@ solver = AutoTsit5(Rosenbrock23())
 D = Differential(t)
 
 states = [s, i, w, r]
-parameters = [mu, bi, bw, al, g, dz, k]
+parameters = [mu, bi, bw, al, g, dz]
 
 @named model = ODESystem([
                              D(s) ~ mu - bi * s * i - bw * s * w - mu * s + al * r,
@@ -21,7 +21,7 @@ measured_quantities = [y1 ~ i, y2 ~ i + r + s]
 ic = [1.0, -1.0, 1.0, -1.0]
 time_interval = [0.0, 1.0]
 datasize = 10
-p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5] # True Parameters
+p_true = [1, 1.3, 1.1, 1.2, 1.1, 1] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,
                                               datasize; solver = solver)
@@ -40,3 +40,4 @@ filtered = ParameterEstimation.filter_solutions(res, identifiability_result, mod
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval)
 print(res)
+print(filtered)

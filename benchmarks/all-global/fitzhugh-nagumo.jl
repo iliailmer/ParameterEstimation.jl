@@ -1,6 +1,6 @@
 import ParameterEstimation
-
 using ModelingToolkit, Nemo, HomotopyContinuation, DifferentialEquations
+solver = AutoTsit5(Rosenbrock23())
 
 @parameters g a b
 @variables t V(t) R(t) y1(t) y2(t)
@@ -21,7 +21,7 @@ measured_quantities = [y1 ~ V]
                          ], t, states, parameters)
 
 prob_true = ODEProblem(model, u0, time_interval, p_true)
-solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
+solution_true = ModelingToolkit.solve(prob_true, solver, p = p_true, saveat = tsteps)
 data_sample = Dict(V => solution_true[V])
 at_time = 0.0
 interpolation_degree = 23
@@ -36,7 +36,8 @@ filtered = ParameterEstimation.filter_solutions(res, identifiability_result, mod
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities,
                                                 data_sample,
                                                 time_interval, at_time)
-
+println(filtered)
+println(res)
 # time_res = Dict()
 # idx = 1
 # for t in range(time_interval[1], time_interval[2], length = 10)
