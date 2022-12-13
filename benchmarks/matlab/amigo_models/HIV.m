@@ -42,7 +42,7 @@ inputs.model.par_names=char('lm', 'd', 'beta', 'a', 'k', 'u', 'c', 'q', 'b', 'h'
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
-inputs.model.eqns=char('dx = lm - d * x - beta * x * v;','dy = beta * x * v - a * y;','dv = k * y - u * v;','dw = c * x * y * w - c * q * y * w - b * w;','dz = c * q * y * w - h * z;',);                                 % Equations describing system dynamics.
+inputs.model.eqns=char('dx = lm - d * x - beta * x * v;','dy = beta * x * v - a * y;','dv = k * y - u * v;','dw = c * x * y * w - c * q * y * w - b * w;','dz = c * q * y * w - h * z;');                                 % Equations describing system dynamics.
 
                             %Time derivatives are regarded 'd'st_name''
 
