@@ -3,7 +3,9 @@
 addpath(genpath("./"))
 
 
-
+% k1 : 1.8322e-02  +-  1.6087e-03 (    8.78%);
+% k2 : 2.9989e-02  +-  1.2393e-05 (  0.0413%);
+% k3 : 4.9062e-02  +-  9.8952e-04 (    2.02%);
 %======================
 
 % PATHS RELATED DATA
@@ -52,7 +54,7 @@ inputs.model.eqns=char('dr = k1*r-k2*r*w;', 'dw = k2*r*w-k3*w;');               
 
 
 
-inputs.model.par = [0.03 0.02 0.05];         % Nominal value for the parameters
+inputs.model.par = [0.02 0.03 0.05];         % Nominal value for the parameters
 
 
 

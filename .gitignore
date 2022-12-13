@@ -37,3 +37,5 @@ benchmarks/matlab/Help
 benchmarks/matlab/GEARS*
 benchmarks/matlab/MEIGO*
 benchmarks/matlab/*txt
+*.txt
+timecommand

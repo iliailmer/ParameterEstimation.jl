@@ -1,9 +1,9 @@
-using Pkg
-Pkg.activate(; temp = true)
-Pkg.add(["ModelingToolkit", "Flux", "DiffEqFlux", "DifferentialEquations", "Plots"])
-Pkg.add(["Distributions", "Random"])
+# using Pkg
+# Pkg.activate(; temp = true)
+# Pkg.add(["ModelingToolkit", "Flux", "DiffEqFlux", "DifferentialEquations", "Plots"])
+# Pkg.add(["Distributions", "Random"])
 
-using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations, Plots
+using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations#, Plots
 using Distributions, Random
 solver = AutoTsit5(Rosenbrock23())
 
@@ -15,7 +15,7 @@ ic = [100.0, 100.0]
 time_interval = (0.0, 1.0)
 datasize = 15
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
-p_true = [0.03, 0.02, 0.05] # True Parameters
+p_true = [0.02, 0.03, 0.05] # True Parameters
 measured_quantities = [y1 ~ r]
 states = [r, w]
 parameters = [k1, k2, k3]
@@ -36,7 +36,7 @@ function predict_rd() # Our 1-layer "neural network"
 end
 
 loss_rd() = sum(abs2, x - x_true for (x, x_true) in zip(predict_rd(), solution_true[1, :])) # loss function
-data = Iterators.repeated((), 2000)
+data = Iterators.repeated((), 3000)
 opt = ADAM(0.1)
 cb = function () #callback function to observe training
     display(loss_rd())
@@ -49,9 +49,12 @@ cb()
 
 Flux.train!(loss_rd, _params, data, opt, cb = cb)
 
-plot(solution_true[1, :], label = "True Solution, r(t)")
-plot!(solution_true[2, :], label = "True Solution, w(t)")
+# plot(solution_true[1, :], label = "True Solution, r(t)")
+# plot!(solution_true[2, :], label = "True Solution, w(t)")
 
-plot!(predict_rd(), label = "Predicted Solution, r(t)")
-plot!(solve(remake(prob, u0 = [p[1], p[2]]), p = p[3:end], saveat = tsteps)[2, :],
-      label = "Predicted Solution, w(t)")
+# plot!(predict_rd(), label = "Predicted Solution, r(t)")
+# plot!(solve(remake(prob, u0 = [p[1], p[2]]), p = p[3:end], saveat = tsteps)[2, :],
+#       label = "Predicted Solution, w(t)")
+
+print("Final Parameter Values: ", p)
+print("Mean Squared Error: ", loss_rd())
