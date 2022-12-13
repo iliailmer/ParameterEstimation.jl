@@ -1,4 +1,4 @@
-using ModelingToolkit, DifferentialEquations, Plots
+using ModelingToolkit, DifferentialEquations#, Plots
 using ParameterEstimation
 solver = AutoTsit5(Rosenbrock23())
 
@@ -24,8 +24,8 @@ datasize = 10
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,
                                               datasize; solver = solver)
-plot(data_sample[x1], label = "data")
-plot!(data_sample[x2], label = "data")
+# plot(data_sample[x1], label = "data")
+# plot!(data_sample[x2], label = "data")
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)

@@ -1,4 +1,4 @@
-using ModelingToolkit, DifferentialEquations, Plots
+using ModelingToolkit, DifferentialEquations
 using ParameterEstimation
 solver = AutoTsit5(Rosenbrock23())
 
@@ -40,10 +40,10 @@ p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,
                                               datasize; solver = solver)
-plot(data_sample[measured_quantities[1].rhs], label = "y₁")
-plot!(data_sample[measured_quantities[2].rhs], label = "y₂")
-plot!(data_sample[measured_quantities[3].rhs], label = "y₃")
-plot!(data_sample[measured_quantities[4].rhs], label = "y₄")
+# plot(data_sample[measured_quantities[1].rhs], label = "y₁")
+# plot!(data_sample[measured_quantities[2].rhs], label = "y₂")
+# plot!(data_sample[measured_quantities[3].rhs], label = "y₃")
+# plot!(data_sample[measured_quantities[4].rhs], label = "y₄")
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
 interpolation_degree = 7

@@ -1,5 +1,5 @@
 using ParameterEstimation
-using ModelingToolkit, DifferentialEquations, Plots
+using ModelingToolkit, DifferentialEquations
 solver = AutoTsit5(Rosenbrock23())
 @parameters k1 k2 k3 k4 k5 k6
 @variables t x1(t) x2(t) x3(t) x4(t) x5(t) x6(t) y1(t) y2(t)
@@ -26,8 +26,8 @@ datasize = 10
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, u0,
                                               datasize; solver = solver)
-plot(data_sample[x2], label = "data")
-plot!(data_sample[x3], label = "data")
+# plot(data_sample[x2], label = "data")
+# plot!(data_sample[x3], label = "data")
 
 interpolation_degree = 6
 identifiability_result = ParameterEstimation.check_identifiability(model;

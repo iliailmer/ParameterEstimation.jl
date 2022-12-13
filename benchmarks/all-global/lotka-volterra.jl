@@ -12,7 +12,7 @@ ic = [100.0, 100.0]
 time_interval = (0.0, 1.0)
 datasize = 15
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
-p_true = [0.02, 0.03, 0.05] # True Parameters
+p_true = [0.03, 0.02, 0.05] # True Parameters
 measured_quantities = [y1 ~ r]
 states = [r, w]
 parameters = [k1, k2, k3]
