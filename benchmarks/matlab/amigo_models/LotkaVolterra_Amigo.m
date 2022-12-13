@@ -1,5 +1,6 @@
 % TITLE: LV model
 
+addpath(genpath('~/parameter-estimation/matlab'))
 addpath(genpath("./"))
 
 

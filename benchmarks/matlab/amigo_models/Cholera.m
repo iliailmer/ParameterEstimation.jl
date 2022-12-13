@@ -1,5 +1,6 @@
 % TITLE: LV model
 
+addpath(genpath('~/parameter-estimation/matlab'))
 addpath(genpath("./"))
 
 
@@ -83,11 +84,9 @@ inputs.exps.t_f{1}=1;                       % Experiments duration
 
 inputs.exps.n_obs{1}=2;                       % Number of observables
 
-inputs.exps.obs_names{1}=char('Y1'); % Names of the observables
-inputs.exps.obs_names{2}=char('Y2'); % Names of the observables
+inputs.exps.obs_names{1}=char('Y1', 'Y2'); % Names of the observables
 
-inputs.exps.obs{1}=char('Y1=i');
-inputs.exps.obs{2}=char('Y2=i+r+s');
+inputs.exps.obs{1}=char('Y1=i', 'Y2=i+r+s');
 
 inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
 
