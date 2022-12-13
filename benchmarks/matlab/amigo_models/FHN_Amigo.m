@@ -10,9 +10,9 @@ addpath(genpath("./"))
 
 %======================
 
-inputs.pathd.results_folder='LVModel'; % Folder to keep results
+inputs.pathd.results_folder='FHNModel'; % Folder to keep results
 
-inputs.pathd.short_name='LV';                 % To identify figures and reports
+inputs.pathd.short_name='FHN';                 % To identify figures and reports
 
 
 
@@ -220,7 +220,7 @@ AMIGO_PE(inputs);
 
 % ns=5;     % Number of sampling times
 
-% 
+%
 
 % initial_conditions=[100 100];
 
@@ -232,11 +232,11 @@ AMIGO_PE(inputs);
 
 % inputs.exps.t_s=linspace(0,texp,ns);
 
-% 
+%
 
 % results=AMIGO_SModel(inputs);
 
-% 
+%
 
 % states{icase}=results.sim.states{1};
 
@@ -248,7 +248,7 @@ AMIGO_PE(inputs);
 
 % results=AMIGO_SData(inputs);
 
-% 
+%
 
 %  inputs.exps.n_exp=1;                                % Number of experiments
 
@@ -266,7 +266,7 @@ AMIGO_PE(inputs);
 
 %  inputs.exps.t_s{iexp}=linspace(1,240,10);           % Sampling times
 
-% 
+%
 
 % % OBSEVABLES DEFINITION
 
@@ -278,11 +278,11 @@ AMIGO_PE(inputs);
 
 %  end
 
-% 
+%
 
-% 
+%
 
-% 
+%
 
 % %==================================
 
@@ -290,7 +290,7 @@ AMIGO_PE(inputs);
 
 % %==================================
 
-% 
+%
 
 %  inputs.exps.data_type='pseudo';                     % Type of experimental data:
 
@@ -304,7 +304,7 @@ AMIGO_PE(inputs);
 
 %                                                      % noise scales with the signal, with a low threshold
 
-% 
+%
 
 % %==================================
 
@@ -312,7 +312,7 @@ AMIGO_PE(inputs);
 
 % %==================================
 
-% 
+%
 
 % % GLOBAL UNKNOWNS (SAME VALUE FOR ALL EXPERIMENTS)
 
@@ -328,11 +328,11 @@ AMIGO_PE(inputs);
 
 % AMIGO_logUniformIntialGuess(inputs.PEsol.global_theta_min,inputs.PEsol.global_theta_max);
 
-% 
+%
 
-% 
+%
 
-% 
+%
 
 % %==================================
 
@@ -348,11 +348,11 @@ AMIGO_PE(inputs);
 
 %                                                     % exact sensitivities
 
-% 
+%
 
-% 
+%
 
-% 
+%
 
 % %==================================
 
@@ -360,9 +360,9 @@ AMIGO_PE(inputs);
 
 % %==================================
 
-% 
+%
 
-% 
+%
 
 % %
 
@@ -392,7 +392,7 @@ AMIGO_PE(inputs);
 
 % inputs.nlpsol.eSS.local.nl2sol.tolrfun = 1e-5;
 
-% 
+%
 
 % %======================
 
@@ -400,17 +400,17 @@ AMIGO_PE(inputs);
 
 % %======================
 
-% 
+%
 
 % inputs.plotd.plotlevel='noplot'; % supress plots, since Regularization will call AMIGO_PE several times
 
-% 
+%
 
-% 
+%
 
-% 
+%
 
-% 
+%
 
 % %======================
 
@@ -444,9 +444,9 @@ AMIGO_PE(inputs);
 
 %                                                       % by generalized cross validation
 
-% 
+%
 
-% 
+%
 
 % % Save a copy of inputs for later, for crossvalidation and for regularization-free
 
