@@ -35,3 +35,5 @@ best_result = ParameterEstimation.filter_solutions(res, identifiability_result, 
                                                    solver = solver)
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval)
+println(best_result)
+println(res)
