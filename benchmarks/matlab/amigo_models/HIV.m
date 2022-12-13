@@ -2,7 +2,16 @@
 addpath(genpath('~/parameter-estimation/matlab'))
 addpath(genpath("./"))
 
-
+% lm   : 1.0001e-01  +-  5.4267e-05 (  0.0543%);
+% d    : 1.0007e-01  +-  8.5117e-05 (  0.0851%);
+% beta : 9.9941e-02  +-  5.8156e-05 (  0.0582%);
+% a    : 9.9953e-02  +-  9.6916e-05 (   0.097%);
+% k    : 1.0012e-01  +-  1.0840e-04 (   0.108%);
+% uu   : 1.0011e-01  +-  1.5170e-04 (   0.152%);
+% c    : 9.9992e-02  +-  2.8461e-05 (  0.0285%);
+% q    : 9.9996e-02  +-  3.2260e-04 (   0.323%);
+% b    : 9.9990e-02  +-  5.3582e-05 (  0.0536%);
+% h    : 1.0000e-01  +-  3.4715e-05 (  0.0347%);
 
 %======================
 
@@ -48,7 +57,7 @@ inputs.model.eqns=char('dx = lm - d * x - beta * x * vv;','dyy = beta * x * vv -
 
 
 
-inputs.model.par = [0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1];         % Nominal value for the parameters
+inputs.model.par = [0 0 0 0 0 0 0 0 0 0];%[0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1];         % Nominal value for the parameters
 
 % inputs.model.AMIGOsensrhs = 1;                       % Generate the sensitivity equations for exact
 
