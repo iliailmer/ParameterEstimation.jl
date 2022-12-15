@@ -37,7 +37,7 @@ function rational_interpolation_coefficients(x, y, n)
             end
         end
         # TODO: check for det < 1e-20
-        e = @det(A)
+        e = det(A)
         m = e < 1e-20 ? (1 / e)^(1 / N) : 1
         A = m * A
         prob = LinearSolve.LinearProblem(A, b)
