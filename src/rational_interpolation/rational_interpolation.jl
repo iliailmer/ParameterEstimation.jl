@@ -22,8 +22,26 @@ function rational_interpolation_coefficients(x, y, n)
         A_right_submatrix = reduce(hcat, [x .^ (i) for i in 0:(m - 1)])
         A = hcat(A_left_submatrix, -y .* A_right_submatrix)
         b = y .* (x .^ m)
+        @info det(A), cond(A)
+        open("A.txt", "w") do io
+            for i in 1:size(A, 1)
+                for j in 1:size(A, 2)
+                    print(io, A[i, j], " ")
+                end
+                println(io)
+            end
+        end
+        open("b.txt", "w") do io
+            for i in 1:length(b)
+                println(io, b[i])
+            end
+        end
+        # TODO: check for det < 1e-20
+        e = @det(A)
+        m = e < 1e-20 ? (1 / e)^(1 / N) : 1
+        A = m * A
         prob = LinearSolve.LinearProblem(A, b)
-        c = LinearSolve.solve(prob)
+        c = LinearSolve.solve(prob) / m
         return c[1:(n + 1)], [c[(n + 2):end]; 1]
     else
         A = reduce(hcat, [x .^ i for i in 0:n])
