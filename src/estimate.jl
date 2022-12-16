@@ -82,6 +82,7 @@ end
                           measured_quantities::Vector{ModelingToolkit.Equation},
                           data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
                           time_interval = Vector{T}(), at_time::T = 0.0;
+                          solver = Tsit5(),
                           degree_range = nothing, real_tol = 1e-10) where {T <: Float}
 
 Run estimation over a range of interpolation degrees. Return the best estimate according to a heuristic:
@@ -91,7 +92,8 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
                                data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
                                time_interval = Vector{T}(), at_time::T = 0.0;
-                               solver = Tsit5(), degree_range = nothing,
+                               solver = Tsit5(),
+                               degree_range = nothing,
                                real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
     if degree_range == nothing
