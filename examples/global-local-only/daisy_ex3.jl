@@ -27,7 +27,10 @@ states = [x1, x2, x3, u0]
 parameters = [p1, p3, p4, p6, p7]
 
 prob_true = ODEProblem(model, ic, time_interval, p_true)
-solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
+solution_true = ModelingToolkit.solve(prob_true,
+                                      ARKODE(Sundials.Explicit(),
+                                             etable = Sundials.FEHLBERG_6_4_5), p = p_true,
+                                      saveat = tsteps)
 
 data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_quantities)
 # plot(solution_true)

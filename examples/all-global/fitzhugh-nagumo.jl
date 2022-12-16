@@ -21,7 +21,10 @@ measured_quantities = [y1 ~ V]
                          ], t, states, parameters)
 
 prob_true = ODEProblem(model, u0, time_interval, p_true)
-solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
+solution_true = ModelingToolkit.solve(prob_true,
+                                      ARKODE(Sundials.Explicit(),
+                                             etable = Sundials.FEHLBERG_6_4_5), p = p_true,
+                                      saveat = tsteps)
 data_sample = Dict(V => solution_true[V])
 at_time = 0.0
 # interpolation_degree = 23

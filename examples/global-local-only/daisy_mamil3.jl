@@ -28,7 +28,10 @@ tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1.3, 1.1, 1.2, 1, 1.2] # True Parameters
 
 prob_true = ODEProblem(model, ic, time_interval, p_true)
-solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
+solution_true = ModelingToolkit.solve(prob_true,
+                                      ARKODE(Sundials.Explicit(),
+                                             etable = Sundials.FEHLBERG_6_4_5), p = p_true,
+                                      saveat = tsteps)
 
 data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_quantities)
 # plot(solution_true)
@@ -36,10 +39,10 @@ identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
 interpolation_degree = 15
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                       time_interval, identifiability_result,
-                                       interpolation_degree)
+                                   time_interval, identifiability_result,
+                                   interpolation_degree)
 filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
                                                 data_sample, time_interval)
 
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                    time_interval)
+                                                time_interval)

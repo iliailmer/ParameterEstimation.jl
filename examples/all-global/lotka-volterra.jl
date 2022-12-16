@@ -19,7 +19,10 @@ parameters = [k1, k2, k3]
 @named model = ODESystem([D(r) ~ k1 * r - k2 * r * w, D(w) ~ -k3 * w + k2 * r * w])
 
 prob_true = ODEProblem(model, u0, time_interval, p_true)
-solution_true = ModelingToolkit.solve(prob_true, Tsit5(), p = p_true, saveat = tsteps)
+solution_true = ModelingToolkit.solve(prob_true,
+                                      ARKODE(Sundials.Explicit(),
+                                             etable = Sundials.FEHLBERG_6_4_5), p = p_true,
+                                      saveat = tsteps)
 data_sample = Dict(r => solution_true[r])
 
 interpolation_degree = 7
