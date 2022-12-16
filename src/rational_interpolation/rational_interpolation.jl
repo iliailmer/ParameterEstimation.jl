@@ -38,11 +38,19 @@ function rational_interpolation_coefficients(x, y, n)
         end
         # TODO: check for det < 1e-20
         e = det(A)
-        m = e < 1e-20 ? (1 / e)^(1 / N) : 1
-        A = m * A
-        prob = LinearSolve.LinearProblem(A, b)
-        c = LinearSolve.solve(prob) / m
-        return c[1:(n + 1)], [c[(n + 2):end]; 1]
+        if e < 1e-20
+            @warn "Determinant of A is small: $e"
+        end
+        try
+            prob = LinearSolve.LinearProblem(A, b)
+            c = LinearSolve.solve(prob)
+            return c[1:(n + 1)], [c[(n + 2):end]; 1]
+        catch SingularException
+            lu_res = lu(A)
+            y = lu_res.L \ lu_res.P * b
+            c = lu_res.U \ y
+        end
+
     else
         A = reduce(hcat, [x .^ i for i in 0:n])
         b = y
