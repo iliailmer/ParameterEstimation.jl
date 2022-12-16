@@ -38,7 +38,7 @@ function rational_interpolation_coefficients(x, y, n)
         end
         # TODO: check for det < 1e-20
         e = det(A)
-        if e < 1e-20
+        if abs(e) < 1e-20
             @warn "Determinant of A is small: $e"
         end
         try
