@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations
 using ParameterEstimation
-solver = AutoTsit5(Rosenbrock23())
+solver = Tsit5()
 
 @parameters lm d beta a k u c q b h
 @variables t x(t) y(t) v(t) w(t) z(t) y1(t) y2(t) y3(t) y4(t)
@@ -18,24 +18,12 @@ parameters = [lm, d, beta, a, k, u, c, q, b, h]
 measured_quantities = [y1 ~ w, y2 ~ z, y3 ~ x, y4 ~ y + v]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
-time_interval = [0.0, 10.0]
+time_interval = [0.0, 20.0]
 datasize = 10
-open("data.txt", "w") do io
-    for state in keys(data_sample)
-        println(io, state)
-        for each in data_sample[state]
-            println(io, each)
-        end
-    end
-end
 p_true = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,
                                               datasize; solver = solver)
-# plot(data_sample[measured_quantities[1].rhs], label = "y₁")
-# plot!(data_sample[measured_quantities[2].rhs], label = "y₂")
-# plot!(data_sample[measured_quantities[3].rhs], label = "y₃")
-# plot!(data_sample[measured_quantities[4].rhs], label = "y₄")
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
@@ -45,8 +33,8 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                    interpolation_degree)
 
 filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-                                                data_sample, time_interval)
+                                                data_sample, time_interval; solver = solver)
 print(filtered)
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval)
+                                                time_interval; solver = solver)
 print(res)

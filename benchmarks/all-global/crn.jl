@@ -39,3 +39,4 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
 filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
                                                 data_sample,
                                                 time_interval; solver = solver)
+println("Filtered solutions: ", filtered)

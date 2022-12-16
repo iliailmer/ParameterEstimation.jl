@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations
 using ParameterEstimation
-solver = AutoTsit5(Rosenbrock23())
+solver = Tsit5()
 
 @parameters mu_N mu_EE mu_LE mu_LL mu_M mu_P mu_PE mu_PL delta_NE delta_EL delta_LM rho_E rho_P
 @variables t N(t) E(t) S(t) M(t) P(t) y1(t) y2(t) y3(t) y4(t)
@@ -34,9 +34,9 @@ parameters = [
 measured_quantities = [y1 ~ N, y2 ~ E, y3 ~ S + M, y4 ~ P]
 
 ic = [1.0, -1.0, 1.0, -1.0, 1.0]
-time_interval = [0.0, 1.0]
-datasize = 10
-p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0] # True Parameters
+time_interval = [0.0, 5.0]
+datasize = 20
+p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,
                                               datasize; solver = solver)
@@ -44,15 +44,16 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 # plot!(data_sample[measured_quantities[2].rhs], label = "y₂")
 # plot!(data_sample[measured_quantities[3].rhs], label = "y₃")
 # plot!(data_sample[measured_quantities[4].rhs], label = "y₄")
-identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                   measured_quantities = measured_quantities)
-interpolation_degree = 8
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval, identifiability_result,
-                                   interpolation_degree)
+# identifiability_result = ParameterEstimation.check_identifiability(model;
+#                                                                    measured_quantities = measured_quantities)
+# interpolation_degree = 8
+# res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+#                                    time_interval, identifiability_result,
+#                                    interpolation_degree)
 
-filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-                                                data_sample, time_interval)
-print(filtered)
-# res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-#                                                 time_interval)
+# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
+#                                                 data_sample, time_interval; solver = solver)
+# print(filtered)
+res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+                                                time_interval; solver = solver)
+print(res)
