@@ -107,7 +107,7 @@ inputs.exps.exp_data{1}=[ 1.0 1.0 2.0 1.0
 
 
 
-inputs.PEsol.id_global_theta=char( 'mu_N', 'mu_EE', 'mu_LE', 'mu_LL', 'mu_M', 'mu_P', 'mu_PE', 'mu_PL', 'delta_NE', 'delta_EL', 'delta_LM', 'rho_E', 'rho_P',);
+inputs.PEsol.id_global_theta=char('mu_N', 'mu_EE', 'mu_LE', 'mu_LL', 'mu_M', 'mu_P', 'mu_PE', 'mu_PL', 'delta_NE', 'delta_EL', 'delta_LM', 'rho_E', 'rho_P');
 
 inputs.PEsol.global_theta_max=2.*ones(1,13);
 
