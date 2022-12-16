@@ -23,20 +23,6 @@ function rational_interpolation_coefficients(x, y, n)
         A = hcat(A_left_submatrix, -y .* A_right_submatrix)
         b = y .* (x .^ m)
         @info det(A), cond(A)
-        open("A.txt", "w") do io
-            for i in 1:size(A, 1)
-                for j in 1:size(A, 2)
-                    print(io, A[i, j], " ")
-                end
-                println(io)
-            end
-        end
-        open("b.txt", "w") do io
-            for i in 1:length(b)
-                println(io, b[i])
-            end
-        end
-        # TODO: check for det < 1e-20
         e = det(A)
         if abs(e) < 1e-20
             @warn "Determinant of A is small: $e"
@@ -49,6 +35,7 @@ function rational_interpolation_coefficients(x, y, n)
             lu_res = lu(A)
             y = lu_res.L \ lu_res.P * b
             c = lu_res.U \ y
+            return c[1:(n + 1)], [c[(n + 2):end]; 1]
         end
 
     else
