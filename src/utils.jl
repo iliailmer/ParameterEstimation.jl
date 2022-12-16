@@ -98,3 +98,15 @@ function sample_data(model::ModelingToolkit.ODESystem,
     data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_data)
     return data_sample
 end
+
+function write_sample(data_sample; filename = "sample_data.txt")
+    open(filename, "w") do io
+        idx_iter = eachindex(first(values(data_sample)))
+        for i in idx_iter
+            for (key, sample) in data_sample
+                print(io, sample[i], " ")
+            end
+            println(io)
+        end
+    end
+end
