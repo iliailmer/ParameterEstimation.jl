@@ -33,7 +33,7 @@ parameters = [
                          ], t, states, parameters)
 measured_quantities = [y1 ~ N, y2 ~ E, y3 ~ S + M, y4 ~ P]
 
-ic = [1.0, -1.0, 1.0, -1.0, 1.0]
+ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 5.0]
 datasize = 20
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
