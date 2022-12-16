@@ -45,11 +45,7 @@ inputs.model.par_names=char('N', 'E', 'S', 'M', 'P');             % Names of the
 
 
 % Equations describing system dynamics.
-inputs.model.eqns=char('dN = -N * mu_N - N * P * delta_NE;',
-'dE = N * P * delta_NE - E^2 * mu_EE - E * delta_EL + E * P * rho_E;',
-'dS = S * delta_EL - S * delta_LM - S^2 * mu_LL - E * S * mu_LE;',
-'dM = S * delta_LM - mu_M * M;',
-'dP = P^2 * rho_P - P * mu_P - E * P * mu_PE - S * P * mu_PL;');
+inputs.model.eqns=char('dN = -1 * N * mu_N - N * P * delta_NE;', 'dE = N * P * delta_NE - E^2 * mu_EE - E * delta_EL + E * P * rho_E;', 'dS = S * delta_EL - S * delta_LM - S^2 * mu_LL - E * S * mu_LE;', 'dM = S * delta_LM - mu_M * M;', 'dP = P^2 * rho_P - P * mu_P - E * P * mu_PE - S * P * mu_PL;');
 
 
 inputs.model.par = [1 1 1 1 1 1 0 1 1 1 1 0 1];         % Nominal value for the parameters
