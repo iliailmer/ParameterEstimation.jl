@@ -37,9 +37,9 @@ inputs.model.n_par=13;                                 % Number of model paramet
 
 %inputs.model.n_stimulus=0;                            % Number of inputs, stimuli or control variables
 
-inputs.model.st_names=char('x1','x2');    %x1=V, x2=R        % Names of the states
+inputs.model.st_names=char('N', 'E', 'S', 'M', 'P');    %x1=V, x2=R        % Names of the states
 
-inputs.model.par_names=char('N', 'E', 'S', 'M', 'P');             % Names of the parameters
+inputs.model.par_names=char('mu_N', 'mu_EE', 'mu_LE', 'mu_LL', 'mu_M', 'mu_P', 'mu_PE', 'mu_PL', 'delta_NE', 'delta_EL', 'delta_LM', 'rho_E', 'rho_P');             % Names of the parameters
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
