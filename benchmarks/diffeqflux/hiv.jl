@@ -1,11 +1,6 @@
-# using Pkg
-# Pkg.activate(; temp = true)
-# Pkg.add(["ModelingToolkit", "Flux", "DiffEqFlux", "DifferentialEquations", "Plots"])
-# Pkg.add(["Distributions", "Random"])
-
 using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations, Plots
 using Distributions, Random
-solver = AutoTsit5(Rosenbrock23())
+solver = Tsit5()
 
 @parameters lm d beta a k u c q b h
 @variables t x(t) y(t) v(t) w(t) z(t) y1(t) y2(t) y3(t) y4(t)
@@ -24,12 +19,13 @@ measured_quantities = [y1 ~ w, y2 ~ z, y3 ~ x, y4 ~ y + v]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 10.0]
-datasize = 10
+datasize = 100
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 
 prob_true = ODEProblem(model, ic, time_interval, p_true)
-solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps)
+solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps; abstol = 1e-12,
+                      reltol = 1e-12)
 
 # Initial Parameter Vector
 p = randn!(MersenneTwister(123), zeros(length(p_true) + length(ic)))
@@ -49,14 +45,14 @@ function loss_rd()
                                                                                         :] .+
                                                                           solution_true[3,
                                                                                         :]]
-    return sum(abs2, y_true .- y_pred)
+    return sum(abs, y_true .- y_pred) / datasize
 end # loss function
-data = Iterators.repeated((), 2500)
-opt = ADAM(0.01)
+data = Iterators.repeated((), 3000)
+opt = ADAM(0.05)
 cb = function () #callback function to observe training
     display(loss_rd())
     # using `remake` to re-create our `prob` with current parameters `p`
-    # display(plot(solve(remake(prob, p=p), Tsit5(), saveat=tsteps), ylim=(0, 6)))
+    # display(plot(solve(remake(prob, p=p), AutoTsit5(Rosenbrock23()), saveat=tsteps), ylim=(0, 6)))
 end
 
 # Display the ODE with the initial parameter values.

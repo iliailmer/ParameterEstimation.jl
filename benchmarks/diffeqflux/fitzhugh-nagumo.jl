@@ -48,7 +48,7 @@ opt = ADAM(0.1)
 cb = function () #callback function to observe training
     display(loss_rd())
     # using `remake` to re-create our `prob` with current parameters `p`
-    # display(plot(solve(remake(prob, p=p), Tsit5(), saveat=tsteps), ylim=(0, 6)))
+    # display(plot(solve(remake(prob, p=p), AutoTsit5(Rosenbrock23()), saveat=tsteps), ylim=(0, 6)))
 end
 
 # Display the ODE with the initial parameter values.
