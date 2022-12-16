@@ -39,13 +39,13 @@ inputs.model.n_par=13;                                 % Number of model paramet
 
 inputs.model.st_names=char('N', 'E', 'S', 'M', 'P');    %x1=V, x2=R        % Names of the states
 
-inputs.model.par_names=char('mu_N', 'mu_EE', 'mu_LE', 'mu_LL', 'mu_M', 'mu_P', 'mu_PE', 'mu_PL', 'delta_NE', 'delta_EL', 'delta_LM', 'rho_E', 'rho_P');             % Names of the parameters
+inputs.model.par_names=char('muN', 'muEE', 'muLE', 'muLL', 'muM', 'muP', 'muPE', 'muPL', 'deltaNE', 'deltaEL', 'deltaLM', 'rhoE', 'rhoP');             % Names of the parameters
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
 
 % Equations describing system dynamics.
-inputs.model.eqns=char('dN = -1 * N * mu_N - N * P * delta_NE;', 'dE = N * P * delta_NE - E^2 * mu_EE - E * delta_EL + E * P * rho_E;', 'dS = S * delta_EL - S * delta_LM - S^2 * mu_LL - E * S * mu_LE;', 'dM = S * delta_LM - mu_M * M;', 'dP = P^2 * rho_P - P * mu_P - E * P * mu_PE - S * P * mu_PL;');
+inputs.model.eqns=char('dN = -1 * N * muN - N * P * deltaNE;', 'dE = N * P * deltaNE - E^2 * muEE - E * deltaEL + E * P * rhoE;', 'dS = S * deltaEL - S * deltaLM - S^2 * muLL - E * S * muLE;', 'dM = S * deltaLM - muM * M;', 'dP = P^2 * rhoP - P * muP - E * P * muPE - S * P * muPL;');
 
 
 inputs.model.par = [1 1 1 1 1 1 0 1 1 1 1 0 1];         % Nominal value for the parameters
@@ -107,7 +107,7 @@ inputs.exps.exp_data{1}=[ 1.0 1.0 2.0 1.0
 
 
 
-inputs.PEsol.id_global_theta=char('mu_N', 'mu_EE', 'mu_LE', 'mu_LL', 'mu_M', 'mu_P', 'mu_PE', 'mu_PL', 'delta_NE', 'delta_EL', 'delta_LM', 'rho_E', 'rho_P');
+inputs.PEsol.id_global_theta=char('muN', 'muEE', 'muLE', 'muLL', 'muM', 'muP', 'muPE', 'muPL', 'deltaNE', 'deltaEL', 'deltaLM', 'rhoE', 'rhoP');
 
 inputs.PEsol.global_theta_max=2.*ones(1,13);
 
