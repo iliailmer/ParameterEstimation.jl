@@ -43,14 +43,11 @@ inputs.model.par_names=char('muN', 'muEE', 'muLE', 'muLL', 'muM', 'muP', 'muPE',
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
-
 % Equations describing system dynamics.
-inputs.model.eqns=char('dN = -1 * N * muN - N * P * deltaNE;', 'dE = N * P * deltaNE - E^2 * muEE - E * deltaEL + E * P * rhoE;', 'dS = S * deltaEL - S * deltaLM - S^2 * muLL - E * S * muLE;', 'dM = S * deltaLM - muM * M;', 'dP = P^2 * rhoP - P * muP - E * P * muPE - S * P * muPL;');
+inputs.model.eqns=char('dN = -1 * N * muN - N * P * deltaNE;', 'dE = N * P * deltaNE - E * E * muEE - E * deltaEL + E * P * rhoE;', 'dS = S * deltaEL - S * deltaLM - S * S * muLL - E * S * muLE;', 'dM = S * deltaLM - muM * M;', 'dP = P * P * rhoP - P * muP - E * P * muPE - S * P * muPL;');
 
 
 inputs.model.par = [1 1 1 1 1 1 0 1 1 1 1 0 1];         % Nominal value for the parameters
-
-
 
 % inputs.model.AMIGOsensrhs = 1;                       % Generate the sensitivity equations for exact
 
