@@ -4,18 +4,16 @@ addpath(genpath('~/parameter-estimation/matlab'))
 addpath(genpath("./"))
 
 
-% k1 : 1.8322e-02  +-  1.6087e-03 (    8.78%);
-% k2 : 2.9989e-02  +-  1.2393e-05 (  0.0413%);
-% k3 : 4.9062e-02  +-  9.8952e-04 (    2.02%);
+
 %======================
 
 % PATHS RELATED DATA
 
 %======================
 
-inputs.pathd.results_folder='LVModel'; % Folder to keep results
+inputs.pathd.results_folder='CrausteModel'; % Folder to keep results
 
-inputs.pathd.short_name='LV';                 % To identify figures and reports
+inputs.pathd.short_name='Crauste';                 % To identify figures and reports
 
 
 
@@ -33,29 +31,28 @@ inputs.model.input_model_type='charmodelC';           % Model type- C
 
 
 
-inputs.model.n_st=2;                                  % Number of states
+inputs.model.n_st=5;                                  % Number of states
 
-inputs.model.n_par=3;                                 % Number of model parameters
+inputs.model.n_par=13;                                 % Number of model parameters
 
 %inputs.model.n_stimulus=0;                            % Number of inputs, stimuli or control variables
 
-inputs.model.st_names=char('r','w');           % Names of the states
+inputs.model.st_names=char('x1','x2');    %x1=V, x2=R        % Names of the states
 
-inputs.model.par_names=char('k1','k2','k3');             % Names of the parameters
+inputs.model.par_names=char('N', 'E', 'S', 'M', 'P');             % Names of the parameters
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
 
+% Equations describing system dynamics.
+inputs.model.eqns=char('dN = -N * mu_N - N * P * delta_NE;',
+'dE = N * P * delta_NE - E^2 * mu_EE - E * delta_EL + E * P * rho_E;',
+'dS = S * delta_EL - S * delta_LM - S^2 * mu_LL - E * S * mu_LE',
+'dM = S * delta_LM - mu_M * M',
+'dP = P^2 * rho_P - P * mu_P - E * P * mu_PE - S * P * mu_PL');
 
-inputs.model.eqns=char('dr = k1*r-k2*r*w;', 'dw = k2*r*w-k3*w;');                                 % Equations describing system dynamics.
 
-                            %Time derivatives are regarded 'd'st_name''
-
-
-
-
-
-inputs.model.par = [0.02 0.03 0.05];         % Nominal value for the parameters
+inputs.model.par = [1 1 1 1 1 1 0 1 1 1 1 0 1];         % Nominal value for the parameters
 
 
 
@@ -81,49 +78,44 @@ inputs.exps.n_exp=1;                          % Number of experiments
 
 
 
-inputs.exps.exp_y0{1}=[100 100];        % Initial conditions
+inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
 
-inputs.exps.t_f{1}=1;                       % Experiments duration
+inputs.exps.t_f{1}=5;                       % Experiments duration
 
+inputs.exps.n_obs{1}=4;                       % Number of observables
 
+% Names of the observables
+inputs.exps.obs_names{1}=char('Y1', 'Y2', 'Y3', 'Y4');
 
-inputs.exps.n_obs{1}=1;                       % Number of observables
+inputs.exps.obs{1}=char('Y1=N', 'Y2 = E', 'Y3 = S + M', 'Y4 = P');
 
-inputs.exps.obs_names{1}=char('Y'); % Names of the observables
-
-inputs.exps.obs{1}=char('Y=r');
-
-inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
-
+inputs.exps.t_con{1}=[0 5];                 % Input swithching times including:
 
 
-inputs.exps.n_s{1}=8; % 8 or 16
+
+inputs.exps.n_s{1}=10;
 
 inputs.exps.data_type='real';
 
-inputs.exps.exp_data{1}=[  100.0
-
-59.86740187680004
-
-30.94691766625345
-
-14.602033921565098
-
-6.5857892408981495
-
-2.9166623529526006
-
-1.285309117505869
-
-0.5670214463059633];
+inputs.exps.exp_data{1}=[ 1.0 1.0 2.0 1.0
+0.6262864365228055 0.382248281083486 1.1899703139289581 0.5264752527323943
+0.35094171626208187 0.17593999852593248 0.7972736508483186 0.2904691769256627
+0.19641206134424308 0.08939843309484297 0.5658887302539644 0.15953408533717922
+0.1106228295084407 0.04799460408906465 0.4237780442067244 0.086898602754068
+0.06265525487541022 0.026560233929535878 0.3344258308327127 0.047131290426414334
+0.03563734358156775 0.01494357325016453 0.2767040722680609 0.025543666796321363
+0.020330872307974358 0.008483388626826653 0.2380950449053304 0.013862016170187133
+0.011622383867554731 0.004839385966218741 0.21116003159716396 0.007539702141978074
+0.00665306373325196 0.0027679089960299676 0.19147479918617955 0.0041115921049275994
+];
 
 
 
-inputs.PEsol.id_global_theta=char('k1', 'k2', 'k3');
+inputs.PEsol.id_global_theta=char( 'mu_N', 'mu_EE', 'mu_LE', 'mu_LL', 'mu_M', 'mu_P', 'mu_PE', 'mu_PL', 'delta_NE', 'delta_EL', 'delta_LM', 'rho_E', 'rho_P',);
 
-inputs.PEsol.global_theta_max=1.*ones(1,3);
+inputs.PEsol.global_theta_max=2.*ones(1,13);
 
-inputs.PEsol.global_theta_min=0.0001.*ones(1,3);
+inputs.PEsol.global_theta_min=0.0001.*ones(1,13);
 
 %=============================================================
 
