@@ -70,7 +70,7 @@ inputs.model.par = [0 0 0 0 0 0 0 0 0 0];%[0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0
 %==================================
 
 % EXPERIMENT DESIGN
-
+% TODO: Ask Julio about initial conditions
 
 
 inputs.exps.n_exp=1;                          % Number of experiments
@@ -81,7 +81,7 @@ inputs.exps.n_exp=1;                          % Number of experiments
 
 
 
-inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
+% inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
 
 inputs.exps.t_f{1}=10;                       % Experiments duration
 
