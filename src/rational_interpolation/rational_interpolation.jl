@@ -118,8 +118,8 @@ function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1,
     # TODO: make numer_degree optional
     numer_coef, denom_coef = rational_interpolation_coefficients(time, sample,
                                                                  numer_degree)
-    numer_function(t) = sum(numer_coef[i] * t^(i - 1) for i in 1:length(numer_coef))
-    denom_function(t) = sum(denom_coef[i] * t^(i - 1) for i in 1:length(denom_coef))
+    numer_function(t) = sum(numer_coef[i] * t^(i - 1) for i in eachindex(numer_coef))
+    denom_function(t) = sum(denom_coef[i] * t^(i - 1) for i in eachindex(denom_coef))
     interpolated_function(t) = numer_function(t) / denom_function(t)
     return Interpolant(interpolated_function,
                        differentiate_interpolated(interpolated_function, diff_order, at_t))
