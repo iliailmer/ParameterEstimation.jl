@@ -24,7 +24,7 @@ function solve_ode(model, estimate::EstimationResult, tsteps, data_sample;
                    return_ode = false)
     initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
     parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
-    tspan = (estimate.at_time, tsteps[end])
+    tspan = (estimate.at_time, tsteps[end] + estimate.at_time)
     prob = ModelingToolkit.ODEProblem(model, initial_conditions,
                                       tspan, parameter_values)
     ode_solution = ModelingToolkit.solve(prob, solver,
