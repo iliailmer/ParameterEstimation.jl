@@ -90,12 +90,19 @@ function sample_data(model::ModelingToolkit.ODESystem,
                      p_true::Vector{T},
                      u0::Vector{T},
                      num_points::Int;
-                     solver = Tsit5()) where {T <: Float}
+                     solver = Tsit5(), inject_noise = false, mean_noise = 0,
+                     stddev_noise = 1) where {T <: Float}
     tsteps = range(time_interval[1], time_interval[2], length = num_points)
     problem = ODEProblem(model, u0, time_interval, p_true)
     solution_true = ModelingToolkit.solve(problem, solver, p = p_true, saveat = tsteps;
                                           abstol = 1e-10, reltol = 1e-10)
     data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_data)
+    if inject_noise
+        for (key, sample) in data_sample
+            data_sample[key] = sample + randn(num_points) .* stddev_noise .+ mean_noise
+        end
+    end
+
     return data_sample
 end
 
