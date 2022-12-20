@@ -45,19 +45,11 @@ inputs.model.par_names=char('k1','k2','k3');             % Names of the paramete
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
-
-
 inputs.model.eqns=char('dr = k1*r-k2*r*w;', 'dw = k2*r*w-k3*w;');                                 % Equations describing system dynamics.
 
                             %Time derivatives are regarded 'd'st_name''
 
-
-
-
-
 inputs.model.par = [0.02 0.03 0.05];         % Nominal value for the parameters
-
-
 
 % inputs.model.AMIGOsensrhs = 1;                       % Generate the sensitivity equations for exact
 
@@ -84,45 +76,34 @@ inputs.exps.n_exp=1;                          % Number of experiments
 inputs.exps.exp_y0{1}=[100 100];        % Initial conditions
 
 inputs.exps.t_f{1}=1;                       % Experiments duration
-
-
-
 inputs.exps.n_obs{1}=1;                       % Number of observables
-
 inputs.exps.obs_names{1}=char('Y'); % Names of the observables
-
 inputs.exps.obs{1}=char('Y=r');
-
 inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
-
-
-
-inputs.exps.n_s{1}=8; % 8 or 16
-
+inputs.exps.n_s{1}=16; % 8 or 16
 inputs.exps.data_type='real';
-
 inputs.exps.exp_data{1}=[  100.0
-
-59.86740187680004
-
-30.94691766625345
-
-14.602033921565098
-
-6.5857892408981495
-
-2.9166623529526006
-
-1.285309117505869
-
+80.39902767817165
+62.2690571399069
+46.6561358533665
+34.013260966178855
+24.27292673393346
+17.050518686913666
+11.843883191532147
+8.164810029856213
+5.600773144479524
+3.8302834137534165
+2.6150536131895934
+1.7840373850972975
+1.2169728866377594
+0.8304294265528263
 0.5670214463059633];
-
-
-
 inputs.PEsol.id_global_theta=char('k1', 'k2', 'k3');
+inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
+inputs.PEsol.global_theta_y0_max=[110 110];                % Maximum allowed values for the initial conditions
+inputs.PEsol.global_theta_y0_min=[90 90];
 
 inputs.PEsol.global_theta_max=1.*ones(1,3);
-
 inputs.PEsol.global_theta_min=0.0001.*ones(1,3);
 
 %=============================================================
@@ -161,7 +142,7 @@ inputs.PEsol.lsq_type='Q_I';             % Weights:
 
  inputs.nlpsol.nlpsolver='eSS';                      % Solver used for optimization
 
- inputs.nlpsol.eSS.log_var = 1:3;                    % Index of parameters to be considered in log scale
+%  inputs.nlpsol.eSS.log_var = 1:3;                    % Index of parameters to be considered in log scale
 
  inputs.nlpsol.eSS.maxeval = 20000;                  % Maximum number of cost function evaluations
 

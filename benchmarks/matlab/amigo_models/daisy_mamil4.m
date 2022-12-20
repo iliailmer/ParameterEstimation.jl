@@ -11,9 +11,9 @@ addpath(genpath("./"))
 
 %======================
 
-inputs.pathd.results_folder='CrausteModel'; % Folder to keep results
+inputs.pathd.results_folder='FHNModel'; % Folder to keep results
 
-inputs.pathd.short_name='Crauste';                 % To identify figures and reports
+inputs.pathd.short_name='FHN';                 % To identify figures and reports
 
 
 
@@ -31,21 +31,31 @@ inputs.model.input_model_type='charmodelC';           % Model type- C
 
 
 
-inputs.model.n_st=5;                                  % Number of states
+inputs.model.n_st=2;                                  % Number of states
 
-inputs.model.n_par=13;                                 % Number of model parameters
+inputs.model.n_par=3;                                 % Number of model parameters
 
 %inputs.model.n_stimulus=0;                            % Number of inputs, stimuli or control variables
 
-inputs.model.st_names=char('n', 'e', 's', 'm', 'p');    %x1=V, x2=R        % Names of the states
+inputs.model.st_names=char('x1','x2');    %x1=V, x2=R        % Names of the states
 
-inputs.model.par_names=char('muN', 'muEE', 'muLE', 'muLL', 'muM', 'muP', 'muPE', 'muPL', 'deltaNE', 'deltaEL', 'deltaLM', 'rhoE', 'rhoP');             % Names of the parameters
+inputs.model.par_names=char('a','b','g');             % Names of the parameters
 
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
 
-% Equations describing system dynamics.
-inputs.model.eqns=char( 'dn = -1 * n * muN - n * p * deltaNE;', 'de = n * p * deltaNE - e * e * muEE - e * deltaEL + e * e * rhoE;', 'ds = s * deltaEL - s * deltaLM - s * s * muLL - e * s * muLE;', 'dm = s * deltaLM - muM * m;', 'dp = p * p * rhoP - p * muP - e * p * muPE - s * p * muPL;');
-inputs.model.par = [1 1.3 1.1 1.2 1.1 1 0.5 1.0 1.0 1.0 1.0 0.9 1.2];         % Nominal value for the parameters
+
+
+inputs.model.eqns=char('dx1 = g * (x1 - x1^3/3 + x2);', 'dx2 = - 1/g * (x1 - a + b * x2);');                                 % Equations describing system dynamics.
+
+                            %Time derivatives are regarded 'd'st_name''
+
+
+
+
+
+inputs.model.par = [0.2 0.2 2];         % Nominal value for the parameters
+
+
 
 % inputs.model.AMIGOsensrhs = 1;                       % Generate the sensitivity equations for exact
 
@@ -58,39 +68,144 @@ inputs.model.par = [1 1.3 1.1 1.2 1.1 1 0.5 1.0 1.0 1.0 1.0 0.9 1.2];         % 
 %==================================
 
 % EXPERIMENT DESIGN
+
+
+
 inputs.exps.n_exp=1;                          % Number of experiments
+
+
+
 % EXPERIMENT 1
-inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
+
+
+
+inputs.exps.exp_y0{1}=[1 -1];        % Initial conditions
+
 inputs.exps.t_f{1}=5;                       % Experiments duration
-inputs.exps.n_obs{1}=4;                       % Number of observables
-% Names of the observables
-% inputs.exps.obs_names{1}=char('Y1', 'Y2', 'Y3', 'Y4');
-inputs.exps.obs{1}=char('Y1=n', 'Y2=e', 'Y3=s+m', 'Y4=p');
+
+
+
+inputs.exps.n_obs{1}=1;                       % Number of observables
+
+inputs.exps.obs_names{1}=char('Y'); % Names of the observables
+
+inputs.exps.obs{1}=char('Y=x1');
+
 inputs.exps.t_con{1}=[0 5];                 % Input swithching times including:
-inputs.exps.n_s{1}=10;
+
+
+
+inputs.exps.n_s{1}=50;
 
 inputs.exps.data_type='real';
 
-inputs.exps.exp_data{1}=[
-1.0 1.0 2.0 1.0
-0.6262864365228055 0.382248281083486 1.1899703139289581 0.5264752527323943
-0.35094171626208187 0.17593999852593248 0.7972736508483186 0.2904691769256627
-0.19641206134424308 0.08939843309484297 0.5658887302539644 0.15953408533717922
-0.1106228295084407 0.04799460408906465 0.4237780442067244 0.086898602754068
-0.06265525487541022 0.026560233929535878 0.3344258308327127 0.047131290426414334
-0.03563734358156775 0.01494357325016453 0.2767040722680609 0.025543666796321363
-0.020330872307974358 0.008483388626826653 0.2380950449053304 0.013862016170187133
-0.011622383867554731 0.004839385966218741 0.21116003159716396 0.007539702141978074
-0.00665306373325196 0.0027679089960299676 0.19147479918617955 0.0041115921049275994];
+inputs.exps.exp_data{1}=[ 1.0
 
-inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
-inputs.PEsol.global_theta_y0_max=1.1 * ones(1,5);                % Maximum allowed values for the initial conditions
-inputs.PEsol.global_theta_y0_min=0.9 * ones(1,5);
+0.9347004839815006
 
-inputs.PEsol.id_global_theta='all';
-%char('muN', 'muEE', 'muLE', 'muLL', 'muM', 'muP', 'muPE', 'muPL', 'deltaNE', 'deltaEL', 'deltaLM', 'rhoE', 'rhoP');
-inputs.PEsol.global_theta_max=2.*ones(1,13);
-inputs.PEsol.global_theta_min=0.0001.*ones(1,13);
+0.8734370360176208
+
+0.8143346316470316
+
+0.7556774113342264
+
+0.6957586392702363
+
+0.6326920688469742
+
+0.5642544040070117
+
+0.4878097834390997
+
+0.39981783663941944
+
+0.29566680712598137
+
+0.1693528801321386
+
+0.01303853127332005
+
+-0.18250153495546084
+
+-0.4268597226140922
+
+-0.7234527632926807
+
+-1.0602927803013233
+
+-1.4019854874805533
+
+-1.700666684179913
+
+-1.9245447982432382
+
+-2.0716028661983974
+
+-2.166840808939588
+
+-2.231643000262245
+
+-2.2799841389406557
+
+-2.320811552193883
+
+-2.3575047396475557
+
+-2.3925100770746317
+
+-2.4258790955413474
+
+-2.4593497682737318
+
+-2.491449731593281
+
+-2.5238470970160867
+
+-2.555815775576268
+
+-2.5862994927517304
+
+-2.6185068247553063
+
+-2.6489487673251686
+
+-2.6784212728524386
+
+-2.7108562794521878
+
+-2.738899350988676
+
+-2.7693365580748965
+
+-2.8005380383472023
+
+-2.825879263710476
+
+-2.8599427903551993
+
+-2.88492714886106
+
+-2.916265913279319
+
+-2.9441919264887457
+
+-2.97188507713319
+
+-3.0017944253376596
+
+-3.0281950036978156
+
+-3.0579007463380976
+
+-3.083802610662054];
+
+
+
+inputs.PEsol.id_global_theta=char('a', 'b', 'g');
+
+inputs.PEsol.global_theta_max=1.*ones(1,3);
+
+inputs.PEsol.global_theta_min=0.0001.*ones(1,3);
 
 %=============================================================
 
@@ -128,7 +243,7 @@ inputs.PEsol.lsq_type='Q_I';             % Weights:
 
  inputs.nlpsol.nlpsolver='eSS';                      % Solver used for optimization
 
-%  inputs.nlpsol.eSS.log_var = 1:3;                    % Index of parameters to be considered in log scale
+ inputs.nlpsol.eSS.log_var = 1:3;                    % Index of parameters to be considered in log scale
 
  inputs.nlpsol.eSS.maxeval = 20000;                  % Maximum number of cost function evaluations
 

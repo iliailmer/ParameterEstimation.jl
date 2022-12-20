@@ -19,11 +19,9 @@ addpath(genpath("./"))
 
 %======================
 
-inputs.pathd.results_folder='LVModel'; % Folder to keep results
+inputs.pathd.results_folder='HIVModel'; % Folder to keep results
 
-inputs.pathd.short_name='LV';                 % To identify figures and reports
-
-
+inputs.pathd.short_name='HIV';                 % To identify figures and reports
 
 %======================
 
@@ -32,37 +30,21 @@ inputs.pathd.short_name='LV';                 % To identify figures and reports
 %======================
 
 clear
-
-
-
 inputs.model.input_model_type='charmodelC';           % Model type- C
-
-
-
 inputs.model.n_st=5;                                  % Number of states
-
 inputs.model.n_par=10;                                 % Number of model parameters
-
 %inputs.model.n_stimulus=0;                            % Number of inputs, stimuli or control variables
-
 inputs.model.st_names=char('x','yy','vv','w','z');           % Names of the states
-
 inputs.model.par_names=char('lm', 'd', 'beta', 'a', 'k', 'uu', 'c', 'q', 'b', 'h');             % Names of the parameters
-
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
-
 inputs.model.eqns=char('dx = lm - d * x - beta * x * vv;','dyy = beta * x * vv - a * yy;','dvv = k * yy - uu * vv;','dw = c * x * yy * w - c * q * yy * w - b * w;','dz = c * q * yy * w - h * z;');                                 % Equations describing system dynamics.
 
                             %Time derivatives are regarded 'd'st_name''
 
-
-
 inputs.model.par = [0 0 0 0 0 0 0 0 0 0];%[0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1];         % Nominal value for the parameters
 
 % inputs.model.AMIGOsensrhs = 1;                       % Generate the sensitivity equations for exact
-
 %                                                      % Jacobian computation
-
 %==================================
 
 % EXPERIMENTAL SCHEME RELATED DATA
@@ -70,33 +52,16 @@ inputs.model.par = [0 0 0 0 0 0 0 0 0 0];%[0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0
 %==================================
 
 % EXPERIMENT DESIGN
-% TODO: Ask Julio about initial conditions
-
-
 inputs.exps.n_exp=1;                          % Number of experiments
-
-
-
 % EXPERIMENT 1
-
-
-
 inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
-
 inputs.exps.t_f{1}=10;                       % Experiments duration
-
-
 inputs.exps.n_obs{1}=4;                       % Number of observables
-
 inputs.exps.obs_names{1}=char('Y1', 'Y2', 'Y3', 'Y4'); % Names of the observables
 inputs.exps.obs{1}=char('Y1=w', 'Y2=z', 'Y3=x', 'Y4=yy+vv');
-
 inputs.exps.t_con{1}=[0 10];                 % Input swithching times including:
-
 inputs.exps.n_s{1}=10;
-
 inputs.exps.data_type='real';
-
 inputs.exps.exp_data{1}=[
 1.0 1.0 1.0 2.0
 0.983119630378905 0.9052545409667376 0.9003738172091765 1.994260678960563
@@ -109,12 +74,12 @@ inputs.exps.exp_data{1}=[
 0.697706198982586 0.4569811526346315 0.5904022851383369 1.7695263845297464
 0.6519335918497772 0.41464177285309733 0.5758023922503137 1.7258830104713447
 ];
-
-inputs.PEsol.id_global_theta=char('lm', 'd', 'beta', 'a', 'k', 'uu', 'c', 'q', 'b', 'h');
-
+inputs.PEsol.id_global_theta='all';
 inputs.PEsol.global_theta_max=1.*ones(1,10);
-
 inputs.PEsol.global_theta_min=0.0001.*ones(1,10);
+inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
+inputs.PEsol.global_theta_y0_max=1.1*ones(1,5);                % Maximum allowed values for the initial conditions
+inputs.PEsol.global_theta_y0_min=0.9*ones(1,5);                % Minimum allowed values for the initial conditions
 
 %=============================================================
 
@@ -152,7 +117,7 @@ inputs.PEsol.lsq_type='Q_I';             % Weights:
 
  inputs.nlpsol.nlpsolver='eSS';                      % Solver used for optimization
 
- inputs.nlpsol.eSS.log_var = 1:3;                    % Index of parameters to be considered in log scale
+%  inputs.nlpsol.eSS.log_var = 1:3;                    % Index of parameters to be considered in log scale
 
  inputs.nlpsol.eSS.maxeval = 20000;                  % Maximum number of cost function evaluations
 
