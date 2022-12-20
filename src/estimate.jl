@@ -96,7 +96,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                degree_range = nothing,
                                real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
-    if degree_range == nothing
+    if degree_range === nothing
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
     end
     logger = ConsoleLogger(stdout, Logging.Warn)
@@ -134,7 +134,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
 
     best_solution = nothing
     for each in estimates
-        if best_solution == nothing
+        if best_solution === nothing
             best_solution = each
         else
             if sum(x.err for x in each) < sum(x.err for x in best_solution)
@@ -142,7 +142,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
             end
         end
     end
-    if best_solution != nothing
+    if best_solution !== nothing
         @info "Best estimate found at degree(s) $([x.degree for x in best_solution]) with error(s) $([x.err for x in best_solution])"
         return best_solution
     else
