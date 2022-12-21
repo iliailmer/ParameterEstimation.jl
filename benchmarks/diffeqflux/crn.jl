@@ -1,11 +1,6 @@
-using Pkg
-Pkg.activate(; temp = true)
-Pkg.add(["ModelingToolkit", "Flux", "DiffEqFlux", "DifferentialEquations", "Plots"])
-Pkg.add(["Distributions", "Random"])
-
 using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations, Plots
 using Distributions, Random
-solver = AutoTsit5(Rosenbrock23())
+solver = Tsit5()
 
 @parameters k1 k2 k3 k4 k5 k6
 @variables t x1(t) x2(t) x3(t) x4(t) x5(t) x6(t) y1(t) y2(t)
@@ -50,7 +45,7 @@ function loss_rd()
     y_true = [solution_true[3, :] solution_true[2, :]]
     return sum(abs2, y_true .- y_pred)
 end # loss function
-data = Iterators.repeated((), 800)
+data = Iterators.repeated((), 3000)
 opt = ADAM(0.01)
 cb = function () #callback function to observe training
     display(loss_rd())
@@ -63,8 +58,4 @@ cb()
 
 Flux.train!(loss_rd, _params, data, opt, cb = cb)
 
-plot(solution_true[3, :], label = "True Solution: x3")
-plot!(predict_rd()[:, 1], label = "Predicted Solution: x3")
-
-plot!(solution_true[2, :], label = "True Solution: x2")
-plot!(predict_rd()[:, 2], label = "Predicted Solution: x2")
+println("Parameters: ", p)

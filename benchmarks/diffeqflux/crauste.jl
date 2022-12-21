@@ -1,11 +1,6 @@
-using Pkg
-Pkg.activate(; temp = true)
-Pkg.add(["ModelingToolkit", "Flux", "DiffEqFlux", "DifferentialEquations", "Plots"])
-Pkg.add(["Distributions", "Random"])
-
 using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations, Plots
 using Distributions, Random
-solver = AutoTsit5(Rosenbrock23())
+solver = Tsit5()
 
 @parameters mu_N mu_EE mu_LE mu_LL mu_M mu_P mu_PE mu_PL delta_NE delta_EL delta_LM rho_E rho_P
 @variables t N(t) E(t) S(t) M(t) P(t) y1(t) y2(t) y3(t) y4(t)
@@ -43,7 +38,7 @@ time_interval = [0.0, 1.0]
 datasize = 10
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 
-p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0] # True Parameters
+p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 prob_true = ODEProblem(model, ic, time_interval, p_true)
 solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps)
 
@@ -64,9 +59,9 @@ function loss_rd()
     y_true = [solution_true[1, :] solution_true[2, :] solution_true[3, :] +
                                                       solution_true[4, :] solution_true[5,
                                                                                         :]]
-    return sum(abs2, y_true .- y_pred)
+    return sum(abs, y_true .- y_pred)
 end # loss function
-data = Iterators.repeated((), 200)
+data = Iterators.repeated((), 3000)
 opt = ADAM(0.01)
 cb = function () #callback function to observe training
     display(loss_rd())
@@ -78,15 +73,15 @@ end
 cb()
 
 Flux.train!(loss_rd, _params, data, opt, cb = cb)
+println("parameters:", p)
+# plot(solution_true[1, :], label = "True Solution")
+# plot!(predict_rd()[:, 1], label = "Predicted Solution")
 
-plot(solution_true[1, :], label = "True Solution")
-plot!(predict_rd()[:, 1], label = "Predicted Solution")
+# plot!(solution_true[2, :], label = "True Solution")
+# plot!(predict_rd()[:, 2], label = "Predicted Solution")
 
-plot!(solution_true[2, :], label = "True Solution")
-plot!(predict_rd()[:, 2], label = "Predicted Solution")
+# plot!(solution_true[3, :] + solution_true[4, :], label = "True Solution")
+# plot!(predict_rd()[:, 3], label = "Predicted Solution")
 
-plot!(solution_true[3, :] + solution_true[4, :], label = "True Solution")
-plot!(predict_rd()[:, 3], label = "Predicted Solution")
-
-plot!(solution_true[5, :], label = "True Solution")
-plot!(predict_rd()[:, 4], label = "Predicted Solution")
+# plot!(solution_true[5, :], label = "True Solution")
+# plot!(predict_rd()[:, 4], label = "Predicted Solution")
