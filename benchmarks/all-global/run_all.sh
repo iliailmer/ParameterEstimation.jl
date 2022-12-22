@@ -5,8 +5,8 @@ for each in *.jl; do
     # if system is macos use gtime
     os_type=$(uname)
     if [ "$os_type" = "Darwin" ]; then
-        gtime -f "\n\n%U+%S %e %M" julia --project=../../ $each
+        gtime -f "\n\nCPU time: %S+%U sec\tMax. resident set size: %M KB\t Elapsed: %e sec." julia --project=../../ $each
     else
-        /usr/bin/time -f "\n\n%U+%S %e %M" julia --project=../../ $each
+        /usr/bin/time -f "\n\nCPU time: %S+%U sec\tMax. resident set size: %M KB\t Elapsed: %e sec." julia --project=../../ $each
     fi
 done

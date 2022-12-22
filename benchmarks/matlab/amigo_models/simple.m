@@ -23,13 +23,13 @@ inputs.pathd.short_name='Simple';                 % To identify figures and repo
 clear
 inputs.model.input_model_type='charmodelC';           % Model type- C
 inputs.model.n_st=2;                                  % Number of states
-inputs.model.n_par=3;                                 % Number of model parameters
+inputs.model.n_par=2;                                 % Number of model parameters
 %inputs.model.n_stimulus=0;                            % Number of inputs, stimuli or control variables
 inputs.model.st_names=char('x1','x2');    %x1=V, x2=R        % Names of the states
-inputs.model.par_names=char('a','b','g');             % Names of the parameters
+inputs.model.par_names=char('a','b');             % Names of the parameters
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
-inputs.model.eqns=char('dx1 = g * (x1 - x1^3/3 + x2);', 'dx2 = - 1/g * (x1 - a + b * x2);');                                 % Equations describing system dynamics.
-inputs.model.par = [0.2 0.2 2];         % Nominal value for the parameters
+inputs.model.eqns=char('dx1 = -a * x2;','dx2 = 1 / b * (x1);');                                 % Equations describing system dynamics.
+inputs.model.par = [0.2 0.2];         % Nominal value for the parameters
 % inputs.model.AMIGOsensrhs = 1;                       % Generate the sensitivity equations for exact
 
 %                                                      % Jacobian computation
@@ -43,67 +43,41 @@ inputs.model.par = [0.2 0.2 2];         % Nominal value for the parameters
 % EXPERIMENT DESIGN
 inputs.exps.n_exp=1;                          % Number of experiments
 % EXPERIMENT 1
-inputs.exps.exp_y0{1}=[1 -1];        % Initial conditions
-inputs.exps.t_f{1}=5;                       % Experiments duration
+inputs.exps.exp_y0{1}=[1 1];        % Initial conditions
+inputs.exps.t_f{1}=2.0 * 3.14159265 * sqrt(1.3 / 9.8);                       % Experiments duration
 inputs.exps.n_obs{1}=1;                       % Number of observables
-inputs.exps.obs_names{1}=char('Y'); % Names of the observable
-inputs.exps.obs{1}=char('Y=x1');
-inputs.exps.t_con{1}=[0 5];                 % Input swithching times including:
-inputs.exps.n_s{1}=50;
+inputs.exps.obs_names{1}=char('Y1', 'Y2'); % Names of the observable
+inputs.exps.obs{1}=char('Y1=x2', 'Y2=x1');
+inputs.exps.t_con{1}=[0 2.0 * 3.14159265 * sqrt(1.3 / 9.8)];                 % Input swithching times including:
+inputs.exps.n_s{1}=20;
 inputs.exps.data_type='real';
-inputs.exps.exp_data{1}=[ 1.0
-0.9347004839815006
-0.8734370360176208
-0.8143346316470316
-0.7556774113342264
-0.6957586392702363
-0.6326920688469742
-0.5642544040070117
-0.4878097834390997
-0.39981783663941944
-0.29566680712598137
-0.1693528801321386
-0.01303853127332005
--0.18250153495546084
--0.4268597226140922
--0.7234527632926807
--1.0602927803013233
--1.4019854874805533
--1.700666684179913
--1.9245447982432382
--2.0716028661983974
--2.166840808939588
--2.231643000262245
--2.2799841389406557
--2.320811552193883
--2.3575047396475557
--2.3925100770746317
--2.4258790955413474
--2.4593497682737318
--2.491449731593281
--2.5238470970160867
--2.555815775576268
--2.5862994927517304
--2.6185068247553063
--2.6489487673251686
--2.6784212728524386
--2.7108562794521878
--2.738899350988676
--2.7693365580748965
--2.8005380383472023
--2.825879263710476
--2.8599427903551993
--2.88492714886106
--2.916265913279319
--2.9441919264887457
--2.97188507713319
--3.0017944253376596
--3.0281950036978156
--3.0579007463380976
--3.083802610662054];
-inputs.PEsol.id_global_theta=char('a', 'b', 'g');
-inputs.PEsol.global_theta_max=1.*ones(1,3);
-inputs.PEsol.global_theta_min=0.0001.*ones(1,3);
+inputs.exps.exp_data{1}=[1.0 1.0
+1.0367869631032143 -0.2131370089757947
+0.9612219713463254 -1.4031773158605787
+0.7814936640945697 -2.441161588047151
+0.5170783922159042 -3.2146081236261184
+0.19662965324200823 -3.6397019892197804
+-0.14512695968147638 -3.670377668485929
+-0.4711568146481816 -3.3033109755914225
+-0.7461295179881701 -2.578279282359504
+-0.9402475106698658 -1.5738510227428189
+-1.0324750961248383 -0.3988715840136487
+-1.0128179844141494 0.8193317799828911
+-0.8834063286038646 1.9487478323598202
+-0.658263889624748 2.866986819178007
+-0.36178834419170564 3.4745432982439945
+-0.02610741794112031 3.70557909785514
+0.31240265214351715 3.5350579042280135
+0.6170590474382538 2.9814583346094343
+0.854847520288421 2.1047714923332395
+0.9999999999859759 0.9999999999744436
+];
+inputs.PEsol.id_global_theta='all';
+inputs.PEsol.global_theta_max=10.*ones(1,2);
+inputs.PEsol.global_theta_min=0.0001.*ones(1,2);
+inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
+inputs.PEsol.global_theta_y0_max=1.5.*ones(1,2);                % Maximum allowed values for the initial conditions
+inputs.PEsol.global_theta_y0_min=0.*ones(1,2);
 
 %=============================================================
 

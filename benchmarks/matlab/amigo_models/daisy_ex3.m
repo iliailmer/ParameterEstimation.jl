@@ -44,8 +44,8 @@ inputs.exps.exp_y0{1}=[.9, 2.0, 2.0, 1];        % Initial conditions
 inputs.exps.t_f{1}=10;                       % Experiments duration
 inputs.exps.n_obs{1}=2;                       % Number of observables
 inputs.exps.obs_names{1}=char('y1','y2'); % Names of the observables
-inputs.exps.obs{1}=char('y1=x1+x3','y2=x2');
-inputs.exps.t_con{1}=[0 10];                 % Input swithching times including:
+inputs.exps.obs{1}=char('y1=x2','y2=x1+x3');
+inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
 inputs.exps.n_s{1}=10;
 inputs.exps.data_type='real';
 inputs.exps.exp_data{1}=[2.0 2.0
@@ -60,10 +60,10 @@ inputs.exps.exp_data{1}=[2.0 2.0
 3.2967281771635824 7.344757752723998
 ];
 inputs.PEsol.id_global_theta='all';
-inputs.PEsol.global_theta_max=1.*ones(1,5);
+inputs.PEsol.global_theta_max=2.*ones(1,5);
 inputs.PEsol.global_theta_min=-1.*ones(1,5);
 inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
-inputs.PEsol.global_theta_y0_max=1.*ones(1,4);                % Maximum allowed values for the initial conditions
+inputs.PEsol.global_theta_y0_max=2.*ones(1,4);                % Maximum allowed values for the initial conditions
 inputs.PEsol.global_theta_y0_min=-1.*ones(1,4);
 
 %=============================================================

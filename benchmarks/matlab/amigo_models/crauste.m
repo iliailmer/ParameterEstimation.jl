@@ -64,7 +64,7 @@ inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
 inputs.exps.t_f{1}=5;                       % Experiments duration
 inputs.exps.n_obs{1}=4;                       % Number of observables
 % Names of the observables
-% inputs.exps.obs_names{1}=char('Y1', 'Y2', 'Y3', 'Y4');
+inputs.exps.obs_names{1}=char('Y1', 'Y2', 'Y3', 'Y4');
 inputs.exps.obs{1}=char('Y1=n', 'Y2=e', 'Y3=s+m', 'Y4=p');
 inputs.exps.t_con{1}=[0 5];                 % Input swithching times including:
 inputs.exps.n_s{1}=10;
@@ -85,7 +85,7 @@ inputs.exps.exp_data{1}=[
 
 inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
 inputs.PEsol.global_theta_y0_max=1.1 * ones(1,5);                % Maximum allowed values for the initial conditions
-inputs.PEsol.global_theta_y0_min=0.9 * ones(1,5);
+inputs.PEsol.global_theta_y0_min=-1.1 * ones(1,5);
 
 inputs.PEsol.id_global_theta='all';
 %char('muN', 'muEE', 'muLE', 'muLL', 'muM', 'muP', 'muPE', 'muPL', 'deltaNE', 'deltaEL', 'deltaLM', 'rhoE', 'rhoP');

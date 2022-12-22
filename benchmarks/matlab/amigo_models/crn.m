@@ -44,7 +44,7 @@ inputs.exps.exp_y0{1}=[1.0, 1.0, 1.0, 1.0, 1.0, 1.0];        % Initial condition
 inputs.exps.t_f{1}=30;                       % Experiments duration
 inputs.exps.n_obs{1}=2;                       % Number of observables
 inputs.exps.obs_names{1}=char('y1','y2'); % Names of the observables
-inputs.exps.obs{1}=char('y1=x3','y2=x2');
+inputs.exps.obs{1}=char('y1=x2','y2=x3');
 inputs.exps.t_con{1}=[0 30];                 % Input swithching times including:
 inputs.exps.n_s{1}=10;
 inputs.exps.data_type='real';
