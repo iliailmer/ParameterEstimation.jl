@@ -1,7 +1,6 @@
 import ParameterEstimation
 
 using ModelingToolkit, DifferentialEquations, Plots
-using Nemo, HomotopyContinuation
 
 @parameters k1 k2 k3
 @variables t r(t) w(t) y1(t)

@@ -1,5 +1,4 @@
 using ModelingToolkit, DifferentialEquations, Plots
-using Nemo, HomotopyContinuation
 
 import ParameterEstimation
 

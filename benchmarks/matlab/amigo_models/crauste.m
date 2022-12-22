@@ -51,7 +51,6 @@ inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| '
 inputs.PEsol.global_theta_y0_max=1.1 * ones(1,5);                % Maximum allowed values for the initial conditions
 inputs.PEsol.global_theta_y0_min=-1.1 * ones(1,5);
 inputs.PEsol.id_global_theta='all';
-%char('muN', 'muEE', 'muLE', 'muLL', 'muM', 'muP', 'muPE', 'muPL', 'deltaNE', 'deltaEL', 'deltaLM', 'rhoE', 'rhoP');
 inputs.PEsol.global_theta_max=2.*ones(1,13);
 inputs.PEsol.global_theta_min=0.0001.*ones(1,13);
 %=============================================================

@@ -1,7 +1,5 @@
 import ParameterEstimation
-
 using ModelingToolkit, DifferentialEquations#, Plots
-using Nemo, HomotopyContinuation
 solver = Tsit5()
 
 @parameters p1 p3 p4 p6 p7
