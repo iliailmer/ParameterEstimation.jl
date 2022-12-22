@@ -4,6 +4,15 @@
 A container for the results of an estimation.
 Contains the estimated parameters and initial conditions (state values at a given time), the degree of the rational interpolation used,
 the error between the estimated ODE solution and the sample data, and the return code.
+
+# Fields
+- `parameters::OrderedDict`: The estimated parameters.
+- `states::OrderedDict`: The estimated initial conditions.
+- `degree::Int64`: The degree of the rational interpolation used.
+- `at_time::Float64`: The time at which the initial conditions are estimated.
+- `err::Union{Nothing, Float64}`: The error between the estimated ODE solution and the sample data.
+- `interpolants::Union{Nothing, Dict{Any, Interpolant}}`: The rational interpolants used to estimate the parameters and initial conditions.
+- `return_code::Any`: The return code of the estimation.
 """
 struct EstimationResult
     parameters::OrderedDict

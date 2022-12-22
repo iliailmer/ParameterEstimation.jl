@@ -25,6 +25,6 @@ include("filtering.jl")
 include("utils.jl")
 include("metrics.jl")
 
-export check_identifiability, estimate
+export check_identifiability, estimate, estimate_over_degrees, filter_solutions
 
 end

@@ -3,6 +3,17 @@
 
 A struct that contains the data from identifiability analysis.
 This is used for parameter estimation.
+
+# Fields
+- `polynomial_system::Vector{Nemo.fmpq_mpoly}`: The polynomial system.
+- `denominator::Nemo.fmpq_mpoly`: The denominator of the polynomial system.
+- `variables::Vector{Nemo.fmpq_mpoly}`: The variables of the polynomial system.
+- `substitutions::Vector{Vector}`: The substitutions used to assess identifiability.
+- `identifiability_nemo::Any`: The identifiability data from SIAN in Nemo data type.
+- `identifiability::Dict{Any, Any}`: The identifiability data from SIAN in HomotopyContinuation compatible data type.
+- `basis::Vector{Nemo.fmpq_mpoly}`: The transcendence basis of the polynomial system.
+- `transcendence_basis_subs::Vector{Nemo.RingElem}`: The transcendence basis substitutions of the polynomial system.
+- `weights::Dict{fmpq_mpoly, Int64}`: The weights of the variables used by SIAN to assess GroebnerBasis.
 """
 struct IdentifiabilityData
     polynomial_system::Vector{Nemo.fmpq_mpoly}
