@@ -19,11 +19,12 @@ Compute the error between the solution and the data sample. The error is recorde
 - ode_solution: the solution of the ODE system (if `return_ode` is set to `true`).
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
-function solve_ode(model, estimate::EstimationResult, tsteps, data_sample; solver = Tsit5(),
+function solve_ode(model, estimate::EstimationResult, tsteps, data_sample;
+                   solver = Tsit5(),
                    return_ode = false)
     initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
     parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
-    tspan = (estimate.at_time, tsteps[end])
+    tspan = (estimate.at_time, tsteps[end] + estimate.at_time)
     prob = ModelingToolkit.ODEProblem(model, initial_conditions,
                                       tspan, parameter_values)
     ode_solution = ModelingToolkit.solve(prob, solver,
@@ -57,7 +58,8 @@ Run solve_ode for multiple estimates and store the results (error between soluti
 This is done in-place.
 """
 function solve_ode!(model, estimates::Vector{EstimationResult},
-                    tsteps, data_sample; solver = Tsit5())
+                    tsteps, data_sample;
+                    solver = Tsit5())
     estimates[:] = map(each -> solve_ode(model, each, tsteps, data_sample, solver = solver),
                        estimates)
 end
@@ -90,6 +92,7 @@ function filter_solutions(results::Vector{EstimationResult},
                           model::ModelingToolkit.ODESystem,
                           data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
                           time_interval = Vector{T}(), id_combs = [];
+                          solver = Tsit5(),
                           topk = 1) where {T <: Float}
     @info "Filtering"
     if length(results) == 0
@@ -107,7 +110,7 @@ function filter_solutions(results::Vector{EstimationResult},
         return results
     end
     filtered_results = []
-    solve_ode!(model, results, tsteps, data_sample)
+    solve_ode!(model, results, tsteps, data_sample; solver = solver)
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
         if length(id_combs) == 0
             clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,

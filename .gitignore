@@ -30,3 +30,12 @@ Manifest.toml
 # End of https://www.toptal.com/developers/gitignore/api/julia
 *.code-workspace
 .vscode
+benchmarks/matlab/AMICI
+benchmarks/matlab/AMIGO2_*
+benchmarks/matlab/*results
+benchmarks/matlab/Help
+benchmarks/matlab/GEARS*
+benchmarks/matlab/MEIGO*
+benchmarks/matlab/*txt
+*.txt
+timecommand

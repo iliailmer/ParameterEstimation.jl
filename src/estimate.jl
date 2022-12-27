@@ -82,6 +82,7 @@ end
                           measured_quantities::Vector{ModelingToolkit.Equation},
                           data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
                           time_interval = Vector{T}(), at_time::T = 0.0;
+                          solver = Tsit5(),
                           degree_range = nothing, real_tol = 1e-10) where {T <: Float}
 
 Run estimation over a range of interpolation degrees. Return the best estimate according to a heuristic:
@@ -91,9 +92,11 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
                                data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
                                time_interval = Vector{T}(), at_time::T = 0.0;
-                               degree_range = nothing, real_tol = 1e-10) where {T <: Float}
+                               solver = Tsit5(),
+                               degree_range = nothing,
+                               real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
-    if degree_range == nothing
+    if degree_range === nothing
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
     end
     logger = ConsoleLogger(stdout, Logging.Warn)
@@ -111,7 +114,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                   deg, at_time)
             if length(unfiltered) > 0
                 filtered = filter_solutions(unfiltered, identifiability_result, model,
-                                            data_sample, time_interval)
+                                            data_sample, time_interval; solver = solver)
                 push!(estimates, filtered)
             else
                 push!(estimates,
@@ -131,7 +134,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
 
     best_solution = nothing
     for each in estimates
-        if best_solution == nothing
+        if best_solution === nothing
             best_solution = each
         else
             if sum(x.err for x in each) < sum(x.err for x in best_solution)
@@ -139,7 +142,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
             end
         end
     end
-    if best_solution != nothing
+    if best_solution !== nothing
         @info "Best estimate found at degree(s) $([x.degree for x in best_solution]) with error(s) $([x.err for x in best_solution])"
         return best_solution
     else
