@@ -1,4 +1,4 @@
-addpath(genpath('~/parameter-estimation/matlab'))
+addpath(genpath('~/parameter-estimation/matlab/src'))
 addpath(genpath("./"))
 %======================
 % PATHS RELATED DATA
