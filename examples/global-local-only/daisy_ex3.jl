@@ -1,7 +1,6 @@
 
 using ModelingToolkit, DifferentialEquations, Plots
-
-import ParameterEstimation
+using ParameterEstimation
 
 @parameters p1 p2 p3 p4 p6 p7
 @variables t x1(t) x2(t) x3(t) u0(t) y1(t) y2(t)
@@ -26,13 +25,9 @@ states = [x1, x2, x3, u0]
 parameters = [p1, p3, p4, p6, p7]
 
 prob_true = ODEProblem(model, ic, time_interval, p_true)
-solution_true = ModelingToolkit.solve(prob_true,
-                                      ARKODE(Sundials.Explicit(),
-                                             etable = Sundials.FEHLBERG_6_4_5), p = p_true,
-                                      saveat = tsteps)
+data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
+                                              p_true, ic, datasize; solver = solver)
 
-data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_quantities)
-# plot(solution_true)
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
 interpolation_degree = 37

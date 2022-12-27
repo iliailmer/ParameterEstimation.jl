@@ -22,21 +22,7 @@ p_true = [9.8, 1.3]
 time_interval = [0.0, 2.0 * pi * sqrt(1.3 / 9.8)]
 datasize = 20
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
-                                              p_true, ic,
-                                              datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "benchmarks/matlab/amigo_models/simple-$datasize.txt")
-# plot(data_sample[x1], label = "data")
-# plot!(data_sample[x2], label = "data")
-
-# identifiability_result = ParameterEstimation.check_identifiability(model;
-#                                                                    measured_quantities = measured_quantities)
-# interpolation_degree = 7
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-#                                    time_interval, identifiability_result,
-#                                    interpolation_degree)
-# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-#                                                 data_sample, time_interval)
+                                              p_true, ic, datasize; solver = solver)
 
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval)

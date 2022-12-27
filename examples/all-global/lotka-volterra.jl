@@ -1,5 +1,4 @@
 import ParameterEstimation
-
 using ModelingToolkit, DifferentialEquations#, Plots
 solver = Tsit5()
 
@@ -21,21 +20,7 @@ parameters = [k1, k2, k3]
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#  filename = "benchmarks/matlab/amigo_models/lotka-volterra-16.txt")
-interpolation_degree = 9
 
-identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                   measured_quantities = measured_quantities)
-
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval, identifiability_result,
-                                   interpolation_degree)
-
-best_result = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-                                                   data_sample, time_interval;
-                                                   solver = solver)
-print(best_result)
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval; solver = solver)
 println(res)

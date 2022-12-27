@@ -17,19 +17,16 @@ parameters = [k1, k2, k3, k4, k5, k6]
                          ], t, states, parameters)
 measured_quantities = [y1 ~ x3, y2 ~ x2]
 
-u0 = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+ic = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 p_true = [0.03, 0.02, 0.05, 0.03, 0.02, 0.05] # True Parameters
 
 time_interval = [0.0, 30.0]
 datasize = 10
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
-                                              p_true, u0,
-                                              datasize; solver = solver)
+                                              p_true, ic, datasize; solver = solver)
 ParameterEstimation.write_sample(data_sample;
                                  filename = "benchmarks/matlab/amigo_models/crn-10.txt")
-# plot(data_sample[x2], label = "data")
-# plot!(data_sample[x3], label = "data")
 
 # interpolation_degree = 6
 # identifiability_result = ParameterEstimation.check_identifiability(model;

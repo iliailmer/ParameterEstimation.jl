@@ -22,8 +22,7 @@ time_interval = [0.0, 20.0]
 datasize = 10
 p_true = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
-                                              p_true, ic,
-                                              datasize; solver = solver)
+                                              p_true, ic, datasize; solver = solver)
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
@@ -35,6 +34,3 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
 filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
                                                 data_sample, time_interval; solver = solver)
 print(filtered)
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval; solver = solver)
-print(res)

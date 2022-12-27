@@ -1,5 +1,5 @@
-using ModelingToolkit, DifferentialEquations
 using ParameterEstimation
+using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters mu_N mu_EE mu_LE mu_LL mu_M mu_P mu_PE mu_PL delta_NE delta_EL delta_LM rho_E rho_P
@@ -39,8 +39,6 @@ datasize = 50
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#                                  filename = "benchmarks/matlab/amigo_models/crauste-10.txt")
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)

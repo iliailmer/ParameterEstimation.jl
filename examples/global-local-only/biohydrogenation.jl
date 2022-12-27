@@ -1,6 +1,7 @@
 using ModelingToolkit, DifferentialEquations, Plots
-
 import ParameterEstimation
+
+solver = Tsit5()
 
 @parameters k5 k6 k7 k8 k9 k10
 @variables t x4(t) x5(t) x6(t) x7(t) y1(t) y2(t)
@@ -16,7 +17,7 @@ measured_quantities = [
     y2 ~ x5,
 ]
 
-u0 = [1.0, -1.0, 1.0]
+ic = [1.0, -1.0, 1.0]
 time_interval = (0.0, 6.0)
 datasize = 20
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
@@ -25,14 +26,8 @@ states = [x4, x5, x6] #, x7]
 parameters = [k5, k6, k7, k8, k9, k10]
 
 prob_true = ODEProblem(model, u0, time_interval, p_true)
-solution_true = ModelingToolkit.solve(prob_true,
-                                      ARKODE(Sundials.Explicit(),
-                                             etable = Sundials.FEHLBERG_6_4_5), p = p_true,
-                                      saveat = tsteps)
-
-data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_quantities)
-# plot(solution_true)
-id_combs = [k5, k6, k7, k9^2, k10 / k9, (-k10 * k9 - 2 * k8 * k9) / k10]
+data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
+                                              p_true, ic, datasize; solver = solver)
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
