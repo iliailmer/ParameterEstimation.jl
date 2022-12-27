@@ -1,6 +1,6 @@
 import ParameterEstimation
 
-using ModelingToolkit, DifferentialEquations#, Plots
+using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters alpha

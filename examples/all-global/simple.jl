@@ -1,4 +1,4 @@
-using ModelingToolkit, DifferentialEquations#, Plots
+using ModelingToolkit, DifferentialEquations
 using ParameterEstimation
 solver = Tsit5()
 
