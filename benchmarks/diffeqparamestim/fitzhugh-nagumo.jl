@@ -1,4 +1,4 @@
-using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations
+using ModelingToolkit, Flux, DiffeqParamEstim, DifferentialEquations
 using Distributions, Random
 solver = Tsit5()
 
@@ -23,26 +23,41 @@ measured_quantities = [y1 ~ V]
 prob_true = ODEProblem(model, ic, time_interval, p_true)
 solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps)
 
-# Initial Parameter Vector
-p = randn!(MersenneTwister(123), zeros(length(p_true) + length(ic)))
-_params = Flux.params(p)
-prob = ODEProblem(model, [p[1], p[2]], time_interval, p[3:end])
+data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 
-function predict_rd() # Our 1-layer "neural network"
-    solve(remake(prob, u0 = [p[1], p[2]]), solver, p = p[3:end], saveat = tsteps)[1, :] # override with new parameters
+p_rand = rand(Uniform(0.5, 1.5), length(ic) + length(p_true)) # Random Parameters
+prob = ODEProblem(model, ic, time_interval,
+                  p_rand)
+sol = solve(remake(prob, u0 = p_rand[1:length(ic)]), solver,
+            p = p_rand[(length(ic) + 1):end],
+            saveat = tsteps)
+
+function loss(p)
+    sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
+                saveat = tsteps)
+    data_true = [data_sample[v.rhs] for v in measured_quantities]
+    data = [vcat(sol[1, :]) + vcat(sol[3, :]), vcat(sol[2, :])]
+    loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
+    return loss, sol
 end
 
-loss_rd() = sum(abs, x - x_true for (x, x_true) in zip(predict_rd(), solution_true[1, :])) # loss function
-data = Iterators.repeated((), 3000)
-opt = ADAM(0.1)
-cb = function () #callback function to observe training
-    display(loss_rd())
-    # using `remake` to re-create our `prob` with current parameters `p`
-    # display(plot(solve(remake(prob, p=p), AutoTsit5(Rosenbrock23()), saveat=tsteps), ylim=(0, 6)))
+callback = function (p, l, pred)
+    display(l)
+    #     plt = plot(pred, ylim = (0, 6))
+    #     display(plt)
+    # Tell Optimization.solve to not halt the optimization. If return true, then
+    # optimization stops.
+    return false
 end
 
-# Display the ODE with the initial parameter values.
-cb()
+adtype = Optimization.AutoZygote()
+optf = Optimization.OptimizationFunction((x, p) -> loss(x), adtype)
+optprob = Optimization.OptimizationProblem(optf, p_rand)
 
-Flux.train!(loss_rd, _params, data, opt, cb = cb)
-println("Predicted parameters: ", p)
+result_ode = Optimization.solve(optprob, PolyOpt(), callback = callback, maxiters = 1000)
+
+println(result_ode.u)
+
+all_params = vcat(ic, p_true)
+println("Max. relative abs. error between true and estimated parameters:",
+        maximum(abs.((result_ode.u .- all_params) ./ (all_params))))

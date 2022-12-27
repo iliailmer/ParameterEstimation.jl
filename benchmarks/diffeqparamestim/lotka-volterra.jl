@@ -1,4 +1,5 @@
-using ModelingToolkit, Flux, DiffEqFlux, DifferentialEquations
+using ModelingToolkit, DifferentialEquations, Optimization, OptimizationPolyalgorithms,
+      OptimizationOptimJL, SciMLSensitivity, Zygote, Plots
 using Distributions, Random
 solver = Tsit5()
 
@@ -11,11 +12,9 @@ time_interval = (0.0, 1.0)
 datasize = 100
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.02, 0.03, 0.05] # True Parameters
-measured_quantities = [y1 ~ r]
+measured_quantities = [r]
 states = [r, w]
 parameters = [k1, k2, k3]
-
-# try HomotopyContinuation for linear algebra
 
 @named model = ODESystem([D(r) ~ k1 * r - k2 * r * w, D(w) ~ k2 * r * w - k3 * w], t,
                          states, parameters)
@@ -23,36 +22,33 @@ parameters = [k1, k2, k3]
 prob_true = ODEProblem(model, ic, time_interval, p_true)
 solution_true = ModelingToolkit.solve(prob_true, solver, p = p_true, saveat = tsteps;
                                       abstol = 1e-12, reltol = 1e-12)
+data_sample = [solution_true[v] for v in measured_quantities]
 
-# Initial Parameter Vector
-p = abs.(randn!(MersenneTwister(123), zeros(length(p_true) + length(ic))))
-_params = Flux.params(p)
-prob = ODEProblem(model, [p[1], p[2]], time_interval, p[3:end])
+p_rand = rand(Uniform(0.02, 1.5), length(p_true)) # Random Parameters
+prob = ODEProblem(model, ic, time_interval,
+                  p_rand)
+sol = solve(prob, solver, p = p_rand, saveat = tsteps)
 
-function predict_rd() # Our 1-layer "neural network"
-    solve(remake(prob, u0 = [p[1], p[2]]), p = p[3:end], saveat = tsteps)[1, :] # override with new parameters
+function loss(p)
+    sol = solve(prob, Tsit5(), p = p, saveat = tsteps)
+    data = [sol[v] for v in measured_quantities]
+    loss = sum(sum((data[i] .- data_sample[i]) .^ 2 for i in eachindex(data)))
+    return loss, sol
 end
 
-loss_rd() = sum(abs, x - x_true for (x, x_true) in zip(predict_rd(), solution_true[1, :])) # loss function
-data = Iterators.repeated((), 3000)
-opt = ADAM(0.1)
-cb = function () #callback function to observe training
-    display(loss_rd())
-    # using `remake` to re-create our `prob` with current parameters `p`
-    # display(plot(solve(remake(prob, p=p), AutoTsit5(Rosenbrock23()), saveat=tsteps), ylim=(0, 6)))
+callback = function (p, l, pred)
+    display(l)
+    #     plt = plot(pred, ylim = (0, 6))
+    #     display(plt)
+    # Tell Optimization.solve to not halt the optimization. If return true, then
+    # optimization stops.
+    return false
 end
 
-# Display the ODE with the initial parameter values.
-cb()
+adtype = Optimization.AutoZygote()
+optf = Optimization.OptimizationFunction((x, p) -> loss(x), adtype)
+optprob = Optimization.OptimizationProblem(optf, p_rand)
 
-Flux.train!(loss_rd, _params, data, opt, cb = cb)
-
-# plot(solution_true[1, :], label = "True Solution, r(t)")
-# plot!(solution_true[2, :], label = "True Solution, w(t)")
-
-# plot!(predict_rd(), label = "Predicted Solution, r(t)")
-# plot!(solve(remake(prob, u0 = [p[1], p[2]]), p = p[3:end], saveat = tsteps)[2, :],
-#       label = "Predicted Solution, w(t)")
-
-print("Final Parameter Values: ", p)
-print("Mean Abs Error: ", loss_rd())
+result_ode = Optimization.solve(optprob, PolyOpt(),
+                                callback = callback,
+                                maxiters = 100)
