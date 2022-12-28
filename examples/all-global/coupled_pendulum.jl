@@ -1,5 +1,4 @@
-import ParameterEstimation
-
+using ParameterEstimation
 using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
