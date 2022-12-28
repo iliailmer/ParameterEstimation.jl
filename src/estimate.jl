@@ -33,7 +33,7 @@ function estimate(model::ModelingToolkit.ODESystem,
                   interpolation_degree::Int = 1, at_time::T = 0.0;
                   real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval, interpolation_degree)
-
+    datasize = length(first(values(data_sample)))
     parameters = ModelingToolkit.parameters(model)
     states = ModelingToolkit.states(model)
     num_parameters = length(parameters) + length(states)
@@ -70,7 +70,7 @@ function estimate(model::ModelingToolkit.ODESystem,
             end
         end
         param_est = EstimationResult(model, tmp, interpolation_degree, at_time,
-                                     interpolants, ReturnCode.Success)
+                                     interpolants, ReturnCode.Success, datasize)
         push!(all_solutions_, param_est)
     end
     return all_solutions_
@@ -96,6 +96,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                degree_range = nothing,
                                real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
+    datasize = length(first(values(data_sample)))
     if degree_range === nothing
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
     end
@@ -121,7 +122,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                       [
                           EstimationResult(model, Dict(), deg, at_time,
                                            Dict{Any, Interpolant}(),
-                                           ReturnCode.Failure),
+                                           ReturnCode.Failure, datasize),
                       ])
             end
         end

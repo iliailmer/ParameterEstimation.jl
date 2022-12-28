@@ -43,11 +43,13 @@ function solve_ode(model, estimate::EstimationResult, tsteps, data_sample;
         return ode_solution,
                EstimationResult(estimate.parameters, estimate.states,
                                 estimate.degree, estimate.at_time, err,
-                                estimate.interpolants, estimate.return_code)
+                                estimate.interpolants, estimate.return_code,
+                                estimate.datasize)
     else
         return EstimationResult(estimate.parameters, estimate.states,
                                 estimate.degree, estimate.at_time, err,
-                                estimate.interpolants, estimate.return_code)
+                                estimate.interpolants, estimate.return_code,
+                                estimate.datasize)
     end
 end
 
