@@ -24,9 +24,9 @@ function rational_interpolation_coefficients(x, y, n)
         b = y .* (x .^ m)
         @info det(A), cond(A)
         e = det(A)
-        if abs(e) < 1e-20
-            @warn "Determinant of A is small: $e"
-        end
+        # if abs(e) < 1e-20
+        #     @warn "Determinant of A is small: $e"
+        # end
         try
             prob = LinearSolve.LinearProblem(A, b)
             c = LinearSolve.solve(prob)
