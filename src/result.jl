@@ -80,7 +80,7 @@ function Base.show(io::IO, e::EstimationResult)
     end
     println(io, "Interpolation Degree (numerator): ", e.degree)
     println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)
-    println(io, "At Time: ", e.at_time)
+    println(io, "At t=", e.at_time)
     if isnothing(e.err)
         println(io, "Error: Not yet calculated")
     else
