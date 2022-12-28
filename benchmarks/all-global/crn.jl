@@ -26,8 +26,8 @@ datasize = 10
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, u0,
                                               datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "benchmarks/matlab/amigo_models/crn-10.txt")
+# ParameterEstimation.write_sample(data_sample;
+#                                  filename = "benchmarks/matlab/amigo_models/crn-$datasize.txt")
 # plot(data_sample[x2], label = "data")
 # plot!(data_sample[x3], label = "data")
 

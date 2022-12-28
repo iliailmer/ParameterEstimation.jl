@@ -109,6 +109,11 @@ end
 function write_sample(data_sample; filename = "sample_data.txt")
     open(filename, "w") do io
         idx_iter = eachindex(first(values(data_sample)))
+        # print keys
+        for (key, sample) in data_sample
+            print(io, key, " ")
+        end
+        println(io)
         for i in idx_iter
             for (key, sample) in data_sample
                 print(io, sample[i], " ")

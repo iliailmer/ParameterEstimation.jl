@@ -24,21 +24,8 @@ datasize = 20
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,
                                               datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "benchmarks/matlab/amigo_models/simple-$datasize.txt")
-# plot(data_sample[x1], label = "data")
-# plot!(data_sample[x2], label = "data")
-
-# identifiability_result = ParameterEstimation.check_identifiability(model;
-#                                                                    measured_quantities = measured_quantities)
-# interpolation_degree = 7
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-#                                    time_interval, identifiability_result,
-#                                    interpolation_degree)
-# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-#                                                 data_sample, time_interval)
-
+# ParameterEstimation.write_sample(data_sample;
+#                                  filename = "benchmarks/matlab/amigo_models/simple-$datasize.txt")
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval)
-
 print(res)

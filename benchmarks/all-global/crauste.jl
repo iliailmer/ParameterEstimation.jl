@@ -34,24 +34,24 @@ parameters = [
 measured_quantities = [y1 ~ N, y2 ~ E, y3 ~ S + M, y4 ~ P]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
-time_interval = [0.0, 10.0]
-datasize = 50
+time_interval = [0.0, 1.0]
+datasize = 10
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#                                  filename = "benchmarks/matlab/amigo_models/crauste-10.txt")
+ParameterEstimation.write_sample(data_sample;
+                                 filename = "../matlab/amigo_models/crauste-$datasize.txt")
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
-interpolation_degree = 8
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval, identifiability_result,
-                                   interpolation_degree)
+# interpolation_degree = 8
+# res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+#                                    time_interval, identifiability_result,
+#                                    interpolation_degree)
 
-filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-                                                data_sample, time_interval; solver = solver)
-print(filtered)
+# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
+#                                                 data_sample, time_interval; solver = solver)
+# print(filtered)
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval; solver = solver)
 print(res)

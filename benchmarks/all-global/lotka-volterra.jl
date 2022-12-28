@@ -22,7 +22,7 @@ parameters = [k1, k2, k3]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
 # ParameterEstimation.write_sample(data_sample;
-#  filename = "benchmarks/matlab/amigo_models/lotka-volterra-16.txt")
+#                                  filename = "benchmarks/matlab/amigo_models/lotka-volterra-$datasize.txt")
 interpolation_degree = 9
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
@@ -35,7 +35,7 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
 best_result = ParameterEstimation.filter_solutions(res, identifiability_result, model,
                                                    data_sample, time_interval;
                                                    solver = solver)
-print(best_result)
+# print(best_result)
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
                                                 time_interval; solver = solver)
 println(res)
