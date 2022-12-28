@@ -1,6 +1,5 @@
 using ParameterEstimation
 using ModelingToolkit, DifferentialEquations
-
 solver = Tsit5()
 
 @parameters p1 p2 p3 p4 p6 p7

@@ -33,11 +33,11 @@ function estimate(model::ModelingToolkit.ODESystem,
                   interpolation_degree::Int = 1, at_time::T = 0.0;
                   real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval, interpolation_degree)
-
+    datasize = length(first(values(data_sample)))
     parameters = ModelingToolkit.parameters(model)
     states = ModelingToolkit.states(model)
     num_parameters = length(parameters) + length(states)
-    @info "Interpolating sample data"
+    @info "Interpolating sample data via rational interpolation"
     polynomial_system, interpolants = ParameterEstimation.interpolate(identifiability_result,
                                                                       data_sample,
                                                                       time_interval,
@@ -52,7 +52,7 @@ function estimate(model::ModelingToolkit.ODESystem,
     if length(all_solutions) == 0
         all_solutions = HomotopyContinuation.solutions(results)
         if length(all_solutions) == 0
-            @warn "Interpolation degree $(interpolation_degree): No solutions found"
+            @warn "Interpolation numerator degree $(interpolation_degree): No solutions found"
             return []
         end
     end
@@ -70,7 +70,7 @@ function estimate(model::ModelingToolkit.ODESystem,
             end
         end
         param_est = EstimationResult(model, tmp, interpolation_degree, at_time,
-                                     interpolants, ReturnCode.Success)
+                                     interpolants, ReturnCode.Success, datasize)
         push!(all_solutions_, param_est)
     end
     return all_solutions_
@@ -96,6 +96,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                degree_range = nothing,
                                real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
+    datasize = length(first(values(data_sample)))
     if degree_range === nothing
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
     end
@@ -103,7 +104,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
     identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                        measured_quantities = measured_quantities)
     estimates = []
-    @info "Estimating over degrees between 1 and $(length(degree_range))"
+    @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end])"
     with_logger(logger) do
         @showprogress for deg in degree_range
             unfiltered = estimate(model,
@@ -121,7 +122,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                       [
                           EstimationResult(model, Dict(), deg, at_time,
                                            Dict{Any, Interpolant}(),
-                                           ReturnCode.Failure),
+                                           ReturnCode.Failure, datasize),
                       ])
             end
         end
@@ -143,7 +144,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
         end
     end
     if best_solution !== nothing
-        @info "Best estimate found at degree(s) $([x.degree for x in best_solution]) with error(s) $([x.err for x in best_solution])"
+        @info "Best estimate found" # error(s) $([x.err for x in best_solution])"
         return best_solution
     else
         @warn "No solution found"

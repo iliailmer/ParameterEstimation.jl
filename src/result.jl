@@ -22,10 +22,11 @@ struct EstimationResult
     err::Union{Nothing, Float64}
     interpolants::Union{Nothing, Dict{Any, Interpolant}}
     return_code::Any
+    datasize::Int64
     function EstimationResult(model::ModelingToolkit.ODESystem,
                               poly_sol::Union{Dict, OrderedDict}, degree::Int64,
                               at_time::Float64, interpolants::Dict{Any, Interpolant},
-                              return_code)
+                              return_code, datasize)
         parameters = OrderedDict{Any, Any}()
         states = OrderedDict{Any, Any}()
         for p in ModelingToolkit.parameters(model)
@@ -34,11 +35,12 @@ struct EstimationResult
         for s in ModelingToolkit.states(model)
             states[ModelingToolkit.Num(s)] = get(poly_sol, s, nothing)
         end
-        new(parameters, states, degree, at_time, nothing, interpolants, return_code)
+        new(parameters, states, degree, at_time, nothing, interpolants, return_code,
+            datasize)
     end
     function EstimationResult(parameters::OrderedDict, states::OrderedDict, degree::Int64,
-                              at_time::Float64, err, interpolants, return_code)
-        new(parameters, states, degree, at_time, err, interpolants, return_code)
+                              at_time::Float64, err, interpolants, return_code, datasize)
+        new(parameters, states, degree, at_time, err, interpolants, return_code, datasize)
     end
 end
 
@@ -76,8 +78,9 @@ function Base.show(io::IO, e::EstimationResult)
         println(io, "Initial Condition Estimates:\n\t",
                 join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.states)], ", "))
     end
-    println(io, "Degree: ", e.degree)
-    println(io, "At Time: ", e.at_time)
+    println(io, "Interpolation Degree (numerator): ", e.degree)
+    println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)
+    println(io, "At t=", e.at_time)
     if isnothing(e.err)
         println(io, "Error: Not yet calculated")
     else
