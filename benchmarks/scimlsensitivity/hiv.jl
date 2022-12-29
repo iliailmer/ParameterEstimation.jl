@@ -1,4 +1,5 @@
-using ModelingToolkit, Flux, DiffeqParamEstim, DifferentialEquations
+using ModelingToolkit, DifferentialEquations, Optimization, OptimizationPolyalgorithms,
+      OptimizationOptimJL, SciMLSensitivity, Zygote, Plots
 using Distributions, Random
 solver = Tsit5()
 
@@ -19,13 +20,13 @@ measured_quantities = [y1 ~ w, y2 ~ z, y3 ~ x, y4 ~ y + v]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 10.0]
-datasize = 100
+datasize = 20
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 
 prob_true = ODEProblem(model, ic, time_interval, p_true)
-solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps; abstol = 1e-12,
-                      reltol = 1e-12)
+solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps; abstol = 1e-6,
+                      reltol = 1e-6)
 
 data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 
@@ -40,7 +41,7 @@ function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = tsteps)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
-    data = [vcat(sol[1, :]) + vcat(sol[3, :]), vcat(sol[2, :])]
+    data = [(sol[4, :]), (sol[5, :]), (sol[1, :]), (sol[2, :] .+ sol[3, :])]
     loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
     return loss, sol
 end

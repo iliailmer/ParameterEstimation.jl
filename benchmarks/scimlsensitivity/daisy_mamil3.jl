@@ -36,7 +36,7 @@ function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = tsteps)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
-    data = [vcat(sol[1, :]) + vcat(sol[3, :]), vcat(sol[2, :])]
+    data = [vcat(sol[1, :]), vcat(sol[2, :])]
     loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
     return loss, sol
 end

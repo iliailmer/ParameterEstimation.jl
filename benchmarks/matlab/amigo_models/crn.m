@@ -25,7 +25,7 @@ inputs.model.par = [0.03, 0.02, 0.05, 0.03, 0.02, 0.05];         % Nominal value
 % EXPERIMENT DESIGN
 inputs.exps.n_exp=1;                          % Number of experiments
 % EXPERIMENT 1
-inputs.exps.exp_y0{1}=[1.0, 1.0, 1.0, 1.0, 1.0, 1.0];        % Initial conditions
+inputs.exps.exp_y0{1}=[1.1, 1.0, 1.0, 1.1, 1.0, 1.0];        % Initial conditions
 inputs.exps.t_f{1}=30;                       % Experiments duration
 inputs.exps.n_obs{1}=2;                       % Number of observables
 inputs.exps.obs_names{1}=char('y1','y2'); % Names of the observables
@@ -46,10 +46,10 @@ inputs.exps.exp_data{1}=[1.0 1.0
 ];
 inputs.PEsol.id_global_theta='all';
 inputs.PEsol.global_theta_max=1.*ones(1,6);
-inputs.PEsol.global_theta_min=0.0001.*ones(1,6);
+inputs.PEsol.global_theta_min=-1.*ones(1,6);
 inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
 inputs.PEsol.global_theta_y0_max=1.*ones(1,6);                % Maximum allowed values for the initial conditions
-inputs.PEsol.global_theta_y0_min=0.00001*ones(1,6);
+inputs.PEsol.global_theta_y0_min=-1.*ones(1,6);
 %=============================================================
 % COST FUNCTION RELATED DATA
 % SOLVING THE PROBLEM WITH WEIGHTED LEAST SQUARES FUNCTION

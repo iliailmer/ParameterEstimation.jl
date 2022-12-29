@@ -36,24 +36,29 @@ inputs.exps.n_obs{1}=1;                       % Number of observables
 inputs.exps.obs_names{1}=char('Y'); % Names of the observables
 inputs.exps.obs{1}=char('Y=r');
 inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
-inputs.exps.n_s{1}=16; % 8 or 16
+inputs.exps.n_s{1}=20;
 inputs.exps.data_type='real';
-inputs.exps.exp_data{1}=[  100.0
-80.39902767817165
-62.2690571399069
-46.6561358533665
-34.013260966178855
-24.27292673393346
-17.050518686913666
-11.843883191532147
-8.164810029856213
-5.600773144479524
-3.8302834137534165
-2.6150536131895934
-1.7840373850972975
-1.2169728866377594
-0.8304294265528263
-0.5670214463059633];
+inputs.exps.exp_data{1}=[100.0
+84.44821610166392
+69.64346022199445
+56.18699286738116
+44.458914019523824
+34.60397997464834
+26.572870339935523
+20.188824454149156
+15.212779156604443
+11.39256727297336
+8.493163414509306
+6.311293977979305
+4.679566847222475
+3.464688427848403
+2.5629783933168175
+1.895115281010932
+1.4011217095916941
+1.0360221477945424
+0.7662870925577698
+0.5670214463059633
+];
 inputs.PEsol.id_global_theta=char('k1', 'k2', 'k3');
 inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
 inputs.PEsol.global_theta_y0_max=[110 110];                % Maximum allowed values for the initial conditions

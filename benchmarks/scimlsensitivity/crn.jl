@@ -31,17 +31,15 @@ solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps)
 data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 
 p_rand = rand(Uniform(0.5, 1.5), length(ic) + length(p_true)) # Random Parameters
-prob = ODEProblem(model, ic, time_interval,
-                  p_rand)
+prob = ODEProblem(model, ic, time_interval, p_rand)
 sol = solve(remake(prob, u0 = p_rand[1:length(ic)]), solver,
-            p = p_rand[(length(ic) + 1):end],
-            saveat = tsteps)
+            p = p_rand[(length(ic) + 1):end], saveat = tsteps)
 
 function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = tsteps)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
-    data = [vcat(sol[3, :]), vcat(sol[2, :])]
+    data = [(sol[3, :]), (sol[2, :])]
     loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
     return loss, sol
 end

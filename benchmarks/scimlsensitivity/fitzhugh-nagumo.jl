@@ -1,4 +1,5 @@
-using ModelingToolkit, Flux, DiffeqParamEstim, DifferentialEquations
+using ModelingToolkit, DifferentialEquations, Optimization, OptimizationPolyalgorithms,
+      OptimizationOptimJL, SciMLSensitivity, Zygote, Plots
 using Distributions, Random
 solver = Tsit5()
 
@@ -9,8 +10,8 @@ states = [V, R]
 parameters = [g, a, b]
 
 ic = [1.0, -1.0]
-time_interval = (0.0, 1)
-datasize = 20
+time_interval = [0.0, 1]
+datasize = 50
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [2, 2 / 10, 2 / 10] # True Parameters
 measured_quantities = [y1 ~ V]
@@ -36,7 +37,7 @@ function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = tsteps)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
-    data = [vcat(sol[1, :]) + vcat(sol[3, :]), vcat(sol[2, :])]
+    data = [sol[1, :]]
     loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
     return loss, sol
 end

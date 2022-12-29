@@ -7,8 +7,8 @@ solver = Tsit5()
 D = Differential(t)
 
 ic = [1.0, 2.0, 1.0, 1]
-time_interval = [0.0, 10.0]
-datasize = 20
+time_interval = [0.0, 1.0]
+datasize = 10
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.2, 0.3, 0.5, 0.6, -0.2] # True Parameters
 
@@ -22,8 +22,8 @@ parameters = [p1, p3, p4, p6, p7]
 measured_quantities = [y1 ~ x1 + x3, y2 ~ x2]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#                                  filename = "benchmarks/matlab/amigo_models/daisy_ex3-$datasize.txt")
+ParameterEstimation.write_sample(data_sample;
+                                 filename = "../matlab/amigo_models/daisy_ex3-$datasize.txt")
 # identifiability_result = ParameterEstimation.check_identifiability(model;
 #    measured_quantities = measured_quantities)
 res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,

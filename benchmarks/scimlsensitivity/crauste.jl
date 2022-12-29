@@ -34,9 +34,9 @@ parameters = [
                          ], t, states, parameters)
 measured_quantities = [y1 ~ N, y2 ~ E, y3 ~ S + M, y4 ~ P]
 
-ic = [1.0, -1.0, 1.0, -1.0, 1.0]
+ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 1.0]
-datasize = 10
+datasize = 20
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
@@ -54,7 +54,7 @@ function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = tsteps)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
-    data = [vcat(sol[1, :]), vcat(sol[2, :]), vcat(sol[3, :] .+ sol[4, :]), vcat(sol[5, :])]
+    data = [(sol[1, :]), (sol[2, :]), (sol[3, :] .+ sol[4, :]), (sol[5, :])]
     loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
     return loss, sol
 end

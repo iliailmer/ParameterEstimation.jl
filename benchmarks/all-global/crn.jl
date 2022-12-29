@@ -1,6 +1,7 @@
 using ParameterEstimation
 using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
+
 @parameters k1 k2 k3 k4 k5 k6
 @variables t x1(t) x2(t) x3(t) x4(t) x5(t) x6(t) y1(t) y2(t)
 D = Differential(t)
@@ -26,22 +27,18 @@ datasize = 10
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, u0,
                                               datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#                                  filename = "benchmarks/matlab/amigo_models/crn-$datasize.txt")
-# plot(data_sample[x2], label = "data")
-# plot!(data_sample[x3], label = "data")
 
-# interpolation_degree = 6
-# identifiability_result = ParameterEstimation.check_identifiability(model;
-#                                                                    measured_quantities = measured_quantities)
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-#                                    time_interval,
-#                                    identifiability_result,
-#                                    interpolation_degree)
-# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-#                                                 data_sample,
-#                                                 time_interval; solver = solver)
-# println("Filtered solutions: ", filtered)
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+interpolation_degree = 6
+identifiability_result = ParameterEstimation.check_identifiability(model;
+                                                                   measured_quantities = measured_quantities)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval,
+                                   identifiability_result,
+                                   interpolation_degree)
+filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
+                                                data_sample,
                                                 time_interval; solver = solver)
-println(res)
+println("Filtered solutions: ", filtered)
+# res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+#                                                 time_interval; solver = solver)
+# println(res)

@@ -35,16 +35,16 @@ measured_quantities = [y1 ~ N, y2 ~ E, y3 ~ S + M, y4 ~ P]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 1.0]
-datasize = 10
+datasize = 20
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
 ParameterEstimation.write_sample(data_sample;
                                  filename = "../matlab/amigo_models/crauste-$datasize.txt")
 
-identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                   measured_quantities = measured_quantities)
-# interpolation_degree = 8
+# identifiability_result = ParameterEstimation.check_identifiability(model;
+#                                                                    measured_quantities = measured_quantities)
+# interpolation_degree = 8 # deg 2 for 10 points; deg 9 for 20 points
 # res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
 #                                    time_interval, identifiability_result,
 #                                    interpolation_degree)
