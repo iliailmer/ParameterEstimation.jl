@@ -112,16 +112,20 @@ function filter_solutions(results::Vector{EstimationResult},
     end
     solve_ode!(model, results, tsteps, data_sample; solver = solver)
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
-        filtered_results = Vector{Vector{ParameterEstimation.EstimationResult}}()
+        filtered_results = Vector{ParameterEstimation.EstimationResult}()
         clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
                                                           data_sample)
+        if length(clustered) == 0
+            @warn "No results to filter."
+            return results
+        end
         # find cluster with smallest error
         min_cluster_err, min_cluster_idx = findmin(sum(each.err for each in group) /
                                                    length(group)
                                                    for (id, group) in pairs(clustered))
         min_cluster = clustered[min_cluster_idx]
         @info "Best estimate yelds ODE solution error $(min_cluster_err)"
-        push!(filtered_results, min_cluster)
+        filtered_results = min_cluster
     else
         sorted = sort(results, by = x -> x.err)
         if topk == 1
