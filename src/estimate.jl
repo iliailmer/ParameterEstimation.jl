@@ -112,6 +112,7 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
                                         time_interval, at_time; solver = solver,
                                         degree_range = degree_range,
                                         real_tol = real_tol)
+    @warn "It looks like you are using threaded estimation. This is experimental and may not work as expected."
     check_inputs(measured_quantities, data_sample, time_interval)
     datasize = length(first(values(data_sample)))
     if degree_range === nothing
@@ -122,17 +123,18 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
     identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                        measured_quantities = measured_quantities)
     n_threads = Threads.nthreads()
-    estimates = Vector{Any}(undef, # Vector{Vector{ParameterEstimation.EstimationResult}}
-                            n_threads)
-    @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end]) using $n_threads threads"
     N = length(degree_range)
-    # p = Progress(N)
+    estimates = Vector{Any}(nothing, n_threads)
+    @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end]) using $n_threads threads"
+    if N < n_threads
+        @warn "It looks like the number of threads ($n_threads) is greater than number of data points. We recommend to set number of threads to be ≤ number of data points."
+    end
     with_logger(logger) do
         Threads.@threads for t in 1:N
             deg = degree_range[t]
             id = Threads.threadid()
-            if !isassigned(estimates, id)
-                estimates[id] = [] # Vector{ParameterEstimation.EstimationResult}
+            if isnothing(estimates[id])
+                estimates[id] = []
             end
             unfiltered = estimate(model,
                                   measured_quantities,
@@ -155,14 +157,13 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
                                            datasize),
                       ])
             end
-            # next!(p)
         end
     end
-    #filter out the empty vectors
+    #remove undef
+    estimates = filter(x -> x !== nothing, estimates)
     estimates = vcat(estimates...)
     estimates = filter(x -> length(x) > 0, estimates)
-    #filter out the Failure results
-    # estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
+
     best_solution = nothing
     for each in estimates
         if best_solution === nothing
@@ -226,7 +227,7 @@ function estimate_over_degrees_serial(model::ModelingToolkit.ODESystem,
     estimates = filter(x -> length(x) > 0, estimates)
 
     #filter out the Failure results
-    estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
+    # estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
 
     best_solution = nothing
     for each in estimates
