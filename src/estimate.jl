@@ -76,7 +76,6 @@ function estimate(model::ModelingToolkit.ODESystem,
     return all_solutions_
 end
 
-# Path: src/estimate.jl
 """
     estimate_over_degrees(model::ModelingToolkit.ODESystem,
                           measured_quantities::Vector{ModelingToolkit.Equation},
@@ -94,7 +93,103 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
                                time_interval = Vector{T}(), at_time::T = 0.0;
                                solver = Tsit5(),
                                degree_range = nothing,
-                               real_tol = 1e-10) where {T <: Float}
+                               real_tol = 1e-10,
+                               threaded = Threads.nthreads() > 1) where {T <: Float}
+    if threaded
+        return estimate_over_degrees_threaded(model, measured_quantities, data_sample,
+                                              time_interval, at_time; solver = solver,
+                                              degree_range = degree_range,
+                                              real_tol = real_tol)
+    else
+        return estimate_over_degrees_serial(model, measured_quantities, data_sample,
+                                            time_interval, at_time; solver = solver,
+                                            degree_range = degree_range,
+                                            real_tol = real_tol)
+    end
+end
+
+function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
+                                        time_interval, at_time; solver = solver,
+                                        degree_range = degree_range,
+                                        real_tol = real_tol)
+    check_inputs(measured_quantities, data_sample, time_interval)
+    datasize = length(first(values(data_sample)))
+    if degree_range === nothing
+        degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
+    end
+
+    logger = ConsoleLogger(stdout, Logging.Warn)
+    identifiability_result = ParameterEstimation.check_identifiability(model;
+                                                                       measured_quantities = measured_quantities)
+    n_threads = Threads.nthreads()
+    estimates = Vector{Any}(undef, # Vector{Vector{ParameterEstimation.EstimationResult}}
+                            n_threads)
+    @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end]) using $n_threads threads"
+    N = length(degree_range)
+    # p = Progress(N)
+    with_logger(logger) do
+        Threads.@threads for t in 1:N
+            deg = degree_range[t]
+            id = Threads.threadid()
+            if !isassigned(estimates, id)
+                estimates[id] = [] # Vector{ParameterEstimation.EstimationResult}
+            end
+            unfiltered = estimate(model,
+                                  measured_quantities,
+                                  data_sample,
+                                  time_interval,
+                                  identifiability_result,
+                                  deg, at_time)
+            if length(unfiltered) > 0
+                filtered = filter_solutions(unfiltered, identifiability_result, model,
+                                            data_sample, time_interval; solver = solver)
+                push!(estimates[id], filtered)
+
+            else
+                push!(estimates[id],
+                      [
+                          EstimationResult(model, Dict(), deg,
+                                           at_time,
+                                           Dict{Any, Interpolant}(),
+                                           ReturnCode.Failure,
+                                           datasize),
+                      ])
+            end
+            # next!(p)
+        end
+    end
+    #filter out the empty vectors
+    estimates = vcat(estimates...)
+    estimates = filter(x -> length(x) > 0, estimates)
+    #filter out the Failure results
+    # estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
+    best_solution = nothing
+    for each in estimates
+        if best_solution === nothing
+            best_solution = each
+        else
+            if sum(x.err for x in each) < sum(x.err for x in best_solution)
+                best_solution = each
+            end
+        end
+    end
+    if best_solution !== nothing
+        @info "Best estimate found"
+        return best_solution
+    else
+        @warn "No solution found"
+        return estimates
+    end
+end
+
+function estimate_over_degrees_serial(model::ModelingToolkit.ODESystem,
+                                      measured_quantities::Vector{ModelingToolkit.Equation},
+                                      data_sample::Dict{Num, Vector{T}} = Dict{Num,
+                                                                               Vector{T}}(),
+                                      time_interval = Vector{T}(), at_time::T = 0.0;
+                                      solver = Tsit5(),
+                                      degree_range = nothing,
+                                      real_tol = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
     datasize = length(first(values(data_sample)))
     if degree_range === nothing
@@ -103,7 +198,7 @@ function estimate_over_degrees(model::ModelingToolkit.ODESystem,
     logger = ConsoleLogger(stdout, Logging.Warn)
     identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                        measured_quantities = measured_quantities)
-    estimates = []
+    estimates = Vector{Vector{ParameterEstimation.EstimationResult}}()
     @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end])"
     with_logger(logger) do
         @showprogress for deg in degree_range
