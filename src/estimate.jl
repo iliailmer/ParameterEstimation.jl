@@ -126,9 +126,7 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
     N = length(degree_range)
     estimates = Vector{Any}(nothing, n_threads)
     @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end]) using $n_threads threads"
-    if N < n_threads
-        @warn "It looks like the number of threads ($n_threads) is greater than number of data points. We recommend to set number of threads to be ≤ number of data points."
-    end
+
     with_logger(logger) do
         Threads.@threads for t in 1:N
             deg = degree_range[t]
