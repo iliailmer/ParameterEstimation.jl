@@ -44,7 +44,7 @@ ParameterEstimation.write_sample(data_sample;
 
 # identifiability_result = ParameterEstimation.check_identifiability(model;
 #                                                                    measured_quantities = measured_quantities)
-# interpolation_degree = 8 # deg 2 for 10 points; deg 9 for 20 points
+# interpolation_degree = 8
 # res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
 #                                    time_interval, identifiability_result,
 #                                    interpolation_degree)
