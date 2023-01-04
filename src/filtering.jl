@@ -104,39 +104,36 @@ function filter_solutions(results::Vector{EstimationResult},
     if all(each -> each.return_code == ReturnCode.Failure, results)
         return results
     end
-    best_estimate = nothing
     tsteps = range(time_interval[1], time_interval[2],
                    length = length(first(values(data_sample))))
     if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
         @warn "The model contains non-identifiable parameters, no filtering was done."
         return results
     end
-    filtered_results = []
     solve_ode!(model, results, tsteps, data_sample; solver = solver)
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
-        if length(id_combs) == 0
-            clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
-                                                              data_sample)
-        else
-            clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
-                                                              data_sample, id_combs)
+        filtered_results = Vector{ParameterEstimation.EstimationResult}()
+        clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
+                                                          data_sample)
+        if length(clustered) == 0
+            @warn "No results to filter."
+            return results
         end
-        for (id, group) in pairs(clustered)
-            sorted = sort(group, by = x -> x.err)
-            if topk == 1
-                @info "Group $id. Best estimate yelds ODE solution error $(sorted[1].err)"
-                push!(filtered_results, sorted[1])
-            else
-                @info "Group $id. Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
-                push!(filtered_results, sorted[1:topk])
-            end
-        end
+        # find cluster with smallest error
+        min_cluster_err, min_cluster_idx = findmin(sum(each.err for each in group) /
+                                                   length(group)
+                                                   for (id, group) in pairs(clustered))
+        min_cluster = clustered[min_cluster_idx]
+        @info "Best estimate yelds ODE solution error $(min_cluster_err)"
+        filtered_results = min_cluster
     else
         sorted = sort(results, by = x -> x.err)
         if topk == 1
+            filtered_results = Vector{EstimationResult}()
             @info "Best estimate yelds ODE solution error $(sorted[1].err)"
             push!(filtered_results, sorted[1])
         else
+            filtered_results = Vector{Vector{ParameterEstimation.EstimationResult}}()
             @info "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
             push!(filtered_results, sorted[1:topk])
         end
@@ -149,34 +146,18 @@ function cluster_estimates(model, res, tsteps, data_sample; ε = 1e-6)
     ParameterEstimation.solve_ode!(model, res, tsteps, data_sample)
     clustered = Dict()
     #nearest neighbor search by err
-    for i in 1:length(res)
+    for i in eachindex(res)
         for j in (i + 1):length(res)
             if abs(res[i].err - res[j].err) < ε
                 if !haskey(clustered, i)
                     clustered[i] = Vector{ParameterEstimation.EstimationResult}([])
+                    push!(clustered[i], res[i])
                 end
                 push!(clustered[i], res[j])
             end
         end
     end
-    return clustered
-end
-
-function cluster_estimates(model, res, tsteps, data_sample, id_combs; ε = 1e-6)
-    # clusrers the estimates by their id_combs
-    ParameterEstimation.solve_ode!(model, res, tsteps, data_sample)
-    clustered = Dict()
-    #a la nearest neighbor search by err
-    for i in 1:length(res)
-        for j in (i + 1):length(res)
-            if isequal(substitute(id_combs, Dict(res[i].parameters)),
-                       substitute(id_combs, Dict(res[j].parameters)))
-                if !haskey(clustered, i)
-                    clustered[i] = []
-                end
-                push!(clustered[i], res[j])
-            end
-        end
-    end
+    # reset cluster keys
+    clustered = Dict(i => clustered[key] for (i, key) in enumerate(keys(clustered)))
     return clustered
 end

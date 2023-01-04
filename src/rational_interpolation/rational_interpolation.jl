@@ -22,8 +22,8 @@ function rational_interpolation_coefficients(x, y, n)
         A_right_submatrix = reduce(hcat, [x .^ (i) for i in 0:(m - 1)])
         A = hcat(A_left_submatrix, -y .* A_right_submatrix)
         b = y .* (x .^ m)
-        @info det(A), cond(A)
-        e = det(A)
+        # @info det(A), cond(A)
+        # e = det(A)
         # if abs(e) < 1e-20
         #     @warn "Determinant of A is small: $e"
         # end
@@ -115,7 +115,6 @@ It returns an `Interpolant` object that contains the interpolated function and i
 """
 function interpolate(time, sample, numer_degree::Int, diff_order::Int = 1,
                      at_t::Float = 0.0)
-    # TODO: make numer_degree optional
     numer_coef, denom_coef = rational_interpolation_coefficients(time, sample,
                                                                  numer_degree)
     numer_function(t) = sum(numer_coef[i] * t^(i - 1) for i in eachindex(numer_coef))

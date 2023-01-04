@@ -278,7 +278,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
 
         # assign weights to variables
         if weighted_ordering
-            for i in 1:length(Et_hat)
+            for i in eachindex(Et_hat)
                 for _var in Set(vars(Et_hat[i]))
                     _var_non_jet, _var_order = SIAN.get_order_var(_var, non_jet_ring)
                     Et_hat[i] = SIAN.make_substitution(Et_hat[i], _var,
@@ -319,7 +319,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             theta_l_new = [SIAN.parent_ring_change(SIAN._reduce_poly_mod_p(th, p_mod),
                                                    Rjet_new) for th in theta_l]
 
-            for i in 1:length(theta_l)
+            for i in eachindex(theta_l)
                 _var_non_jet, _var_order = SIAN.get_order_var(theta_l_new[i], non_jet_ring)
                 if Groebner.normalform(gb, theta_l_new[i]^get(weights, _var_non_jet, 1)) ==
                    SIAN.parent_ring_change(SIAN._reduce_poly_mod_p(Rjet(theta_hat[2][findfirst(isequal(theta_l[i]),
@@ -331,7 +331,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         else
             theta_l_new = [SIAN.parent_ring_change(th, Rjet_new) for th in theta_l]
 
-            for i in 1:length(theta_l)
+            for i in eachindex(theta_l)
                 _var_non_jet, _var_order = SIAN.get_order_var(theta_l_new[i], non_jet_ring)
                 if Groebner.normalform(gb, theta_l_new[i]^get(weights, _var_non_jet, 1)) ==
                    SIAN.parent_ring_change(Rjet(theta_hat[2][findfirst(isequal(theta_l[i]),

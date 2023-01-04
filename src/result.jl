@@ -86,5 +86,5 @@ function Base.show(io::IO, e::EstimationResult)
     else
         println(io, "Error: ", @sprintf("%.4e", e.err))
     end
-    println(io, "Return Code: ", e.return_code)
+    # println(io, "Return Code: ", e.return_code)
 end

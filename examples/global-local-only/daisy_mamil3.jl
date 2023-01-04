@@ -36,5 +36,3 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
 filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
                                                 data_sample, time_interval)
 print(filtered)
-# res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-#                                                 time_interval)
