@@ -33,3 +33,4 @@ Manifest.toml
 benchmarks/matlab/src
 *.txt
 timecommand
+objf*.m
