@@ -19,8 +19,8 @@ measured_quantities = [
     y2 ~ x5,
 ]
 
-ic = [1.0, -1.0, 1.0]
-time_interval = [0.0, 6.0]
+ic = [1.0, 1.0, 1.0]
+time_interval = [0.0, 1.0]
 datasize = 20
 tsteps = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1] # True Parameters
@@ -28,12 +28,6 @@ p_true = [1, 1.3, 1.1, 1.2, 1.1, 1] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
 
-identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                   measured_quantities = measured_quantities)
-interpolation_degree = 12
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval, identifiability_result,
-                                   interpolation_degree)
-filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-                                                data_sample, time_interval)
-print(filtered)
+res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+                                                time_interval)
+print(res)
