@@ -161,3 +161,14 @@ function cluster_estimates(model, res, tsteps, data_sample; ε = 1e-6)
     clustered = Dict(i => clustered[key] for (i, key) in enumerate(keys(clustered)))
     return clustered
 end
+
+function check_range(parameter_ranges::Dict{Num, Vector{T}},
+                     estimate::EstimationResult) where {T <: Float}
+    # check if the estimate is within the parameter ranges
+    for (param, range) in parameter_ranges
+        if estimate.parameters[param] < range[1] || estimate.parameters[param] > range[2]
+            return false
+        end
+    end
+    return true
+end
