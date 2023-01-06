@@ -375,8 +375,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                            "Y_eq" => y_derivative_dict,
                            "vars" => vrs_sorted,
                            "vals" => all_subs,
-                           "transcendence_basis_subs" => vcat(alg_indep,
-                                                              transcendence_substitutions),
+                           "transcendence_basis_subs" => Dict(alg_indep .=>
+                                                                  transcendence_substitutions),
                            "identifiability_nemo" => id_res_nemo,
                            "identifiability" => identifiability_result,
                            "basis" => gb,
