@@ -22,7 +22,7 @@ struct IdentifiabilityData
     substitutions::Vector{Vector}
     identifiability_nemo::Any
     identifiability::Dict{Any, Any}
-    transcendence_basis_subs::Vector{Nemo.RingElem}
+    transcendence_basis_subs::Dict{Any, Any}
     Y_eq::Dict{Any, Any}
     basis::Vector{Nemo.fmpq_mpoly}
     weights::Dict{fmpq_mpoly, Int64}
