@@ -106,11 +106,16 @@ function filter_solutions(results::Vector{EstimationResult},
     end
     tsteps = range(time_interval[1], time_interval[2],
                    length = length(first(values(data_sample))))
+    try
+        solve_ode!(model, results, tsteps, data_sample; solver = solver) # this solves ODE with new parameters and computes err. between sample and solution
+    catch InexactError
+        @warn "InexactError when solving the ODE, no filtering was done."
+        return results
+    end
     if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
         @warn "The model contains non-identifiable parameters, no filtering was done."
         return results
     end
-    solve_ode!(model, results, tsteps, data_sample; solver = solver)
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
         filtered_results = Vector{ParameterEstimation.EstimationResult}()
         clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,

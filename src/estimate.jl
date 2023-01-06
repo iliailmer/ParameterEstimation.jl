@@ -53,7 +53,7 @@ function estimate(model::ModelingToolkit.ODESystem,
         all_solutions = HomotopyContinuation.solutions(results)
         if length(all_solutions) == 0
             @warn "Interpolation numerator degree $(interpolation_degree): No solutions found"
-            return []
+            return Vector{EstimationResult}()
         end
     end
     all_solutions_ = Vector{EstimationResult}([])
@@ -67,6 +67,11 @@ function estimate(model::ModelingToolkit.ODESystem,
         for (idx, v) in enumerate(polynomial_system.variables)
             if endswith(string(v), "_0")
                 tmp[state_param_map[string(v)[1:(end - 2)]]] = sol[idx]
+            end
+        end
+        for (key, val) in identifiability_result.transcendence_basis_subs
+            if endswith(string(key), "_0")
+                tmp[state_param_map[string(key)[1:(end - 2)]]] = Int(Meta.parse("$val"))
             end
         end
         param_est = EstimationResult(model, tmp, interpolation_degree, at_time,
@@ -164,12 +169,16 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
 
     best_solution = nothing
     for each in estimates
-        if best_solution === nothing
-            best_solution = each
-        else
-            if sum(x.err for x in each) < sum(x.err for x in best_solution)
+        if all(!isnothing(x.err) for x in each)
+            if best_solution === nothing
                 best_solution = each
+            else
+                if sum(x.err for x in each) < sum(x.err for x in best_solution)
+                    best_solution = each
+                end
             end
+        else
+            best_solution = nothing
         end
     end
     if best_solution !== nothing
@@ -225,20 +234,24 @@ function estimate_over_degrees_serial(model::ModelingToolkit.ODESystem,
     estimates = filter(x -> length(x) > 0, estimates)
 
     #filter out the Failure results
-    # estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
+    estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
 
     best_solution = nothing
     for each in estimates
-        if best_solution === nothing
-            best_solution = each
-        else
-            if sum(x.err for x in each) < sum(x.err for x in best_solution)
+        if all(!isnothing(x.err) for x in each)
+            if best_solution === nothing
                 best_solution = each
+            else
+                if sum(x.err for x in each) < sum(x.err for x in best_solution)
+                    best_solution = each
+                end
             end
+        else
+            best_solution = nothing
         end
     end
     if best_solution !== nothing
-        @info "Best estimate found" # error(s) $([x.err for x in best_solution])"
+        @info "Best estimate found"
         return best_solution
     else
         @warn "No solution found"
