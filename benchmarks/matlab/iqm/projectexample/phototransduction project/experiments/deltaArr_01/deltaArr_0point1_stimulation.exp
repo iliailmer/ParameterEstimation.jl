@@ -1,0 +1,15 @@
+********** EXPERIMENT NAME
+deltaARR_0point1_stimulation
+
+********** EXPERIMENT NOTES
+ARR KO experiment with short duration stimulation
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+Arr(0) = 0  % knock-out
+
+magStim = 2
+durStim = 0.1
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

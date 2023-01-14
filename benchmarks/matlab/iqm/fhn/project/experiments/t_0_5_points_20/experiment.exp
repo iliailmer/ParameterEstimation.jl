@@ -1,0 +1,17 @@
+********** EXPERIMENT NAME
+
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+a = 0.5
+b = 0.5
+g = 1.5
+
+V(0) = 0.8
+R(0) = -0.5
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

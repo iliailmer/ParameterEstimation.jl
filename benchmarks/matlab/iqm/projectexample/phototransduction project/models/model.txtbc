@@ -1,0 +1,74 @@
+********** MODEL NAME
+Project_example_model 
+
+********** MODEL NOTES
+Example for a signal transduction pathway.
+Activation of a GPCR, ...
+
+********** MODEL STATE INFORMATION
+% Measured (known) initial conditions (wild-type)
+R(0) = 500 
+G(0) = 3000 
+Arr(0) = 5 
+
+% Initial guess for PDE
+PDE(0) = 100 
+
+% All other states have per default initial condition 0
+
+********** MODEL PARAMETERS
+kRGact = 1
+k1Gact = 1 
+k2Gact = 1
+kGactPDEact = 1
+kRArr1 =  1
+kRArr2 = 1 
+kGr1 = 1
+kGr2 = 1
+kG = 1
+
+% Stimulus parameters (fixed by experimental settings => no estimation necessary)
+magStim = 2
+durStim = 0.1
+
+********** MODEL VARIABLES
+% Realizing the stimulus, which is a pulse of varying amplitude (magStim)
+% and varying duration (durStim)
+stimulus = piecewiseIQM(magStim,le(time,durStim),0)    
+
+********** MODEL REACTIONS
+R => Ract : vStim
+    vf = stimulus
+
+Ract + G => RactG : vRGact
+    vf = kRGact*Ract*G
+    
+% For the sake of this tutorial we use here Michaelis Menten kinetics. 
+% Biologically it does not make sense (of course) but for this tutorial 
+% it does :-) ... you will see!
+RactG => Ract + Gact : vGact  
+    vf = k1Gact*RactG  / (k2Gact + RactG) 
+    
+Gact + PDE => GactPDEact : vGactPDEact
+    vf = kGactPDEact*Gact*PDE
+    
+Ract + Arr => RactArr : vRArr1
+    vf = kRArr1*Arr*Ract
+    
+RactArr => R + Arr : vRArr2
+    vf = kRArr2*RactArr    
+    
+Gact => Gr : vGr1
+    vf = kGr1*Gact
+    
+GactPDEact => PDE + Gr : vGr2
+    vf = kGr2*GactPDEact
+    
+Gr => G : vG
+    vf = kG*Gr
+        
+********** MODEL FUNCTIONS
+
+********** MODEL EVENTS
+
+********** MODEL MATLAB FUNCTIONS

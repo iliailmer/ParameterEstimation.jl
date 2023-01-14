@@ -1,0 +1,49 @@
+[Name]
+deltaArr_0point1_stimulation
+
+[Notes]
+We used Arr-knock-out cells and subjected them to a short duration stimulation. 
+The stimulation corresponds to the reaction rate from R => Ract. Here the 
+reaction vStim has the form of a pulse, which starts at time=0 and ends at 
+time=0.1 (durStim) and has a magnitude of magStim = 2.
+
+We measured the amount of activated Rhodopsins (Ract) and the complex GactPDEact.
+
+The names below (Ract, GactPDEact) need to be the same as the corresponding 
+component names in the model. Furthermore the units need to be the same. 
+
+NOTE: An amount of molecules < 1 is physically impossible. But just think 
+about that using deterministic simulation we obtain a mean of many 
+realizations.
+
+[Components]
+time,Ract,GactPDEact
+
+[Componentnotes]
+Ract: [#]
+GactPDEact: [#]
+
+[Values]
+0.000000,0.000000,0.000000
+0.200000,0.080568,30.163899
+0.400000,0.081277,59.373077
+0.600000,0.081886,78.751830
+0.800000,0.082385,91.576163
+1.000000,0.082779,100.040450
+1.500000,0.083402,110.589678
+2.000000,0.083696,114.230353
+2.500000,0.083825,115.458978
+3.000000,0.083879,115.862723
+3.500000,0.083901,115.991178
+4.000000,0.083910,116.030181
+5.000000,0.083915,116.044151
+6.000000,0.083915,116.044678
+7.000000,0.083915,116.044550
+8.000000,0.083915,116.044550
+9.000000,0.083915,116.044543
+10.000000,0.083915,116.044545
+12.000000,0.083915,116.044538
+14.000000,0.083915,116.044551
+16.000000,0.083915,116.044574
+18.000000,0.083915,116.044554
+20.000000,0.083915,116.044538
