@@ -55,7 +55,6 @@ inputs.exps.exp_data{1}=[
 0.6551069548243583 1.0516391138719476
 0.6376292794752342 1.0534744901662192
 0.6204672314132962 1.0552976688737516
-
 ];
 inputs.PEsol.id_global_theta=char('k6', 'k5', 'k7');
 inputs.PEsol.global_theta_max=2.*ones(1,3);
