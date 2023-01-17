@@ -36,3 +36,4 @@ timecommand
 objf*.m
 sharable
 *.zip
+.R*
