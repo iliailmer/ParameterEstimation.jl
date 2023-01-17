@@ -113,7 +113,20 @@ function filter_solutions(results::Vector{EstimationResult},
         return results
     end
     if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
-        @warn "The model contains non-identifiable parameters, no filtering was done."
+        @warn "The model contains non-identifiable parameters"
+        filtered_results = Vector{ParameterEstimation.EstimationResult}()
+        clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
+                                                          data_sample)
+        if length(clustered) == 0
+            @warn "No results to filter."
+            return results
+        end
+        min_cluster_err, min_cluster_idx = findmin(sum(each.err for each in group) /
+                                                   length(group)
+                                                   for (id, group) in pairs(clustered))
+        min_cluster = clustered[min_cluster_idx]
+        @info "Best estimate yelds ODE solution error $(min_cluster_err)"
+        filtered_results = min_cluster
         return results
     end
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
