@@ -109,8 +109,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     @info "Truncating"
 
     # (a) -----------------------
-    d0 = BigInt(maximum(vcat([Nemo.total_degree(SIAN.unpack_fraction(Q * eq[2])[1])
-                              for eq in eqs], Nemo.total_degree(Q))))
+    d0 = BigInt(maximum(vcat([SIAN.Nemo.total_degree(SIAN.unpack_fraction(Q * eq[2])[1])
+                              for eq in eqs], SIAN.Nemo.total_degree(Q))))
 
     # (b) -----------------------
     D1 = floor(BigInt,
@@ -138,8 +138,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         for i in 1:m
             if prolongation_possible[i] == 1
                 eqs_i = vcat(Et, Y[i][beta[i] + 1])
-                evl = [Nemo.evaluate(eq, vcat(u_hat[1], y_hat[1]),
-                                     vcat(u_hat[2], y_hat[2]))
+                evl = [SIAN.Nemo.evaluate(eq, vcat(u_hat[1], y_hat[1]),
+                                          vcat(u_hat[2], y_hat[2]))
                        for eq in eqs_i if !(eq in eqs_i_old)]
                 evl_old = vcat(evl_old, evl)
                 JacX = SIAN.jacobi_matrix(evl_old, x_theta_vars, all_x_theta_vars_subs)
@@ -195,12 +195,13 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
 
     theta_l = Array{fmpq_mpoly}(undef, 0)
     params_to_assess_ = [SIAN.add_to_var(param, Rjet, 0) for param in params_to_assess]
-    Et_eval_base = [Nemo.evaluate(e, vcat(u_hat[1], y_hat[1]), vcat(u_hat[2], y_hat[2]))
+    Et_eval_base = [SIAN.Nemo.evaluate(e, vcat(u_hat[1], y_hat[1]),
+                                       vcat(u_hat[2], y_hat[2]))
                     for e in Et]
     for param_0 in params_to_assess_
         other_params = [v for v in x_theta_vars if v != param_0]
-        Et_subs = [Nemo.evaluate(e, [param_0],
-                                 [Nemo.evaluate(param_0, all_x_theta_vars_subs)])
+        Et_subs = [SIAN.Nemo.evaluate(e, [param_0],
+                                      [SIAN.Nemo.evaluate(param_0, all_x_theta_vars_subs)])
                    for e in Et_eval_base]
         JacX = SIAN.jacobi_matrix(Et_subs, other_params, all_x_theta_vars_subs)
         if LinearAlgebra.rank(JacX) != max_rank
@@ -243,7 +244,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         # 3. Randomize.
         @info "Randomizing"
         # (a) ------------
-        deg_variety = foldl(*, [BigInt(Nemo.total_degree(e)) for e in Et])
+        deg_variety = foldl(*, [BigInt(SIAN.Nemo.total_degree(e)) for e in Et])
         D2 = floor(BigInt,
                    3 / 4 * 6 * length(theta_l) * deg_variety *
                    (1 + 2 * d0 * maximum(beta)) /
@@ -256,21 +257,22 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         theta_hat = sample[3]
 
         # (d) ------------
-        Et_hat = [Nemo.evaluate(e, vcat(y_hat[1], u_hat[1]), vcat(y_hat[2], u_hat[2]))
+        Et_hat = [SIAN.Nemo.evaluate(e, vcat(y_hat[1], u_hat[1]), vcat(y_hat[2], u_hat[2]))
                   for e in Et]
-        transcendence_substitutions = Array{Nemo.fmpq}(undef, 0)
+        transcendence_substitutions = Array{SIAN.Nemo.fmpq}(undef, 0)
         for (idx, var) in enumerate(theta_hat[1])
             if var in alg_indep
                 push!(transcendence_substitutions, theta_hat[2][idx])
             end
         end
-        Et_hat = [Nemo.evaluate(e, alg_indep, transcendence_substitutions) for e in Et_hat]
+        Et_hat = [SIAN.Nemo.evaluate(e, alg_indep, transcendence_substitutions)
+                  for e in Et_hat]
         Et_x_vars = Set{fmpq_mpoly}()
         for poly in Et_hat
             Et_x_vars = union(Et_x_vars, Set(vars(poly)))
         end
         Et_x_vars = setdiff(Et_x_vars, not_int_cond_params)
-        Q_hat = Nemo.evaluate(Q, u_hat[1], u_hat[2])
+        Q_hat = SIAN.Nemo.evaluate(Q, u_hat[1], u_hat[2])
         vrs_sorted = vcat(sort([e for e in Et_x_vars],
                                lt = (x, y) -> SIAN.compare_diff_var(x, y, all_indets,
                                                                     n + m + u, s)), z_aux,
@@ -300,13 +302,13 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             Et_hat = [SIAN._reduce_poly_mod_p(e, p_mod) for e in Et_hat]
             z_aux = SIAN._reduce_poly_mod_p(z_aux, p_mod)
             Q_hat = SIAN._reduce_poly_mod_p(Q_hat, p_mod)
-            Rjet_new, vrs_sorted = Nemo.PolynomialRing(Nemo.GF(p_mod),
-                                                       [string(v) for v in vrs_sorted],
-                                                       ordering = :degrevlex)
+            Rjet_new, vrs_sorted = SIAN.Nemo.PolynomialRing(SIAN.Nemo.GF(p_mod),
+                                                            [string(v) for v in vrs_sorted],
+                                                            ordering = :degrevlex)
         else
-            Rjet_new, vrs_sorted = Nemo.PolynomialRing(Nemo.QQ,
-                                                       [string(v) for v in vrs_sorted],
-                                                       ordering = :degrevlex)
+            Rjet_new, vrs_sorted = SIAN.Nemo.PolynomialRing(SIAN.Nemo.QQ,
+                                                            [string(v) for v in vrs_sorted],
+                                                            ordering = :degrevlex)
         end
 
         Et_hat = [SIAN.parent_ring_change(e, Rjet_new) for e in Et_hat]
@@ -368,8 +370,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             y_derivative_dict[each[1]] = order
         end
         Et_ = [Et[idx] for idx in Et_ids]
-        full_result = Dict("polynomial_system" => [Nemo.evaluate(e, alg_indep,
-                                                                 transcendence_substitutions)
+        full_result = Dict("polynomial_system" => [SIAN.Nemo.evaluate(e, alg_indep,
+                                                                      transcendence_substitutions)
                                                    for e in Et_],
                            "denominator" => Q,
                            "Y_eq" => y_derivative_dict,

@@ -1,5 +1,5 @@
 using ParameterEstimation
-using ModelingToolkit, Nemo, HomotopyContinuation, DifferentialEquations
+using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters g a b

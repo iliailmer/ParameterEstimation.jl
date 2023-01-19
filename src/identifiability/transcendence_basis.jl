@@ -1,22 +1,22 @@
 """
-    algebraic_independence(Et::Vector{Nemo.fmpq_mpoly},
-                           indets::Vector{Nemo.fmpq_mpoly},
+    algebraic_independence(Et::Vector{SIAN.Nemo.fmpq_mpoly},
+                           indets::Vector{SIAN.Nemo.fmpq_mpoly},
                            vals)
 
 Returns the indices of the equations in Et to be used for polynomial solving
 and the variables that form a transcendence basis.
 
 # Arguments
-- `Et::Vector{Nemo.fmpq_mpoly}`: The equations to be solved (must come from identifiability check).
-- `indets::Vector{Nemo.fmpq_mpoly}`: The indeterminates.
-- `vals::Vector{Nemo.fmpq_mpoly}`: The values of the indeterminates sampled by identifiability algorithm.
+- `Et::Vector{SIAN.Nemo.fmpq_mpoly}`: The equations to be solved (must come from identifiability check).
+- `indets::Vector{SIAN.Nemo.fmpq_mpoly}`: The indeterminates.
+- `vals::Vector{SIAN.Nemo.fmpq_mpoly}`: The values of the indeterminates sampled by identifiability algorithm.
 """
-function algebraic_independence(Et::Vector{Nemo.fmpq_mpoly},
-                                indets::Vector{Nemo.fmpq_mpoly},
+function algebraic_independence(Et::Vector{SIAN.Nemo.fmpq_mpoly},
+                                indets::Vector{SIAN.Nemo.fmpq_mpoly},
                                 vals)
     pivots = Vector{fmpq_mpoly}()
     Jacobian = SIAN.jacobi_matrix(Et, indets, vals)
-    U = Nemo.lu(Jacobian)[end]
+    U = SIAN.Nemo.lu(Jacobian)[end]
     #find pivot columns in u
     for row_idx in 1:size(U, 1)
         row = U[row_idx, :]
@@ -31,7 +31,7 @@ function algebraic_independence(Et::Vector{Nemo.fmpq_mpoly},
     output_ids = [1]
     for current_idx in 2:length(Et)
         current = [output_rows; Jacobian[current_idx, :]]
-        if Nemo.rank(current) > current_rank
+        if SIAN.Nemo.rank(current) > current_rank
             output_rows = current
             push!(output_ids, current_idx)
             current_rank += 1

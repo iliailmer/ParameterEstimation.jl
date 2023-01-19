@@ -4,7 +4,7 @@ import TaylorSeries: Taylor1
 
 using ProgressMeter, Logging, Printf
 using ModelingToolkit, LinearSolve, LinearAlgebra
-using SIAN, Nemo, HomotopyContinuation, Groebner
+using SIAN, HomotopyContinuation, Groebner
 using .ReturnCode
 
 Float = Union{Float64, Float32, Float16}
