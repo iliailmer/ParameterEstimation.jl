@@ -26,6 +26,11 @@ p_true = [1, 1.3, 1.1, 1.2, 1] # True Parameters
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
+ParameterEstimation.write_sample(data_sample;
+                                 filename = "benchmarks/matlab/amigo_models/daisy_ex3-local-$datasize.txt")
+
+plot(data_sample[x1])
+plot!(data_sample[u0])
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
