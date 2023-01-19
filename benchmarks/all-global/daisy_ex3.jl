@@ -24,8 +24,7 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
                                               p_true, ic, datasize; solver = solver)
 ParameterEstimation.write_sample(data_sample;
                                  filename = "../matlab/amigo_models/daisy_ex3-$datasize.txt")
-# identifiability_result = ParameterEstimation.check_identifiability(model;
-#    measured_quantities = measured_quantities)
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval; solver = solver)
+
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval; solver = solver)
 println(res)

@@ -40,8 +40,6 @@ p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Pa
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
 
-identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                   measured_quantities = measured_quantities)
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval; solver = solver)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval; solver = solver)
 print(res)

@@ -32,9 +32,7 @@ ParameterEstimation.write_sample(data_sample;
 plot(data_sample[x1])
 plot!(data_sample[u0])
 
-identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                   measured_quantities = measured_quantities)
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval)
 
 print(res)
