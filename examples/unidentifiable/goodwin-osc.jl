@@ -27,7 +27,7 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
                                               p_true, ic, datasize; solver = solver)
 at_time = 0.5
 
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval, at_time)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval, at_time)
 
 print(res)

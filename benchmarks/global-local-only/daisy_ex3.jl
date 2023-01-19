@@ -30,9 +30,9 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
 interpolation_degree = 37
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval, identifiability_result,
-                                   interpolation_degree)
+res = ParameterEstimation.estimate_fixed_degree(model, measured_quantities, data_sample,
+                                                time_interval, identifiability_result,
+                                                interpolation_degree)
 filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
                                                 data_sample, time_interval)
 

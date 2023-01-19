@@ -25,6 +25,6 @@ measured_quantities = [y1 ~ theta_1, y2 ~ theta_2 + theta_1]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
 
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                                 time_interval; solver = solver)
 print(res)
