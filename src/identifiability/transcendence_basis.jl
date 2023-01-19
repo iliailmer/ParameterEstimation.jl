@@ -14,7 +14,7 @@ and the variables that form a transcendence basis.
 function algebraic_independence(Et::Vector{SIAN.Nemo.fmpq_mpoly},
                                 indets::Vector{SIAN.Nemo.fmpq_mpoly},
                                 vals)
-    pivots = Vector{fmpq_mpoly}()
+    pivots = Vector{SIAN.Nemo.fmpq_mpoly}()
     Jacobian = SIAN.jacobi_matrix(Et, indets, vals)
     U = SIAN.Nemo.lu(Jacobian)[end]
     #find pivot columns in u

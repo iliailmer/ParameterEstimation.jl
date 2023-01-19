@@ -126,14 +126,14 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     # (e) ------------------
     alpha = [1 for i in 1:n]
     beta = [0 for i in 1:m]
-    Et = Array{fmpq_mpoly}(undef, 0)
+    Et = Array{SIAN.Nemo.fmpq_mpoly}(undef, 0)
     x_theta_vars = all_params
     prolongation_possible = [1 for i in 1:m]
 
     # (f) ------------------
     all_x_theta_vars_subs = SIAN.insert_zeros_to_vals(all_subs[1], all_subs[2])
-    eqs_i_old = Array{fmpq_mpoly}(undef, 0)
-    evl_old = Array{fmpq_mpoly}(undef, 0)
+    eqs_i_old = Array{SIAN.Nemo.fmpq_mpoly}(undef, 0)
+    evl_old = Array{SIAN.Nemo.fmpq_mpoly}(undef, 0)
     while sum(prolongation_possible) > 0
         for i in 1:m
             if prolongation_possible[i] == 1
@@ -150,17 +150,20 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                     # adding necessary X-equations
                     polys_to_process = vcat(Et, [Y[k][beta[k] + 1] for k in 1:m])
                     while length(polys_to_process) != 0
-                        new_to_process = Array{fmpq_mpoly}(undef, 0)
-                        vrs = Set{fmpq_mpoly}()
+                        new_to_process = Array{SIAN.Nemo.fmpq_mpoly}(undef, 0)
+                        vrs = Set{SIAN.Nemo.fmpq_mpoly}()
                         for poly in polys_to_process
-                            vrs = union(vrs, [v for v in vars(poly) if v in x_variables])
+                            vrs = union(vrs,
+                                        [v
+                                         for v in SIAN.Nemo.vars(poly) if v in x_variables])
                         end
-                        vars_to_add = Set{fmpq_mpoly}(v
-                                                      for v in vrs if !(v in x_theta_vars))
+                        vars_to_add = Set{SIAN.Nemo.fmpq_mpoly}(v
+                                                                for v in vrs
+                                                                if !(v in x_theta_vars))
                         for v in vars_to_add
                             x_theta_vars = vcat(x_theta_vars, v)
                             ord_var = SIAN.get_order_var2(v, all_indets, n + m + u, s)
-                            var_idx = var_index(ord_var[1])
+                            var_idx = SIAN.Nemo.var_index(ord_var[1])
                             poly = X[var_idx][ord_var[2]]
                             Et = vcat(Et, poly)
                             new_to_process = vcat(new_to_process, poly)
@@ -193,7 +196,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         end
     end
 
-    theta_l = Array{fmpq_mpoly}(undef, 0)
+    theta_l = Array{SIAN.Nemo.fmpq_mpoly}(undef, 0)
     params_to_assess_ = [SIAN.add_to_var(param, Rjet, 0) for param in params_to_assess]
     Et_eval_base = [SIAN.Nemo.evaluate(e, vcat(u_hat[1], y_hat[1]),
                                        vcat(u_hat[2], y_hat[2]))
@@ -267,9 +270,9 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         end
         Et_hat = [SIAN.Nemo.evaluate(e, alg_indep, transcendence_substitutions)
                   for e in Et_hat]
-        Et_x_vars = Set{fmpq_mpoly}()
+        Et_x_vars = Set{SIAN.Nemo.fmpq_mpoly}()
         for poly in Et_hat
-            Et_x_vars = union(Et_x_vars, Set(vars(poly)))
+            Et_x_vars = union(Et_x_vars, Set(SIAN.Nemo.vars(poly)))
         end
         Et_x_vars = setdiff(Et_x_vars, not_int_cond_params)
         Q_hat = SIAN.Nemo.evaluate(Q, u_hat[1], u_hat[2])
@@ -281,14 +284,14 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         # assign weights to variables
         if weighted_ordering
             for i in eachindex(Et_hat)
-                for _var in Set(vars(Et_hat[i]))
+                for _var in Set(SIAN.Nemo.vars(Et_hat[i]))
                     _var_non_jet, _var_order = SIAN.get_order_var(_var, non_jet_ring)
                     Et_hat[i] = SIAN.make_substitution(Et_hat[i], _var,
                                                        _var^get(weights, _var_non_jet, 1),
                                                        parent(_var)(1))
                 end
             end
-            for _var in Set(vars(Q_hat))
+            for _var in Set(SIAN.Nemo.vars(Q_hat))
                 _var_non_jet, _var_order = SIAN.get_order_var(_var, non_jet_ring)
                 Q_hat = SIAN.make_substitution(Q_hat, _var,
                                                _var^get(weights, _var_non_jet, 1),
