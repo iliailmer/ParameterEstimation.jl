@@ -19,7 +19,7 @@ measured_quantities = [y1 ~ w, y2 ~ z, y3 ~ x, y4 ~ y + v]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 20.0]
-datasize = 20
+datasize = 10
 p_true = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,

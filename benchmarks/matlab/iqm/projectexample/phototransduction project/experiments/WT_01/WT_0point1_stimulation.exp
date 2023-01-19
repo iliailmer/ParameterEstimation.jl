@@ -1,0 +1,13 @@
+********** EXPERIMENT NAME
+WT_0point1_stimulation
+
+********** EXPERIMENT NOTES
+Short duration stimulus experiment on WT
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+magStim = 2
+durStim = 0.1
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

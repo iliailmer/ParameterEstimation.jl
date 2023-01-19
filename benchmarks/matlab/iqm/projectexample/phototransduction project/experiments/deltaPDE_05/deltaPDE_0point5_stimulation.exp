@@ -1,0 +1,15 @@
+********** EXPERIMENT NAME
+deltaPDE_0point5_stimulation
+
+********** EXPERIMENT NOTES
+PDE KO experiment with medium duration stimulation
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+PDE(0) = 0  % knock-out
+
+magStim = 2
+durStim = 0.5
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

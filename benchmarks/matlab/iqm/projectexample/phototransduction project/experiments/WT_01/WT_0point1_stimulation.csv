@@ -1,0 +1,54 @@
+[Name]
+WT_0point1_stimulation
+
+[Notes]
+We used wild-type cells and subjected them to a short duration stimulation. 
+The stimulation corresponds to the reaction rate from R => Ract. Here the 
+reaction vStim has the form of a pulse, which starts at time=0 and ends at 
+time=0.1 (durStim) and has a magnitude of magStim = 2.
+
+We measured the amount of activated Rhodopsins (Ract) and the amount of 
+the complex GactPDEact.
+
+The names below (Ract, GactPDEact) need to be the same as the corresponding 
+component names in the model. Furthermore the units need to be the same. 
+
+NOTE: An amount of molecules < 1 is physically impossible. But just think 
+about that using deterministic simulation we obtain a mean of many 
+realizations.
+
+[Components]
+time,Ract,GactPDEact
+
+[Componentnotes]
+Ract: [#]
+GactPDEact: [#]
+
+[Values]
+0.000000,0.000000,0.000000
+0.200000,0.078169,29.690514
+0.400000,0.075701,57.135898
+0.600000,0.073177,73.894124
+0.800000,0.070606,83.587951
+1.000000,0.068016,88.638417
+1.200000,0.065434,90.659563
+1.400000,0.062886,90.724893
+1.600000,0.060390,89.546498
+1.800000,0.057961,87.595251
+2.000000,0.055609,85.181087
+2.100000,0.054463,83.866831
+2.600000,0.049053,76.861401
+3.100000,0.044170,69.877488
+3.600000,0.039782,63.338989
+4.100000,0.035844,57.349992
+5.000000,0.029741,47.923528
+6.000000,0.024204,39.247265
+7.000000,0.019721,32.141650
+8.000000,0.016083,26.322403
+9.000000,0.013126,21.556338
+10.000000,0.010719,17.652779
+12.000000,0.007158,11.837280
+14.000000,0.004786,7.936832
+16.000000,0.003203,5.321199
+18.000000,0.002145,3.567371
+20.000000,0.001436,2.391490
