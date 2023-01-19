@@ -30,6 +30,6 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 ParameterEstimation.write_sample(data_sample;
                                  filename = "./matlab/amigo_models/biohydrogenation-$datasize-$(time_interval[1])-$(time_interval[2]).txt")
 
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval)
 print(res)

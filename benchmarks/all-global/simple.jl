@@ -26,6 +26,6 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
                                               datasize; solver = solver)
 ParameterEstimation.write_sample(data_sample;
                                  filename = "../matlab/amigo_models/simple-$datasize-$(time_interval[1])-$(time_interval[end]).txt")
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval)
 print(res)
