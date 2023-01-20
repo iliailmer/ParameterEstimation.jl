@@ -54,19 +54,12 @@ function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Ve
                                                                                      ModelingToolkit.Equation
                                                                                      }([]),
                       data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
-                      time_interval::Vector{T} = Vector{T}(),
                       interpolation_degree::Int = 1) where {T <: Float}
     if length(measured_quantities) == 0
         error("No measured states provided")
     end
     if length(data_sample) == 0
         error("No data sample provided")
-    end
-    if length(time_interval) > 2 || length(time_interval) == 1
-        error("Time interval must be of the form [start, end]")
-    end
-    if length(time_interval) == 0
-        error("No time interval provided")
     end
     if interpolation_degree < 1
         error("Interpolation degree must be ≥ 1")
