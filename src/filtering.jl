@@ -56,7 +56,7 @@ function solve_ode(model, estimate::EstimationResult, data_sample;
 end
 
 """
-    solve_ode!(model, estimates::Vector{EstimationResult}, sampling_times, data_sample; solver = Tsit5())
+    solve_ode!(model, estimates::Vector{EstimationResult}, data_sample; solver = Tsit5())
 
 Run solve_ode for multiple estimates and store the results (error between solution and sample) in each estimate.
 This is done in-place.
