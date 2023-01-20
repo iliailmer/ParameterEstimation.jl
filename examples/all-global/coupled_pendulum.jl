@@ -18,13 +18,20 @@ parameters = [alpha]
 
 #initial conditions
 ic = [1.0, 0.0, 0.0, -1.0]
+p_true = [1.0]
 time_interval = [0.0, 10.0]
 datasize = 32
-p_true = [1.0]
+
+v = randn(datasize)
+v = sort(v .- minimum(v)) / maximum(v) * time_interval[2]
+
 measured_quantities = [y1 ~ theta_1, y2 ~ theta_2 + theta_1]
+data_sample = Dict{Any, Any}("t" => v)
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
-                                              p_true, ic, datasize; solver = solver)
+                                              p_true, ic, datasize; solver = solver,
+                                              uneven_sampling = true,
+                                              uneven_sampling_times = data_sample["t"])
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                                time_interval; solver = solver)
+                                   time_interval; solver = solver)
 print(res)

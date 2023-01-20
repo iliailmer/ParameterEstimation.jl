@@ -9,7 +9,7 @@ D = Differential(t)
 ic = [1.0, 2.0, 1.0, -1.0]
 time_interval = [0.0, 1.0]
 datasize = 10
-tsteps = range(time_interval[1], time_interval[2], length = datasize)
+sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.2, 0.3, 0.5, 0.6, -0.2, 1.1, 0.02] # True Parameters
 
 states = [x1, x2, x3, x4]

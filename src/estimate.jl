@@ -13,7 +13,7 @@ measured quantities `measured_quantities`.
 # Arguments
 - `model::ModelingToolkit.ODESystem`: the model with parameters and initial conditions to be estimated.
 - `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities of the model. Used for identifiability assessment.
-- `data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
+- `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
 - `time_interval = Vector{T}()`: the time interval of the data sample.
@@ -27,7 +27,7 @@ measured quantities `measured_quantities`.
 """
 function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
-                               data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                               data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                                time_interval = Vector{T}(),
                                identifiability_result = Dict{String, Any}(),
                                interpolation_degree::Int = 1, at_time::T = 0.0;
@@ -38,6 +38,10 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
     states = ModelingToolkit.states(model)
     num_parameters = length(parameters) + length(states)
     @info "Interpolating sample data via rational interpolation"
+    if !haskey(data_sample, "t")
+        @warn "No sampling time points found in data sample. Assuming uniform sampling t ∈ [$(time_interval[1]), $(time_interval[2])]."
+        data_sample["t"] = range(time_interval[1], time_interval[2], length = datasize)
+    end
     polynomial_system, interpolants = ParameterEstimation.interpolate(identifiability_result,
                                                                       data_sample,
                                                                       time_interval,
@@ -84,7 +88,7 @@ end
 """
 estimate(model::ModelingToolkit.ODESystem,
                           measured_quantities::Vector{ModelingToolkit.Equation},
-                          data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                          data_sample:::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                           time_interval = Vector{T}(), at_time::T = 0.0;
                           solver = Tsit5(),
                           degree_range = nothing, real_tol = 1e-10) where {T <: Float}
@@ -94,7 +98,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 """
 function estimate(model::ModelingToolkit.ODESystem,
                   measured_quantities::Vector{ModelingToolkit.Equation},
-                  data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                  data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                   time_interval = Vector{T}(), at_time::T = 0.0;
                   solver = Tsit5(),
                   degree_range = nothing,
@@ -147,7 +151,8 @@ function estimate_threaded(model, measured_quantities, data_sample,
                                                deg, at_time)
             if length(unfiltered) > 0
                 filtered = filter_solutions(unfiltered, identifiability_result, model,
-                                            data_sample, time_interval; solver = solver)
+                                            data_sample; time_interval = time_interval,
+                                            solver = solver)
                 push!(estimates[id], filtered)
 
             else
@@ -192,12 +197,11 @@ end
 
 function estimate_serial(model::ModelingToolkit.ODESystem,
                          measured_quantities::Vector{ModelingToolkit.Equation},
-                         data_sample::Dict{Num, Vector{T}} = Dict{Num,
-                                                                  Vector{T}}(),
+                         data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                          time_interval = Vector{T}(), at_time::T = 0.0;
                          solver = Tsit5(),
                          degree_range = nothing,
-                         real_tol = 1e-10) where {T <: Float}
+                         real_tol::Float64 = 1e-10) where {T <: Float}
     check_inputs(measured_quantities, data_sample, time_interval)
     datasize = length(first(values(data_sample)))
     if degree_range === nothing
@@ -210,15 +214,14 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
     @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end])"
     with_logger(logger) do
         @showprogress for deg in degree_range
-            unfiltered = estimate_fixed_degree(model,
-                                               measured_quantities,
-                                               data_sample,
-                                               time_interval,
-                                               identifiability_result,
-                                               deg, at_time)
+            unfiltered = estimate_fixed_degree(model, measured_quantities, data_sample,
+                                               time_interval, identifiability_result, deg,
+                                               at_time)
             if length(unfiltered) > 0
-                filtered = filter_solutions(unfiltered, identifiability_result, model,
-                                            data_sample, time_interval; solver = solver)
+                filtered = filtered = filter_solutions(unfiltered, identifiability_result,
+                                                       model, data_sample;
+                                                       time_interval = time_interval,
+                                                       solver = solver)
                 push!(estimates, filtered)
             else
                 push!(estimates,
