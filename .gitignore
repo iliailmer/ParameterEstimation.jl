@@ -34,3 +34,6 @@ benchmarks/matlab/src
 *.txt
 timecommand
 objf*.m
+sharable
+*.zip
+.R*

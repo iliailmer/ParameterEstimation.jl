@@ -22,7 +22,7 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
     end
 end
 
-function nemo2hc(expr_tree::fmpq_mpoly)
+function nemo2hc(expr_tree::SIAN.Nemo.fmpq_mpoly)
     return nemo2hc(Meta.parse(string(expr_tree)))
 end
 
@@ -44,8 +44,8 @@ end
 
 """
     check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation}([]),
-                 data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                 time_interval = Vector{T}(),
+                 data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
+                 time_interval::Vector{T} = Vector{T}(),
                  interpolation_degree::Int = 1) where {T <: Float}
 
 Checks that the inputs to `estimate` are valid.
@@ -53,20 +53,13 @@ Checks that the inputs to `estimate` are valid.
 function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
                                                                                      ModelingToolkit.Equation
                                                                                      }([]),
-                      data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                      time_interval = Vector{T}(),
+                      data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                       interpolation_degree::Int = 1) where {T <: Float}
     if length(measured_quantities) == 0
         error("No measured states provided")
     end
     if length(data_sample) == 0
         error("No data sample provided")
-    end
-    if length(time_interval) > 2 || length(time_interval) == 1
-        error("Time interval must be of the form [start, end]")
-    end
-    if length(time_interval) == 0
-        error("No time interval provided")
     end
     if interpolation_degree < 1
         error("Interpolation degree must be ≥ 1")
@@ -90,19 +83,33 @@ function sample_data(model::ModelingToolkit.ODESystem,
                      p_true::Vector{T},
                      u0::Vector{T},
                      num_points::Int;
+                     uneven_sampling = false,
+                     uneven_sampling_times = Vector{T}(),
                      solver = Tsit5(), inject_noise = false, mean_noise = 0,
                      stddev_noise = 1) where {T <: Float}
-    tsteps = range(time_interval[1], time_interval[2], length = num_points)
+    if uneven_sampling
+        if length(uneven_sampling_times) == 0
+            error("No uneven sampling times provided")
+        end
+        if length(uneven_sampling_times) != num_points
+            error("Uneven sampling times must be of length num_points")
+        end
+        sampling_times = uneven_sampling_times
+    else
+        sampling_times = range(time_interval[1], time_interval[2], length = num_points)
+    end
     problem = ODEProblem(model, u0, time_interval, p_true)
-    solution_true = ModelingToolkit.solve(problem, solver, p = p_true, saveat = tsteps;
+    solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
+                                          saveat = sampling_times;
                                           abstol = 1e-10, reltol = 1e-10)
-    data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_data)
+    data_sample = Dict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]
+                                       for v in measured_data)
     if inject_noise
         for (key, sample) in data_sample
             data_sample[key] = sample + randn(num_points) .* stddev_noise .+ mean_noise
         end
     end
-
+    data_sample["t"] = sampling_times
     return data_sample
 end
 

@@ -1,0 +1,23 @@
+********** EXPERIMENT NAME
+
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+k01 = 0.2
+k12 = 0.3
+k13 = 0.5
+k14 = 0.6
+k21 = -0.2
+k31 = 1.1
+k41 = 0.02
+
+x1(0) = 0.5
+x2(0) = 0.5
+x3(0) = 0.5
+x4(0) = 0.5
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

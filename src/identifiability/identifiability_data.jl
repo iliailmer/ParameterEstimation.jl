@@ -5,28 +5,28 @@ A struct that contains the data from identifiability analysis.
 This is used for parameter estimation.
 
 # Fields
-- `polynomial_system::Vector{Nemo.fmpq_mpoly}`: The polynomial system.
-- `denominator::Nemo.fmpq_mpoly`: The denominator of the polynomial system.
-- `variables::Vector{Nemo.fmpq_mpoly}`: The variables of the polynomial system.
+- `polynomial_system::Vector{SIAN.Nemo.fmpq_mpoly}`: The polynomial system.
+- `denominator::SIAN.Nemo.fmpq_mpoly`: The denominator of the polynomial system.
+- `variables::Vector{SIAN.Nemo.fmpq_mpoly}`: The variables of the polynomial system.
 - `substitutions::Vector{Vector}`: The substitutions used to assess identifiability.
 - `identifiability_nemo::Any`: The identifiability data from SIAN in Nemo data type.
 - `identifiability::Dict{Any, Any}`: The identifiability data from SIAN in HomotopyContinuation compatible data type.
-- `basis::Vector{Nemo.fmpq_mpoly}`: The transcendence basis of the polynomial system.
-- `transcendence_basis_subs::Vector{Nemo.RingElem}`: The transcendence basis substitutions of the polynomial system.
-- `weights::Dict{fmpq_mpoly, Int64}`: The weights of the variables used by SIAN to assess GroebnerBasis.
+- `basis::Vector{SIAN.Nemo.fmpq_mpoly}`: The transcendence basis of the polynomial system.
+- `transcendence_basis_subs::Vector{SIAN.Nemo.RingElem}`: The transcendence basis substitutions of the polynomial system.
+- `weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}`: The weights of the variables used by SIAN to assess GroebnerBasis.
 """
 struct IdentifiabilityData
-    polynomial_system::Vector{Nemo.fmpq_mpoly}
-    denomiantor::Nemo.fmpq_mpoly
-    variables::Vector{Nemo.fmpq_mpoly}
+    polynomial_system::Vector{SIAN.Nemo.fmpq_mpoly}
+    denomiantor::SIAN.Nemo.fmpq_mpoly
+    variables::Vector{SIAN.Nemo.fmpq_mpoly}
     substitutions::Vector{Vector}
     identifiability_nemo::Any
     identifiability::Dict{Any, Any}
-    transcendence_basis_subs::Vector{Nemo.RingElem}
+    transcendence_basis_subs::Dict{Any, Any}
     Y_eq::Dict{Any, Any}
-    basis::Vector{Nemo.fmpq_mpoly}
-    weights::Dict{fmpq_mpoly, Int64}
-    non_jet_ring::Nemo.FmpqMPolyRing
+    basis::Vector{SIAN.Nemo.fmpq_mpoly}
+    weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}
+    non_jet_ring::SIAN.Nemo.FmpqMPolyRing
     nemo_mtk::Dict
     # solution_counts::Dict
     function IdentifiabilityData(input::Dict)

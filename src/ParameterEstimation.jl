@@ -4,7 +4,7 @@ import TaylorSeries: Taylor1
 
 using ProgressMeter, Logging, Printf
 using ModelingToolkit, LinearSolve, LinearAlgebra
-using SIAN, Nemo, HomotopyContinuation, Groebner
+using SIAN, HomotopyContinuation, Groebner
 using .ReturnCode
 
 Float = Union{Float64, Float32, Float16}
@@ -24,6 +24,6 @@ include("filtering.jl")
 include("utils.jl")
 include("metrics.jl")
 
-export check_identifiability, estimate, estimate_over_degrees, filter_solutions
+export check_identifiability, estimate, filter_solutions, sample_data
 
 end

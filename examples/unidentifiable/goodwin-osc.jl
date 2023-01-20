@@ -19,13 +19,13 @@ measured_quantities = [
 ]
 
 ic = [1 / 10, 2 / 10, 25 / 10]
-time_interval = [0.0, 5.0]
+time_interval = [0.0, 1.0]
 datasize = 50
-tsteps = range(time_interval[1], time_interval[2], length = datasize)
+sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1 / 10, 1, 1 / 10, 1, 1 / 10, 1] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval)
+at_time = 0.5
 
-print(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval, at_time)

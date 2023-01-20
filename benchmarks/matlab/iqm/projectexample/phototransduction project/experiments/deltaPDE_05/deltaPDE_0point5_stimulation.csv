@@ -1,0 +1,52 @@
+[Name]
+deltaPDE_0point5_stimulation
+
+[Notes]
+We used PDE-knock-out cells and subjected them to a medium duration 
+stimulation. The stimulation corresponds to the reaction rate from 
+R => Ract. Here the reaction vStim has the form of a pulse, which 
+starts at time=0 and ends at time=0.5 (durStim) and has a magnitude 
+of magStim = 2.
+
+We measured the amount of activated Rhodopsins (Ract). Since PDE is 0, 
+the GactPDEact complex can not appear and thus does not need to be 
+measured (maybe only for validation of the successful k/o... but it 
+is not done here).
+
+The names below (Ract, GactPDEact) need to be the same as the corresponding
+component names in the model. Furthermore the units need to be the same. 
+
+NOTE: An amount of molecules < 1 is physically impossible. But just think 
+about that using deterministic simulation we obtain a mean of many 
+realizations.
+
+[Components]
+time,Ract
+
+[Componentnotes]
+Ract: [#]
+
+[Values]
+0.000000,0.000000
+0.200000,0.158551
+0.400000,0.319318
+0.600000,0.403721
+0.800000,0.404070
+1.000000,0.402953
+1.500000,0.393414
+2.000000,0.374550
+2.500000,0.347982
+3.000000,0.316198
+3.500000,0.281876
+4.000000,0.247338
+5.000000,0.183818
+6.000000,0.132424
+7.000000,0.093767
+8.000000,0.065858
+9.000000,0.046160
+10.000000,0.032414
+12.000000,0.016219
+14.000000,0.008333
+16.000000,0.004405
+18.000000,0.002393
+20.000000,0.001333

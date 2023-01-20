@@ -24,7 +24,5 @@ datasize = 20
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
 
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval)
-
-print(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
+                                   time_interval)

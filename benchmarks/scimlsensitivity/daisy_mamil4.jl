@@ -10,7 +10,7 @@ D = Differential(t)
 ic = [1.0, 2.0, 1.0, -1.0]
 time_interval = [0.0, 10.0]
 datasize = 20
-tsteps = range(time_interval[1], time_interval[2], length = datasize)
+sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.2, 0.3, 0.5, 0.6, -0.2, 1.1, 0.02] # True Parameters
 
 states = [x1, x2, x3, x4]
@@ -24,7 +24,7 @@ parameters = [k01, k12, k13, k14, k21, k31, k41]
                          t, states, parameters)
 measured_quantities = [y1 ~ x1 + x3, y2 ~ x2 + x4, y3 ~ x1 + x2, y4 ~ x3 + x4]
 prob_true = ODEProblem(model, ic, time_interval, p_true)
-solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps)
+solution_true = solve(prob_true, solver, p = p_true, saveat = sampling_times)
 
 data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 
@@ -33,11 +33,11 @@ prob = ODEProblem(model, ic, time_interval,
                   p_rand)
 sol = solve(remake(prob, u0 = p_rand[1:length(ic)]), solver,
             p = p_rand[(length(ic) + 1):end],
-            saveat = tsteps)
+            saveat = sampling_times)
 
 function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
-                saveat = tsteps)
+                saveat = sampling_times)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
     data = [sol[1, :] + sol[3, :], sol[2, :] + sol[4, :], sol[1, :] + sol[2, :],
         sol[3, :] + sol[4, :]]

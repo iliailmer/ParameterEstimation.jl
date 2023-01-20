@@ -5,7 +5,7 @@ ParameterEstimation.estimate
 ```
 
 ```@docs
-ParameterEstimation.estimate_over_degrees
+ParameterEstimation.estimate
 ```
 
 ```@docs

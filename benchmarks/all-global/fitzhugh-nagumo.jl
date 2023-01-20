@@ -1,5 +1,5 @@
 using ParameterEstimation
-using ModelingToolkit, Nemo, HomotopyContinuation, DifferentialEquations
+using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters g a b
@@ -11,7 +11,7 @@ parameters = [g, a, b]
 ic = [1.0, -1.0]
 time_interval = [0.0, 1.0]
 datasize = 50
-tsteps = range(time_interval[1], time_interval[2], length = datasize)
+sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [2, 2 / 10, 2 / 10] # True Parameters
 measured_quantities = [y1 ~ V]
 
@@ -25,6 +25,5 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 ParameterEstimation.write_sample(data_sample;
                                  filename = "../matlab/amigo_models/fhn-$datasize.txt")
 
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval; solver = solver)
-println(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)

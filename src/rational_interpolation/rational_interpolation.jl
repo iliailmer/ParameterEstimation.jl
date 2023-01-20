@@ -71,23 +71,24 @@ This function performs the key step in parameter estimation.
 # Returns
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
 """
-function interpolate(identifiability_result, data_sample, time_interval,
-                     measured_quantities,
-                     interpolation_degree::Int = 1,
-                     diff_order::Int = 1,
-                     at_t::Float = 0.0)
+function interpolate(identifiability_result, data_sample,
+                     measured_quantities, interpolation_degree::Int = 1,
+                     diff_order::Int = 1, at_t::Float = 0.0)
     polynomial_system = identifiability_result["polynomial_system"]
     interpolants = Dict{Any, Interpolant}()
+    sampling_times = data_sample["t"]
     for (key, sample) in pairs(data_sample)
+        if key == "t"
+            continue
+        end
         y_function_name = map(x -> replace(string(x.lhs), "(t)" => ""),
                               filter(x -> string(x.rhs) == string(key),
                                      measured_quantities))[1]
-        tsteps = range(time_interval[1], time_interval[2], length = length(sample))
-        interpolant = ParameterEstimation.interpolate(tsteps, sample,
+        interpolant = ParameterEstimation.interpolate(sampling_times, sample,
                                                       interpolation_degree,
                                                       diff_order, at_t)
         interpolants[key] = interpolant
-        err = sum(abs.(sample - interpolant.I.(tsteps))) / length(tsteps)
+        err = sum(abs.(sample - interpolant.I.(sampling_times))) / length(sampling_times)
         @info "Mean Absolute error in interpolation: $err interpolating $key"
         for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
             if occursin(y_function_name, string(y_func))

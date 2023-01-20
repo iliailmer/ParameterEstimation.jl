@@ -1,0 +1,20 @@
+********** EXPERIMENT NAME
+
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+p1 = 0.4
+p3 = 0.4
+p4 = 0.4
+p6 = 0.4
+p7 = 0.4
+x1(0) = 0.5
+x2(0) = 0.5
+x3(0) = 0.5
+u0(0) = 0.5
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

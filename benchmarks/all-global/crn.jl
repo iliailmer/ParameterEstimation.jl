@@ -28,17 +28,5 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
                                               p_true, u0,
                                               datasize; solver = solver)
 
-# interpolation_degree = 6
-# identifiability_result = ParameterEstimation.check_identifiability(model;
-#                                                                    measured_quantities = measured_quantities)
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-#                                    time_interval,
-#                                    identifiability_result,
-#                                    interpolation_degree)
-# filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-#                                                 data_sample,
-#                                                 time_interval; solver = solver)
-# println("Filtered solutions: ", filtered)
-res = ParameterEstimation.estimate_over_degrees(model, measured_quantities, data_sample,
-                                                time_interval; solver = solver)
-println(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)

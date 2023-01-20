@@ -1,5 +1,5 @@
 """
-    solve_ode(model, estimate::EstimationResult, tsteps, data_sample; solver = Tsit5(),
+    solve_ode(model, estimate::EstimationResult, data_sample; solver = Tsit5(),
               return_ode = false)
 
 Solves the ODE system `model` with the parameters and initial conditions given by `estimate`.
@@ -8,7 +8,6 @@ Compute the error between the solution and the data sample. The error is recorde
 # Arguments
 - `model`: the ODE system to be solved.
 - `estimate::EstimationResult`: the parameters and initial conditions of the ODE system.
-- `tsteps`: the time steps of the ODE system. See `ModelingToolkit.solve`.
 - `data_sample`: the data sample used for estimation (same functions as `measured_quantities`).
                  The keys of the dictionary are the measured quantities
                  and the values are the corresponding data samples.
@@ -19,21 +18,24 @@ Compute the error between the solution and the data sample. The error is recorde
 - ode_solution: the solution of the ODE system (if `return_ode` is set to `true`).
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
-function solve_ode(model, estimate::EstimationResult, tsteps, data_sample;
-                   solver = Tsit5(),
-                   return_ode = false)
+function solve_ode(model, estimate::EstimationResult, data_sample;
+                   solver = Tsit5(), return_ode = false)
     initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
     parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
-    tspan = (estimate.at_time, tsteps[end] + estimate.at_time)
+    tspan = (estimate.at_time, data_sample["t"][end] + estimate.at_time)
     prob = ModelingToolkit.ODEProblem(model, initial_conditions,
                                       tspan, parameter_values)
     ode_solution = ModelingToolkit.solve(prob, solver,
                                          saveat = range(tspan[1], tspan[2],
-                                                        length = length(tsteps)))
+                                                        length = length(data_sample["t"])))
     if ode_solution.retcode == ReturnCode.Success
         err = 0
         for (key, sample) in data_sample
-            err += ParameterEstimation.mean_abs_err(ode_solution(tsteps)[key], sample)
+            if isequal(key, "t")
+                continue
+            end
+            err += ParameterEstimation.mean_abs_err(ode_solution(data_sample["t"])[key],
+                                                    sample)
         end
         err /= length(data_sample)
     else
@@ -54,15 +56,14 @@ function solve_ode(model, estimate::EstimationResult, tsteps, data_sample;
 end
 
 """
-    solve_ode!(model, estimates::Vector{EstimationResult}, tsteps, data_sample; solver = Tsit5())
+    solve_ode!(model, estimates::Vector{EstimationResult}, data_sample; solver = Tsit5())
 
 Run solve_ode for multiple estimates and store the results (error between solution and sample) in each estimate.
 This is done in-place.
 """
-function solve_ode!(model, estimates::Vector{EstimationResult},
-                    tsteps, data_sample;
+function solve_ode!(model, estimates::Vector{EstimationResult}, data_sample;
                     solver = Tsit5())
-    estimates[:] = map(each -> solve_ode(model, each, tsteps, data_sample, solver = solver),
+    estimates[:] = map(each -> solve_ode(model, each, data_sample, solver = solver),
                        estimates)
 end
 
@@ -80,10 +81,10 @@ In addition, takes into account global and local identifiability of parameters w
 - `results::Vector{EstimationResult}`: the vector of estimation results.
 - `identifiability_result::IdentifiabilityData`: the result of identifiability analysis.
 - `model::ModelingToolkit.ODESystem`: the ODE system.
-- `data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
+- `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
-- `time_interval = Vector{T}()`: the time interval of the ODE system.
+- `time_interval::Vector{T} = Vector{T}()`: the time interval of the ODE system.
 - `topk = 1`: (optional) the number of best estimates to return.
 
 # Returns
@@ -92,8 +93,7 @@ In addition, takes into account global and local identifiability of parameters w
 function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
-                          data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                          time_interval = Vector{T}(), id_combs = [];
+                          data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                           solver = Tsit5(),
                           topk = 1) where {T <: Float}
     @info "Filtering"
@@ -104,19 +104,35 @@ function filter_solutions(results::Vector{EstimationResult},
     if all(each -> each.return_code == ReturnCode.Failure, results)
         return results
     end
-    tsteps = range(time_interval[1], time_interval[2],
-                   length = length(first(values(data_sample))))
-    if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
-        @warn "The model contains non-identifiable parameters, no filtering was done."
+    try
+        solve_ode!(model, results, data_sample; solver = solver) # this solves ODE with new parameters and computes err. between sample and solution
+    catch InexactError
+        @debug "InexactError when solving the ODE, no filtering was done."
         return results
     end
-    solve_ode!(model, results, tsteps, data_sample; solver = solver)
+    if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
+        @warn "The model contains non-identifiable parameters"
+        filtered_results = Vector{ParameterEstimation.EstimationResult}()
+        clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
+                                                          solver = solver)
+        if length(clustered) == 0
+            @debug "No clustered data, cannot find results to filter."
+            return results
+        end
+        min_cluster_err, min_cluster_idx = findmin(sum(each.err for each in group) /
+                                                   length(group)
+                                                   for (id, group) in pairs(clustered))
+        min_cluster = clustered[min_cluster_idx]
+        @info "Best estimate yelds ODE solution error $(min_cluster_err)"
+        filtered_results = min_cluster
+        return results
+    end
     if length(identifiability_result["identifiability"]["locally_not_globally"]) > 0
         filtered_results = Vector{ParameterEstimation.EstimationResult}()
-        clustered = ParameterEstimation.cluster_estimates(model, results, tsteps,
-                                                          data_sample)
+        clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
+                                                          solver = solver)
         if length(clustered) == 0
-            @warn "No results to filter."
+            @debug "No clustered data, cannot find results to filter."
             return results
         end
         # find cluster with smallest error
@@ -141,9 +157,9 @@ function filter_solutions(results::Vector{EstimationResult},
     return filtered_results
 end
 
-function cluster_estimates(model, res, tsteps, data_sample; ε = 1e-6)
+function cluster_estimates(model, res, data_sample; ε = 1e-6, solver = Tsit5())
     # clusrers the estimates by their error
-    ParameterEstimation.solve_ode!(model, res, tsteps, data_sample)
+    ParameterEstimation.solve_ode!(model, res, data_sample, solver = solver)
     clustered = Dict()
     #nearest neighbor search by err
     for i in eachindex(res)

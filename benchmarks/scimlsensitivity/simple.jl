@@ -22,10 +22,10 @@ ic = [1.0, 1.0]
 p_true = [9.8, 1.3]
 time_interval = [0.0, 2.0 * pi * sqrt(1.3 / 9.8)]
 datasize = 20
-tsteps = range(time_interval[1], time_interval[2], length = datasize)
+sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 
 prob_true = ODEProblem(model, ic, time_interval, p_true)
-solution_true = solve(prob_true, solver, p = p_true, saveat = tsteps)
+solution_true = solve(prob_true, solver, p = p_true, saveat = sampling_times)
 
 data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 
@@ -34,11 +34,11 @@ prob = ODEProblem(model, ic, time_interval,
                   p_rand)
 sol = solve(remake(prob, u0 = p_rand[1:length(ic)]), solver,
             p = p_rand[(length(ic) + 1):end],
-            saveat = tsteps)
+            saveat = sampling_times)
 
 function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
-                saveat = tsteps)
+                saveat = sampling_times)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
     data = [vcat(sol[1, :]), vcat(sol[2, :])]
     loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))

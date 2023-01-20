@@ -1,5 +1,5 @@
 using Test, TestSetExtensions
-using ModelingToolkit, Nemo, HomotopyContinuation
+using ModelingToolkit, SIAN, HomotopyContinuation
 using ParameterEstimation
 
 @info "Testing started"

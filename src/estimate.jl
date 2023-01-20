@@ -1,5 +1,5 @@
 """
-    estimate(model::ModelingToolkit.ODESystem,
+estimate_fixed_degree(model::ModelingToolkit.ODESystem,
              measured_quantities::Vector{ModelingToolkit.Equation},
              data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
              time_interval = Vector{T}(),
@@ -13,7 +13,7 @@ measured quantities `measured_quantities`.
 # Arguments
 - `model::ModelingToolkit.ODESystem`: the model with parameters and initial conditions to be estimated.
 - `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities of the model. Used for identifiability assessment.
-- `data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
+- `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
 - `time_interval = Vector{T}()`: the time interval of the data sample.
@@ -25,22 +25,25 @@ measured quantities `measured_quantities`.
 # Returns
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
-function estimate(model::ModelingToolkit.ODESystem,
-                  measured_quantities::Vector{ModelingToolkit.Equation},
-                  data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                  time_interval = Vector{T}(),
-                  identifiability_result = Dict{String, Any}(),
-                  interpolation_degree::Int = 1, at_time::T = 0.0;
-                  real_tol = 1e-10) where {T <: Float}
-    check_inputs(measured_quantities, data_sample, time_interval, interpolation_degree)
+function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
+                               measured_quantities::Vector{ModelingToolkit.Equation},
+                               data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
+                               identifiability_result = Dict{String, Any}(),
+                               interpolation_degree::Int = 1, at_time::T = 0.0;
+                               real_tol = 1e-10) where {T <: Float}
+    time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]
+    check_inputs(measured_quantities, data_sample, interpolation_degree)
     datasize = length(first(values(data_sample)))
     parameters = ModelingToolkit.parameters(model)
     states = ModelingToolkit.states(model)
     num_parameters = length(parameters) + length(states)
     @info "Interpolating sample data via rational interpolation"
+    if !haskey(data_sample, "t")
+        @warn "No sampling time points found in data sample. Assuming uniform sampling t ∈ [$(time_interval[1]), $(time_interval[2])]."
+        data_sample["t"] = range(time_interval[1], time_interval[2], length = datasize)
+    end
     polynomial_system, interpolants = ParameterEstimation.interpolate(identifiability_result,
                                                                       data_sample,
-                                                                      time_interval,
                                                                       measured_quantities,
                                                                       interpolation_degree,
                                                                       num_parameters + 1,
@@ -52,8 +55,8 @@ function estimate(model::ModelingToolkit.ODESystem,
     if length(all_solutions) == 0
         all_solutions = HomotopyContinuation.solutions(results)
         if length(all_solutions) == 0
-            @warn "Interpolation numerator degree $(interpolation_degree): No solutions found"
-            return []
+            @debug "Interpolation numerator degree $(interpolation_degree): No solutions found"
+            return Vector{EstimationResult}()
         end
     end
     all_solutions_ = Vector{EstimationResult}([])
@@ -69,6 +72,11 @@ function estimate(model::ModelingToolkit.ODESystem,
                 tmp[state_param_map[string(v)[1:(end - 2)]]] = sol[idx]
             end
         end
+        for (key, val) in identifiability_result.transcendence_basis_subs
+            if endswith(string(key), "_0")
+                tmp[state_param_map[string(key)[1:(end - 2)]]] = Int(Meta.parse("$val"))
+            end
+        end
         param_est = EstimationResult(model, tmp, interpolation_degree, at_time,
                                      interpolants, ReturnCode.Success, datasize)
         push!(all_solutions_, param_est)
@@ -77,9 +85,9 @@ function estimate(model::ModelingToolkit.ODESystem,
 end
 
 """
-    estimate_over_degrees(model::ModelingToolkit.ODESystem,
+estimate(model::ModelingToolkit.ODESystem,
                           measured_quantities::Vector{ModelingToolkit.Equation},
-                          data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                          data_sample:::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                           time_interval = Vector{T}(), at_time::T = 0.0;
                           solver = Tsit5(),
                           degree_range = nothing, real_tol = 1e-10) where {T <: Float}
@@ -87,33 +95,37 @@ end
 Run estimation over a range of interpolation degrees. Return the best estimate according to a heuristic:
     - the best estimate is the one with the smallest error between sample data and ODE solution with current parameters (estimates);
 """
-function estimate_over_degrees(model::ModelingToolkit.ODESystem,
-                               measured_quantities::Vector{ModelingToolkit.Equation},
-                               data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                               time_interval = Vector{T}(), at_time::T = 0.0;
-                               solver = Tsit5(),
-                               degree_range = nothing,
-                               real_tol = 1e-10,
-                               threaded = Threads.nthreads() > 1) where {T <: Float}
+function estimate(model::ModelingToolkit.ODESystem,
+                  measured_quantities::Vector{ModelingToolkit.Equation},
+                  data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
+                  at_time::T = 0.0;
+                  solver = Tsit5(),
+                  degree_range = nothing,
+                  real_tol = 1e-10,
+                  threaded = Threads.nthreads() > 1) where {T <: Float}
     if threaded
-        return estimate_over_degrees_threaded(model, measured_quantities, data_sample,
-                                              time_interval, at_time; solver = solver,
-                                              degree_range = degree_range,
-                                              real_tol = real_tol)
+        result = estimate_threaded(model, measured_quantities, data_sample,
+                                   at_time; solver = solver,
+                                   degree_range = degree_range,
+                                   real_tol = real_tol)
+        display(result)
+        return result
     else
-        return estimate_over_degrees_serial(model, measured_quantities, data_sample,
-                                            time_interval, at_time; solver = solver,
-                                            degree_range = degree_range,
-                                            real_tol = real_tol)
+        result = estimate_serial(model, measured_quantities, data_sample,
+                                 at_time; solver = solver,
+                                 degree_range = degree_range,
+                                 real_tol = real_tol)
+        display(result)
+        return result
     end
 end
 
-function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
-                                        time_interval, at_time; solver = solver,
-                                        degree_range = degree_range,
-                                        real_tol = real_tol)
-    @warn "It looks like you are using threaded estimation. This is experimental and may not work as expected."
-    check_inputs(measured_quantities, data_sample, time_interval)
+function estimate_threaded(model, measured_quantities, data_sample,
+                           at_time; solver = solver,
+                           degree_range = degree_range,
+                           real_tol = real_tol)
+    @warn "Using threaded estimation."
+    check_inputs(measured_quantities, data_sample)
     datasize = length(first(values(data_sample)))
     if degree_range === nothing
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
@@ -134,15 +146,12 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
             if isnothing(estimates[id])
                 estimates[id] = []
             end
-            unfiltered = estimate(model,
-                                  measured_quantities,
-                                  data_sample,
-                                  time_interval,
-                                  identifiability_result,
-                                  deg, at_time)
+            unfiltered = estimate_fixed_degree(model, measured_quantities,
+                                               data_sample, identifiability_result,
+                                               deg, at_time)
             if length(unfiltered) > 0
                 filtered = filter_solutions(unfiltered, identifiability_result, model,
-                                            data_sample, time_interval; solver = solver)
+                                            data_sample; solver = solver)
                 push!(estimates[id], filtered)
 
             else
@@ -164,12 +173,16 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
 
     best_solution = nothing
     for each in estimates
-        if best_solution === nothing
-            best_solution = each
-        else
-            if sum(x.err for x in each) < sum(x.err for x in best_solution)
+        if all(!isnothing(x.err) for x in each)
+            if best_solution === nothing
                 best_solution = each
+            else
+                if sum(x.err for x in each) < sum(x.err for x in best_solution)
+                    best_solution = each
+                end
             end
+        else
+            best_solution = nothing
         end
     end
     if best_solution !== nothing
@@ -181,15 +194,12 @@ function estimate_over_degrees_threaded(model, measured_quantities, data_sample,
     end
 end
 
-function estimate_over_degrees_serial(model::ModelingToolkit.ODESystem,
-                                      measured_quantities::Vector{ModelingToolkit.Equation},
-                                      data_sample::Dict{Num, Vector{T}} = Dict{Num,
-                                                                               Vector{T}}(),
-                                      time_interval = Vector{T}(), at_time::T = 0.0;
-                                      solver = Tsit5(),
-                                      degree_range = nothing,
-                                      real_tol = 1e-10) where {T <: Float}
-    check_inputs(measured_quantities, data_sample, time_interval)
+function estimate_serial(model::ModelingToolkit.ODESystem,
+                         measured_quantities::Vector{ModelingToolkit.Equation},
+                         data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
+                         at_time::T = 0.0; solver = Tsit5(), degree_range = nothing,
+                         real_tol::Float64 = 1e-10) where {T <: Float}
+    check_inputs(measured_quantities, data_sample)
     datasize = length(first(values(data_sample)))
     if degree_range === nothing
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
@@ -201,15 +211,11 @@ function estimate_over_degrees_serial(model::ModelingToolkit.ODESystem,
     @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end])"
     with_logger(logger) do
         @showprogress for deg in degree_range
-            unfiltered = estimate(model,
-                                  measured_quantities,
-                                  data_sample,
-                                  time_interval,
-                                  identifiability_result,
-                                  deg, at_time)
+            unfiltered = estimate_fixed_degree(model, measured_quantities, data_sample,
+                                               identifiability_result, deg, at_time)
             if length(unfiltered) > 0
-                filtered = filter_solutions(unfiltered, identifiability_result, model,
-                                            data_sample, time_interval; solver = solver)
+                filtered = filtered = filter_solutions(unfiltered, identifiability_result,
+                                                       model, data_sample; solver = solver)
                 push!(estimates, filtered)
             else
                 push!(estimates,
@@ -225,20 +231,24 @@ function estimate_over_degrees_serial(model::ModelingToolkit.ODESystem,
     estimates = filter(x -> length(x) > 0, estimates)
 
     #filter out the Failure results
-    # estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
+    estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
 
     best_solution = nothing
     for each in estimates
-        if best_solution === nothing
-            best_solution = each
-        else
-            if sum(x.err for x in each) < sum(x.err for x in best_solution)
+        if all(!isnothing(x.err) for x in each)
+            if best_solution === nothing
                 best_solution = each
+            else
+                if sum(x.err for x in each) < sum(x.err for x in best_solution)
+                    best_solution = each
+                end
             end
+        else
+            best_solution = nothing
         end
     end
     if best_solution !== nothing
-        @info "Best estimate found" # error(s) $([x.err for x in best_solution])"
+        @info "Best estimate found"
         return best_solution
     else
         @warn "No solution found"
