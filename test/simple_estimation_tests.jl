@@ -1,4 +1,4 @@
-@testset "Convert Nemo polynomial systems into HomotopyContinuation type" begin
+@testset "Run small estimation code to test correctness" begin
     using ParameterEstimation
     using ModelingToolkit # ODE definitions
 
@@ -18,6 +18,6 @@
     res = estimate(model, outs, data, time)
     @test length(res) == 1
     @test res[1].return_code == :Success
-    @test isapprox(res[1].parameters[1], 0.5, atol = 1e-3)
-    @test isapprox(res[1].states[1], 1.0, atol = 1e-3)
+    @test isapprox(res[1].parameters[mu], 0.5, atol = 1e-3)
+    @test isapprox(res[1].states[x1], 1.0, atol = 1e-3)
 end
