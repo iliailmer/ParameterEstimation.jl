@@ -22,7 +22,7 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
     end
 end
 
-function nemo2hc(expr_tree::fmpq_mpoly)
+function nemo2hc(expr_tree::SIAN.Nemo.fmpq_mpoly)
     return nemo2hc(Meta.parse(string(expr_tree)))
 end
 
