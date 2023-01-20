@@ -214,8 +214,8 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
             unfiltered = estimate_fixed_degree(model, measured_quantities, data_sample,
                                                identifiability_result, deg, at_time)
             if length(unfiltered) > 0
-                filtered = filtered = filter_solutions(unfiltered, identifiability_result,
-                                                       model, data_sample; solver = solver)
+                filtered = filter_solutions(unfiltered, identifiability_result,
+                                            model, data_sample; solver = solver)
                 push!(estimates, filtered)
             else
                 push!(estimates,

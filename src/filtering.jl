@@ -181,10 +181,22 @@ end
 function check_range(parameter_ranges::Dict{Num, Vector{T}},
                      estimate::EstimationResult) where {T <: Float}
     # check if the estimate is within the parameter ranges
-    for (param, range) in parameter_ranges
-        if estimate.parameters[param] < range[1] || estimate.parameters[param] > range[2]
-            return false
+    for (param, val) in pairs(estimate.parameters)
+        if val < parameter_ranges[param][1] || val > parameter_ranges[param][1]
+            @warn "Estimate $(param) is out of range $(range)"
         end
     end
-    return true
+    for (param, val) in pairs(estimate.states)
+        if val < parameter_ranges[param][1] || val > parameter_ranges[param][1]
+            @warn "Estimate $(param) is out of range $(range)"
+        end
+    end
+end
+
+function check_range(parameter_ranges::Dict{Num, Vector{T}},
+                     estimates::Vector{EstimationResult}) where {T <: Float}
+    # check if the estimate is within the parameter ranges
+    for est in estimates
+        check_range(parameter_ranges, est)
+    end
 end
