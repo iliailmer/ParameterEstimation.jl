@@ -27,6 +27,5 @@ datasize = 10
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
 
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval; solver = solver)
-println(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)

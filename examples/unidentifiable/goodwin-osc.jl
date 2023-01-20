@@ -29,5 +29,3 @@ at_time = 0.5
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                    time_interval, at_time)
-
-print(res)

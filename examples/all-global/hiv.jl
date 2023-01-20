@@ -26,6 +26,5 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 
 identifiability_result = ParameterEstimation.check_identifiability(model;
                                                                    measured_quantities = measured_quantities)
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval; solver = solver)
-print(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)

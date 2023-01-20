@@ -1,5 +1,4 @@
 import ParameterEstimation
-
 using ModelingToolkit, DifferentialEquations#, Plots
 solver = Tsit5()
 
@@ -25,6 +24,5 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 ParameterEstimation.write_sample(data_sample;
                                  filename = "../matlab/amigo_models/daisy_mamil3-$datasize.txt")
 
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval; solver = solver)
-println(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)

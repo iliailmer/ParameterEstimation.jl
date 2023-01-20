@@ -32,4 +32,3 @@ ParameterEstimation.write_sample(data_sample;
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                    time_interval)
-print(res)

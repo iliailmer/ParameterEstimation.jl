@@ -30,4 +30,3 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                    time_interval)
-print(res)
