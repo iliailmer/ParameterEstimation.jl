@@ -71,7 +71,7 @@ This function performs the key step in parameter estimation.
 # Returns
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
 """
-function interpolate(identifiability_result, data_sample, time_interval,
+function interpolate(identifiability_result, data_sample,
                      measured_quantities, interpolation_degree::Int = 1,
                      diff_order::Int = 1, at_t::Float = 0.0)
     polynomial_system = identifiability_result["polynomial_system"]

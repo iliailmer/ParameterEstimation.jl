@@ -58,35 +58,32 @@ end
 
 function Base.show(io::IO, e::EstimationResult)
     if any(isnothing.(values(e.parameters)))
-        println(io, "Parameter Estimates:\n\t",
+        println(io, "Parameter(s):\t",
                 join([@sprintf("%s = %s", k, v) for (k, v) in pairs(e.parameters)],
                      ", "))
-        println(io, "Initial Condition Estimates:\n\t",
+        println(io, "Initial Condition(s):\t",
                 join([@sprintf("%s = %s", k, v) for (k, v) in pairs(e.states)], ", "))
-        println(io, "At t=", e.at_time)
     elseif !all(isreal.(values(e.parameters)))
-        println(io, "Parameter Estimates:\n\t",
-                join([@sprintf("%s = %.6f+%.6fim", k, real(v), imag(v))
+        println(io, "Parameter(s):\t",
+                join([@sprintf("%s = %.3f+%.3fim", k, real(v), imag(v))
                       for (k, v) in pairs(e.parameters)],
                      ", "))
-        println(io, "Initial Condition Estimates:\n\t",
-                join([@sprintf("%s = %.6f+%.6fim", k, real(v), imag(v))
+        println(io, "Initial Condition(s):\t",
+                join([@sprintf("%s = %.3f+%.3fim", k, real(v), imag(v))
                       for (k, v) in pairs(e.states)], ", "))
-        println(io, "At t=", e.at_time)
     else
-        println(io, "Parameter Estimates:\n\t",
-                join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.parameters)],
+        println(io, "Parameter(s):\t",
+                join([@sprintf("%s = %.3f", k, v) for (k, v) in pairs(e.parameters)],
                      ", "))
-        println(io, "Initial Condition Estimates:\n\t",
-                join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.states)], ", "))
-        println(io, "At t=", e.at_time)
+        println(io, "Initial Condition(s):\t",
+                join([@sprintf("%s = %.3f", k, v) for (k, v) in pairs(e.states)], ", "))
     end
-    println(io, "Interpolation Degree (numerator): ", e.degree)
-    println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)
-    if isnothing(e.err)
-        println(io, "Error: Not yet calculated")
-    else
-        println(io, "Error: ", @sprintf("%.4e", e.err))
-    end
+    # println(io, "Interpolation Degree (numerator): ", e.degree)
+    # println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)
+    # if isnothing(e.err)
+    # println(io, "Error: Not yet calculated")
+    # else
+    # println(io, "Error: ", @sprintf("%.4e", e.err))
+    # end
     # println(io, "Return Code: ", e.return_code)
 end

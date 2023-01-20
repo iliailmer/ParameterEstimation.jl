@@ -23,6 +23,5 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
 ParameterEstimation.write_sample(data_sample;
                                  filename = "../matlab/amigo_models/lotka-volterra-$datasize-$(time_interval[1])-$(time_interval[end]).txt")
 
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval; solver = solver)
-println(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)

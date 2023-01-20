@@ -28,4 +28,3 @@ ParameterEstimation.write_sample(data_sample;
                                  filename = "../matlab/amigo_models/simple-$datasize-$(time_interval[1])-$(time_interval[end]).txt")
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                    time_interval)
-print(res)

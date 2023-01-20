@@ -39,5 +39,3 @@ plot!(data_sample[u0])
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
                                    time_interval)
-
-print(res)
