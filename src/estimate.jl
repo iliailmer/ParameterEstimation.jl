@@ -13,7 +13,7 @@ measured quantities `measured_quantities`.
 # Arguments
 - `model::ModelingToolkit.ODESystem`: the model with parameters and initial conditions to be estimated.
 - `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities of the model. Used for identifiability assessment.
-- `data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
+- `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
 - `time_interval = Vector{T}()`: the time interval of the data sample.
@@ -27,7 +27,7 @@ measured quantities `measured_quantities`.
 """
 function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
-                               data_sample::Dict = Dict(),
+                               data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                                time_interval = Vector{T}(),
                                identifiability_result = Dict{String, Any}(),
                                interpolation_degree::Int = 1, at_time::T = 0.0;
@@ -88,7 +88,7 @@ end
 """
 estimate(model::ModelingToolkit.ODESystem,
                           measured_quantities::Vector{ModelingToolkit.Equation},
-                          data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                          data_sample:::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                           time_interval = Vector{T}(), at_time::T = 0.0;
                           solver = Tsit5(),
                           degree_range = nothing, real_tol = 1e-10) where {T <: Float}
@@ -98,7 +98,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 """
 function estimate(model::ModelingToolkit.ODESystem,
                   measured_quantities::Vector{ModelingToolkit.Equation},
-                  data_sample::Dict = Dict(),
+                  data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                   time_interval = Vector{T}(), at_time::T = 0.0;
                   solver = Tsit5(),
                   degree_range = nothing,
@@ -197,7 +197,7 @@ end
 
 function estimate_serial(model::ModelingToolkit.ODESystem,
                          measured_quantities::Vector{ModelingToolkit.Equation},
-                         data_sample::Dict = Dict(),
+                         data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                          time_interval = Vector{T}(), at_time::T = 0.0;
                          solver = Tsit5(),
                          degree_range = nothing,
