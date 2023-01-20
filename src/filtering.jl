@@ -94,7 +94,6 @@ function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
                           data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
-                          time_interval::Vector{T} = Vector{T}(),
                           solver = Tsit5(),
                           topk = 1) where {T <: Float}
     @info "Filtering"
@@ -108,7 +107,7 @@ function filter_solutions(results::Vector{EstimationResult},
     try
         solve_ode!(model, results, data_sample; solver = solver) # this solves ODE with new parameters and computes err. between sample and solution
     catch InexactError
-        @warn "InexactError when solving the ODE, no filtering was done."
+        @debug "InexactError when solving the ODE, no filtering was done."
         return results
     end
     if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
@@ -117,7 +116,7 @@ function filter_solutions(results::Vector{EstimationResult},
         clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
                                                           solver = solver)
         if length(clustered) == 0
-            @warn "No results to filter."
+            @debug "No clustered data, cannot find results to filter."
             return results
         end
         min_cluster_err, min_cluster_idx = findmin(sum(each.err for each in group) /
@@ -133,7 +132,7 @@ function filter_solutions(results::Vector{EstimationResult},
         clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
                                                           solver = solver)
         if length(clustered) == 0
-            @warn "No results to filter."
+            @debug "No clustered data, cannot find results to filter."
             return results
         end
         # find cluster with smallest error
