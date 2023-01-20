@@ -63,6 +63,7 @@ function Base.show(io::IO, e::EstimationResult)
                      ", "))
         println(io, "Initial Condition Estimates:\n\t",
                 join([@sprintf("%s = %s", k, v) for (k, v) in pairs(e.states)], ", "))
+        println(io, "At t=", e.at_time)
     elseif !all(isreal.(values(e.parameters)))
         println(io, "Parameter Estimates:\n\t",
                 join([@sprintf("%s = %.6f+%.6fim", k, real(v), imag(v))
@@ -71,16 +72,17 @@ function Base.show(io::IO, e::EstimationResult)
         println(io, "Initial Condition Estimates:\n\t",
                 join([@sprintf("%s = %.6f+%.6fim", k, real(v), imag(v))
                       for (k, v) in pairs(e.states)], ", "))
+        println(io, "At t=", e.at_time)
     else
         println(io, "Parameter Estimates:\n\t",
                 join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.parameters)],
                      ", "))
         println(io, "Initial Condition Estimates:\n\t",
                 join([@sprintf("%s = %.6f", k, v) for (k, v) in pairs(e.states)], ", "))
+        println(io, "At t=", e.at_time)
     end
     println(io, "Interpolation Degree (numerator): ", e.degree)
     println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)
-    println(io, "At t=", e.at_time)
     if isnothing(e.err)
         println(io, "Error: Not yet calculated")
     else
