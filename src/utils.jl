@@ -44,7 +44,7 @@ end
 
 """
     check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation}([]),
-                 data_sample::Dict{Any, Any} = Dict{Any, Any}(),
+                 data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                  time_interval::Vector{T} = Vector{T}(),
                  interpolation_degree::Int = 1) where {T <: Float}
 
@@ -53,7 +53,7 @@ Checks that the inputs to `estimate` are valid.
 function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
                                                                                      ModelingToolkit.Equation
                                                                                      }([]),
-                      data_sample::Dict{Any, Any} = Dict{Any, Any}(),
+                      data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                       time_interval::Vector{T} = Vector{T}(),
                       interpolation_degree::Int = 1) where {T <: Float}
     if length(measured_quantities) == 0
@@ -109,8 +109,8 @@ function sample_data(model::ModelingToolkit.ODESystem,
     solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
                                           saveat = sampling_times;
                                           abstol = 1e-10, reltol = 1e-10)
-    data_sample = Dict{Any, Any}(Num(v.rhs) => solution_true[Num(v.rhs)]
-                                 for v in measured_data)
+    data_sample = Dict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]
+                                       for v in measured_data)
     if inject_noise
         for (key, sample) in data_sample
             data_sample[key] = sample + randn(num_points) .* stddev_noise .+ mean_noise
