@@ -11,7 +11,7 @@ parameters = [g, a, b]
 ic = [1.0, -1.0]
 time_interval = [0.0, 1.0]
 datasize = 50
-tsteps = range(time_interval[1], time_interval[2], length = datasize)
+sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [2, 2 / 10, 2 / 10] # True Parameters
 measured_quantities = [y1 ~ V]
 

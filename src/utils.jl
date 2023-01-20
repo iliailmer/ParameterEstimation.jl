@@ -53,7 +53,7 @@ Checks that the inputs to `estimate` are valid.
 function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
                                                                                      ModelingToolkit.Equation
                                                                                      }([]),
-                      data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
+                      data_sample::Dict = Dict(),
                       time_interval = Vector{T}(),
                       interpolation_degree::Int = 1) where {T <: Float}
     if length(measured_quantities) == 0
@@ -92,9 +92,10 @@ function sample_data(model::ModelingToolkit.ODESystem,
                      num_points::Int;
                      solver = Tsit5(), inject_noise = false, mean_noise = 0,
                      stddev_noise = 1) where {T <: Float}
-    tsteps = range(time_interval[1], time_interval[2], length = num_points)
+    sampling_times = range(time_interval[1], time_interval[2], length = num_points)
     problem = ODEProblem(model, u0, time_interval, p_true)
-    solution_true = ModelingToolkit.solve(problem, solver, p = p_true, saveat = tsteps;
+    solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
+                                          saveat = sampling_times;
                                           abstol = 1e-10, reltol = 1e-10)
     data_sample = Dict(Num(v.rhs) => solution_true[Num(v.rhs)] for v in measured_data)
     if inject_noise

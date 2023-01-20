@@ -21,7 +21,7 @@ measured_quantities = [
 ic = [1.0, -1.0, 1.0, -1.0]
 time_interval = [0.0, 6.0]
 datasize = 50
-tsteps = range(time_interval[1], time_interval[2], length = datasize)
+sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1.3, 1.1, 1.2, 1] # True Parameters
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
