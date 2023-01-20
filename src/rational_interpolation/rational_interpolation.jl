@@ -76,13 +76,7 @@ function interpolate(identifiability_result, data_sample, time_interval,
                      diff_order::Int = 1, at_t::Float = 0.0)
     polynomial_system = identifiability_result["polynomial_system"]
     interpolants = Dict{Any, Interpolant}()
-    sampling_times = range(time_interval[1], time_interval[2],
-                           length = length(first(values(data_sample))))
-    try
-        sampling_times = data_sample["t"]
-    catch KeyError
-        @warn "No sampling time points found in data sample. Assuming uniform sampling t ∈ [$(time_interval[1]), $(time_interval[2])]."
-    end
+    sampling_times = data_sample["t"]
     for (key, sample) in pairs(data_sample)
         if key == "t"
             continue
