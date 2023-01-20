@@ -1,5 +1,5 @@
 """
-    solve_ode(model, estimate::EstimationResult, sampling_times, data_sample; solver = Tsit5(),
+    solve_ode(model, estimate::EstimationResult, data_sample; solver = Tsit5(),
               return_ode = false)
 
 Solves the ODE system `model` with the parameters and initial conditions given by `estimate`.
@@ -8,7 +8,6 @@ Compute the error between the solution and the data sample. The error is recorde
 # Arguments
 - `model`: the ODE system to be solved.
 - `estimate::EstimationResult`: the parameters and initial conditions of the ODE system.
-- `sampling_times`: the time steps of the ODE system. See `ModelingToolkit.solve`.
 - `data_sample`: the data sample used for estimation (same functions as `measured_quantities`).
                  The keys of the dictionary are the measured quantities
                  and the values are the corresponding data samples.
@@ -20,8 +19,7 @@ Compute the error between the solution and the data sample. The error is recorde
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
 function solve_ode(model, estimate::EstimationResult, data_sample;
-                   solver = Tsit5(),
-                   return_ode = false)
+                   solver = Tsit5(), return_ode = false)
     initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
     parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
     tspan = (estimate.at_time, data_sample["t"][end] + estimate.at_time)
@@ -83,7 +81,7 @@ In addition, takes into account global and local identifiability of parameters w
 - `results::Vector{EstimationResult}`: the vector of estimation results.
 - `identifiability_result::IdentifiabilityData`: the result of identifiability analysis.
 - `model::ModelingToolkit.ODESystem`: the ODE system.
-- `data_sample::Dict{Any, Any} = Dict{Any, Any}()`: the data sample used for estimation (same functions as `measured_quantities`).
+- `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
 - `time_interval::Vector{T} = Vector{T}()`: the time interval of the ODE system.
@@ -95,7 +93,7 @@ In addition, takes into account global and local identifiability of parameters w
 function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
-                          data_sample::Dict{Any, Any} = Dict{Any, Any}();
+                          data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                           time_interval::Vector{T} = Vector{T}(),
                           solver = Tsit5(),
                           topk = 1) where {T <: Float}
