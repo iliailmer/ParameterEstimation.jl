@@ -1,5 +1,5 @@
 @testset "Convert Nemo polynomial systems into HomotopyContinuation type" begin
-    R, (X, Y, Z) = SIAN.Nemo.PolynomialRing(QQ, ["x", "y", "z"])
+    R, (X, Y, Z) = SIAN.Nemo.PolynomialRing(SIAN.Nemo.QQ, ["x", "y", "z"])
     @var x y z
     Et = [X + Y + Z - 1, X + Y - 2, Z * X - 1]
     E = System([ParameterEstimation.nemo2hc(e) for e in Et])
