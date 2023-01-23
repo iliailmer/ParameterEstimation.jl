@@ -111,7 +111,7 @@ function filter_solutions(results::Vector{EstimationResult},
         return results
     end
     if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
-        @warn "The model contains non-identifiable parameters"
+        @debug "The model contains non-identifiable parameters"
         filtered_results = Vector{ParameterEstimation.EstimationResult}()
         clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
                                                           solver = solver)
