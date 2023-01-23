@@ -29,15 +29,3 @@ function post_process(estimates)
         return estimates
     end
 end
-
-function change_ring(poly, Ring)
-    builder = Oscar.MPolyBuildCtx(Ring)
-    parent_ring = Oscar.parent(poly)
-    print("Parent gens", gens(parent_ring))
-    for term in zip(Oscar.exponent_vectors(poly), Oscar.coefficients(poly))
-        exp, coef = term
-        println(exp, " ", poly)
-        push_term!(builder, Ring.base_ring(coef), exp)
-    end
-    return finish(builder)
-end
