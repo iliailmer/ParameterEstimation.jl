@@ -27,9 +27,10 @@ measured quantities `measured_quantities`.
 """
 function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
-                               data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
+                               data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                                identifiability_result = Dict{String, Any}(),
-                               interpolation_degree::Int = 1, at_time::T = 0.0;
+                               interpolation_degree::Int = 1,
+                               at_time::T = 0.0,
                                method = :homotopy,
                                real_tol = 1e-10) where {T <: Float}
     time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]
@@ -38,7 +39,7 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
     parameters = ModelingToolkit.parameters(model)
     states = ModelingToolkit.states(model)
     num_parameters = length(parameters) + length(states)
-    @info "Interpolating sample data via rational interpolation"
+    @debug "Interpolating sample data via rational interpolation"
     if !haskey(data_sample, "t")
         @warn "No sampling time points found in data sample. Assuming uniform sampling t ∈ [$(time_interval[1]), $(time_interval[2])]."
         data_sample["t"] = range(time_interval[1], time_interval[2], length = datasize)
@@ -53,15 +54,14 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
     if method == :homotopy
         all_solutions = solve_via_homotopy(identifiability_result, model;
                                            real_tol = real_tol)
-        all_solutions = [EstimationResult(model, each, interpolation_degree, at_time,
-                                          interpolants, ReturnCode.Success, datasize)
-                         for each in all_solutions]
     elseif method == :msolve
         all_solutions = solve_via_msolve(identifiability_result, model;
                                          real_tol = real_tol)
-
     else
         throw(ArgumentError("Method $method not supported"))
     end
+    all_solutions = [EstimationResult(model, each, interpolation_degree, at_time,
+                                      interpolants, ReturnCode.Success, datasize)
+                     for each in all_solutions]
     return all_solutions
 end
