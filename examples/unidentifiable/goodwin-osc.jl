@@ -25,7 +25,6 @@ sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1 / 10, 1, 1 / 10, 1, 1 / 10, 1] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-at_time = 0.5
 
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval, at_time)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   method = :msolve)
