@@ -14,6 +14,16 @@ function Base.getindex(identifiability_result::IdentifiabilityData, key::String)
     return getproperty(identifiability_result, Symbol(key))
 end
 
+function Base.setindex!(identifiability_result::IdentifiabilityData,
+                        value::PolySystem, key::String)
+    return setproperty!(identifiability_result, Symbol(key), value)
+end
+
+function Base.setindex!(identifiability_result::IdentifiabilityData,
+                        value::PolySystem, key::Symbol)
+    return setproperty!(identifiability_result, key, value)
+end
+
 # """
 #     count_solutions(identifiability_result::IdentifiabilityData)
 
