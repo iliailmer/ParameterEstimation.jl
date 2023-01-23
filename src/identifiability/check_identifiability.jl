@@ -376,6 +376,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         full_result = Dict("polynomial_system" => [SIAN.Nemo.evaluate(e, alg_indep,
                                                                       transcendence_substitutions)
                                                    for e in Et_],
+                           "polynomial_system_to_solve" => HomotopyContinuation.System([]),
                            "denominator" => Q,
                            "Y_eq" => y_derivative_dict,
                            "vars" => vrs_sorted,
