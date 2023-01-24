@@ -18,13 +18,8 @@ ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
 SIAN = "cf7bdac0-b945-4905-b5ad-bc3f1a757483"
 Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
 TaylorSeries = "6aa5eb33-94cf-58f4-a9d0-e4b2c4fc25ea"
-
-[extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
-
-[targets]
-test = ["Test", "TestSetExtensions"]
 
 [compat]
 DifferentialEquations = "7"
