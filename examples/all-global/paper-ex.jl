@@ -17,11 +17,3 @@ data = Dict("t" => [0.000, 0.333, 0.666, 1.000],
 
 # Run
 res = estimate(Σ, outs, data)
-
-identifiability_result = ParameterEstimation.check_identifiability(Σ;
-                                                                   measured_quantities = outs)
-interpolation_degree = 2
-res = ParameterEstimation.estimate_fixed_degree(Σ, outs, data,
-                                                identifiability_result,
-                                                interpolation_degree)
-ParameterEstimation.filter_solutions(res, identifiability_result, Σ, data)
