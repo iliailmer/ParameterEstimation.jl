@@ -1,3 +1,5 @@
+PolySystem = Union{HomotopyContinuation.ModelKit.System, Vector{SIAN.Nemo.fmpq_mpoly}}
+
 """
     IdentifiabilityData
 
@@ -15,14 +17,15 @@ This is used for parameter estimation.
 - `transcendence_basis_subs::Vector{SIAN.Nemo.RingElem}`: The transcendence basis substitutions of the polynomial system.
 - `weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}`: The weights of the variables used by SIAN to assess GroebnerBasis.
 """
-struct IdentifiabilityData
+mutable struct IdentifiabilityData
     polynomial_system::Vector{SIAN.Nemo.fmpq_mpoly}
+    polynomial_system_to_solve::PolySystem
     denomiantor::SIAN.Nemo.fmpq_mpoly
     variables::Vector{SIAN.Nemo.fmpq_mpoly}
-    substitutions::Vector{Vector}
+    const substitutions::Vector{Vector}
     identifiability_nemo::Any
     identifiability::Dict{Any, Any}
-    transcendence_basis_subs::Dict{Any, Any}
+    const transcendence_basis_subs::Dict{Any, Any}
     Y_eq::Dict{Any, Any}
     basis::Vector{SIAN.Nemo.fmpq_mpoly}
     weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}
@@ -31,10 +34,10 @@ struct IdentifiabilityData
     # solution_counts::Dict
     function IdentifiabilityData(input::Dict)
         # solution_counts = count_solutions(input)
-        return new(input["polynomial_system"], input["denominator"], input["vars"],
+        return new(input["polynomial_system"], input["polynomial_system_to_solve"],
+                   input["denominator"], input["vars"],
                    input["vals"], input["identifiability_nemo"], input["identifiability"],
                    input["transcendence_basis_subs"], input["Y_eq"], input["basis"],
                    input["weights"], input["non_jet_ring"], input["nemo_mtk"])
-        #    solution_counts)
     end
 end

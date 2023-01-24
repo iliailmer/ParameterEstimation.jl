@@ -16,4 +16,4 @@ data = Dict("t" => [0.000, 0.333, 0.666, 1.000],
             x + x^2 => [2.000, 1.563, 1.229, 0.974])
 
 # Run
-res = ParameterEstimation.estimate(Σ, outs, data)
+res = estimate(Σ, outs, data)

@@ -72,8 +72,9 @@ This function performs the key step in parameter estimation.
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
 """
 function interpolate(identifiability_result, data_sample,
-                     measured_quantities, interpolation_degree::Int = 1,
-                     diff_order::Int = 1, at_t::Float = 0.0)
+                     measured_quantities; interpolation_degree::Int = 1,
+                     diff_order::Int = 1, at_t::Float = 0.0,
+                     method::Symbol = :homotopy)
     polynomial_system = identifiability_result["polynomial_system"]
     interpolants = Dict{Any, Interpolant}()
     sampling_times = data_sample["t"]
@@ -89,23 +90,22 @@ function interpolate(identifiability_result, data_sample,
                                                       diff_order, at_t)
         interpolants[key] = interpolant
         err = sum(abs.(sample - interpolant.I.(sampling_times))) / length(sampling_times)
-        @info "Mean Absolute error in interpolation: $err interpolating $key"
-        for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
-            if occursin(y_function_name, string(y_func))
-                y_derivs_vals = Dict(ParameterEstimation.nemo2hc(y_func) => interpolant.dIdt[y_deriv_order] *
-                                                                            factorial(y_deriv_order))
-                polynomial_system = HomotopyContinuation.evaluate(ParameterEstimation.nemo2hc.(polynomial_system),
-                                                                  y_derivs_vals)
-            end
+        @debug "Mean Absolute error in interpolation: $err interpolating $key"
+        polynomial_system = eval_derivs(polynomial_system, interpolant, y_function_name,
+                                        identifiability_result, method = method)
+    end
+    if isequal(method, :homotopy)
+        try
+            identifiability_result["polynomial_system_to_solve"] = HomotopyContinuation.System(polynomial_system)
+        catch KeyError
+            throw(ArgumentError("HomotopyContinuation threw a KeyError, it is likely that " *
+                                "you are using Unicode characters in your input. Consider " *
+                                "using ASCII characters instead."))
         end
+    else
+        identifiability_result["polynomial_system_to_solve"] = polynomial_system
     end
-    try
-        return System(polynomial_system), interpolants
-    catch KeyError
-        throw(ArgumentError("HomotopyContinuation threw a KeyError, it is likely that " *
-                            "you are using Unicode characters in your input. Consider " *
-                            "using ASCII characters instead."))
-    end
+    return interpolants
 end
 
 """

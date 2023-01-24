@@ -96,7 +96,7 @@ function filter_solutions(results::Vector{EstimationResult},
                           data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                           solver = Tsit5(),
                           topk = 1) where {T <: Float}
-    @info "Filtering"
+    @debug "Filtering"
     if length(results) == 0
         @warn "No results to filter."
         return results
@@ -111,7 +111,7 @@ function filter_solutions(results::Vector{EstimationResult},
         return results
     end
     if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
-        @warn "The model contains non-identifiable parameters"
+        @debug "The model contains non-identifiable parameters"
         filtered_results = Vector{ParameterEstimation.EstimationResult}()
         clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
                                                           solver = solver)
@@ -123,7 +123,7 @@ function filter_solutions(results::Vector{EstimationResult},
                                                    length(group)
                                                    for (id, group) in pairs(clustered))
         min_cluster = clustered[min_cluster_idx]
-        @info "Best estimate yelds ODE solution error $(min_cluster_err)"
+        @debug "Best estimate yelds ODE solution error $(min_cluster_err)"
         filtered_results = min_cluster
         return results
     end
@@ -140,17 +140,17 @@ function filter_solutions(results::Vector{EstimationResult},
                                                    length(group)
                                                    for (id, group) in pairs(clustered))
         min_cluster = clustered[min_cluster_idx]
-        @info "Best estimate yelds ODE solution error $(min_cluster_err)"
+        @debug "Best estimate yelds ODE solution error $(min_cluster_err)"
         filtered_results = min_cluster
     else
         sorted = sort(results, by = x -> x.err)
         if topk == 1
             filtered_results = Vector{EstimationResult}()
-            @info "Best estimate yelds ODE solution error $(sorted[1].err)"
+            @debug "Best estimate yelds ODE solution error $(sorted[1].err)"
             push!(filtered_results, sorted[1])
         else
             filtered_results = Vector{Vector{ParameterEstimation.EstimationResult}}()
-            @info "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
+            @debug "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
             push!(filtered_results, sorted[1:topk])
         end
     end
