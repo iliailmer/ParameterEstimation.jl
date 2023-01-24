@@ -24,14 +24,14 @@ function estimate(model::ModelingToolkit.ODESystem,
                                    degree_range = degree_range,
                                    method = method,
                                    real_tol = real_tol)
-        display(result)
-        return result
     else
         result = estimate_serial(model, measured_quantities, data_sample;
                                  solver = solver, at_time = at_time,
                                  degree_range = degree_range, method = method,
                                  real_tol = real_tol)
-        display(result)
-        return result
     end
+    for each in result
+        display(each)
+    end
+    return result
 end

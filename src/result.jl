@@ -58,25 +58,25 @@ end
 
 function Base.show(io::IO, e::EstimationResult)
     if any(isnothing.(values(e.parameters)))
-        println(io, "Parameter(s):\t",
-                join([@sprintf("%s = %s", k, v) for (k, v) in pairs(e.parameters)],
+        println(io, "Parameter(s)        :\t",
+                join([@sprintf("%3s = %3s", k, v) for (k, v) in pairs(e.parameters)],
                      ", "))
         println(io, "Initial Condition(s):\t",
-                join([@sprintf("%s = %s", k, v) for (k, v) in pairs(e.states)], ", "))
+                join([@sprintf("%3s = %3s", k, v) for (k, v) in pairs(e.states)], ", "))
     elseif !all(isreal.(values(e.parameters)))
-        println(io, "Parameter(s):\t",
-                join([@sprintf("%s = %.3f+%.3fim", k, real(v), imag(v))
+        println(io, "Parameter(s)        :\t",
+                join([@sprintf("%3s = %.3f+%.3fim", k, real(v), imag(v))
                       for (k, v) in pairs(e.parameters)],
                      ", "))
         println(io, "Initial Condition(s):\t",
-                join([@sprintf("%s = %.3f+%.3fim", k, real(v), imag(v))
+                join([@sprintf("%3s = %.3f+%.3fim", k, real(v), imag(v))
                       for (k, v) in pairs(e.states)], ", "))
     else
-        println(io, "Parameter(s):\t",
-                join([@sprintf("%s = %.3f", k, v) for (k, v) in pairs(e.parameters)],
+        println(io, "Parameter(s)        :\t",
+                join([@sprintf("%3s = %.3f", k, v) for (k, v) in pairs(e.parameters)],
                      ", "))
         println(io, "Initial Condition(s):\t",
-                join([@sprintf("%s = %.3f", k, v) for (k, v) in pairs(e.states)], ", "))
+                join([@sprintf("%3s = %.3f", k, v) for (k, v) in pairs(e.states)], ", "))
     end
     # println(io, "Interpolation Degree (numerator): ", e.degree)
     # println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)
