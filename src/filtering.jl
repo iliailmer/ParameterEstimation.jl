@@ -69,10 +69,11 @@ end
 
 """
     filter_solutions(results::Vector{EstimationResult},
-                     identifiability_result::IdentifiabilityData,
-                     model::ModelingToolkit.ODESystem,
-                     data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                     time_interval = Vector{T}(); topk = 1) where {T <: Float}
+                    identifiability_result::IdentifiabilityData,
+                    model::ModelingToolkit.ODESystem,
+                    data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+                    solver = Tsit5(),
+                    topk = 1) where {T <: Float}
 
 Filter estimation results stored in `results` vector based on ODE solving and checking against the sample.
 In addition, takes into account global and local identifiability of parameters when filtering.
@@ -157,6 +158,11 @@ function filter_solutions(results::Vector{EstimationResult},
     return filtered_results
 end
 
+"""
+    function cluster_estimates(model, res, data_sample; ε = 1e-6, solver = Tsit5())
+
+    Clusters the estimates by their error. Used in case of non-identifiability of parameters.
+"""
 function cluster_estimates(model, res, data_sample; ε = 1e-6, solver = Tsit5())
     # clusrers the estimates by their error
     ParameterEstimation.solve_ode!(model, res, data_sample, solver = solver)
