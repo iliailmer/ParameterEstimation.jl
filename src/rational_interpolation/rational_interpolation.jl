@@ -22,11 +22,6 @@ function rational_interpolation_coefficients(x, y, n)
         A_right_submatrix = reduce(hcat, [x .^ (i) for i in 0:(m - 1)])
         A = hcat(A_left_submatrix, -y .* A_right_submatrix)
         b = y .* (x .^ m)
-        # @info det(A), cond(A)
-        # e = det(A)
-        # if abs(e) < 1e-20
-        #     @warn "Determinant of A is small: $e"
-        # end
         try
             prob = LinearSolve.LinearProblem(A, b)
             c = LinearSolve.solve(prob)
@@ -48,11 +43,10 @@ function rational_interpolation_coefficients(x, y, n)
 end
 
 """
-    interpolate(identifiability_result, data_sample, time_interval,
-                measured_quantities,
-                interpolation_degree::Int = 1,
-                diff_order::Int = 1,
-                at_t::Float = 0.0)
+    interpolate(identifiability_result, data_sample,
+                measured_quantities; interpolation_degree::Int = 1,
+                diff_order::Int = 1, at_t::Float = 0.0,
+                method::Symbol = :homotopy)
 
 This function performs the key step in parameter estimation.
 
@@ -62,11 +56,11 @@ This function performs the key step in parameter estimation.
 # Arguments
 - `identifiability_result`: the result of the identifiability check.
 - `data_sample`: a dictionary of the data samples. The keys are the symbols of the measured quantities and the values are the data samples.
-- `time_interval`: the time interval where the data is sampled.
-- `measured_quantities`: the measured quantities (equations of the form `y ~ x`).
+- `measured_quantities`: the measured quantities (outputs as equations of the form `y ~ x`).
 - `interpolation_degree::Int = 1`: the degree of the numerator of the rational interpolation.
 - `diff_order::Int = 1`: the order of the derivative to be computed.
 - `at_t::Float = 0.0`: the time point where the Taylor series expansion is computed.
+- `method::Symbol = :homotopy`: the method used to solve the polynomial system. Can be one of :homotopy (recommended) and :msolve.
 
 # Returns
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
@@ -109,7 +103,7 @@ function interpolate(identifiability_result, data_sample,
 end
 
 """
-    interpolate(time, sample, numer_degree::Int, diff_order::Int = 1)
+    interpolate(time, sample, numer_degree::Int, diff_order::Int = 1, at_t::Float = 0.0)
 
 This function performs a rational interpolation of the data `sample` at the points `time` with numerator degree `numer_degree`.
 It returns an `Interpolant` object that contains the interpolated function and its derivatives.

@@ -11,6 +11,6 @@ using .ReturnCode
 Float = Union{Float64, Float32, Float16}
 include("includes.jl")
 
-export check_identifiability, estimate, filter_solutions, sample_data
+export check_identifiability, estimate, filter_solutions
 
 end

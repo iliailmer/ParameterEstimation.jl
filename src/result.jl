@@ -13,6 +13,7 @@ the error between the estimated ODE solution and the sample data, and the return
 - `err::Union{Nothing, Float64}`: The error between the estimated ODE solution and the sample data.
 - `interpolants::Union{Nothing, Dict{Any, Interpolant}}`: The rational interpolants used to estimate the parameters and initial conditions.
 - `return_code::Any`: The return code of the estimation.
+- `datasize::Int64`: The number of data points used in the estimation.
 """
 struct EstimationResult
     parameters::OrderedDict

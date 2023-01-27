@@ -1,10 +1,11 @@
 """
     estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                         measured_quantities::Vector{ModelingToolkit.Equation},
-                        data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
+                        data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                         identifiability_result = Dict{String, Any}(),
-                        interpolation_degree::Int = 1, at_time::T = 0.0;
-                        method = :homotopy_continuation,
+                        interpolation_degree::Int = 1,
+                        at_time::T = 0.0,
+                        method = :homotopy,
                         real_tol = 1e-10) where {T <: Float}
 
 Estimate the parameters of a model using the data sample `data_sample` and the
@@ -16,11 +17,11 @@ measured quantities `measured_quantities`.
 - `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
-- `time_interval = Vector{T}()`: the time interval of the data sample.
 - `identifiability_result = Dict{String, Any}()`: the result of the identifiability assessment.
 - `interpolation_degree::Int = 1`: the degree of the polynomial interpolation.
 - `at_time::T = 0.0`: the time at which the parameters are estimated.
-- `real_tol = 1e-10`: (optional) the tolerance for the real solutions of the polynomial system.
+- `method = :homotopy`: the method used for solving the polynomial system. Can be one of :homotopy (recommended) and :msolve.
+- `real_tol = 1e-10`: the tolerance for the real solutions of the polynomial system.
 
 # Returns
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
