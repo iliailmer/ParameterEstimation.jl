@@ -43,7 +43,7 @@ function check_identifiability(ode::ModelingToolkit.ODESystem;
                                                   weighted_ordering = true,
                                                   local_only = false)
 
-    @info "Post-Processing: Converting Nemo output to ModelingToolkit types"
+    @debug "Post-Processing: Converting Nemo output to ModelingToolkit types"
     out = Dict()
     for (id_type, pars) in pairs(res["identifiability"])
         out[id_type] = [ModelingToolkit.Num(substitute(nemo2mtk[each], t => 0))
