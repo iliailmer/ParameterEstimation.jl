@@ -35,12 +35,17 @@ measured_quantities = [y1 ~ N, y2 ~ E, y3 ~ S + M, y4 ~ P]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 1.0]
-datasize = 20
+datasize = 10
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "../matlab/amigo_models/crauste-$datasize.txt")
+# ParameterEstimation.write_sample(data_sample;
+#                                  filename = "../matlab/amigo_models/crauste-$datasize.txt")
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
                                    solver = solver)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ", maximum(abs.(estimates - all_params) ./ all_params))
+end

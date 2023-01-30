@@ -19,13 +19,18 @@ measured_quantities = [y1 ~ w, y2 ~ z, y3 ~ x, y4 ~ y + v]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 20.0]
-datasize = 10
+datasize = 20
 p_true = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic,
                                               datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "../matlab/amigo_models/hiv-$datasize-$(time_interval[1])-$(time_interval[end]).txt")
+# ParameterEstimation.write_sample(data_sample;
+#                                  filename = "../matlab/amigo_models/hiv-$datasize-$(time_interval[1])-$(time_interval[end]).txt")
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
                                    solver = solver)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ", maximum(abs.(estimates - all_params) ./ all_params))
+end

@@ -19,21 +19,19 @@ measured_quantities = [
 ]
 
 ic = [1.0, -1.0, 1.0, -1.0]
-time_interval = [0.0, 6.0]
-datasize = 50
+time_interval = [0.0, 1]
+datasize = 20
 sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1.3, 1.1, 1.2, 1] # True Parameters
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
+# ParameterEstimation.write_sample(data_sample;
+#  filename = "./benchmarks/matlab/amigo_models/daisy_ex3-loc-$datasize-$(time_interval[1])-$(time_interval[2]).txt")
 
-identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                   measured_quantities = measured_quantities)
-interpolation_degree = 37
-res = ParameterEstimation.estimate_fixed_degree(model, measured_quantities, data_sample,
-                                                time_interval, identifiability_result,
-                                                interpolation_degree)
-filtered = ParameterEstimation.filter_solutions(res, identifiability_result, model,
-                                                data_sample, time_interval)
-
-print(filtered)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ", maximum(abs.(estimates - all_params) ./ all_params))
+end

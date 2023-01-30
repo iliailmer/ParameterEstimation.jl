@@ -9,7 +9,7 @@ states = [V, R]
 parameters = [g, a, b]
 
 ic = [1.0, -1.0]
-time_interval = [0.0, 1.0]
+time_interval = [0.0, 5.0]
 datasize = 50
 sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [2, 2 / 10, 2 / 10] # True Parameters
@@ -22,8 +22,13 @@ measured_quantities = [y1 ~ V]
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "../matlab/amigo_models/fhn-$datasize.txt")
+# ParameterEstimation.write_sample(data_sample;
+#                                  filename = "../matlab/amigo_models/fhn-$datasize.txt")
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
                                    solver = solver)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ", maximum(abs.(estimates - all_params) ./ all_params))
+end

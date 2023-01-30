@@ -7,8 +7,8 @@ solver = Tsit5()
 D = Differential(t)
 
 ic = [1.0, 2.0, 1.0]
-time_interval = [0.0, 1.0]
-datasize = 10
+time_interval = [0.0, 10.0]
+datasize = 20
 sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.2, 0.3, 0.5, 0.6, -0.2] # True Parameters
 
@@ -21,8 +21,13 @@ parameters = [a12, a13, a21, a31, a01]
 measured_quantities = [y1 ~ x1, y2 ~ x2]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "../matlab/amigo_models/daisy_mamil3-$datasize.txt")
+# ParameterEstimation.write_sample(data_sample;
+#                                  filename = "../matlab/amigo_models/daisy_mamil3-$datasize.txt")
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
                                    solver = solver)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ", maximum(abs.(estimates - all_params) ./ all_params))
+end
