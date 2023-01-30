@@ -25,23 +25,13 @@ IQMcomparemeasurements(lv);
 % Global parameters
 % Names         Lower bounds  Upper bounds
 paramdata = {
-'k1'             0.0001        .1
-'k2'             0.0001        .1
-'k3'             0.0001        .1
-'k4'             0.0001        .1
-'k5'             0.0001        .1
-'k6'             0.0001        .1
-% 'kRGact'       0.114811      11.4811
-% 'k1Gact'       999.422       99942.2
-% 'k2Gact'       0.419216      41.9216
-% 'kGactPDEact'  0.0365684     3.65684
-% 'kRArr1'       0.0101633     1.01633
-% 'kRArr2'       0.0405202     4.05202
-% 'kGr1'         0.00175855    0.175855
-% 'kGr2'         0.23023       23.023
-% 'kG'           0.238471      23.8471
-% 'magStim'      0.2           20
-% 'durStim'      0.01          1
+    'k01'   0.0 1.0
+    'k12'   0.0 1.0
+    'k13'   0.0 1.0
+    'k14'   0.0 1.0
+    'k21'   0.0 1.0
+    'k31'   0.0 1.5
+    'k41'   0.0 1.0
 };
 
 % Local (experiment dependend) parameters
@@ -52,22 +42,10 @@ paramdatalocal = {
 % Initial conditions (always experiment dependend)
 % Names         Lower bounds  Upper bounds
 icdata = {
-'x1'             0.5             1.5
-'x2'             0.5             1.5
-'x3'             0.5             1.5
-'x4'             0.5             1.5
-'x5'             0.5             1.5
-'x6'             0.5             1.5
-% 'Arr'          0.5           50
-% 'G'            300           30000
-% 'Gact'         0             100
-% 'GactPDEact'   0             100
-% 'Gr'           0             100
-% 'PDE'          10            1000
-% 'R'            50            5000
-% 'Ract'         0             100
-% 'RactArr'      0             100
-% 'RactG'        0             100
+    'x1'  0.5 1.5
+    'x2'  0.5 2.5
+    'x3'  0.5 1.5
+    'x4'  -1.5 1.0
 };
 
 
@@ -76,7 +54,7 @@ estimation = [];
 
 % Model and experiment settings
 estimation.modelindex = 1;
-estimation.experiments.indices = [1];%, 2, 3, 4];
+estimation.experiments.indices = [2];%, 2, 3, 4];
 estimation.experiments.weight = [1];%, 1, 1, 1];
 
 % Optimization settings

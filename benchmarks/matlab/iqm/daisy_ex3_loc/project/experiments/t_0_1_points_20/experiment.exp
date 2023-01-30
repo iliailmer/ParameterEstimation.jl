@@ -1,19 +1,19 @@
 ********** EXPERIMENT NAME
-CRAUSTE
+
 
 ********** EXPERIMENT NOTES
-CRAUSTE model
+
 
 ********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
-k5 = 1.0
-k6 = 1.0
-k7 = 1.0
-k8 = 1.0
-k9 = 1.0
-k10 = 1.0
-x4(0) = 1
-x5(0) = 1
-x6(0) = 1
+p1 = 0.4
+p3 = 0.4
+p4 = 0.4
+p6 = 0.4
+p7 = 0.4
+x1(0) = 0.5
+x2(0) = -0.5
+x3(0) = 0.5
+u0(0) = -0.5
 
 ********** EXPERIMENT PARAMETER CHANGES
 
