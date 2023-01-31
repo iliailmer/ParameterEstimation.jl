@@ -28,5 +28,6 @@ res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
 all_params = vcat(ic, p_true)
 for each in res
     estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-    println("Max abs rel. err: ", maximum(abs.(estimates - all_params) ./ all_params))
+    println("Max abs rel. err: ",
+            maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
 end

@@ -137,7 +137,7 @@ end
 
 function max_abs_rel(all_params, estimate::EstimationResult)
     estimates = vcat(collect(values(estimate.states)), collect(values(estimate.parameters)))
-    err = maximum(abs.(estimates - all_params) ./ all_params)
+    err = maximum(abs.((result_ode.u .- all_params) ./ (all_params)))
     println("Max abs rel. err: ", err)
     return err
 end
