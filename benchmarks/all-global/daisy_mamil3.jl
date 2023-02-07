@@ -7,7 +7,7 @@ solver = Tsit5()
 D = Differential(t)
 
 ic = [1.0, 2.0, 1.0]
-time_interval = [0.0, 10.0]
+time_interval = [0.0, 1.0]
 datasize = 20
 sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.2, 0.3, 0.5, 0.6, -0.2] # True Parameters
@@ -39,20 +39,28 @@ size_err_map = OrderedDict{Int, Float64}()
 for datasize in 3:21
     data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                                   p_true, ic, datasize; solver = solver)
-    res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
-                                       solver = solver)
+    # res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+    #                                    solver = solver)
+    ParameterEstimation.write_sample(data_sample;
+                                     filename = "point_error_data/samples/daisy_mamil3/daisy_mamil3-$datasize.txt")
 
-    for each in res
-        estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-        size_err_map[datasize] = maximum(100 *
-                                         abs.((estimates .- all_params) ./ (all_params)))
-    end
+    # for each in res
+    #     estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    #     size_err_map[datasize] = maximum(100 *
+    #                                      abs.((estimates .- all_params) ./ (all_params)))
+    # end
 end
 
-using Plots
-scatter(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
-        title = "DAISY 3-Compartment model, $(num_unknowns) unknowns", legend = false)
-plot!(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
-      title = "DAISY 3-Compartment model, $(num_unknowns) unknowns", legend = false)
+# using Plots
+# scatter(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
+#         title = "DAISY 3-Compartment Model 2, $(num_unknowns) unknowns", legend = false)
+# plot!(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
+#       title = "DAISY 3-Compartment Model 2, $(num_unknowns) unknowns", legend = false)
 
-png("daisy_mamil3_t_$(time_interval[1])_$(time_interval[2]).png")
+# png("point_error_data/figures/daisy_mamil3_t_$(time_interval[1])_$(time_interval[2]).png")
+# open("point_error_data/data/daisy_mamil3_t_$(time_interval[1])_$(time_interval[2]).txt",
+#      "w") do f
+#     for (k, v) in size_err_map
+#         println(f, "$k $v")
+#     end
+# end

@@ -59,7 +59,7 @@ inputs.PEsol.global_theta_max=2.*ones(1,5);
 inputs.PEsol.global_theta_min=-1.*ones(1,5);
 inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
 inputs.PEsol.global_theta_y0_max=2.*ones(1,3);                % Maximum allowed values for the initial conditions
-inputs.PEsol.global_theta_y0_min=-1*ones(1,3)
+inputs.PEsol.global_theta_y0_min=-1*ones(1,3);
 %=============================================================
 % COST FUNCTION RELATED DATA
 % SOLVING THE PROBLEM WITH WEIGHTED LEAST SQUARES FUNCTION
