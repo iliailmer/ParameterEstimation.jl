@@ -72,44 +72,44 @@ end
 
 adtype = Optimization.AutoZygote()
 optf = Optimization.OptimizationFunction((x, p) -> loss(x), adtype)
-# optprob = Optimization.OptimizationProblem(optf, p_rand)
+optprob = Optimization.OptimizationProblem(optf, p_rand)
 
-# result_ode = Optimization.solve(optprob, PolyOpt(), callback = callback, maxiters = 1000)
+result_ode = Optimization.solve(optprob, PolyOpt(), callback = callback, maxiters = 1000)
 
-# println(result_ode.u)
+println(result_ode.u)
 
-# all_params = vcat(ic, p_true)
-# println("Max. relative abs. error between true and estimated parameters:",
-#         maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
-num_unknowns = length(ic) + length(p_true)
 all_params = vcat(ic, p_true)
-using OrderedCollections
-size_err_map = OrderedDict{Int, Float64}()
-for datasize in 3:21
-    prob_true = ODEProblem(model, ic, time_interval, p_true)
-    solution_true = solve(prob_true, solver, p = p_true, saveat = sampling_times)
-    data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
-    p_rand = rand(Uniform(0.5, 1.5), length(ic) + length(p_true)) # Random Parameters
-    prob = ODEProblem(model, ic, time_interval,
-                      p_rand)
-    optprob = Optimization.OptimizationProblem(optf, p_rand)
+println("Max. relative abs. error between true and estimated parameters:",
+        maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
+# num_unknowns = length(ic) + length(p_true)
+# all_params = vcat(ic, p_true)
+# using OrderedCollections
+# size_err_map = OrderedDict{Int, Float64}()
+# for datasize in 3:21
+#     prob_true = ODEProblem(model, ic, time_interval, p_true)
+#     solution_true = solve(prob_true, solver, p = p_true, saveat = sampling_times)
+#     data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
+#     p_rand = rand(Uniform(0.5, 1.5), length(ic) + length(p_true)) # Random Parameters
+#     prob = ODEProblem(model, ic, time_interval,
+#                       p_rand)
+#     optprob = Optimization.OptimizationProblem(optf, p_rand)
 
-    result_ode = Optimization.solve(optprob, PolyOpt(), callback = callback,
-                                    maxiters = 1000)
+#     result_ode = Optimization.solve(optprob, PolyOpt(), callback = callback,
+#                                     maxiters = 1000)
 
-    size_err_map[datasize] = maximum(100 *
-                                     abs.((result_ode .- all_params) ./ (all_params)))
-end
+#     size_err_map[datasize] = maximum(100 *
+#                                      abs.((result_ode .- all_params) ./ (all_params)))
+# end
 
-using Plots
-scatter(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
-        title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
-plot!(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
-      title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
-# save size_err_map to file
-open("Crauste_t_$(time_interval[1])_$(time_interval[2]).txt", "w") do f
-    for (k, v) in size_err_map
-        println(f, "$k $v")
-    end
-end
-# png("Crauste_t_$(time_interval[1])_$(time_interval[2]).png")
+# using Plots
+# scatter(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
+#         title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
+# plot!(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
+#       title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
+# # save size_err_map to file
+# open("Crauste_t_$(time_interval[1])_$(time_interval[2]).txt", "w") do f
+#     for (k, v) in size_err_map
+#         println(f, "$k $v")
+#     end
+# end
+# # png("Crauste_t_$(time_interval[1])_$(time_interval[2]).png")

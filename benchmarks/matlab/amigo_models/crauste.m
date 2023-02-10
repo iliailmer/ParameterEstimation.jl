@@ -28,7 +28,7 @@ inputs.model.par = [1 1.3 1.1 1.2 1.1 1 0.5 1.0 1.0 1.0 1.0 0.9 1.2];         % 
 inputs.exps.n_exp=1;                          % Number of experiments
 % EXPERIMENT 1
 inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
-inputs.exps.t_f{1}=5;                       % Experiments duration
+inputs.exps.t_f{1}=1;                       % Experiments duration
 inputs.exps.n_obs{1}=4;                       % Number of observables
 % Names of the observables
 inputs.exps.obs_names{1}=char('Y1', 'Y2', 'Y3', 'Y4');
