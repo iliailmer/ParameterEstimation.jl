@@ -28,7 +28,7 @@ inputs.model.par = [1 1.3 1.1 1.2 1.1 1 0.5 1.0 1.0 1.0 1.0 0.9 1.2];         % 
 inputs.exps.n_exp=1;                          % Number of experiments
 % EXPERIMENT 1
 inputs.exps.exp_y0{1}=[1.0 1.0 1.0 1.0 1.0];        % Initial conditions
-inputs.exps.t_f{1}=5;                       % Experiments duration
+inputs.exps.t_f{1}=1;                       % Experiments duration
 inputs.exps.n_obs{1}=4;                       % Number of observables
 % Names of the observables
 inputs.exps.obs_names{1}=char('Y1', 'Y2', 'Y3', 'Y4');
@@ -37,7 +37,7 @@ inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
 inputs.exps.n_s{1}=20;
 inputs.exps.data_type='real';
 inputs.exps.exp_data{1}=[
-  1.0 1.0 2.0 1.0
+1.0 1.0 2.0 1.0
 0.9748203865016476 0.901654713757981 1.8817413878377107 0.9350058134120561
 0.943347445426423 0.8156323245950008 1.777306727235583 0.8761075966493853
 0.9079222171927342 0.7400045430471617 1.6839562031649669 0.8223637276867406

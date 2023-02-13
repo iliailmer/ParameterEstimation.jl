@@ -1,11 +1,11 @@
 [Name]
-4
+Simple
 
 [Notes]
-test
+
 
 [Components]
-time,OUTPUT1
+time,OUTPUT2,OUTPUT1
 
 [Componentnotes]
 

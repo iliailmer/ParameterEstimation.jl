@@ -107,8 +107,8 @@ function sample_data(model::ModelingToolkit.ODESystem,
     solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
                                           saveat = sampling_times;
                                           abstol = 1e-10, reltol = 1e-10)
-    data_sample = Dict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]
-                                       for v in measured_data)
+    data_sample = OrderedDict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]
+                                              for v in measured_data)
     if inject_noise
         for (key, sample) in data_sample
             data_sample[key] = sample + randn(num_points) .* stddev_noise .+ mean_noise
