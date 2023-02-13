@@ -39,16 +39,15 @@ datasize = 10
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#                                  filename = "../matlab/amigo_models/crauste-$datasize.txt")
 
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
-#                                    solver = solver)
-# all_params = vcat(ic, p_true)
-# for each in res
-#     estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-#     println("Max abs rel. err: ", maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
-# end
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ",
+            maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
+end
 num_unknowns = length(ic) + length(p_true)
 all_params = vcat(ic, p_true)
 using OrderedCollections
@@ -56,28 +55,26 @@ size_err_map = OrderedDict{Int, Float64}()
 for datasize in 3:21
     data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                                   p_true, ic, datasize; solver = solver)
-    # res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
-    #                                    solver = solver)
-    ParameterEstimation.write_sample(data_sample;
-                                     filename = "point_error_data/samples/crauste/crauste-$datasize.txt")
+    res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                       solver = solver)
 
-    # for each in res
-    #     estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-    #     size_err_map[datasize] = maximum(100 *
-    #                                      abs.((estimates .- all_params) ./ (all_params)))
-    # end
+    for each in res
+        estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+        size_err_map[datasize] = maximum(100 *
+                                         abs.((estimates .- all_params) ./ (all_params)))
+    end
 end
 
-# using Plots
-# scatter(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
-#         title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
-# plot!(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
-#       title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
+using Plots
+scatter(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
+        title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
+plot!(size_err_map, xlabel = "Number of data points", ylabel = "Max. rel. err. [%]",
+      title = "Crauste Model, $(num_unknowns) unknowns", legend = false)
 
-# png("point_error_data/figures/Crauste_t_$(time_interval[1])_$(time_interval[2]).png")
-# open("point_error_data/data/Crauste_t_$(time_interval[1])_$(time_interval[2]).txt",
-#      "w") do f
-#     for (k, v) in size_err_map
-#         println(f, "$k $v")
-#     end
-# end
+png("point_error_data/figures/Crauste_t_$(time_interval[1])_$(time_interval[2]).png")
+open("point_error_data/data/Crauste_t_$(time_interval[1])_$(time_interval[2]).txt",
+     "w") do f
+    for (k, v) in size_err_map
+        println(f, "$k $v")
+    end
+end

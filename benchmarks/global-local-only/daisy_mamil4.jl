@@ -24,14 +24,12 @@ parameters = [k01, k12, k13, k14, k21, k31, k41]
 measured_quantities = [y1 ~ x1, y2 ~ x2, y3 ~ x3 + x4]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#                                  filename = "./benchmarks/matlab/amigo_models/daisy_mamil4_loc-$datasize.txt")
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
-# all_params = vcat(ic, p_true)
-# for each in res
-#     estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-#     println("Max abs rel. err: ", maximum(abs.((estimates - all_params) ./ all_params)))
-# end
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ", maximum(abs.((estimates - all_params) ./ all_params)))
+end
 
 num_unknowns = length(ic) + length(p_true)
 all_params = vcat(ic, p_true)
@@ -43,8 +41,7 @@ for datasize in 3:21
 
     res = ParameterEstimation.estimate(model, measured_quantities, Dict(data_sample);
                                        solver = solver)
-    ParameterEstimation.write_sample(data_sample;
-                                     filename = "point_error_data/samples/daisy_mamil4/daisy_mamil4-$datasize.txt")
+
     for each in res
         estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
         size_err_map[datasize] = maximum(100 *

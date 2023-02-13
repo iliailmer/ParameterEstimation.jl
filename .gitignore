@@ -38,3 +38,4 @@ sharable
 *.zip
 .R*
 *.png
+!point_error_data/data/*/*.txt

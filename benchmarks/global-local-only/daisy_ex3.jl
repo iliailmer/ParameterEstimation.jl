@@ -26,16 +26,14 @@ p_true = [1, 1.3, 1.1, 1.2, 1] # True Parameters
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#  filename = "./benchmarks/matlab/amigo_models/daisy_ex3-loc-$datasize-$(time_interval[1])-$(time_interval[2]).txt")
 
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
-# all_params = vcat(ic, p_true)
-# for each in res
-#     estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-#     println("Max abs rel. err: ",
-#             maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
-# end
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ",
+            maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
+end
 num_unknowns = length(ic) + length(p_true)
 all_params = vcat(ic, p_true)
 using OrderedCollections
@@ -46,8 +44,7 @@ for datasize in 3:21
 
     res = ParameterEstimation.estimate(model, measured_quantities, Dict(data_sample);
                                        solver = solver)
-    ParameterEstimation.write_sample(data_sample;
-                                     filename = "point_error_data/samples/daisy_ex_3/daisy_ex_3-$datasize.txt")
+
     for each in res
         estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
         size_err_map[datasize] = maximum(100 *

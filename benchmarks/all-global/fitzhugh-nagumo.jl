@@ -22,17 +22,15 @@ measured_quantities = [y1 ~ V]
 
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-# ParameterEstimation.write_sample(data_sample;
-#                                  filename = "../matlab/amigo_models/fhn-$datasize.txt")
 
-# res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
-#                                    solver = solver)
-# all_params = vcat(ic, p_true)
-# for each in res
-#     estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-#     println("Max abs rel. err: ",
-#             maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
-# end
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   solver = solver)
+all_params = vcat(ic, p_true)
+for each in res
+    estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
+    println("Max abs rel. err: ",
+            maximum(abs.((result_ode.u .- all_params) ./ (all_params))))
+end
 num_unknowns = length(ic) + length(p_true)
 all_params = vcat(ic, p_true)
 using OrderedCollections
