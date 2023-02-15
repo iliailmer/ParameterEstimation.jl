@@ -36,7 +36,6 @@ Non-identifable parameters are assigned 0. Globally identifable parameters are a
     - `identifiability_result::IdentifiabilityData`: Identifiability result from `identifiability_analysis`.
 """
 function count_solutions(identifiability_result)
-    @info "Counting number of solutions per variable"
     globally_id = identifiability_result["identifiability_nemo"]["globally"]
     locally_not_globally_id = identifiability_result["identifiability_nemo"]["locally_not_globally"]
     non_id = identifiability_result["identifiability_nemo"]["nonidentifiable"]

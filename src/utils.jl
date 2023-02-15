@@ -14,6 +14,7 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
                 if length(expr_tree.args) == 2
                     return eval(expr_tree.args[1])(nemo2hc(expr_tree.args[2]))
                 else
+                    # println(expr_tree.args[2:end])
                     return reduce(eval(expr_tree.args[1]),
                                   map(nemo2hc, expr_tree.args[2:end]))
                 end
@@ -23,6 +24,7 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
 end
 
 function nemo2hc(expr_tree::SIAN.Nemo.fmpq_mpoly)
+    # println(expr_tree)
     return nemo2hc(Meta.parse(string(expr_tree)))
 end
 
@@ -60,6 +62,9 @@ function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Ve
     end
     if length(data_sample) == 0
         error("No data sample provided")
+    end
+    if length(first(values(data_sample))) <= 2
+        error("Data sample must have at least 3 points")
     end
     if interpolation_degree < 1
         error("Interpolation degree must be ≥ 1")
@@ -102,8 +107,8 @@ function sample_data(model::ModelingToolkit.ODESystem,
     solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
                                           saveat = sampling_times;
                                           abstol = 1e-10, reltol = 1e-10)
-    data_sample = Dict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]
-                                       for v in measured_data)
+    data_sample = OrderedDict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]
+                                              for v in measured_data)
     if inject_noise
         for (key, sample) in data_sample
             data_sample[key] = sample + randn(num_points) .* stddev_noise .+ mean_noise
@@ -128,4 +133,11 @@ function write_sample(data_sample; filename = "sample_data.txt")
             println(io)
         end
     end
+end
+
+function max_abs_rel(all_params, estimate::EstimationResult)
+    estimates = vcat(collect(values(estimate.states)), collect(values(estimate.parameters)))
+    err = maximum(abs.((result_ode.u .- all_params) ./ (all_params)))
+    println("Max abs rel. err: ", err)
+    return err
 end
