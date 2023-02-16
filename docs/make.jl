@@ -4,7 +4,7 @@ makedocs(sitename = "ParameterEstimation.jl",
          pages = ["Home" => "index.md",
              "Tutorials" => [
                  "Estimation" => [
-                     "Estimation for a range of degrees" => "tutorials/estimate.md",
+                     "Simple Example" => "tutorials/estimate.md",
                      #  "Estimation for a single degree" => "tutorials/estimate_single_degree.md",
                  ],
                  "Identifiability" => "tutorials/identifiability_tutorial.md",
