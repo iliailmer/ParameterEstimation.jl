@@ -7,7 +7,6 @@ makedocs(sitename = "ParameterEstimation.jl",
                      "Simple Example" => "tutorials/estimate.md",
                      #  "Estimation for a single degree" => "tutorials/estimate_single_degree.md",
                  ],
-                 "Identifiability" => "tutorials/identifiability_tutorial.md",
              ],
              "Library" => [
                  "Estimation" => "library/estimate.md",
