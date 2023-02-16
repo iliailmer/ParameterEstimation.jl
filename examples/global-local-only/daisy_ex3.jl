@@ -23,16 +23,8 @@ time_interval = [0.0, 6.0]
 p_true = [1, 1.3, 1.1, 1.2, 1] # True Parameters
 datasize = 20
 
-# v = randn(datasize)
-# v = sort((v .- minimum(v)) / (maximum(v) - minimum(v))) * time_interval[2]
-# data_sample = Dict{Any, Any}("t" => v)
-
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-#   uneven_sampling = true,
-#   uneven_sampling_times = data_sample["t"])
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "benchmarks/matlab/amigo_models/daisy_ex3-local-$datasize.txt")
 
 plot(data_sample[x1])
 plot!(data_sample[u0])
