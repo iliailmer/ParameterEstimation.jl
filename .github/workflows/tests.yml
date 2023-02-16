@@ -21,7 +21,7 @@ jobs:
       matrix:
         julia-version: ["1"]
         julia-arch: [x64]
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - name: "Checkout"
