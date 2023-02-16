@@ -20,4 +20,24 @@ Pkg.add(url="https://github.com/iliailmer/ParameterEstimation.jl")
 
 ## Toy Example
 
+```julia
+using ParameterEstimation
+using ModelingToolkit
+
+# Input:
+# -- Differential model
+@parameters mu
+@variables t x(t) y(t)
+D = Differential(t)
+@named Sigma = ODESystem([D(x) ~ -mu * x],
+                         t, [x], [mu])
+outs = [y ~ x^2 + x]
+
+# -- Data
+data = Dict(
+  "t"     => [0.000, 0.333, 0.666, 1.000],
+  x^2 + x => [2.000, 1.563, 1.229, 0.974])
+
+# Run
+res = estimate(Sigma, outs, data);
 ```
