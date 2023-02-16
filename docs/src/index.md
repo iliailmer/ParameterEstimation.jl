@@ -11,8 +11,13 @@ using Pkg
 Pkg.add("ParameterEstimation")
 ```
 
+To
+
 ## Citation
+
+TBA
 
 ## Feature Summary
 
-## Feature list
+- Parameter estimation based on sample data
+- Estimated values are reported based on identifiability: local (finitely many), global (unque), unidentifiable.
