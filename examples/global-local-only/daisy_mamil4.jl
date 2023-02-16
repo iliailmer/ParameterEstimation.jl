@@ -24,6 +24,4 @@ parameters = [k01, k12, k13, k14, k21, k31, k41]
 measured_quantities = [y1 ~ x1, y2 ~ x2 + x4, y3 ~ x3]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-ParameterEstimation.write_sample(data_sample;
-                                 filename = "benchmarks/matlab/amigo_models/daisy_mamil4-loc-$datasize.txt")
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
