@@ -18,3 +18,5 @@ makedocs(sitename = "ParameterEstimation.jl",
                      "Interpolant" => "library/rational_interpolation/interpolant.md",
                  ],
              ]])
+
+deploydocs(repo = "github.com/iliailmer/ParameterEstimation.jl.git")
