@@ -6,10 +6,7 @@ In this tutorial, we provide a general overview of using `ParameterEstimation.jl
 
 Assume we have a simple ODE model with output as below
 
-$$
-\dot{x} = -\mu x
-y = x^2+x
-$$
+$$\begin{cases}\dot{x} = -\mu x,\\y = x^2+x\end{cases}$$
 
 If we collect the sample at 4 time points between 0 and 1, we obtain a collection:
 
