@@ -17,6 +17,7 @@ If we collect the sample at 4 time points between 0 and 1, we obtain a collectio
 
 This is all that is needed for the program: a symbolic model (ODE and outputs) and a dictionary of data.
 
+## Code
 Below is the working code example:
 
 ```julia
