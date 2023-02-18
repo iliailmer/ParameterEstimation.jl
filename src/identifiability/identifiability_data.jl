@@ -23,10 +23,10 @@ mutable struct IdentifiabilityData
     polynomial_system_to_solve::PolySystem
     denomiantor::SIAN.Nemo.fmpq_mpoly
     variables::Vector{SIAN.Nemo.fmpq_mpoly}
-    const substitutions::Vector{Vector}
+    substitutions::Vector{Vector}
     identifiability_nemo::Any
     identifiability::Dict{Any, Any}
-    const transcendence_basis_subs::Dict{Any, Any}
+    transcendence_basis_subs::Dict{Any, Any}
     Y_eq::Dict{Any, Any}
     basis::Vector{SIAN.Nemo.fmpq_mpoly}
     weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}
