@@ -12,6 +12,15 @@ Symbolic-Numeric package for parameter estimation in ODEs
 
 Currently is installable via
 
+
+```julia
+
+using Pkg
+Pkg.add("ParameterEstimation.jl")
+```
+
+or
+
 ```julia
 
 using Pkg
