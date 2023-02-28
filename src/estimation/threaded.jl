@@ -1,4 +1,4 @@
-function estimate_threaded(model, measured_quantities, data_sample;
+function estimate_threaded(model, measured_quantities, inputs, data_sample;
                            at_time::Float = 0.0, solver = solver,
                            degree_range = degree_range,
                            method = :homotopy, real_tol::Float64 = 1e-10)
@@ -22,9 +22,11 @@ function estimate_threaded(model, measured_quantities, data_sample;
         if isnothing(estimates[id])
             estimates[id] = []
         end
-        unfiltered = estimate_fixed_degree(model, measured_quantities,
-                                           data_sample, identifiability_result,
-                                           deg, at_time, method = method,
+        unfiltered = estimate_fixed_degree(model, measured_quantities, inputs,
+                                           data_sample;
+                                           identifiability_result = identifiability_result,
+                                           interpolation_degree = deg, at_time = at_time,
+                                           method = method,
                                            real_tol = real_tol)
         if length(unfiltered) > 0
             filtered = filter_solutions(unfiltered, identifiability_result, model,

@@ -23,6 +23,7 @@ object that contains the results of the identifiability analysis.
 """
 function check_identifiability(ode::ModelingToolkit.ODESystem;
                                measured_quantities = Array{ModelingToolkit.Equation}[],
+                               inputs = Array{ModelingToolkit.Equation}[],
                                infolevel = 0)
     if length(measured_quantities) == 0
         if any(ModelingToolkit.isoutput(eq.lhs) for eq in ModelingToolkit.equations(ode))

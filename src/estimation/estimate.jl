@@ -26,6 +26,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 """
 function estimate(model::ModelingToolkit.ODESystem,
                   measured_quantities::Vector{ModelingToolkit.Equation},
+                  inputs::Vector{ModelingToolkit.Equation},
                   data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                   at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
                   degree_range = nothing, real_tol = 1e-10,
@@ -34,13 +35,13 @@ function estimate(model::ModelingToolkit.ODESystem,
         throw(ArgumentError("Method $method is not supported, must be one of :homotopy or :msolve."))
     end
     if threaded
-        result = estimate_threaded(model, measured_quantities, data_sample;
+        result = estimate_threaded(model, measured_quantities, inputs, data_sample;
                                    at_time = at_time, solver = solver,
                                    degree_range = degree_range,
                                    method = method,
                                    real_tol = real_tol)
     else
-        result = estimate_serial(model, measured_quantities, data_sample;
+        result = estimate_serial(model, measured_quantities, inputs, data_sample;
                                  solver = solver, at_time = at_time,
                                  degree_range = degree_range, method = method,
                                  real_tol = real_tol)

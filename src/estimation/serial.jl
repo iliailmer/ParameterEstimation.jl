@@ -1,5 +1,6 @@
 function estimate_serial(model::ModelingToolkit.ODESystem,
                          measured_quantities::Vector{ModelingToolkit.Equation},
+                         inputs::Vector{ModelingToolkit.Equation},
                          data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                          at_time::T = 0.0, solver = Tsit5(), degree_range = nothing,
                          method = :homotopy,

@@ -28,6 +28,7 @@ measured quantities `measured_quantities`.
 """
 function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
+                               inputs::Vector{ModelingToolkit.Equation},
                                data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                                identifiability_result = Dict{String, Any}(),
                                interpolation_degree::Int = 1,
@@ -46,7 +47,7 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
         data_sample["t"] = range(time_interval[1], time_interval[2], length = datasize)
     end
     interpolants = ParameterEstimation.interpolate(identifiability_result,
-                                                   data_sample, measured_quantities,
+                                                   data_sample, measured_quantities, inputs;
                                                    interpolation_degree = interpolation_degree,
                                                    diff_order = num_parameters + 1,
                                                    at_t = at_time,
