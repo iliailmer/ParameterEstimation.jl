@@ -43,7 +43,7 @@ function check_identifiability(ode::ModelingToolkit.ODESystem;
                                                   weighted_ordering = true,
                                                   local_only = false)
 
-    @info "Post-Processing: Converting Nemo output to ModelingToolkit types"
+    @debug "Post-Processing: Converting Nemo output to ModelingToolkit types"
     out = Dict()
     for (id_type, pars) in pairs(res["identifiability"])
         out[id_type] = [ModelingToolkit.Num(substitute(nemo2mtk[each], t => 0))
@@ -376,6 +376,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         full_result = Dict("polynomial_system" => [SIAN.Nemo.evaluate(e, alg_indep,
                                                                       transcendence_substitutions)
                                                    for e in Et_],
+                           "polynomial_system_to_solve" => HomotopyContinuation.System([]),
                            "denominator" => Q,
                            "Y_eq" => y_derivative_dict,
                            "vars" => vrs_sorted,

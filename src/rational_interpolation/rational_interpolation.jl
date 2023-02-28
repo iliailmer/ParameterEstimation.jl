@@ -22,11 +22,6 @@ function rational_interpolation_coefficients(x, y, n)
         A_right_submatrix = reduce(hcat, [x .^ (i) for i in 0:(m - 1)])
         A = hcat(A_left_submatrix, -y .* A_right_submatrix)
         b = y .* (x .^ m)
-        # @info det(A), cond(A)
-        # e = det(A)
-        # if abs(e) < 1e-20
-        #     @warn "Determinant of A is small: $e"
-        # end
         try
             prob = LinearSolve.LinearProblem(A, b)
             c = LinearSolve.solve(prob)
@@ -48,11 +43,10 @@ function rational_interpolation_coefficients(x, y, n)
 end
 
 """
-    interpolate(identifiability_result, data_sample, time_interval,
-                measured_quantities,
-                interpolation_degree::Int = 1,
-                diff_order::Int = 1,
-                at_t::Float = 0.0)
+    interpolate(identifiability_result, data_sample,
+                measured_quantities; interpolation_degree::Int = 1,
+                diff_order::Int = 1, at_t::Float = 0.0,
+                method::Symbol = :homotopy)
 
 This function performs the key step in parameter estimation.
 
@@ -62,18 +56,19 @@ This function performs the key step in parameter estimation.
 # Arguments
 - `identifiability_result`: the result of the identifiability check.
 - `data_sample`: a dictionary of the data samples. The keys are the symbols of the measured quantities and the values are the data samples.
-- `time_interval`: the time interval where the data is sampled.
-- `measured_quantities`: the measured quantities (equations of the form `y ~ x`).
+- `measured_quantities`: the measured quantities (outputs as equations of the form `y ~ x`).
 - `interpolation_degree::Int = 1`: the degree of the numerator of the rational interpolation.
 - `diff_order::Int = 1`: the order of the derivative to be computed.
 - `at_t::Float = 0.0`: the time point where the Taylor series expansion is computed.
+- `method::Symbol = :homotopy`: the method used to solve the polynomial system. Can be one of :homotopy (recommended) and :msolve.
 
 # Returns
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
 """
-function interpolate(identifiability_result, data_sample, time_interval,
-                     measured_quantities, interpolation_degree::Int = 1,
-                     diff_order::Int = 1, at_t::Float = 0.0)
+function interpolate(identifiability_result, data_sample,
+                     measured_quantities; interpolation_degree::Int = 1,
+                     diff_order::Int = 1, at_t::Float = 0.0,
+                     method::Symbol = :homotopy)
     polynomial_system = identifiability_result["polynomial_system"]
     interpolants = Dict{Any, Interpolant}()
     sampling_times = data_sample["t"]
@@ -89,27 +84,26 @@ function interpolate(identifiability_result, data_sample, time_interval,
                                                       diff_order, at_t)
         interpolants[key] = interpolant
         err = sum(abs.(sample - interpolant.I.(sampling_times))) / length(sampling_times)
-        @info "Mean Absolute error in interpolation: $err interpolating $key"
-        for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
-            if occursin(y_function_name, string(y_func))
-                y_derivs_vals = Dict(ParameterEstimation.nemo2hc(y_func) => interpolant.dIdt[y_deriv_order] *
-                                                                            factorial(y_deriv_order))
-                polynomial_system = HomotopyContinuation.evaluate(ParameterEstimation.nemo2hc.(polynomial_system),
-                                                                  y_derivs_vals)
-            end
+        @debug "Mean Absolute error in interpolation: $err interpolating $key"
+        polynomial_system = eval_derivs(polynomial_system, interpolant, y_function_name,
+                                        identifiability_result, method = method)
+    end
+    if isequal(method, :homotopy)
+        try
+            identifiability_result["polynomial_system_to_solve"] = HomotopyContinuation.System(polynomial_system)
+        catch KeyError
+            throw(ArgumentError("HomotopyContinuation threw a KeyError, it is likely that " *
+                                "you are using Unicode characters in your input. Consider " *
+                                "using ASCII characters instead."))
         end
+    else
+        identifiability_result["polynomial_system_to_solve"] = polynomial_system
     end
-    try
-        return System(polynomial_system), interpolants
-    catch KeyError
-        throw(ArgumentError("HomotopyContinuation threw a KeyError, it is likely that " *
-                            "you are using Unicode characters in your input. Consider " *
-                            "using ASCII characters instead."))
-    end
+    return interpolants
 end
 
 """
-    interpolate(time, sample, numer_degree::Int, diff_order::Int = 1)
+    interpolate(time, sample, numer_degree::Int, diff_order::Int = 1, at_t::Float = 0.0)
 
 This function performs a rational interpolation of the data `sample` at the points `time` with numerator degree `numer_degree`.
 It returns an `Interpolant` object that contains the interpolated function and its derivatives.

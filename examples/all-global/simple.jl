@@ -23,8 +23,4 @@ time_interval = [0.0, 2.0 * pi * sqrt(1.3 / 9.8)]
 datasize = 20
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval)
-
-print(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample)

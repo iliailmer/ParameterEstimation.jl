@@ -9,7 +9,7 @@ states = [x1, x2, x3]
 parameters = [k1, k2, k3, k4, k5, k6, Ki]
 
 @named model = ODESystem([
-                             D(x1) ~ k1 * Ki^2 / (Ki^2 + x3^2) - k2 * x1,
+                             D(x1) ~ k1 * Ki^10 / (Ki^10 + x3^10) - k2 * x1,
                              D(x2) ~ k3 * x1 - k4 * x2,
                              D(x3) ~ k5 * x2 - k6 * x3],
                          t, states, parameters)
@@ -25,9 +25,6 @@ sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [1, 1 / 10, 1, 1 / 10, 1, 1 / 10, 1] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
                                               p_true, ic, datasize; solver = solver)
-at_time = 0.5
 
-res = ParameterEstimation.estimate(model, measured_quantities, data_sample,
-                                   time_interval, at_time)
-
-print(res)
+res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
+                                   method = :msolve)

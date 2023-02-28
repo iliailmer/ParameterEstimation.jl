@@ -69,10 +69,11 @@ end
 
 """
     filter_solutions(results::Vector{EstimationResult},
-                     identifiability_result::IdentifiabilityData,
-                     model::ModelingToolkit.ODESystem,
-                     data_sample::Dict{Num, Vector{T}} = Dict{Num, Vector{T}}(),
-                     time_interval = Vector{T}(); topk = 1) where {T <: Float}
+                    identifiability_result::IdentifiabilityData,
+                    model::ModelingToolkit.ODESystem,
+                    data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+                    solver = Tsit5(),
+                    topk = 1) where {T <: Float}
 
 Filter estimation results stored in `results` vector based on ODE solving and checking against the sample.
 In addition, takes into account global and local identifiability of parameters when filtering.
@@ -94,10 +95,9 @@ function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
                           data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
-                          time_interval::Vector{T} = Vector{T}(),
                           solver = Tsit5(),
                           topk = 1) where {T <: Float}
-    @info "Filtering"
+    @debug "Filtering"
     if length(results) == 0
         @warn "No results to filter."
         return results
@@ -108,23 +108,23 @@ function filter_solutions(results::Vector{EstimationResult},
     try
         solve_ode!(model, results, data_sample; solver = solver) # this solves ODE with new parameters and computes err. between sample and solution
     catch InexactError
-        @warn "InexactError when solving the ODE, no filtering was done."
+        @debug "InexactError when solving the ODE, no filtering was done."
         return results
     end
     if length(identifiability_result["identifiability"]["nonidentifiable"]) > 0
-        @warn "The model contains non-identifiable parameters"
+        @debug "The model contains non-identifiable parameters"
         filtered_results = Vector{ParameterEstimation.EstimationResult}()
         clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
                                                           solver = solver)
         if length(clustered) == 0
-            @warn "No results to filter."
+            @debug "No clustered data, cannot find results to filter."
             return results
         end
         min_cluster_err, min_cluster_idx = findmin(sum(each.err for each in group) /
                                                    length(group)
                                                    for (id, group) in pairs(clustered))
         min_cluster = clustered[min_cluster_idx]
-        @info "Best estimate yelds ODE solution error $(min_cluster_err)"
+        @debug "Best estimate yelds ODE solution error $(min_cluster_err)"
         filtered_results = min_cluster
         return results
     end
@@ -133,7 +133,7 @@ function filter_solutions(results::Vector{EstimationResult},
         clustered = ParameterEstimation.cluster_estimates(model, results, data_sample,
                                                           solver = solver)
         if length(clustered) == 0
-            @warn "No results to filter."
+            @debug "No clustered data, cannot find results to filter."
             return results
         end
         # find cluster with smallest error
@@ -141,23 +141,28 @@ function filter_solutions(results::Vector{EstimationResult},
                                                    length(group)
                                                    for (id, group) in pairs(clustered))
         min_cluster = clustered[min_cluster_idx]
-        @info "Best estimate yelds ODE solution error $(min_cluster_err)"
+        @debug "Best estimate yelds ODE solution error $(min_cluster_err)"
         filtered_results = min_cluster
     else
         sorted = sort(results, by = x -> x.err)
         if topk == 1
             filtered_results = Vector{EstimationResult}()
-            @info "Best estimate yelds ODE solution error $(sorted[1].err)"
+            @debug "Best estimate yelds ODE solution error $(sorted[1].err)"
             push!(filtered_results, sorted[1])
         else
             filtered_results = Vector{Vector{ParameterEstimation.EstimationResult}}()
-            @info "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
+            @debug "Best $(topk) estimates yeld ODE solution errors $([s.err for s in sorted[1:topk]])"
             push!(filtered_results, sorted[1:topk])
         end
     end
     return filtered_results
 end
 
+"""
+    function cluster_estimates(model, res, data_sample; ε = 1e-6, solver = Tsit5())
+
+    Clusters the estimates by their error. Used in case of non-identifiability of parameters.
+"""
 function cluster_estimates(model, res, data_sample; ε = 1e-6, solver = Tsit5())
     # clusrers the estimates by their error
     ParameterEstimation.solve_ode!(model, res, data_sample, solver = solver)
