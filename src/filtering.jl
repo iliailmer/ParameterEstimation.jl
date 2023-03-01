@@ -71,7 +71,7 @@ end
     filter_solutions(results::Vector{EstimationResult},
                     identifiability_result::IdentifiabilityData,
                     model::ModelingToolkit.ODESystem,
-                    data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+                    data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                     solver = Tsit5(),
                     topk = 1) where {T <: Float}
 
@@ -82,7 +82,7 @@ In addition, takes into account global and local identifiability of parameters w
 - `results::Vector{EstimationResult}`: the vector of estimation results.
 - `identifiability_result::IdentifiabilityData`: the result of identifiability analysis.
 - `model::ModelingToolkit.ODESystem`: the ODE system.
-- `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
+- `data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
 - `time_interval::Vector{T} = Vector{T}()`: the time interval of the ODE system.
@@ -94,7 +94,7 @@ In addition, takes into account global and local identifiability of parameters w
 function filter_solutions(results::Vector{EstimationResult},
                           identifiability_result::IdentifiabilityData,
                           model::ModelingToolkit.ODESystem,
-                          data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+                          data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                           solver = Tsit5(),
                           topk = 1) where {T <: Float}
     @debug "Filtering"

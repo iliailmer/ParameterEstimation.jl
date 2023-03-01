@@ -25,15 +25,15 @@ mutable struct IdentifiabilityData
     variables::Vector{SIAN.Nemo.fmpq_mpoly}
     substitutions::Vector{Vector}
     identifiability_nemo::Any
-    identifiability::Dict{Any, Any}
-    transcendence_basis_subs::Dict{Any, Any}
-    Y_eq::Dict{Any, Any}
+    identifiability::AbstractDict{Any, Any}
+    transcendence_basis_subs::AbstractDict{Any, Any}
+    Y_eq::AbstractDict{Any, Any}
     basis::Vector{SIAN.Nemo.fmpq_mpoly}
-    weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}
+    weights::AbstractDict{SIAN.Nemo.fmpq_mpoly, Int64}
     non_jet_ring::SIAN.Nemo.FmpqMPolyRing
-    nemo_mtk::Dict
-    solution_counts::Dict
-    function IdentifiabilityData(input::Dict)
+    nemo_mtk::AbstractDict
+    solution_counts::AbstractDict
+    function IdentifiabilityData(input::AbstractDict)
         solution_counts = count_solutions(input)
         return new(input["polynomial_system"], input["polynomial_system_to_solve"],
                    input["denominator"], input["vars"],

@@ -27,7 +27,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 function estimate(model::ModelingToolkit.ODESystem,
                   measured_quantities::Vector{ModelingToolkit.Equation},
                   inputs::Vector{ModelingToolkit.Equation},
-                  data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+                  data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                   at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
                   degree_range = nothing, real_tol = 1e-10,
                   threaded = Threads.nthreads() > 1) where {T <: Float}

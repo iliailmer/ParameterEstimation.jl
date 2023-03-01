@@ -29,7 +29,8 @@ measured quantities `measured_quantities`.
 function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
                                inputs::Vector{ModelingToolkit.Equation},
-                               data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+                               data_sample::AbstractDict{Any, Vector{T}} = Dict{Any,
+                                                                                Vector{T}}();
                                identifiability_result = Dict{String, Any}(),
                                interpolation_degree::Int = 1,
                                at_time::T = 0.0,

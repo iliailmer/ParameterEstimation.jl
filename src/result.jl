@@ -16,17 +16,18 @@ the error between the estimated ODE solution and the sample data, and the return
 - `datasize::Int64`: The number of data points used in the estimation.
 """
 struct EstimationResult
-    parameters::OrderedDict
-    states::OrderedDict
+    parameters::AbstractDict
+    states::AbstractDict
     degree::Int64
     at_time::Float64
     err::Union{Nothing, Float64}
-    interpolants::Union{Nothing, Dict{Any, Interpolant}}
+    interpolants::Union{Nothing, AbstractDict{Any, Interpolant}}
     return_code::Any
     datasize::Int64
     function EstimationResult(model::ModelingToolkit.ODESystem,
-                              poly_sol::Union{Dict, OrderedDict}, degree::Int64,
-                              at_time::Float64, interpolants::Dict{Any, Interpolant},
+                              poly_sol::AbstractDict, degree::Int64,
+                              at_time::Float64,
+                              interpolants::AbstractDict{Any, Interpolant},
                               return_code, datasize)
         parameters = OrderedDict{Any, Any}()
         states = OrderedDict{Any, Any}()
@@ -39,7 +40,7 @@ struct EstimationResult
         new(parameters, states, degree, at_time, nothing, interpolants, return_code,
             datasize)
     end
-    function EstimationResult(parameters::OrderedDict, states::OrderedDict, degree::Int64,
+    function EstimationResult(parameters::AbstractDict, states::AbstractDict, degree::Int64,
                               at_time::Float64, err, interpolants, return_code, datasize)
         new(parameters, states, degree, at_time, err, interpolants, return_code, datasize)
     end
