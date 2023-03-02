@@ -4,6 +4,7 @@ authors = ["Soo Go <sgo@gradcenter.cuny.edu>", "Hoon Hong <hong@ncsu.edu>", "Ili
 version = "0.1.0"
 
 [deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
 Groebner = "0b43b601-686d-58a3-8a1c-6623616c7cd4"
 HomotopyContinuation = "f213a82b-91d6-5c5d-acf7-10f1c761b327"
