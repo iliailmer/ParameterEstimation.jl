@@ -13,7 +13,6 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
                      inputs::Vector{ModelingToolkit.Equation},
                      identifiability_result;
                      method = :homotopy)
-    t = arguments(inputs[1].lhs)[1]
     if isequal(method, :homotopy)
         for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
             if occursin(y_function_name, string(y_func))
@@ -24,6 +23,7 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
             end
         end
         for (u_funct, u_deriv_order) in pairs(identifiability_result["u_variables"])
+            t = arguments(inputs[1].lhs)[1]
             tau = Taylor1(u_deriv_order)
             for input_eq in inputs
                 u_function_name = replace(string(input_eq.lhs), "(t)" => "")

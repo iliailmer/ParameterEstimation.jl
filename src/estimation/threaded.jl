@@ -10,12 +10,13 @@ function estimate_threaded(model, measured_quantities, inputs, data_sample;
     end
 
     identifiability_result = ParameterEstimation.check_identifiability(model;
-                                                                       measured_quantities = measured_quantities)
+                                                                       measured_quantities = measured_quantities,
+                                                                       inputs = [Num(each.lhs)
+                                                                                 for each in inputs])
     n_threads = Threads.nthreads()
     N = length(degree_range)
     estimates = Vector{Any}(nothing, n_threads)
     @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end]) using $n_threads threads"
-
     Threads.@threads for t in 1:N
         deg = degree_range[t]
         id = Threads.threadid()
