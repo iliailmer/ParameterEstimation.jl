@@ -19,6 +19,7 @@ This is used for parameter estimation.
 - `weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}`: The weights of the variables used by SIAN to assess GroebnerBasis.
 """
 mutable struct IdentifiabilityData
+    full_polynomial_system::Vector{SIAN.Nemo.fmpq_mpoly}
     polynomial_system::Vector{SIAN.Nemo.fmpq_mpoly}
     polynomial_system_to_solve::PolySystem
     denomiantor::SIAN.Nemo.fmpq_mpoly
@@ -35,7 +36,8 @@ mutable struct IdentifiabilityData
     solution_counts::Dict
     function IdentifiabilityData(input::Dict)
         solution_counts = count_solutions(input)
-        return new(input["polynomial_system"], input["polynomial_system_to_solve"],
+        return new(input["full_polynomial_system"], input["polynomial_system"],
+                   input["polynomial_system_to_solve"],
                    input["denominator"], input["vars"],
                    input["vals"], input["identifiability_nemo"], input["identifiability"],
                    input["transcendence_basis_subs"], input["Y_eq"], input["basis"],
