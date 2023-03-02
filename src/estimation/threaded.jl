@@ -22,24 +22,21 @@ function estimate_threaded(model, measured_quantities, inputs, data_sample;
         if isnothing(estimates[id])
             estimates[id] = []
         end
-        unfiltered = estimate_fixed_degree(model, measured_quantities, inputs,
-                                           data_sample;
+        unfiltered = estimate_fixed_degree(model, measured_quantities, inputs, data_sample;
                                            identifiability_result = identifiability_result,
                                            interpolation_degree = deg, at_time = at_time,
                                            method = method,
                                            real_tol = real_tol)
         if length(unfiltered) > 0
-            filtered = filter_solutions(unfiltered, identifiability_result, model,
+            filtered = filter_solutions(unfiltered, identifiability_result, model, inputs,
                                         data_sample; solver = solver)
             push!(estimates[id], filtered)
 
         else
             push!(estimates[id],
                   [
-                      EstimationResult(model, Dict(), deg,
-                                       at_time,
-                                       Dict{Any, Interpolant}(),
-                                       ReturnCode.Failure,
+                      EstimationResult(model, Dict(), deg, at_time,
+                                       Dict{Any, Interpolant}(), ReturnCode.Failure,
                                        datasize),
                   ])
         end

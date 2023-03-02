@@ -11,16 +11,19 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
         degree_range = 1:(length(data_sample[first(keys(data_sample))]) - 1)
     end
     id = ParameterEstimation.check_identifiability(model;
-                                                   measured_quantities = measured_quantities)
+                                                   measured_quantities = measured_quantities,
+                                                   inputs = [Num(each.lhs)
+                                                             for each in inputs])
     estimates = Vector{Vector{ParameterEstimation.EstimationResult}}()
     @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end])"
     @showprogress for deg in degree_range
-        unfiltered = estimate_fixed_degree(model, measured_quantities, data_sample;
+        unfiltered = estimate_fixed_degree(model, measured_quantities, inputs, data_sample;
                                            identifiability_result = id,
                                            interpolation_degree = deg, at_time = at_time,
                                            method = method, real_tol = real_tol)
         if length(unfiltered) > 0
-            filtered = filter_solutions(unfiltered, id, model, data_sample; solver = solver)
+            filtered = filter_solutions(unfiltered, id, model, inputs, data_sample;
+                                        solver = solver)
             push!(estimates, filtered)
         else
             push!(estimates,

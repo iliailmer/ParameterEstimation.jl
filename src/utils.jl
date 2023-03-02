@@ -55,7 +55,7 @@ Checks that the inputs to `estimate` are valid.
 function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Vector{
                                                                                      ModelingToolkit.Equation
                                                                                      }([]),
-                      data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
+                      data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}(),
                       interpolation_degree::Int = 1) where {T <: Float}
     if length(measured_quantities) == 0
         error("No measured states provided")
