@@ -66,7 +66,7 @@ This function performs the key step in parameter estimation.
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
 """
 function interpolate(identifiability_result, data_sample,
-                     measured_quantities; interpolation_degree::Int = 1,
+                     measured_quantities, inputs; interpolation_degree::Int = 1,
                      diff_order::Int = 1, at_t::Float = 0.0,
                      method::Symbol = :homotopy)
     polynomial_system = identifiability_result["polynomial_system"]
@@ -86,13 +86,13 @@ function interpolate(identifiability_result, data_sample,
         err = sum(abs.(sample - interpolant.I.(sampling_times))) / length(sampling_times)
         @debug "Mean Absolute error in interpolation: $err interpolating $key"
         polynomial_system = eval_derivs(polynomial_system, interpolant, y_function_name,
-                                        identifiability_result, method = method)
+                                        inputs, identifiability_result, method = method)
     end
     if isequal(method, :homotopy)
         try
             identifiability_result["polynomial_system_to_solve"] = HomotopyContinuation.System(polynomial_system)
         catch KeyError
-            throw(ArgumentError("HomotopyContinuation threw a KeyError, it is likely that " *
+            throw(ArgumentError("HomotopyContinuation threw a KeyError, it is possible that " *
                                 "you are using Unicode characters in your input. Consider " *
                                 "using ASCII characters instead."))
         end

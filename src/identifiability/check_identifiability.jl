@@ -1,6 +1,8 @@
 """
-    check_identifiability(ode::ModelingToolkit.ODESystem; measured_quantities = Array{ModelingToolkit.Equation}[],
-                          infolevel = 0)
+function check_identifiability(ode::ModelingToolkit.ODESystem;
+                               measured_quantities = Array{ModelingToolkit.Equation}[],
+                               inputs::Vector{Num} = Array{Num}[],
+                               infolevel = 0)
 
 Check identifiability of parameters in the ODE system `ode` using the
 algorithm described in [1]. The function returns a `ParameterEstimation.IdentifiabilityData`
@@ -11,6 +13,7 @@ object that contains the results of the identifiability analysis.
     - `measured_quantities = Array{ModelingToolkit.Equation}[]`: A list of equations
         that define the measured quantities. If not provided, the outputs of the ODE
         system will be used.
+    - `inputs::Vector{Num} = Array{Num}[]`: A list of input functions, if any are present.
     - `infolevel::Int`: The level of information to be printed during the analysis.
 
 # References
@@ -23,6 +26,7 @@ object that contains the results of the identifiability analysis.
 """
 function check_identifiability(ode::ModelingToolkit.ODESystem;
                                measured_quantities = Array{ModelingToolkit.Equation}[],
+                               inputs::Vector{Num} = Array{Num}[],
                                infolevel = 0)
     if length(measured_quantities) == 0
         if any(ModelingToolkit.isoutput(eq.lhs) for eq in ModelingToolkit.equations(ode))
@@ -33,7 +37,7 @@ function check_identifiability(ode::ModelingToolkit.ODESystem;
             throw(error("Measured quantities (output functions) were not provided and no outputs were found."))
         end
     end
-    ode_prep, input_syms, gens_ = SIAN.PreprocessODE(ode, measured_quantities)
+    ode_prep, input_syms, gens_ = preprocess_ode(ode, measured_quantities, inputs)
     t = ModelingToolkit.arguments(ModelingToolkit.states(ode)[1])[1]
     params_to_assess_ = SIAN.get_parameters(ode_prep)
     nemo2mtk = Dict(gens_ .=> input_syms)
@@ -372,6 +376,11 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             name, order = SIAN.get_order_var(each[1], non_jet_ring)
             y_derivative_dict[each[1]] = order
         end
+        u_derivative_dict = Dict()
+        for each in u_variables
+            name, order = SIAN.get_order_var(each, non_jet_ring)
+            u_derivative_dict[each] = order
+        end
         Et_ = [Et[idx] for idx in Et_ids]
         full_result = Dict("full_polynomial_system" => [SIAN.Nemo.evaluate(e, alg_indep,
                                                                            transcendence_substitutions)
@@ -382,6 +391,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                            "polynomial_system_to_solve" => HomotopyContinuation.System([]),
                            "denominator" => Q,
                            "Y_eq" => y_derivative_dict,
+                           "u_variables" => u_derivative_dict,
                            "vars" => vrs_sorted,
                            "vals" => all_subs,
                            "transcendence_basis_subs" => Dict(alg_indep .=>

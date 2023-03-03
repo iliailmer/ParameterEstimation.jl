@@ -1,6 +1,7 @@
 """
     estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                         measured_quantities::Vector{ModelingToolkit.Equation},
+                        inputs::Vector{ModelingToolkit.Equation},
                         data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
                         identifiability_result = Dict{String, Any}(),
                         interpolation_degree::Int = 1,
@@ -14,6 +15,7 @@ measured quantities `measured_quantities`.
 # Arguments
 - `model::ModelingToolkit.ODESystem`: the model with parameters and initial conditions to be estimated.
 - `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities of the model. Used for identifiability assessment.
+- `inputs::Vector{ModelingToolkit.Equation}`: the input equations of the model.
 - `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
                                                                 The keys of the dictionary are the measured quantities
                                                                 and the values are the corresponding data samples.
@@ -28,7 +30,9 @@ measured quantities `measured_quantities`.
 """
 function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
                                measured_quantities::Vector{ModelingToolkit.Equation},
-                               data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+                               inputs::Vector{ModelingToolkit.Equation},
+                               data_sample::AbstractDict{Any, Vector{T}} = Dict{Any,
+                                                                                Vector{T}}();
                                identifiability_result = Dict{String, Any}(),
                                interpolation_degree::Int = 1,
                                at_time::T = 0.0,
@@ -46,7 +50,7 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
         data_sample["t"] = range(time_interval[1], time_interval[2], length = datasize)
     end
     interpolants = ParameterEstimation.interpolate(identifiability_result,
-                                                   data_sample, measured_quantities,
+                                                   data_sample, measured_quantities, inputs;
                                                    interpolation_degree = interpolation_degree,
                                                    diff_order = num_parameters + 1,
                                                    at_t = at_time,

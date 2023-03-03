@@ -13,7 +13,7 @@ This is used for parameter estimation.
 - `variables::Vector{SIAN.Nemo.fmpq_mpoly}`: The variables of the polynomial system.
 - `substitutions::Vector{Vector}`: The substitutions used to assess identifiability.
 - `identifiability_nemo::Any`: The identifiability data from SIAN in Nemo data type.
-- `identifiability::Dict{Any, Any}`: The identifiability data from SIAN in HomotopyContinuation compatible data type.
+- `identifiability::Dict`: The identifiability data from SIAN in HomotopyContinuation compatible data type.
 - `basis::Vector{SIAN.Nemo.fmpq_mpoly}`: The transcendence basis of the polynomial system.
 - `transcendence_basis_subs::Vector{SIAN.Nemo.RingElem}`: The transcendence basis substitutions of the polynomial system.
 - `weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}`: The weights of the variables used by SIAN to assess GroebnerBasis.
@@ -26,21 +26,23 @@ mutable struct IdentifiabilityData
     variables::Vector{SIAN.Nemo.fmpq_mpoly}
     substitutions::Vector{Vector}
     identifiability_nemo::Any
-    identifiability::Dict{Any, Any}
-    transcendence_basis_subs::Dict{Any, Any}
-    Y_eq::Dict{Any, Any}
+    identifiability::AbstractDict
+    transcendence_basis_subs::AbstractDict
+    Y_eq::AbstractDict
+    u_variables::AbstractDict
     basis::Vector{SIAN.Nemo.fmpq_mpoly}
-    weights::Dict{SIAN.Nemo.fmpq_mpoly, Int64}
+    weights::AbstractDict{SIAN.Nemo.fmpq_mpoly, Int64}
     non_jet_ring::SIAN.Nemo.FmpqMPolyRing
-    nemo_mtk::Dict
-    solution_counts::Dict
-    function IdentifiabilityData(input::Dict)
+    nemo_mtk::AbstractDict
+    solution_counts::AbstractDict
+    function IdentifiabilityData(input::AbstractDict)
         solution_counts = count_solutions(input)
         return new(input["full_polynomial_system"], input["polynomial_system"],
                    input["polynomial_system_to_solve"],
                    input["denominator"], input["vars"],
                    input["vals"], input["identifiability_nemo"], input["identifiability"],
-                   input["transcendence_basis_subs"], input["Y_eq"], input["basis"],
+                   input["transcendence_basis_subs"], input["Y_eq"], input["u_variables"],
+                   input["basis"],
                    input["weights"], input["non_jet_ring"], input["nemo_mtk"],
                    solution_counts)
     end
