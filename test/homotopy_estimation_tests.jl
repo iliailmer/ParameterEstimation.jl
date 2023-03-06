@@ -15,7 +15,7 @@
                                           1.22995, 0.97441])
     res = ParameterEstimation.estimate(model, outs, data)
     @test length(res) == 1
-    @test res[1].return_code == :Success
+    @test Symbol(res[1].return_code) == :Success
     @test isapprox(res[1].parameters[mu], 0.5, atol = 1e-3)
     @test isapprox(res[1].states[x1], 1.0, atol = 1e-3)
 
@@ -24,7 +24,7 @@
                                       "t" => [0.0, 0.01, 0.73, 1.0])
     res = ParameterEstimation.estimate(model, outs, data)
     @test length(res) == 1
-    @test res[1].return_code == :Success
+    @test Symbol(res[1].return_code) == :Success
     @test isapprox(res[1].parameters[mu], 0.5, atol = 1e-3)
     @test isapprox(res[1].states[x1], 1.0, atol = 1e-3)
 end

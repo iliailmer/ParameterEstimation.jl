@@ -26,7 +26,7 @@ function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, 
     ode_equations = ModelingToolkit.equations(model)
     ode_equations = substitute(ode_equations,
                                Dict(each.lhs => Num(each.rhs) for each in inputs))
-    t = ModelingToolkit.independent_variable(model)
+    t = ModelingToolkit.get_iv(model)
     @named new_model = ODESystem(ode_equations, t, ModelingToolkit.states(model),
                                  ModelingToolkit.parameters(model))
     prob = ODEProblem(new_model, initial_conditions, tspan, parameter_values)
