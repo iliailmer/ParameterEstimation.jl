@@ -23,13 +23,18 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
     end
 end
 
-function nemo2hc(expr_tree::SIAN.Nemo.fmpq_mpoly)
+function nemo2hc(expr_tree::fmpq_mpoly)
     # println(expr_tree)
     return nemo2hc(Meta.parse(string(expr_tree)))
 end
 
 function nemo2hc(expr_tree::Number)
     return expr_tree
+end
+
+function nemo2hc(expr_tree::Oscar.Generic.Frac)
+    numer, denom = Oscar.numerator(expr_tree), Oscar.denominator(expr_tree)
+    return nemo2hc(numer) / nemo2hc(denom)
 end
 
 """

@@ -1,9 +1,7 @@
 using Test, TestSetExtensions
 using ModelingToolkit, SIAN, HomotopyContinuation
-using ParameterEstimation
+using ParameterEstimation, Oscar
 
 @info "Testing started"
 
-@testset "All the tests" begin
-    @includetests ARGS
-end
+@testset "All the tests" begin @includetests ARGS end
