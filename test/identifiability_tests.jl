@@ -9,7 +9,8 @@
     correct = Dict{Any, Any}("nonidentifiable" => [a12, a21, substitute(x1, t => 0), a01],
                              "locally_not_globally" => Num[],
                              "globally" => [substitute(x0, t => 0)])
-    output = check_identifiability(de; measured_quantities = measured_quantities)["identifiability"]
+    output = check_identifiability(de; measured_quantities = measured_quantities,
+                                   inputs = Vector{Num}())["identifiability"]
 
     @test isequal(Set(correct["nonidentifiable"]), Set(output["nonidentifiable"]))
     @test isequal(Set(correct["locally_not_globally"]), Set(output["locally_not_globally"]))
@@ -27,7 +28,8 @@
     correct = Dict{Any, Any}("nonidentifiable" => [a12, a21, substitute(x1, t => 0), a01],
                              "locally_not_globally" => Num[],
                              "globally" => [substitute(x0, t => 0)])
-    output = check_identifiability(de; measured_quantities = measured_quantities)["identifiability"]
+    output = check_identifiability(de; measured_quantities = measured_quantities,
+                                   inputs = Vector{Num}())["identifiability"]
 
     @test isequal(Set(correct["nonidentifiable"]), Set(output["nonidentifiable"]))
     @test isequal(Set(correct["locally_not_globally"]), Set(output["locally_not_globally"]))

@@ -45,7 +45,7 @@ function solve_via_msolve(identifiability_result, model; real_tol = 1e-10)
     i = Oscar.ideal(R, ps)
     all_solutions_ = Vector{Dict}([])
 
-    rat_param, solutions = Oscar.real_solutions(i)
+    solutions, rat_param = Oscar.real_solutions(i)
     for sol in solutions
         tmp = Dict()
         sol = map(each -> Float64(each), sol)
