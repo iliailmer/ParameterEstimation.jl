@@ -1,0 +1,17 @@
+********** EXPERIMENT NAME
+Lotka-Volterra
+
+********** EXPERIMENT NOTES
+Test
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+k1 = 0.01
+k2 = 0.02
+k3 = 0.03
+r(0) = 10
+w(0) = 10
+
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

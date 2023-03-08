@@ -1,0 +1,29 @@
+********** EXPERIMENT NAME
+CRAUSTE
+
+********** EXPERIMENT NOTES
+CRAUSTE model
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+mu_N = 1.0
+mu_EE = 1.0
+mu_LE = 1.0
+mu_LL = 1.0
+mu_M = 1.1
+mu_P = 1.0
+mu_PE = 0.8
+mu_PL = 1.2
+delta_NE = 1.0
+delta_EL = 1.0
+delta_LM = 1.0
+rho_E = 0.9
+rho_P = 1.2
+N(0)=0.8
+E(0)=0.8
+S(0)=0.8
+M(0)=0.8
+P(0)=0.8
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

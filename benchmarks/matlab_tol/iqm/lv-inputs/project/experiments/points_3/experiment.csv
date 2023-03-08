@@ -1,0 +1,16 @@
+[Name]
+LV
+
+[Notes]
+Lotka-Volterra test
+
+[Components]
+time,OUTPUT1
+
+[Componentnotes]
+OUTPUT1: [#]
+
+[Values]
+0.0,100.0
+0.5,9.999544683805707
+1.0,0.7352887693598797
