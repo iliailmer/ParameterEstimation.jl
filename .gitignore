@@ -30,7 +30,7 @@ Manifest.toml
 # End of https://www.toptal.com/developers/gitignore/api/julia
 *.code-workspace
 .vscode
-benchmarks/matlab/src
+*src*
 *.txt
 timecommand
 objf*.m
