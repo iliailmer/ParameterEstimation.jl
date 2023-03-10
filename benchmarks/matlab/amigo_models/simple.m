@@ -1,5 +1,6 @@
 addpath(genpath('../src'))
 addpath(genpath("./"))
+addpath(genpath("../../matlab_tol/samples/simple/"))
 %======================
 % PATHS RELATED DATA
 %======================
@@ -34,28 +35,9 @@ inputs.exps.obs{1}=char('Y1=x2', 'Y2=x1');
 inputs.exps.t_con{1}=[0 2.0 * 3.14159265 * sqrt(1.3 / 9.8)];                 % Input swithching times including:
 inputs.exps.n_s{1}=20;
 inputs.exps.data_type='real';
-inputs.exps.exp_data{1}=[1.0 1.0
-1.0367869631032143 -0.2131370089757947
-0.9612219713463254 -1.4031773158605787
-0.7814936640945697 -2.441161588047151
-0.5170783922159042 -3.2146081236261184
-0.19662965324200823 -3.6397019892197804
--0.14512695968147638 -3.670377668485929
--0.4711568146481816 -3.3033109755914225
--0.7461295179881701 -2.578279282359504
--0.9402475106698658 -1.5738510227428189
--1.0324750961248383 -0.3988715840136487
--1.0128179844141494 0.8193317799828911
--0.8834063286038646 1.9487478323598202
--0.658263889624748 2.866986819178007
--0.36178834419170564 3.4745432982439945
--0.02610741794112031 3.70557909785514
-0.31240265214351715 3.5350579042280135
-0.6170590474382538 2.9814583346094343
-0.854847520288421 2.1047714923332395
-0.9999999999859759 0.9999999999744436
-
-];
+inputs.exps.exp_data{1}=readmatrix(sprintf('harm-%i.csv', inputs.exps.n_s{1})); % read sample data
+% inputs.exps.t_s{1} = inputs.exps.exp_data{1}(:, 1);
+inputs.exps.exp_data{1}(:, 1) = [];
 inputs.PEsol.id_global_theta='all';
 inputs.PEsol.global_theta_max=10.*ones(1,2);
 inputs.PEsol.global_theta_min=0.0001.*ones(1,2);
@@ -91,5 +73,7 @@ inputs.PEsol.lsq_type='Q_I';             % Weights:
 % inputs.exps.u_interp{1}='sustained';          % Stimuli definition for experiment 1
                                               % Initial and final time
 %inputs.exps.u{1}=1;                           % Values of the inputs for exp 1
+inputs.ivpsol.rtol=1.0e-10;                            % [] IVP solver integration tolerances
+inputs.ivpsol.atol=1.0e-10;
 AMIGO_Prep(inputs);
 AMIGO_PE(inputs);

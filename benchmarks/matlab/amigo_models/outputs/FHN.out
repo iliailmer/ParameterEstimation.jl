@@ -1,0 +1,2686 @@
+[?1h=
+                                          < M A T L A B (R) >
+                                Copyright 1984-2022 The MathWorks, Inc.
+                               R2022a (9.12.0.1884302) 64-bit (glnxa64)
+                                           February 16, 2022
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+
+
+*********************************** 
+     AMIGO2, Copyright @CSIC      
+     AMIGO2_R2019a [March 2019]      
+*********************************** 
+
+*Date: 09-Mar-2023
+
+------>Pre processing....this may take a few seconds.
+
+
+------>Checking inputs....
+		Problem folder has not been provided. Default: Problem
+------> WARNING message
+
+		 AMIGO_check_model: You did not specify inputs.model.exe_type, standard will be assumed
+
+[Warning: AMIGO_check_IVPsolver: Changing ivp solver to the only option compatible with charmodelC and
+sbmlmodel, cvodes] 
+[> In AMIGO_check_IVPsolver (line 24)
+In AMIGO_check_model (line 387)
+In AMIGO_Prep (line 55)
+In FHN (line 78)
+In run (line 91)] 
+[Warning: AMIGO_check_IVPsolver: Changing sensitivities solver to, cvodes] 
+[> In AMIGO_check_IVPsolver (line 31)
+In AMIGO_check_model (line 387)
+In AMIGO_Prep (line 55)
+In FHN (line 78)
+In run (line 91)] 
+------> Generating C code ...
+
+
+------> Mexing files....
+
+[?1h=[?1h=[?1h=Building with 'gcc'.
+[?1h=[?1h=[?1h=[?1h=[?1h=/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_amigo/simulate_amigo_model.c: In function 'simulate_amigo_model':
+/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_amigo/simulate_amigo_model.c:278:11: warning: passing argument 1 of 'mexPrintf' from incompatible pointer type [-Wincompatible-pointer-types]
+  278 | mexPrintf(stderr,"\nSolver failed at flag = CVode(cvode_mem, tout, y, &t, CV_TSTOP_RETURN);. . .\n");
+      |           ^~~~~~
+      |           |
+      |           struct _IO_FILE *
+In file included from /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/include/include_amigo/simulate_amigo_model.h:4,
+                 from /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_amigo/simulate_amigo_model.c:1:
+/local/MATLAB/R2022a/extern/include/mex.h:192:18: note: expected 'const char *' but argument is of type 'struct _IO_FILE *'
+  192 |     const char  *fmt,   /* printf style format */
+      |     ~~~~~~~~~~~~~^~~
+
+[?1h=/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_interface/interface_with_matlab.c: In function 'mexFunction':
+/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_interface/interface_with_matlab.c:181:14: warning: assignment to 'mxArray *' {aka 'struct mxArray_tag *'} from incompatible pointer type 'double *' [-Wincompatible-pointer-types]
+  181 | stats_struct = mxGetPr(plhs[5]);
+      |              ^
+
+[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=MEX completed successfully.
+
+
+------>Files generated....
+
+
+*********************************** 
+     AMIGO2, Copyright @CSIC      
+     AMIGO2_R2019a [March 2019]      
+*********************************** 
+
+*Date: 09-Mar-2023
+
+------>Checking inputs....
+		Problem folder has not been provided. Default: Problem
+------> WARNING message
+
+		 AMIGO_check_model: You did not specify inputs.model.exe_type, standard will be assumed
+
+[Warning: AMIGO_check_IVPsolver: Changing ivp solver to the only option compatible with charmodelC and
+sbmlmodel, cvodes] 
+[> In AMIGO_check_IVPsolver (line 24)
+In AMIGO_check_model (line 387)
+In AMIGO_PE (line 83)
+In FHN (line 79)
+In run (line 91)] 
+[Warning: AMIGO_check_IVPsolver: Changing sensitivities solver to, cvodes] 
+[> In AMIGO_check_IVPsolver (line 31)
+In AMIGO_check_model (line 387)
+In AMIGO_PE (line 83)
+In FHN (line 79)
+In run (line 91)] 
+
+
+------> WARNING message
+
+		 You have not provided the sampling times.
+ 		 Equidistant sampling will be assumed for experiment 1
+		 Note however that you may modify your input file by adding
+		 inputs.exps.t_s{iexp}
+
+ans =
+
+    0.5000    0.5000    0.5000
+
+[Warning: Directory already exists.] 
+[> In AMIGO_gen_obs (line 38)
+In AMIGO_PE (line 128)
+In FHN (line 79)
+In run (line 91)] 
+[Warning: Name is nonexistent or not a directory:
+/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/AMIGO_gen_obs_problem.m] 
+[> In path (line 109)
+In addpath (line 86)
+In AMIGO_gen_obs (line 109)
+In AMIGO_PE (line 128)
+In FHN (line 79)
+In run (line 91)] 
+
+ans =
+
+    '/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/AMIGO_gen_obs_problem.m'
+
+
+*************************************************************************
+
+
+------>IMPORTANT!!: Most of the optimization solvers have their own
+                    tunning parameters (options).
+                    Defaults have been assigned in the *NLPsolver*_options
+                    files. You may need to modify those settings for your
+                    particular problem, specially:
+                      - maximum number of function evaluations /iterations,
+                      - maximum computational time
+
+
+******************************************************************
+
+  Solving the NLP problem with
+		>Summary of selected eSS options: 
+ess_options.
+	dim_refset:	'auto'
+	inter_save:	0
+	iterprint:	1
+	local:	(1x1 struct)
+	log_var:	[]
+	maxeval:	20000
+	maxtime:	600
+	ndiverse:	'auto'
+nl2sol_settings.
+	display:	1
+	grad:	[]
+	iterfun:	[]
+	maxfeval:	300
+	maxiter:	300
+	objrtol:	1e-06
+	tolafun:	1e-06
+	tolrfun:	1e-06
+
+		>Bounds on the unknowns:
+
+		v_guess(1)=0.500000;  v_min(1)=-1.000000;  v_max(1)=2.000000;
+		v_guess(2)=0.500000;  v_min(2)=-1.000000;  v_max(2)=2.000000;
+		v_guess(3)=0.500000;  v_min(3)=-1.000000;  v_max(3)=2.000000;
+		v_guess(4)=0.500000;  v_min(4)=-1.000000;  v_max(4)=2.000000;
+		v_guess(5)=0.500000;  v_min(5)=-1.000000;  v_max(5)=2.000000;
+
+
+------------------------------------------------------------------------------ 
+ eSS R2010B - Enhanced Scatter Search    
+<c> IIM-CSIC, Vigo, Spain -  email: gingproc@iim.csic.es 
+------------------------------------------------------------------------------ 
+
+Refset size automatically calculated: 8
+Number of diverse solutions automatically calculated: 50
+
+
+-----------------------------------------------
+ Initial value problem related active settings
+-----------------------------------------------
+ivpsolver: cvodes
+RelTol: 1e-10
+AbsTol: 1e-10
+MaxStepSize: Inf
+MaxNumberOfSteps: 1e+06
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.977876 and h = 5.10315e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.977876 and h = 1.58952e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.609685 and h = 4.70579e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.609685 and h = 1.99883e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Initial Pop: NFunEvals: 58  Bestf: 0.216272      CPUTime: 1.780000    Var: 622.936 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.126621 and h = 1.36047e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.126621 and h = 1.99474e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 1 NFunEvals: 132  Bestf: 0.150807      CPUTime: 1.890000    Var: 0.330484 
+Call local solver: NL2SOL 
+Initial point function value: 0.150807 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 8 iteration and 56 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000216241 
+Number of function evaluations in the local search: 58 
+CPU Time of the local search: 0.082202  seconds 
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.587477 and h = 5.3778e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.587477 and h = 1.67507e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 2 NFunEvals: 261  Bestf: 0.000216241      CPUTime: 2.050000    Var: 0.186052 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.537863 and h = 4.80968e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.537863 and h = 1.49811e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 3 NFunEvals: 331  Bestf: 0.000216241      CPUTime: 2.110000    Var: 0.0708607 
+Iteration: 4 NFunEvals: 394  Bestf: 0.000216241      CPUTime: 2.150000    Var: 0.00930824 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.905828 and h = 5.00826e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.905828 and h = 2.12731e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 5 NFunEvals: 454  Bestf: 0.000216241      CPUTime: 2.210000    Var: 0.0026274 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.908688 and h = 4.18997e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.908688 and h = 1.30508e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 6 NFunEvals: 515  Bestf: 0.000216241      CPUTime: 2.270000    Var: 6.67e-05 
+Iteration: 7 NFunEvals: 577  Bestf: 0.000216241      CPUTime: 2.380000    Var: 2.98056e-05 
+Iteration: 8 NFunEvals: 635  Bestf: 0.000216241      CPUTime: 2.490000    Var: 1.86886e-05 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.075495 and h = 5.17146e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.075495 and h = 1.91855e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 9 NFunEvals: 695  Bestf: 0.000216241      CPUTime: 2.610000    Var: 5.84639e-06 
+Iteration: 10 NFunEvals: 755  Bestf: 0.000216241      CPUTime: 2.650000    Var: 4.28183e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.96413 and h = 5.46785e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.96413 and h = 9.17905e-153, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 11 NFunEvals: 819  Bestf: 0.000216241      CPUTime: 2.700000    Var: 4.05217e-06 
+Call local solver: NL2SOL 
+Initial point function value: 0.003359 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** both x and relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 182 iteration and 1157 function evaluation:
+       Results: NL2SOL exited
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 1159 
+CPU Time of the local search: 0.686139  seconds 
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.383292 and h = 2.38012e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.383292 and h = 1.37922e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.255661 and h = 2.23697e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.255661 and h = 1.29627e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 12 NFunEvals: 2041  Bestf: 0.000216241      CPUTime: 4.790000    Var: 5.19864e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.79813 and h = 5.31461e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.79813 and h = 1.21715e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.552696 and h = 4.72896e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.552696 and h = 1.08302e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.837236 and h = 4.15854e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.837236 and h = 9.52386e-153, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 13 NFunEvals: 2100  Bestf: 0.000216241      CPUTime: 5.000000    Var: 5.08673e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.620733 and h = 4.14393e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.620733 and h = 9.49039e-153, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.90268 and h = 5.18824e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.90268 and h = 1.61602e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.263111 and h = 2.17886e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.263111 and h = 1.2626e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.730208 and h = 4.3387e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.730208 and h = 1.35141e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 14 NFunEvals: 2160  Bestf: 0.000216241      CPUTime: 5.230000    Var: 5.0709e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.825686 and h = 4.19752e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.825686 and h = 9.61312e-153, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.829131 and h = 4.30025e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.829131 and h = 1.33943e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 15 NFunEvals: 2217  Bestf: 0.000216241      CPUTime: 5.290000    Var: 4.93703e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.549512 and h = 5.12268e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.549512 and h = 1.12309e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 16 NFunEvals: 2276  Bestf: 0.000216241      CPUTime: 5.440000    Var: 4.80765e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.0957523 and h = 5.10433e-18 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.0957523 and h = 1.01787e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.497201 and h = 2.69132e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.497201 and h = 2.12107e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 17 NFunEvals: 2332  Bestf: 0.000216241      CPUTime: 5.610000    Var: 4.80765e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.71135 and h = 4.37316e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.71135 and h = 1.36214e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 18 NFunEvals: 2397  Bestf: 0.000216241      CPUTime: 5.690000    Var: 4.71667e-06 
+Iteration: 19 NFunEvals: 2456  Bestf: 0.000216241      CPUTime: 5.740000    Var: 3.08672e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.169781 and h = 1.27286e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.169781 and h = 1.86629e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.131534 and h = 1.17378e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.131534 and h = 1.72102e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.950808 and h = 4.14729e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.950808 and h = 1.76161e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 20 NFunEvals: 2514  Bestf: 0.000216241      CPUTime: 5.860000    Var: 3.07741e-06 
+Iteration: 21 NFunEvals: 2570  Bestf: 0.000216241      CPUTime: 5.890000    Var: 3.07741e-06 
+Call local solver: NL2SOL 
+Initial point function value: 0.003424 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 64 iteration and 410 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 412 
+CPU Time of the local search: 0.233741  seconds 
+
+Iteration: 22 NFunEvals: 3043  Bestf: 0.000216241      CPUTime: 6.170000    Var: 0.00690198 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.973617 and h = 4.82649e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.973617 and h = 1.50335e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 23 NFunEvals: 3101  Bestf: 0.000216241      CPUTime: 6.230000    Var: 2.43454e-05 
+Iteration: 24 NFunEvals: 3159  Bestf: 0.000216241      CPUTime: 6.270000    Var: 9.67536e-06 
+Iteration: 25 NFunEvals: 3223  Bestf: 0.000216241      CPUTime: 6.310000    Var: 2.29612e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.899902 and h = 4.5881e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.899902 and h = 1.42909e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 26 NFunEvals: 3286  Bestf: 0.000216241      CPUTime: 6.380000    Var: 1.9655e-06 
+Iteration: 27 NFunEvals: 3357  Bestf: 0.000216241      CPUTime: 6.430000    Var: 1.87031e-06 
+Iteration: 28 NFunEvals: 3415  Bestf: 0.000216241      CPUTime: 6.470000    Var: 1.8536e-06 
+Iteration: 29 NFunEvals: 3477  Bestf: 0.000216241      CPUTime: 6.500000    Var: 1.82943e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.992956 and h = 5.01224e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.992956 and h = 1.1479e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.488515 and h = 2.1054e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.488515 and h = 1.6593e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 30 NFunEvals: 3539  Bestf: 0.000216241      CPUTime: 6.560000    Var: 1.74482e-06 
+Iteration: 31 NFunEvals: 3606  Bestf: 0.000216241      CPUTime: 6.610000    Var: 1.69307e-06 
+Call local solver: NL2SOL 
+Initial point function value: 0.004880 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 56 iteration and 366 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 368 
+CPU Time of the local search: 0.211044  seconds 
+
+Iteration: 32 NFunEvals: 4045  Bestf: 0.000216241      CPUTime: 6.880000    Var: 14.6539 
+Iteration: 33 NFunEvals: 4109  Bestf: 0.000216241      CPUTime: 6.920000    Var: 0.000498794 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.140449 and h = 1.17075e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.140449 and h = 9.22686e-153, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 34 NFunEvals: 4177  Bestf: 0.000216241      CPUTime: 6.980000    Var: 1.29265e-06 
+Iteration: 35 NFunEvals: 4242  Bestf: 0.000216241      CPUTime: 7.020000    Var: 1.01929e-06 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.600836 and h = 4.53811e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.600836 and h = 1.92761e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 36 NFunEvals: 4307  Bestf: 0.000216241      CPUTime: 7.070000    Var: 9.55842e-07 
+Iteration: 37 NFunEvals: 4377  Bestf: 0.000216241      CPUTime: 7.120000    Var: 9.5035e-07 
+Iteration: 38 NFunEvals: 4444  Bestf: 0.000216241      CPUTime: 7.160000    Var: 9.21041e-07 
+Iteration: 39 NFunEvals: 4510  Bestf: 0.000216241      CPUTime: 7.210000    Var: 0.0151048 
+Iteration: 40 NFunEvals: 4572  Bestf: 0.000216241      CPUTime: 7.250000    Var: 2.42612e-06 
+Iteration: 41 NFunEvals: 4639  Bestf: 0.000216241      CPUTime: 7.290000    Var: 4.04883e-09 
+Call local solver: NL2SOL 
+Initial point function value: 0.002844 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 169 iteration and 1056 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 1058 
+CPU Time of the local search: 0.608514  seconds 
+
+Iteration: 42 NFunEvals: 5764  Bestf: 0.000216241      CPUTime: 7.950000    Var: 8.7119e-09 
+Iteration: 43 NFunEvals: 5821  Bestf: 0.000216241      CPUTime: 7.980000    Var: 8.50394e-09 
+Iteration: 44 NFunEvals: 5886  Bestf: 0.000216241      CPUTime: 8.020000    Var: 9.77391e-09 
+Iteration: 45 NFunEvals: 5949  Bestf: 0.000216241      CPUTime: 8.060000    Var: 9.8969e-09 
+Iteration: 46 NFunEvals: 6010  Bestf: 0.000216241      CPUTime: 8.100000    Var: 7.38363e-09 
+Iteration: 47 NFunEvals: 6071  Bestf: 0.000216241      CPUTime: 8.130000    Var: 9.27019e-09 
+Iteration: 48 NFunEvals: 6136  Bestf: 0.000216241      CPUTime: 8.170000    Var: 1.53877e-08 
+Iteration: 49 NFunEvals: 6198  Bestf: 0.000216241      CPUTime: 8.200000    Var: 1.04369e-08 
+Iteration: 50 NFunEvals: 6261  Bestf: 0.000216241      CPUTime: 8.240000    Var: 7.57323e-09 
+Iteration: 51 NFunEvals: 6326  Bestf: 0.000216241      CPUTime: 8.270000    Var: 1.06173e-08 
+Call local solver: NL2SOL 
+Initial point function value: 0.002435 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** both x and relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 163 iteration and 1015 function evaluation:
+       Results: NL2SOL exited
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 1017 
+CPU Time of the local search: 0.569845  seconds 
+
+Iteration: 52 NFunEvals: 7411  Bestf: 0.000216241      CPUTime: 8.890000    Var: 1.31086e-08 
+Iteration: 53 NFunEvals: 7475  Bestf: 0.000216241      CPUTime: 8.930000    Var: 9.14194e-09 
+Iteration: 54 NFunEvals: 7540  Bestf: 0.000216241      CPUTime: 8.960000    Var: 1.2031e-08 
+Iteration: 55 NFunEvals: 7604  Bestf: 0.000216241      CPUTime: 9.000000    Var: 1.01004e-08 
+Iteration: 56 NFunEvals: 7669  Bestf: 0.000216241      CPUTime: 9.030000    Var: 3.78808e-09 
+Iteration: 57 NFunEvals: 7729  Bestf: 0.000216241      CPUTime: 9.070000    Var: 3.86596e-09 
+Iteration: 58 NFunEvals: 7793  Bestf: 0.000216241      CPUTime: 9.120000    Var: 1.15025e-09 
+Iteration: 59 NFunEvals: 7853  Bestf: 0.000216241      CPUTime: 9.210000    Var: 1.00302e-09 
+Iteration: 60 NFunEvals: 7917  Bestf: 0.000216241      CPUTime: 9.280000    Var: 4.99956e-10 
+Iteration: 61 NFunEvals: 7977  Bestf: 0.000216241      CPUTime: 9.310000    Var: 6.59741e-10 
+Call local solver: NL2SOL 
+Initial point function value: 0.002257 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 128 iteration and 803 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 805 
+CPU Time of the local search: 0.455525  seconds 
+
+Iteration: 62 NFunEvals: 8844  Bestf: 0.000216241      CPUTime: 9.810000    Var: 2.87989e-10 
+Iteration: 63 NFunEvals: 8906  Bestf: 0.000216241      CPUTime: 9.850000    Var: 4.26735e-10 
+Iteration: 64 NFunEvals: 8971  Bestf: 0.000216241      CPUTime: 9.890000    Var: 2.99968e-10 
+Iteration: 65 NFunEvals: 9032  Bestf: 0.000216241      CPUTime: 9.920000    Var: 2.51557e-10 
+Iteration: 66 NFunEvals: 9099  Bestf: 0.000216241      CPUTime: 9.960000    Var: 9.4223e-10 
+Iteration: 67 NFunEvals: 9161  Bestf: 0.000216241      CPUTime: 9.990000    Var: 1.16216e-09 
+Iteration: 68 NFunEvals: 9227  Bestf: 0.000216241      CPUTime: 10.030000    Var: 2.57328e-09 
+Iteration: 69 NFunEvals: 9288  Bestf: 0.000216241      CPUTime: 10.060000    Var: 1.58103e-09 
+Iteration: 70 NFunEvals: 9349  Bestf: 0.000216241      CPUTime: 10.090000    Var: 1.643e-09 
+Iteration: 71 NFunEvals: 9417  Bestf: 0.000216241      CPUTime: 10.130000    Var: 8.21191e-10 
+Call local solver: NL2SOL 
+Initial point function value: 0.002009 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 56 iteration and 354 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 356 
+CPU Time of the local search: 0.199239  seconds 
+
+Iteration: 72 NFunEvals: 9839  Bestf: 0.000216241      CPUTime: 10.370000    Var: 6.24748e-10 
+Iteration: 73 NFunEvals: 9898  Bestf: 0.000216241      CPUTime: 10.400000    Var: 1.16621e-09 
+Iteration: 74 NFunEvals: 9958  Bestf: 0.000216241      CPUTime: 10.440000    Var: 1.25859e-09 
+Iteration: 75 NFunEvals: 10021  Bestf: 0.000216241      CPUTime: 10.470000    Var: 1.84022e-09 
+Iteration: 76 NFunEvals: 10082  Bestf: 0.000216241      CPUTime: 10.500000    Var: 1.8687e-09 
+Iteration: 77 NFunEvals: 10144  Bestf: 0.000216241      CPUTime: 10.540000    Var: 3.26389e-09 
+Iteration: 78 NFunEvals: 10208  Bestf: 0.000216241      CPUTime: 10.570000    Var: 3.1362e-09 
+Iteration: 79 NFunEvals: 10272  Bestf: 0.000216241      CPUTime: 10.610000    Var: 2.36098e-09 
+Iteration: 80 NFunEvals: 10330  Bestf: 0.000216241      CPUTime: 10.640000    Var: 2.27895e-09 
+Iteration: 81 NFunEvals: 10393  Bestf: 0.000216241      CPUTime: 10.680000    Var: 3.09286e-09 
+Call local solver: NL2SOL 
+Initial point function value: 0.001786 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 67 iteration and 421 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 423 
+CPU Time of the local search: 0.240308  seconds 
+
+Iteration: 82 NFunEvals: 10876  Bestf: 0.000216241      CPUTime: 10.950000    Var: 1.58887e-09 
+Iteration: 83 NFunEvals: 10938  Bestf: 0.000216241      CPUTime: 10.990000    Var: 4.40058e-09 
+Iteration: 84 NFunEvals: 11007  Bestf: 0.000216241      CPUTime: 11.030000    Var: 3.87621e-09 
+Iteration: 85 NFunEvals: 11072  Bestf: 0.000216241      CPUTime: 11.060000    Var: 3.71394e-09 
+Iteration: 86 NFunEvals: 11143  Bestf: 0.000216241      CPUTime: 11.100000    Var: 9.09422e-09 
+Iteration: 87 NFunEvals: 11207  Bestf: 0.000216241      CPUTime: 11.140000    Var: 8.87335e-09 
+Iteration: 88 NFunEvals: 11272  Bestf: 0.000216241      CPUTime: 11.170000    Var: 8.23648e-09 
+Iteration: 89 NFunEvals: 11333  Bestf: 0.000216241      CPUTime: 11.210000    Var: 8.15234e-09 
+Iteration: 90 NFunEvals: 11393  Bestf: 0.000216241      CPUTime: 11.240000    Var: 6.90717e-09 
+Iteration: 91 NFunEvals: 11455  Bestf: 0.000216241      CPUTime: 11.270000    Var: 5.73432e-09 
+Call local solver: NL2SOL 
+Initial point function value: 0.001685 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 121 iteration and 752 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 754 
+CPU Time of the local search: 0.426068  seconds 
+
+Iteration: 92 NFunEvals: 12272  Bestf: 0.000216241      CPUTime: 11.740000    Var: 1.37452e-08 
+Iteration: 93 NFunEvals: 12336  Bestf: 0.000216241      CPUTime: 11.770000    Var: 1.98765e-08 
+Iteration: 94 NFunEvals: 12400  Bestf: 0.000216241      CPUTime: 11.810000    Var: 1.88439e-08 
+Iteration: 95 NFunEvals: 12462  Bestf: 0.000216241      CPUTime: 11.840000    Var: 1.71314e-08 
+Iteration: 96 NFunEvals: 12521  Bestf: 0.000216241      CPUTime: 11.870000    Var: 1.65691e-08 
+Iteration: 97 NFunEvals: 12579  Bestf: 0.000216241      CPUTime: 11.900000    Var: 1.71061e-08 
+Iteration: 98 NFunEvals: 12638  Bestf: 0.000216241      CPUTime: 11.940000    Var: 1.94029e-08 
+Iteration: 99 NFunEvals: 12700  Bestf: 0.000216241      CPUTime: 11.970000    Var: 1.78941e-08 
+Iteration: 100 NFunEvals: 12760  Bestf: 0.000216241      CPUTime: 12.000000    Var: 2.14985e-08 
+Iteration: 101 NFunEvals: 12818  Bestf: 0.000216241      CPUTime: 12.040000    Var: 2.11911e-08 
+Call local solver: NL2SOL 
+Initial point function value: 0.001501 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 102 iteration and 643 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 645 
+CPU Time of the local search: 0.363855  seconds 
+
+Iteration: 102 NFunEvals: 13524  Bestf: 0.000216241      CPUTime: 12.440000    Var: 1.86325e-08 
+Iteration: 103 NFunEvals: 13582  Bestf: 0.000216241      CPUTime: 12.470000    Var: 1.89608e-08 
+Iteration: 104 NFunEvals: 13641  Bestf: 0.000216241      CPUTime: 12.500000    Var: 1.75993e-08 
+Iteration: 105 NFunEvals: 13703  Bestf: 0.000216241      CPUTime: 12.530000    Var: 1.76292e-08 
+Iteration: 106 NFunEvals: 13762  Bestf: 0.000216241      CPUTime: 12.570000    Var: 1.59952e-08 
+Iteration: 107 NFunEvals: 13824  Bestf: 0.000216241      CPUTime: 12.600000    Var: 3.08863e-08 
+Iteration: 108 NFunEvals: 13881  Bestf: 0.000216241      CPUTime: 12.630000    Var: 3.85265e-08 
+Iteration: 109 NFunEvals: 13938  Bestf: 0.000216241      CPUTime: 12.670000    Var: 3.13696e-08 
+Iteration: 110 NFunEvals: 13996  Bestf: 0.000216241      CPUTime: 12.700000    Var: 3.082e-08 
+Iteration: 111 NFunEvals: 14057  Bestf: 0.000216241      CPUTime: 12.730000    Var: 3.51629e-08 
+Call local solver: NL2SOL 
+Initial point function value: 0.001131 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 97 iteration and 594 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 596 
+CPU Time of the local search: 0.335897  seconds 
+
+Iteration: 112 NFunEvals: 14714  Bestf: 0.000216241      CPUTime: 13.100000    Var: 3.81231e-08 
+Iteration: 113 NFunEvals: 14774  Bestf: 0.000216241      CPUTime: 13.140000    Var: 4.08702e-08 
+Iteration: 114 NFunEvals: 14831  Bestf: 0.000216241      CPUTime: 13.170000    Var: 3.66899e-08 
+Iteration: 115 NFunEvals: 14893  Bestf: 0.000216241      CPUTime: 13.210000    Var: 2.4576e-08 
+Iteration: 116 NFunEvals: 14954  Bestf: 0.000216241      CPUTime: 13.240000    Var: 2.07438e-08 
+Iteration: 117 NFunEvals: 15013  Bestf: 0.000216241      CPUTime: 13.280000    Var: 1.45368e-08 
+Iteration: 118 NFunEvals: 15073  Bestf: 0.000216241      CPUTime: 13.310000    Var: 1.77659e-08 
+Iteration: 119 NFunEvals: 15135  Bestf: 0.000216241      CPUTime: 13.340000    Var: 1.84936e-08 
+Iteration: 120 NFunEvals: 15192  Bestf: 0.000216241      CPUTime: 13.380000    Var: 1.85045e-08 
+Iteration: 121 NFunEvals: 15249  Bestf: 0.000216241      CPUTime: 13.410000    Var: 1.88489e-08 
+Call local solver: NL2SOL 
+Initial point function value: 0.001992 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 94 iteration and 589 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 591 
+CPU Time of the local search: 0.333697  seconds 
+
+Iteration: 122 NFunEvals: 15898  Bestf: 0.000216241      CPUTime: 13.790000    Var: 1.88742e-08 
+Iteration: 123 NFunEvals: 15956  Bestf: 0.000216241      CPUTime: 13.820000    Var: 1.89566e-08 
+Iteration: 124 NFunEvals: 16013  Bestf: 0.000216241      CPUTime: 13.860000    Var: 1.98253e-08 
+Iteration: 125 NFunEvals: 16070  Bestf: 0.000216241      CPUTime: 13.890000    Var: 1.98432e-08 
+Iteration: 126 NFunEvals: 16126  Bestf: 0.000216241      CPUTime: 13.920000    Var: 1.98432e-08 
+Iteration: 127 NFunEvals: 16183  Bestf: 0.000216241      CPUTime: 13.960000    Var: 2.50662e-08 
+Iteration: 128 NFunEvals: 16241  Bestf: 0.000216241      CPUTime: 13.990000    Var: 2.94501e-08 
+Iteration: 129 NFunEvals: 16301  Bestf: 0.000216241      CPUTime: 14.030000    Var: 2.9018e-08 
+Iteration: 130 NFunEvals: 16358  Bestf: 0.000216241      CPUTime: 14.060000    Var: 3.37381e-08 
+Iteration: 131 NFunEvals: 16417  Bestf: 0.000216241      CPUTime: 14.100000    Var: 2.36488e-08 
+Call local solver: NL2SOL 
+Initial point function value: 0.001661 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** both x and relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 85 iteration and 543 function evaluation:
+       Results: NL2SOL exited
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 545 
+CPU Time of the local search: 0.307649  seconds 
+
+Iteration: 132 NFunEvals: 17023  Bestf: 0.000216241      CPUTime: 14.440000    Var: 2.357e-08 
+Iteration: 133 NFunEvals: 17082  Bestf: 0.000216241      CPUTime: 14.470000    Var: 1.15915e-08 
+Iteration: 134 NFunEvals: 17145  Bestf: 0.000216241      CPUTime: 14.510000    Var: 1.00504e-08 
+Iteration: 135 NFunEvals: 17204  Bestf: 0.000216241      CPUTime: 14.540000    Var: 1.10911e-08 
+Iteration: 136 NFunEvals: 17263  Bestf: 0.000216241      CPUTime: 14.570000    Var: 1.19343e-08 
+Iteration: 137 NFunEvals: 17321  Bestf: 0.000216241      CPUTime: 14.610000    Var: 1.09971e-08 
+Iteration: 138 NFunEvals: 17378  Bestf: 0.000216241      CPUTime: 14.640000    Var: 1.09519e-08 
+Iteration: 139 NFunEvals: 17436  Bestf: 0.000216241      CPUTime: 14.670000    Var: 1.18374e-08 
+Iteration: 140 NFunEvals: 17493  Bestf: 0.000216241      CPUTime: 14.700000    Var: 1.19734e-08 
+Iteration: 141 NFunEvals: 17551  Bestf: 0.000216241      CPUTime: 14.730000    Var: 1.36344e-08 
+Call local solver: NL2SOL 
+Initial point function value: 0.000669 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 66 iteration and 433 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 435 
+CPU Time of the local search: 0.246222  seconds 
+
+Iteration: 142 NFunEvals: 18046  Bestf: 0.000216241      CPUTime: 15.020000    Var: 1.17956e-08 
+Iteration: 143 NFunEvals: 18105  Bestf: 0.000216241      CPUTime: 15.050000    Var: 8.67004e-09 
+Iteration: 144 NFunEvals: 18166  Bestf: 0.000216241      CPUTime: 15.080000    Var: 9.15397e-09 
+Iteration: 145 NFunEvals: 18224  Bestf: 0.000216241      CPUTime: 15.120000    Var: 1.00213e-08 
+Iteration: 146 NFunEvals: 18280  Bestf: 0.000216241      CPUTime: 15.150000    Var: 1.00213e-08 
+Iteration: 147 NFunEvals: 18339  Bestf: 0.000216241      CPUTime: 15.180000    Var: 1.10044e-08 
+Iteration: 148 NFunEvals: 18397  Bestf: 0.000216241      CPUTime: 15.220000    Var: 1.18524e-08 
+Iteration: 149 NFunEvals: 18461  Bestf: 0.000216241      CPUTime: 15.250000    Var: 1.26838e-08 
+Iteration: 150 NFunEvals: 18521  Bestf: 0.000216241      CPUTime: 15.290000    Var: 8.75966e-09 
+Iteration: 151 NFunEvals: 18578  Bestf: 0.000216241      CPUTime: 15.320000    Var: 3.37167e-09 
+Call local solver: NL2SOL 
+Initial point function value: 0.000836 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 44 iteration and 272 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 274 
+CPU Time of the local search: 0.154345  seconds 
+
+Iteration: 152 NFunEvals: 18915  Bestf: 0.000216241      CPUTime: 15.510000    Var: 3.58266e-09 
+Iteration: 153 NFunEvals: 18976  Bestf: 0.000216241      CPUTime: 15.540000    Var: 3.63411e-09 
+Iteration: 154 NFunEvals: 19035  Bestf: 0.000216241      CPUTime: 15.580000    Var: 3.31412e-09 
+Iteration: 155 NFunEvals: 19092  Bestf: 0.000216241      CPUTime: 15.610000    Var: 3.31917e-09 
+Iteration: 156 NFunEvals: 19151  Bestf: 0.000216241      CPUTime: 15.660000    Var: 6.37962e-09 
+Iteration: 157 NFunEvals: 19209  Bestf: 0.000216241      CPUTime: 15.750000    Var: 6.61256e-09 
+Iteration: 158 NFunEvals: 19266  Bestf: 0.000216241      CPUTime: 15.820000    Var: 6.60527e-09 
+Iteration: 159 NFunEvals: 19324  Bestf: 0.000216241      CPUTime: 15.850000    Var: 6.55578e-09 
+Iteration: 160 NFunEvals: 19381  Bestf: 0.000216241      CPUTime: 15.880000    Var: 6.97465e-09 
+Iteration: 161 NFunEvals: 19440  Bestf: 0.000216241      CPUTime: 15.920000    Var: 6.53662e-09 
+Call local solver: NL2SOL 
+Initial point function value: 0.000496 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 49 iteration and 303 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000221599 
+Number of function evaluations in the local search: 305 
+CPU Time of the local search: 0.171852  seconds 
+
+Iteration: 162 NFunEvals: 19805  Bestf: 0.000216241      CPUTime: 16.130000    Var: 5.57825e-09 
+Iteration: 163 NFunEvals: 19862  Bestf: 0.000216241      CPUTime: 16.160000    Var: 4.65792e-09 
+Iteration: 164 NFunEvals: 19922  Bestf: 0.000216241      CPUTime: 16.190000    Var: 4.9009e-09 
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.964434 and h = 4.56608e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.964434 and h = 1.93949e-152, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  Internal t = 0.943322 and h = 5.2866e-17 are such that t + h = t on the next step. The solver will continue anyway.
+
+
+[CVODES WARNING]  CVode
+  The above warning has been issued mxhnil times and will not be issued again for this problem.
+
+
+[CVODES ERROR]  CVode
+  At t = 0.943322 and h = 8.87479e-153, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+
+SUNDIALS_ERROR: CVode() failed with flag = -4
+
+Iteration: 165 NFunEvals: 19983  Bestf: 0.000216241      CPUTime: 16.250000    Var: 0.00908416 
+Iteration: 166 NFunEvals: 20043  Bestf: 0.000216241      CPUTime: 16.290000    Var: 3.24511e-05 
+
+Final local refinement with: NL2SOL 
+Initial point function value: 0.000216 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:        5
+ # Data Points:              20
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 1 iteration and 8 function evaluation:
+       Results: Optimal
+Local solution function value: 0.000216 
+Number of function evaluations in the local search: 10 
+CPU Time of the local search: 0.006414  seconds 
+
+Maximum number of function evaluations achieved
+Best solution value		0.000216241
+Decision vector
+	-0.766101
+	2
+	2
+	0.994155
+	-0.958586
+CPU time		16.31
+Number of function evaluations		20054
+Execution of script mklJac as a function is not supported:
+/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/numericalDifferentiation/mklJac.m
+
+
+------> Computing Correlation Matrix for unknowns...
+
+---------------------------------------------------
+Local sensitivity problem related active settings
+---------------------------------------------------
+senssolver: cvodes
+ivp_RelTol: 1e-10
+ivp_AbsTol: 1e-10
+sens_RelTol: ~1e-10
+sensmex: cvodesg_problem
+MaxStepSize: Inf
+MaxNumberOfSteps: 1e+06
+sens_RelTol: ~1e-10
+
+----------------------------------------------------------
+------> WARNING message
+		The Fisher Information Matrix is nearly singular.
+----------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------
+		
+Experiment 1: 
+		inputs.exp_data{1}=[
+		1
+		0.965687
+		0.932715
+		0.900793
+		0.869659
+		0.839068
+		0.808785
+		0.778579
+		0.748218
+		0.717462
+		0.686061
+		0.653743
+		0.620215
+		0.585151
+		0.548184
+		0.508902
+		0.466831
+		0.421432
+		0.372077
+		0.318046
+		];
+
+
+
+---------------------------------------------------------------------------------------------
+>>>>    Mean / Maximum value of the residuals in percentage (100*(data-model)/data):
+
+		Experiment 1 : 
+		 Observable 1 -->  mean error: 0.488110 %	 max error: 2.171127 %
+
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------
+>>>>    Maximum absolute value of the residuals (data-model):
+
+		Experiment 1 : 
+		 Observable 1 -->  max residual: 0.006905 max data: 1.000000
+
+--------------------------------------------------------------------------	   
+
+>>>> Best objective function: 0.000216 
+	   
+
+>>>> Computational cost: 16.310000 s
+> 99.83% of successful simulationn
+> 100.00% of successful sensitivity calculations
+
+
+>>> Best values found and the corresponding asymptotic confidence intervals
+
+
+
+>>> Estimated global parameters: 
+
+	a : -7.6610e-01  +-  5.2007e+01 (-6.79e+03%); 
+	b : 2.0000e+00  +-  5.1515e+01 (2.58e+03%); (bound active) 
+	g : 2.0000e+00  +-  9.1225e+00 (     456%); (bound active) 
+
+
+>>> Estimated global initial conditions: 
+
+	x1 : 9.9415e-01  +-  5.2823e-03 (   0.531%); 
+	x2 : -9.5859e-01  +-  1.3486e+00 (    -141%); 
+
+
+>>> Correlation matrix for the global unknowns:
+
+	 1.000000e+00	 -9.999845e-01	 9.990825e-01	 -3.720285e-01	 9.995488e-01
+	 -9.999845e-01	 1.000000e+00	 -9.988306e-01	 3.751080e-01	 -9.993796e-01
+	 9.990825e-01	 -9.988306e-01	 1.000000e+00	 -3.509905e-01	 9.998698e-01
+	 -3.720285e-01	 3.751080e-01	 -3.509905e-01	 1.000000e+00	 -3.634480e-01
+	 9.995488e-01	 -9.993796e-01	 9.998698e-01	 -3.634480e-01	 1.000000e+00
+
+
+------>Plotting results....
+
+[Warning: File 'objf_n2fb.m' not found.] 
+[> In AMIGO_del_PE (line 56)
+In AMIGO_PE (line 363)
+In FHN (line 79)
+In run (line 91)] 
+
+
+------>Results (report and struct_results.mat) and plots were kept in the directory:
+
+		/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/PE_problem_eSS_run1
+
+		Click <a href="matlab: cd('/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/PE_problem_eSS_run1')">here</a> to go to the results folder or <a href="matlab: load('/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/PE_problem_eSS_run1/strreport_problem_run1.mat')">here</a> to load the results.
+[?1l>
+
+CPU time: 6.57+64.33 sec	Max. resident set size: 1425652 KB	 Elapsed: 49.23 sec.

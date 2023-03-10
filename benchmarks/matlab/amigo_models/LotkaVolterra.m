@@ -1,8 +1,6 @@
 addpath(genpath('../src'))
 addpath(genpath("./"))
-% k1 : 1.8322e-02  +-  1.6087e-03 (    8.78%);
-% k2 : 2.9989e-02  +-  1.2393e-05 (  0.0413%);
-% k3 : 4.9062e-02  +-  9.8952e-04 (    2.02%);
+addpath(genpath("../../matlab_tol/samples/lv/"))
 %======================
 % PATHS RELATED DATA
 %======================
@@ -38,27 +36,9 @@ inputs.exps.obs{1}=char('Y=r');
 inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
 inputs.exps.n_s{1}=20;
 inputs.exps.data_type='real';
-inputs.exps.exp_data{1}=[100.0
-84.44821610166392
-69.64346022199445
-56.18699286738116
-44.458914019523824
-34.60397997464834
-26.572870339935523
-20.188824454149156
-15.212779156604443
-11.39256727297336
-8.493163414509306
-6.311293977979305
-4.679566847222475
-3.464688427848403
-2.5629783933168175
-1.895115281010932
-1.4011217095916941
-1.0360221477945424
-0.7662870925577698
-0.5670214463059633
-];
+inputs.exps.exp_data{1}=readmatrix(sprintf('lv-%i.csv', inputs.exps.n_s{1})); % read sample data
+% inputs.exps.t_s{1} = inputs.exps.exp_data{1}(:, 1);
+inputs.exps.exp_data{1}(:, 1) = [];
 inputs.PEsol.id_global_theta=char('k1', 'k2', 'k3');
 inputs.PEsol.id_global_theta_y0='all';               % [] 'all'|User selected| 'none' (default)
 inputs.PEsol.global_theta_y0_max=[110 110];                % Maximum allowed values for the initial conditions
@@ -94,5 +74,7 @@ inputs.PEsol.lsq_type='Q_I';             % Weights:
 % inputs.exps.u_interp{1}='sustained';          % Stimuli definition for experiment 1
                                               % Initial and final time
 %inputs.exps.u{1}=1;                           % Values of the inputs for exp 1
+inputs.ivpsol.rtol=1.0e-10;                            % [] IVP solver integration tolerances
+inputs.ivpsol.atol=1.0e-10;
 AMIGO_Prep(inputs);
 AMIGO_PE(inputs);

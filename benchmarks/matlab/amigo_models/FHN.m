@@ -1,5 +1,6 @@
 addpath(genpath('../src'))
 addpath(genpath("./"))
+addpath(genpath("../../matlab_tol/samples/fhn/"))
 %======================
 % PATHS RELATED DATA
 %======================
@@ -32,59 +33,11 @@ inputs.exps.n_obs{1}=1;                       % Number of observables
 inputs.exps.obs_names{1}=char('Y'); % Names of the observables
 inputs.exps.obs{1}=char('Y=x1');
 inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
-inputs.exps.n_s{1}=50;
+inputs.exps.n_s{1}=20;
 inputs.exps.data_type='real';
-inputs.exps.exp_data{1}=[1.0
-0.9865161738969255
-0.9732626036107086
-0.9602205595438085
-0.9473722004384822
-0.9347004680289507
-0.9221889913641396
-0.9098219994143794
-0.8975842408051563
-0.8854609097506593
-0.8734375772154442
-0.8615001267279976
-0.8496346936983219
-0.8378276081883363
-0.8260653404882949
-0.8143344485649917
-0.8026215271698885
-0.7909131589058271
-0.7791958654565811
-0.7674560596070894
-0.7556799982697886
-0.7438537339289144
-0.7319630671786492
-0.7199934979748167
-0.7079301752128767
-0.695757847083321
-0.6834608068484177
-0.6710228402258328
-0.6584271675490089
-0.6456563858105527
-0.6326924069682979
-0.6195163929532004
-0.606108689372379
-0.5924487520996189
-0.5785150751481465
-0.5642851085191068
-0.5497351777452164
-0.5348403938714783
-0.5195745618912201
-0.5039100836774605
-0.48781785413809176
-0.47126715568168104
-0.454225544859093
-0.4366587358017351
-0.4185304800580947
-0.39980244160012274
-0.38043407010207164
-0.3603824732191721
-0.3396022892593786
-0.31804556259642747
-];
+inputs.exps.exp_data{1}=readmatrix(sprintf('fhn-%i.csv', inputs.exps.n_s{1})); % read sample data
+% inputs.exps.t_s{1} = inputs.exps.exp_data{1}(:, 1);
+inputs.exps.exp_data{1}(:, 1) = [];
 inputs.PEsol.id_global_theta='all';
 inputs.PEsol.global_theta_max=2.*ones(1,3);
 inputs.PEsol.global_theta_min=-1.*ones(1,3);
@@ -120,5 +73,7 @@ inputs.PEsol.lsq_type='Q_I';             % Weights:
 % inputs.exps.u_interp{1}='sustained';          % Stimuli definition for experiment 1
                                               % Initial and final time
 %inputs.exps.u{1}=1;                           % Values of the inputs for exp 1
+inputs.ivpsol.rtol=1.0e-10;                            % [] IVP solver integration tolerances
+inputs.ivpsol.atol=1.0e-10;
 AMIGO_Prep(inputs);
 AMIGO_PE(inputs);

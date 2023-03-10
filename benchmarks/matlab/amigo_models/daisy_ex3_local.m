@@ -1,5 +1,6 @@
 addpath(genpath('../src'))
 addpath(genpath("./"))
+addpath(genpath("../../matlab_tol/samples/daisy_ex_3/"))
 %======================
 % PATHS RELATED DATA
 %======================
@@ -29,32 +30,13 @@ inputs.exps.exp_y0{1}=[.9, -1.2, 0.8, -1.];        % Initial conditions
 inputs.exps.t_f{1}=1;                       % Experiments duration
 inputs.exps.n_obs{1}=2;                       % Number of observables
 inputs.exps.obs_names{1}=char('y1','y2'); % Names of the observables
-inputs.exps.obs{1}=char('y1=u0','y2=x1');
+inputs.exps.obs{1}=char('y1=x1','y2=u0');
 inputs.exps.t_con{1}=[0 1];                 % Input swithching times including:
-inputs.exps.n_s{1}=20;
+inputs.exps.n_s{1}=10;
 inputs.exps.data_type='real';
-inputs.exps.exp_data{1}=[
-  -1.0 1.0
-  -0.9473684210526316 0.8520030271799972
-  -0.8947368421052633 0.7224652099044458
-  -0.8421052631578949 0.6095305501177817
-  -0.7894736842105265 0.5115268685978279
-  -0.7368421052631582 0.4269492130903495
-  -0.6842105263157898 0.3544446538701189
-  -0.6315789473684214 0.2927983616810217
-  -0.5789473684210529 0.24092086984977149
-  -0.5263157894736845 0.1978364289110828
-  -0.4736842105263161 0.16267236829720247
-  -0.4210526315789475 0.1346493854690461
-  -0.3684210526315792 0.11307268844938233
-  -0.31578947368421056 0.09732392303962391
-  -0.2631578947368423 0.08685382098632245
-  -0.21052631578947378 0.08117550967689625
-  -0.1578947368421054 0.07985842894361665
-  -0.10526315789473699 0.08252280395542866
-  -0.0526315789473687 0.08883462764346389
-  -2.2474414425768536e-16 0.09850110911987633
-];
+inputs.exps.exp_data{1}=readmatrix(sprintf('daisy_ex_3-%i.csv', inputs.exps.n_s{1})); % read sample data
+% inputs.exps.t_s{1} = inputs.exps.exp_data{1}(:, 1);
+inputs.exps.exp_data{1}(:, 1) = [];
 inputs.PEsol.id_global_theta=char('p1', 'p3');
 inputs.PEsol.global_theta_max=2.*ones(1,2);
 inputs.PEsol.global_theta_min=-1.*ones(1,2);
@@ -100,5 +82,7 @@ inputs.PEsol.lsq_type='Q_I';             % Weights:
 % inputs.exps.u_interp{1}='sustained';          % Stimuli definition for experiment 1
                                               % Initial and final time
 %inputs.exps.u{1}=1;                           % Values of the inputs for exp 1
+inputs.ivpsol.rtol=1.0e-10;                            % [] IVP solver integration tolerances
+inputs.ivpsol.atol=1.0e-10;
 AMIGO_Prep(inputs);
 AMIGO_PE(inputs);

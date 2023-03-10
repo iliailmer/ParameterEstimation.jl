@@ -1,0 +1,475 @@
+[?1h=
+                                          < M A T L A B (R) >
+                                Copyright 1984-2022 The MathWorks, Inc.
+                               R2022a (9.12.0.1884302) 64-bit (glnxa64)
+                                           February 16, 2022
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+
+
+*********************************** 
+     AMIGO2, Copyright @CSIC      
+     AMIGO2_R2019a [March 2019]      
+*********************************** 
+
+*Date: 09-Mar-2023
+
+------>Pre processing....this may take a few seconds.
+
+
+------>Checking inputs....
+		Problem folder has not been provided. Default: Problem
+------> WARNING message
+
+		 AMIGO_check_model: You did not specify inputs.model.exe_type, standard will be assumed
+
+[Warning: AMIGO_check_IVPsolver: Changing ivp solver to the only option compatible with charmodelC and
+sbmlmodel, cvodes] 
+[> In AMIGO_check_IVPsolver (line 24)
+In AMIGO_check_model (line 387)
+In AMIGO_Prep (line 55)
+In HIV (line 79)
+In run (line 91)] 
+[Warning: AMIGO_check_IVPsolver: Changing sensitivities solver to, cvodes] 
+[> In AMIGO_check_IVPsolver (line 31)
+In AMIGO_check_model (line 387)
+In AMIGO_Prep (line 55)
+In HIV (line 79)
+In run (line 91)] 
+------> Generating C code ...
+
+
+------> Mexing files....
+
+[?1h=[?1h=[?1h=Building with 'gcc'.
+[?1h=[?1h=[?1h=[?1h=[?1h=/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_amigo/simulate_amigo_model.c: In function 'simulate_amigo_model':
+/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_amigo/simulate_amigo_model.c:278:11: warning: passing argument 1 of 'mexPrintf' from incompatible pointer type [-Wincompatible-pointer-types]
+  278 | mexPrintf(stderr,"\nSolver failed at flag = CVode(cvode_mem, tout, y, &t, CV_TSTOP_RETURN);. . .\n");
+      |           ^~~~~~
+      |           |
+      |           struct _IO_FILE *
+In file included from /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/include/include_amigo/simulate_amigo_model.h:4,
+                 from /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_amigo/simulate_amigo_model.c:1:
+/local/MATLAB/R2022a/extern/include/mex.h:192:18: note: expected 'const char *' but argument is of type 'struct _IO_FILE *'
+  192 |     const char  *fmt,   /* printf style format */
+      |     ~~~~~~~~~~~~~^~~
+
+[?1h=/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_interface/interface_with_matlab.c: In function 'mexFunction':
+/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/IVP_solvers/cvodes/C_src4Amigo/src/src_interface/interface_with_matlab.c:181:14: warning: assignment to 'mxArray *' {aka 'struct mxArray_tag *'} from incompatible pointer type 'double *' [-Wincompatible-pointer-types]
+  181 | stats_struct = mxGetPr(plhs[5]);
+      |              ^
+
+[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=[?1h=MEX completed successfully.
+
+
+------>Files generated....
+
+
+*********************************** 
+     AMIGO2, Copyright @CSIC      
+     AMIGO2_R2019a [March 2019]      
+*********************************** 
+
+*Date: 09-Mar-2023
+
+------>Checking inputs....
+		Problem folder has not been provided. Default: Problem
+------> WARNING message
+
+		 AMIGO_check_model: You did not specify inputs.model.exe_type, standard will be assumed
+
+[Warning: AMIGO_check_IVPsolver: Changing ivp solver to the only option compatible with charmodelC and
+sbmlmodel, cvodes] 
+[> In AMIGO_check_IVPsolver (line 24)
+In AMIGO_check_model (line 387)
+In AMIGO_PE (line 83)
+In HIV (line 80)
+In run (line 91)] 
+[Warning: AMIGO_check_IVPsolver: Changing sensitivities solver to, cvodes] 
+[> In AMIGO_check_IVPsolver (line 31)
+In AMIGO_check_model (line 387)
+In AMIGO_PE (line 83)
+In HIV (line 80)
+In run (line 91)] 
+
+
+------> WARNING message
+
+		 You have not provided the sampling times.
+ 		 Equidistant sampling will be assumed for experiment 1
+		 Note however that you may modify your input file by adding
+		 inputs.exps.t_s{iexp}
+
+ans =
+
+    0.5000    0.5000    0.5000    0.5000    0.5000    0.5000    0.5000    0.5000    0.5000    0.5000
+
+[Warning: Directory already exists.] 
+[> In AMIGO_gen_obs (line 38)
+In AMIGO_PE (line 128)
+In HIV (line 80)
+In run (line 91)] 
+[Warning: Name is nonexistent or not a directory:
+/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/AMIGO_gen_obs_problem.m] 
+[> In path (line 109)
+In addpath (line 86)
+In AMIGO_gen_obs (line 109)
+In AMIGO_PE (line 128)
+In HIV (line 80)
+In run (line 91)] 
+
+ans =
+
+    '/home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/AMIGO_gen_obs_problem.m'
+
+
+*************************************************************************
+
+
+------>IMPORTANT!!: Most of the optimization solvers have their own
+                    tunning parameters (options).
+                    Defaults have been assigned in the *NLPsolver*_options
+                    files. You may need to modify those settings for your
+                    particular problem, specially:
+                      - maximum number of function evaluations /iterations,
+                      - maximum computational time
+
+
+******************************************************************
+
+  Solving the NLP problem with
+		>Summary of selected eSS options: 
+ess_options.
+	dim_refset:	'auto'
+	inter_save:	0
+	iterprint:	1
+	local:	(1x1 struct)
+	log_var:	[]
+	maxeval:	20000
+	maxtime:	600
+	ndiverse:	'auto'
+nl2sol_settings.
+	display:	1
+	grad:	[]
+	iterfun:	[]
+	maxfeval:	300
+	maxiter:	300
+	objrtol:	1e-06
+	tolafun:	1e-06
+	tolrfun:	1e-06
+
+		>Bounds on the unknowns:
+
+		v_guess(1)=0.500050;  v_min(1)=0.000100;  v_max(1)=1.000000;
+		v_guess(2)=0.500050;  v_min(2)=0.000100;  v_max(2)=1.000000;
+		v_guess(3)=0.500050;  v_min(3)=0.000100;  v_max(3)=1.000000;
+		v_guess(4)=0.500050;  v_min(4)=0.000100;  v_max(4)=1.000000;
+		v_guess(5)=0.500050;  v_min(5)=0.000100;  v_max(5)=1.000000;
+		v_guess(6)=0.500050;  v_min(6)=0.000100;  v_max(6)=1.000000;
+		v_guess(7)=0.500050;  v_min(7)=0.000100;  v_max(7)=1.000000;
+		v_guess(8)=0.500050;  v_min(8)=0.000100;  v_max(8)=1.000000;
+		v_guess(9)=0.500050;  v_min(9)=0.000100;  v_max(9)=1.000000;
+		v_guess(10)=0.500050;  v_min(10)=0.000100;  v_max(10)=1.000000;
+		v_guess(11)=1.000500;  v_min(11)=0.001000;  v_max(11)=2.000000;
+		v_guess(12)=1.000500;  v_min(12)=0.001000;  v_max(12)=2.000000;
+		v_guess(13)=1.000500;  v_min(13)=0.001000;  v_max(13)=2.000000;
+		v_guess(14)=1.000500;  v_min(14)=0.001000;  v_max(14)=2.000000;
+		v_guess(15)=1.000500;  v_min(15)=0.001000;  v_max(15)=2.000000;
+
+
+------------------------------------------------------------------------------ 
+ eSS R2010B - Enhanced Scatter Search    
+<c> IIM-CSIC, Vigo, Spain -  email: gingproc@iim.csic.es 
+------------------------------------------------------------------------------ 
+
+Refset size automatically calculated: 14
+Number of diverse solutions automatically calculated: 150
+
+
+-----------------------------------------------
+ Initial value problem related active settings
+-----------------------------------------------
+ivpsolver: cvodes
+RelTol: 1e-10
+AbsTol: 1e-10
+MaxStepSize: Inf
+MaxNumberOfSteps: 1e+06
+Initial Pop: NFunEvals: 158  Bestf: 6.98635      CPUTime: 1.960000    Var: 999.873 
+Iteration: 1 NFunEvals: 359  Bestf: 4.02309      CPUTime: 2.180000    Var: 3.811 
+Call local solver: NL2SOL 
+Initial point function value: 4.023092 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:       15
+ # Data Points:              40
+------------------------------------------------------------------
+
+ *** SUCCESSFUL TERMINATION ***
+ *** relative function convergence ***
+------------------------------------------------------------------
+
+NL2SOL ended after 53 iteration and 899 function evaluation:
+       Results: Optimal
+Local solution function value: 0.00738981 
+Number of function evaluations in the local search: 901 
+CPU Time of the local search: 0.621865  seconds 
+
+Iteration: 2 NFunEvals: 1456  Bestf: 0.00738981      CPUTime: 3.790000    Var: 4.33746 
+Iteration: 3 NFunEvals: 1655  Bestf: 0.00738981      CPUTime: 4.230000    Var: 2.50272 
+Iteration: 4 NFunEvals: 1847  Bestf: 0.00738981      CPUTime: 4.620000    Var: 1.60188 
+Iteration: 5 NFunEvals: 2045  Bestf: 0.00738981      CPUTime: 5.070000    Var: 1.46597 
+Iteration: 6 NFunEvals: 2236  Bestf: 0.00738981      CPUTime: 5.450000    Var: 0.969796 
+Iteration: 7 NFunEvals: 2430  Bestf: 0.00738981      CPUTime: 5.820000    Var: 1.00651 
+Iteration: 8 NFunEvals: 2620  Bestf: 0.00738981      CPUTime: 5.950000    Var: 0.879566 
+Iteration: 9 NFunEvals: 2810  Bestf: 0.00738981      CPUTime: 6.070000    Var: 0.196671 
+Iteration: 10 NFunEvals: 3000  Bestf: 0.00738981      CPUTime: 6.190000    Var: 0.0783211 
+Iteration: 11 NFunEvals: 3188  Bestf: 0.00738981      CPUTime: 6.320000    Var: 0.0922536 
+Call local solver: NL2SOL 
+Initial point function value: 1.055662 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:       15
+ # Data Points:              40
+------------------------------------------------------------------
+
+ *** TERMINATION: EARLY EXIT ***
+ *** CAUSE: singular convergence. the hessian near the current iterate appears to be singular or nearly so. ***
+------------------------------------------------------------------
+
+NL2SOL ended after 38 iteration and 640 function evaluation:
+       Results: Singular convergence
+Local solution function value: 0.0111081 
+Number of function evaluations in the local search: 642 
+CPU Time of the local search: 0.397786  seconds 
+
+Iteration: 12 NFunEvals: 4022  Bestf: 0.00738981      CPUTime: 7.040000    Var: 0.11693 
+Iteration: 13 NFunEvals: 4212  Bestf: 0.00738981      CPUTime: 7.170000    Var: 0.113641 
+Iteration: 14 NFunEvals: 4401  Bestf: 0.00738981      CPUTime: 7.290000    Var: 0.100648 
+Iteration: 15 NFunEvals: 4587  Bestf: 0.00738981      CPUTime: 7.410000    Var: 0.0930452 
+Iteration: 16 NFunEvals: 4777  Bestf: 0.00738981      CPUTime: 7.530000    Var: 0.0522711 
+Iteration: 17 NFunEvals: 4965  Bestf: 0.00738981      CPUTime: 7.650000    Var: 0.0462589 
+Iteration: 18 NFunEvals: 5154  Bestf: 0.00738981      CPUTime: 7.770000    Var: 0.0445012 
+Iteration: 19 NFunEvals: 5344  Bestf: 0.00738981      CPUTime: 7.900000    Var: 0.0390287 
+Iteration: 20 NFunEvals: 5535  Bestf: 0.00738981      CPUTime: 8.020000    Var: 0.0353504 
+Iteration: 21 NFunEvals: 5726  Bestf: 0.00738981      CPUTime: 8.150000    Var: 0.0286311 
+Call local solver: NL2SOL 
+Initial point function value: 0.724126 
+
+------------------------------------------------------------------
+ This is dn2fb_ (NL2SNO v2.3)
+ Authors: John Dennis, David Gay, Roy Welsch
+ MEX Interface J. Currie 2012
+
+ Problem Properties:
+ # Decision Variables:       15
+ # Data Points:              40
+------------------------------------------------------------------
+Attempt to restart MATLAB? [y or n]>>n
+--------------------------------------------------------------------------------
+          Segmentation violation detected at 2023-03-09 08:20:43 -0500
+--------------------------------------------------------------------------------
+
+Configuration:
+  Crash Decoding           : Disabled - No sandbox or build area path
+  Crash Mode               : continue (default)
+  Default Encoding         : UTF-8
+  Deployed                 : false
+  GNU C Library            : 2.31 stable
+  Graphics Driver          : Uninitialized software 
+  Graphics card 1          : 0x102b ( 0x102b ) 0x536 Version 0.0.0.0 (0-0-0)
+  Graphics card 2          : 0x10de ( 0x10de ) 0x1db6 Version 470.161.3.0 (0-0-0)
+  Graphics card 3          : 0x10de ( 0x10de ) 0x1db6 Version 470.161.3.0 (0-0-0)
+  Graphics card 4          : 0x10de ( 0x10de ) 0x1db6 Version 470.161.3.0 (0-0-0)
+  Graphics card 5          : 0x10de ( 0x10de ) 0x1db6 Version 470.161.3.0 (0-0-0)
+  Java Version             : Java 1.8.0_202-b08 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+  MATLAB Architecture      : glnxa64
+  MATLAB Entitlement ID    : 2723186
+  MATLAB Root              : /local/MATLAB/R2022a
+  MATLAB Version           : 9.12.0.1884302 (R2022a)
+  OpenGL                   : software
+  Operating System         : Ubuntu 20.04.4 LTS
+  Process ID               : 3001495
+  Processor ID             : x86 Family 6 Model 85 Stepping 7, GenuineIntel
+  Session Key              : bfb92aa1-1328-4d46-a2b6-0e9caa3497db
+  Window System            : No active display
+
+Fault Count: 1
+
+
+Abnormal termination:
+Segmentation violation
+
+Current Thread: 'MCR 0 interpret' id 140408529843968
+
+Register State (from fault):
+  RAX = 000000000000000c  RBX = 000000000000000d
+  RCX = 00007fb35c0008dc  RDX = 00007faf33e85740
+  RSP = 00007fb3688ab820  RBP = 00007fb3688ab870
+  RSI = 0000000000000000  RDI = 0000000000000000
+
+   R8 = 00007faf33e9cfa0   R9 = 0000000000000018
+  R10 = 0000000000000008  R11 = 0000000000000246
+  R12 = 00007faf33db0dd0  R13 = 00007faf33e9b2a8
+  R14 = 0000000000000005  R15 = 000000000000000f
+
+  RIP = 00007faf28f7d0cb  EFL = 0000000000010202
+
+   CS = 0033   FS = 0000   GS = 0000
+
+Stack Trace (from fault):
+[  0] 0x00007faf28f7d0cb /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/cvodesg_problem.mexa64+00008395
+[  1] 0x00007faf28f7f4f5 /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Results/Problem/cvodesg_problem.mexa64+00017653 mexFunction+00000213
+[  2] 0x00007fb39143cd4f         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00855375
+[  3] 0x00007fb39143cdc7         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00855495
+[  4] 0x00007fb39143ce37         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00855607
+[  5] 0x00007fb39143deda         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00859866
+[  6] 0x00007fb391428880         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00772224
+[  7] 0x00007fb391aa821d /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01262109 _ZN8Mfh_file20dispatch_file_commonEMS_FviPP11mxArray_tagiS2_EiS2_iS2_+00000173
+[  8] 0x00007fb391aa966c /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01267308 _ZN8Mfh_file19dispatch_with_reuseEiPP11mxArray_tagiS2_+00000236
+[  9] 0x00007fb3815f84ac     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09925804
+[ 10] 0x00007fb39110a45a /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02528346
+[ 11] 0x00007fb3911acb57 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03193687
+[ 12] 0x00007fb3917e1789 /local/MATLAB/R2022a/bin/glnxa64/libmwm_interpreter.so+01378185 inFullFevalFcn+00000313
+[ 13] 0x00007fb391a2f514 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00767252
+[ 14] 0x00007fb391a31408 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00775176
+[ 15] 0x00007fb391a13899 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00653465
+[ 16] 0x00007fb391a13bb1 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00654257 _ZN18Mfh_MATLAB_fn_impl8dispatchEiPSt10unique_ptrI11mxArray_tagN6matrix6detail17mxDestroy_deleterEEiPPS1_+00000033
+[ 17] 0x00007fb3910be0fc /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02216188
+[ 18] 0x00007fb3910be973 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02218355
+[ 19] 0x00007fb3815d4324     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09777956
+[ 20] 0x00007fb3815de65c     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09819740
+[ 21] 0x00007fb381568c02     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09337858
+[ 22] 0x00007fb381425bc1     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+08014785
+[ 23] 0x00007fb38140f9ba     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07924154
+[ 24] 0x00007fb381414bd1     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07945169
+[ 25] 0x00007fb3911faa68 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03512936
+[ 26] 0x00007fb3910a8f97 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02129815
+[ 27] 0x00007fb3910ab1c5 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02138565
+[ 28] 0x00007fb391aa821d /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01262109 _ZN8Mfh_file20dispatch_file_commonEMS_FviPP11mxArray_tagiS2_EiS2_iS2_+00000173
+[ 29] 0x00007fb391aa966c /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01267308 _ZN8Mfh_file19dispatch_with_reuseEiPP11mxArray_tagiS2_+00000236
+[ 30] 0x00007fb3815f84ac     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09925804
+[ 31] 0x00007fb3815e8d67     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09862503
+[ 32] 0x00007fb391a2f514 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00767252
+[ 33] 0x00007fb391a31408 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00775176
+[ 34] 0x00007fb391a13510 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00652560 _ZN18Mfh_MATLAB_fn_impl19dispatch_with_reuseEiPP11mxArray_tagiS2_+00000240
+[ 35] 0x00007fb3815f84ac     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09925804
+[ 36] 0x00007fb39110a45a /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02528346
+[ 37] 0x00007fb3911acb57 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03193687
+[ 38] 0x00007fb3911ad713 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03196691
+[ 39] 0x00007fb3917d2ced /local/MATLAB/R2022a/bin/glnxa64/libmwm_interpreter.so+01318125 inCallFcnWithTrap+00000077
+[ 40] 0x00007fb39181bb4a /local/MATLAB/R2022a/bin/glnxa64/libmwm_interpreter.so+01616714 inMexCallMATLAB+00001418
+[ 41] 0x00007fb39141e264         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00729700 mexCallMATLAB+00000116
+[ 42] 0x00007faf288c7252 /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/OPT_solvers/eSS/local_solvers/nl2sol/nl2sol_v2_1.mexa64+00008786
+[ 43] 0x00007faf288c83de /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/OPT_solvers/eSS/local_solvers/nl2sol/nl2sol_v2_1.mexa64+00013278
+[ 44] 0x00007faf288c6e10 /home/iilmer/ParameterEstimation.jl/benchmarks/matlab/src/AMIGO2_R2019b/Kernel/OPT_solvers/eSS/local_solvers/nl2sol/nl2sol_v2_1.mexa64+00007696 mexFunction+00002993
+[ 45] 0x00007fb39143cd4f         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00855375
+[ 46] 0x00007fb39143cdc7         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00855495
+[ 47] 0x00007fb39143ce37         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00855607
+[ 48] 0x00007fb39143deda         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00859866
+[ 49] 0x00007fb391428880         /local/MATLAB/R2022a/bin/glnxa64/libmex.so+00772224
+[ 50] 0x00007fb391aa821d /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01262109 _ZN8Mfh_file20dispatch_file_commonEMS_FviPP11mxArray_tagiS2_EiS2_iS2_+00000173
+[ 51] 0x00007fb391aa9185 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01266053
+[ 52] 0x00007fb391aa9571 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01267057 _ZN8Mfh_file8dispatchEiPSt10unique_ptrI11mxArray_tagN6matrix6detail17mxDestroy_deleterEEiPPS1_+00000033
+[ 53] 0x00007fb3910be0fc /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02216188
+[ 54] 0x00007fb3910be973 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02218355
+[ 55] 0x00007fb3815d4324     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09777956
+[ 56] 0x00007fb3815c6da5     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09723301
+[ 57] 0x00007fb381564a62     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09321058
+[ 58] 0x00007fb3812ebff0     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06729712
+[ 59] 0x00007fb3812ee2d4     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06738644
+[ 60] 0x00007fb3812eb829     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727721
+[ 61] 0x00007fb3812fca0f     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06797839
+[ 62] 0x00007fb3812fd149     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06799689
+[ 63] 0x00007fb3812eb644     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727236
+[ 64] 0x00007fb3812eb736     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727478
+[ 65] 0x00007fb38141104e     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07929934
+[ 66] 0x00007fb381414bd1     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07945169
+[ 67] 0x00007fb3911faa68 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03512936
+[ 68] 0x00007fb3910a9f6c /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02133868
+[ 69] 0x00007fb3910ab1d5 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02138581
+[ 70] 0x00007fb391aa821d /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01262109 _ZN8Mfh_file20dispatch_file_commonEMS_FviPP11mxArray_tagiS2_EiS2_iS2_+00000173
+[ 71] 0x00007fb391aa9185 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01266053
+[ 72] 0x00007fb391aa9571 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01267057 _ZN8Mfh_file8dispatchEiPSt10unique_ptrI11mxArray_tagN6matrix6detail17mxDestroy_deleterEEiPPS1_+00000033
+[ 73] 0x00007fb3910be0fc /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02216188
+[ 74] 0x00007fb3910be973 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02218355
+[ 75] 0x00007fb3815d4324     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09777956
+[ 76] 0x00007fb3815c6f0d     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09723661
+[ 77] 0x00007fb381564ab2     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09321138
+[ 78] 0x00007fb3812ebff0     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06729712
+[ 79] 0x00007fb3812ee2d4     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06738644
+[ 80] 0x00007fb3812eb829     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727721
+[ 81] 0x00007fb3812fca0f     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06797839
+[ 82] 0x00007fb3812fd149     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06799689
+[ 83] 0x00007fb3812eb644     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727236
+[ 84] 0x00007fb3812eb736     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727478
+[ 85] 0x00007fb38141104e     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07929934
+[ 86] 0x00007fb381414bd1     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07945169
+[ 87] 0x00007fb3911faa68 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03512936
+[ 88] 0x00007fb3910a9f6c /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02133868
+[ 89] 0x00007fb3910ab1d5 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02138581
+[ 90] 0x00007fb391aa821d /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01262109 _ZN8Mfh_file20dispatch_file_commonEMS_FviPP11mxArray_tagiS2_EiS2_iS2_+00000173
+[ 91] 0x00007fb391aa9185 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01266053
+[ 92] 0x00007fb391aa9571 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+01267057 _ZN8Mfh_file8dispatchEiPSt10unique_ptrI11mxArray_tagN6matrix6detail17mxDestroy_deleterEEiPPS1_+00000033
+[ 93] 0x00007fb3910be0fc /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02216188
+[ 94] 0x00007fb3910be973 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02218355
+[ 95] 0x00007fb3815d4324     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09777956
+[ 96] 0x00007fb3815c6f0d     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09723661
+[ 97] 0x00007fb381564ab2     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09321138
+[ 98] 0x00007fb3812ebff0     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06729712
+[ 99] 0x00007fb3812ee2d4     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06738644
+[100] 0x00007fb3812eb829     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727721
+[101] 0x00007fb3812fca0f     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06797839
+[102] 0x00007fb3812fd149     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06799689
+[103] 0x00007fb3812eb644     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727236
+[104] 0x00007fb3812eb736     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727478
+[105] 0x00007fb38141104e     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07929934
+[106] 0x00007fb381414bd1     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+07945169
+[107] 0x00007fb3911faa68 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03512936
+[108] 0x00007fb39110ab6f /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02530159
+[109] 0x00007fb391111bb7 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02558903
+[110] 0x00007fb3911c5a1f /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03295775
+[111] 0x00007fb3911c6000 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+03297280
+[112] 0x00007fb391a2f514 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00767252
+[113] 0x00007fb391a31408 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00775176
+[114] 0x00007fb391a13899 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00653465
+[115] 0x00007fb391a13bb1 /local/MATLAB/R2022a/bin/glnxa64/libmwm_dispatcher.so+00654257 _ZN18Mfh_MATLAB_fn_impl8dispatchEiPSt10unique_ptrI11mxArray_tagN6matrix6detail17mxDestroy_deleterEEiPPS1_+00000033
+[116] 0x00007fb3910be0fc /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02216188
+[117] 0x00007fb3910be973 /local/MATLAB/R2022a/bin/glnxa64/libmwlxemainservices.so+02218355
+[118] 0x00007fb3815d4324     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09777956
+[119] 0x00007fb3815c6f0d     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09723661
+[120] 0x00007fb381564ab2     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+09321138
+[121] 0x00007fb3812ebff0     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06729712
+[122] 0x00007fb3812ee2d4     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06738644
+[123] 0x00007fb3812eb829     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727721
+[124] 0x00007fb3812fca0f     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06797839
+[125] 0x00007fb3812fd149     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06799689
+[126] 0x00007fb3812eb644     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727236
+[127] 0x00007fb3812eb736     /local/MATLAB/R2022a/bin/glnxa64/libmwm_lxe.so+06727478
+
+
+This error was detected while a MEX-file was running. If the MEX-file
+is not an official MathWorks function, please examine its source code
+for errors. Please consult the External Interfaces Guide for information
+on debugging MEX-files.
+** This crash report has been saved to disk as /home/iilmer/matlab_crash_dump.3001495-1 **
+
+
+
+MATLAB is exiting because of fatal error
+Command terminated by signal 9
+
+
+CPU time: 7.08+40.40 sec	Max. resident set size: 1109140 KB	 Elapsed: 311.65 sec.
