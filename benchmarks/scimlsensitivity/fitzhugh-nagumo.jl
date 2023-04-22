@@ -1,5 +1,5 @@
 using ModelingToolkit, DifferentialEquations, Optimization, OptimizationPolyalgorithms,
-      OptimizationOptimJL, SciMLSensitivity, Zygote, Plots
+      OptimizationOptimJL, SciMLSensitivity, ForwardDiff, Plots
 using Distributions, Random
 solver = Tsit5()
 
@@ -39,8 +39,12 @@ function loss(p)
                 saveat = sampling_times)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
     data = [sol[1, :]]
-    loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
-    return loss, sol
+    if sol.retcode == ReturnCode.Success
+        loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data)), sol
+        return loss, sol
+    else
+        return Inf, sol
+    end
 end
 
 callback = function (p, l, pred)
@@ -52,7 +56,7 @@ callback = function (p, l, pred)
     return false
 end
 
-adtype = Optimization.AutoZygote()
+adtype = Optimization.AutoForwardDiff()
 optf = Optimization.OptimizationFunction((x, p) -> loss(x), adtype)
 optprob = Optimization.OptimizationProblem(optf, p_rand)
 
