@@ -44,7 +44,7 @@ function loss(p)
     data = [(sol[1, :]), (sol[4, :])]
 
     if tmp_sol.retcode == ReturnCode.Success
-        loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data)), sol
+        loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
         return loss, sol
     else
         return Inf, sol

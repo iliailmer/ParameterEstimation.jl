@@ -45,7 +45,7 @@ function loss(p)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
     data = [(sol[4, :]), (sol[5, :]), (sol[1, :]), (sol[2, :] .+ sol[3, :])]
     if sol.retcode == ReturnCode.Success
-        loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data)), sol
+        loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
         return loss, sol
     else
         return Inf, sol
