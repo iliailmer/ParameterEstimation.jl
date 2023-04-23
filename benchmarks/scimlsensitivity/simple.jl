@@ -1,7 +1,7 @@
 using ModelingToolkit, DifferentialEquations, Optimization, OptimizationPolyalgorithms,
       OptimizationOptimJL, SciMLSensitivity, ForwardDiff, Plots
 using Distributions, Random, StaticArrays
-solver = Tsit5()
+solver = Vern9()
 
 @parameters a b
 @variables t x1(t) x2(t) y1(t) y2(t)
@@ -24,14 +24,14 @@ time_interval = [0.0, 2.0 * pi * sqrt(1.3 / 9.8)]
 datasize = 20
 sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 
-prob_true = ODEProblem(model, ic, time_interval, p_true)
+prob_true = ODEProblem{false}(model, ic, time_interval, p_true)
 solution_true = solve(prob_true, solver, p = p_true, saveat = sampling_times;
                       abstol = 1e-10, reltol = 1e-10)
 
 data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 
 p_rand = rand(Uniform(0.5, 1.5), length(ic) + length(p_true)) # Random Parameters
-prob = ODEProblem(model, ic, time_interval,
+prob = ODEProblem{false}(model, ic, time_interval,
                   p_rand)
 sol = solve(remake(prob, u0 = SVector{2}(p_rand[1:length(ic)])), solver,
             p = p_rand[(length(ic) + 1):end],
@@ -39,7 +39,7 @@ sol = solve(remake(prob, u0 = SVector{2}(p_rand[1:length(ic)])), solver,
             abstol = 1e-10, reltol = 1e-10)
 
 function loss(p)
-    sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
+    sol = solve(remake(prob; u0 = SVector{2}(p[1:length(ic)])), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = sampling_times;
                 abstol = 1e-10, reltol = 1e-10)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
@@ -65,7 +65,7 @@ adtype = Optimization.AutoForwardDiff()
 optf = Optimization.OptimizationFunction((x, p) -> loss(x), adtype)
 optprob = Optimization.OptimizationProblem(optf, p_rand)
 
-# result_ode = Optimization.solve(optprob, PolyOpt(), callback = callback, maxiters = 1000)
+result_ode = Optimization.solve(optprob, PolyOpt(), callback = callback, maxiters = 1000)
 
 # println(result_ode.u)
 
