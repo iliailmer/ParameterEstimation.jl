@@ -16,7 +16,7 @@ inputs.model.n_par=3;                                 % Number of model paramete
 inputs.model.st_names=char('x1','x2');    %x1=V, x2=R        % Names of the states
 inputs.model.par_names=char('a','b','g');             % Names of the parameters
 %inputs.model.stimulus_names=char('light');  % Names of the stimuli
-inputs.model.eqns=char('dx1 = g * (x1 - x1^3/3 + x2);', 'dx2 = - 1/g * (x1 - a + b * x2);');                                 % Equations describing system dynamics.
+inputs.model.eqns=char('dx1 = g * (x1 - x1^3/3 + x2);', 'dx2 = 1/g * (x1 - a + b * x2);');                                 % Equations describing system dynamics.
 inputs.model.par = [0.2 0.2 2];         % Nominal value for the parameters
 % inputs.model.AMIGOsensrhs = 1;                       % Generate the sensitivity equations for exact
 %                                                      % Jacobian computation
