@@ -33,7 +33,7 @@ function loss(p)
     sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = sampling_times; abstol = 1e-10, reltol = 1e-10)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
-    data_sol = [sol[1, :]]
+    data = [sol[1, :]]
     if sol.retcode == ReturnCode.Success
         loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
         return loss, sol
