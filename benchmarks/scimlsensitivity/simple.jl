@@ -1,12 +1,12 @@
 using ModelingToolkit, DifferentialEquations, Optimization, OptimizationPolyalgorithms,
       OptimizationOptimJL, SciMLSensitivity, ForwardDiff, Plots
-using Distributions, Random
+using Distributions, Random, StaticArrays
 solver = Tsit5()
 
 @parameters a b
 @variables t x1(t) x2(t) y1(t) y2(t)
 D = Differential(t)
-states = [x1, x2]
+states = SA[x1, x2]
 parameters = [a, b]
 
 @named model = ODESystem([
@@ -18,7 +18,7 @@ measured_quantities = [
     y2 ~ x2,
 ]
 
-ic = [1.0, 1.0]
+ic = SA[1.0, 1.0]
 p_true = [9.8, 1.3]
 time_interval = [0.0, 2.0 * pi * sqrt(1.3 / 9.8)]
 datasize = 20
@@ -33,7 +33,7 @@ data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 p_rand = rand(Uniform(0.5, 1.5), length(ic) + length(p_true)) # Random Parameters
 prob = ODEProblem(model, ic, time_interval,
                   p_rand)
-sol = solve(remake(prob, u0 = p_rand[1:length(ic)]), solver,
+sol = solve(remake(prob, u0 = SVector{2}(p_rand[1:length(ic)])), solver,
             p = p_rand[(length(ic) + 1):end],
             saveat = sampling_times;
             abstol = 1e-10, reltol = 1e-10)
