@@ -1,7 +1,7 @@
 using ModelingToolkit, DifferentialEquations, Optimization, OptimizationPolyalgorithms,
-      OptimizationOptimJL, SciMLSensitivity, Zygote, Plots
-using Distributions, Random
-solver = Tsit5()
+      OptimizationOptimJL, SciMLSensitivity, ForwardDiff, Plots
+using Distributions, Random, StaticArrays
+solver = Vern9()
 
 @parameters lm d beta a k u c q b h
 @variables t x(t) y(t) v(t) w(t) z(t) y1(t) y2(t) y3(t) y4(t)
@@ -18,20 +18,20 @@ parameters = [lm, d, beta, a, k, u, c, q, b, h]
                          ], t, states, parameters)
 measured_quantities = [y1 ~ w, y2 ~ z, y3 ~ x, y4 ~ y + v]
 
-ic = [1.0, 1.0, 1.0, 1.0, 1.0]
+ic = SA[1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [0.0, 10.0]
 datasize = 20
 sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 
-prob_true = ODEProblem(model, ic, time_interval, p_true)
+prob_true = ODEProblem{false}(model, ic, time_interval, p_true)
 solution_true = solve(prob_true, solver, p = p_true, saveat = sampling_times;
                       abstol = 1e-10, reltol = 1e-10)
 
 data_sample = Dict(v.rhs => solution_true[v.rhs] for v in measured_quantities)
 
 p_rand = rand(Uniform(0.5, 1.5), length(ic) + length(p_true)) # Random Parameters
-prob = ODEProblem(model, ic, time_interval,
+prob = ODEProblem{false}(model, ic, time_interval,
                   p_rand)
 sol = solve(remake(prob, u0 = p_rand[1:length(ic)]), solver,
             p = p_rand[(length(ic) + 1):end],
@@ -39,13 +39,17 @@ sol = solve(remake(prob, u0 = p_rand[1:length(ic)]), solver,
             abstol = 1e-10, reltol = 1e-10)
 
 function loss(p)
-    sol = solve(remake(prob; u0 = p[1:length(ic)]), Tsit5(), p = p[(length(ic) + 1):end],
+    sol = solve(remake(prob; u0 = SVector{5}(p[1:length(ic)])), Tsit5(), p = p[(length(ic) + 1):end],
                 saveat = sampling_times;
                 abstol = 1e-10, reltol = 1e-10)
     data_true = [data_sample[v.rhs] for v in measured_quantities]
     data = [(sol[4, :]), (sol[5, :]), (sol[1, :]), (sol[2, :] .+ sol[3, :])]
-    loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
-    return loss, sol
+    if sol.retcode == ReturnCode.Success
+        loss = sum(sum((data[i] .- data_true[i]) .^ 2) for i in eachindex(data))
+        return loss, sol
+    else
+        return Inf, sol
+    end
 end
 
 callback = function (p, l, pred)
@@ -57,7 +61,7 @@ callback = function (p, l, pred)
     return false
 end
 
-adtype = Optimization.AutoZygote()
+adtype = Optimization.AutoForwardDiff()
 optf = Optimization.OptimizationFunction((x, p) -> loss(x), adtype)
 # optprob = Optimization.OptimizationProblem(optf, p_rand)
 

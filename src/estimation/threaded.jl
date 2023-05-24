@@ -17,7 +17,7 @@ function estimate_threaded(model, measured_quantities, inputs, data_sample;
     N = length(degree_range)
     estimates = Vector{Any}(nothing, n_threads)
     @info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end]) using $n_threads threads"
-    Threads.@threads for t in 1:N
+    Threads.@threads :static for t in 1:N
         deg = degree_range[t]
         id = Threads.threadid()
         if isnothing(estimates[id])
