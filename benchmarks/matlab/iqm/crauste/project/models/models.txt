@@ -1,0 +1,47 @@
+********** MODEL NAME
+
+modelLV
+
+********** MODEL NOTES
+
+Simple Lotka Volterra
+
+********** MODEL STATES
+d/dt(N) = -N * mu_N - N * P * delta_NE
+d/dt(E) = N * P * delta_NE - E^2 * mu_EE - E * delta_EL + E * P * rho_E
+d/dt(S) = S * delta_EL - S * delta_LM - S^2 * mu_LL - E * S * mu_LE
+d/dt(M) = S * delta_LM - mu_M * M
+d/dt(P) = P^2 * rho_P - P * mu_P - E * P * mu_PE - S * P * mu_PL
+
+********** MODEL PARAMETERS
+mu_N = 1.0
+mu_EE = 1.3
+mu_LE = 1.1
+mu_LL = 1.2
+mu_M = 1.1
+mu_P = 1.0
+mu_PE = 0.5
+mu_PL = 1.0
+delta_NE = 1.0
+delta_EL = 1.0
+delta_LM = 1.0
+rho_E = 0.9
+rho_P = 1.2
+
+********** MODEL VARIABLES
+
+OUTPUT1 = N
+OUTPUT2 = E
+OUTPUT3 = S + M
+OUTPUT4 = P
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

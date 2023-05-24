@@ -1,0 +1,31 @@
+********** MODEL NAME
+
+modelFHN
+
+********** MODEL NOTES
+
+Simple FHN
+
+********** MODEL STATES
+d/dt(V) = g * (V - V^3 / 3 + R)
+d/dt(R) = 1 / g * (V - a + b * R)
+
+********** MODEL PARAMETERS
+a = 0.2
+b = 0.2
+g = 2
+
+********** MODEL VARIABLES
+
+OUTPUT1 = V
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+
