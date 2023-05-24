@@ -1,10 +1,10 @@
 ********** MODEL NAME
 
-modelLV
+model
 
 ********** MODEL NOTES
 
-Simple Lotka Volterra
+daisy
 
 ********** MODEL STATES
 d/dt(x1) = -k01 * x1 + k12 * x2 + k13 * x3 + k14 * x4 - k21 * x1 - k31 * x1 - k41 * x1

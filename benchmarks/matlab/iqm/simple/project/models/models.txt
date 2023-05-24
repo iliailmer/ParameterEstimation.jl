@@ -1,10 +1,10 @@
 ********** MODEL NAME
 
-modelFHN
+model
 
 ********** MODEL NOTES
 
-Simple FHN
+osc.
 
 ********** MODEL STATES
 d/dt(x1) = -a * x2

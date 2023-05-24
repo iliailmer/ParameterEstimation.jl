@@ -1,10 +1,10 @@
 ********** MODEL NAME
 
-modelLV
+model
 
 ********** MODEL NOTES
 
-Simple Lotka Volterra
+Crauste
 
 ********** MODEL STATES
 d/dt(N) = -N * mu_N - N * P * delta_NE

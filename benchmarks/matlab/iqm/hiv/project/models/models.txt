@@ -1,10 +1,10 @@
 ********** MODEL NAME
 
-modelFHN
+model
 
 ********** MODEL NOTES
 
-Simple FHN
+HIV
 
 ********** MODEL STATES
 d/dt(x) = lm - d * x - beta * x * v
