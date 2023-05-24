@@ -1,0 +1,37 @@
+********** MODEL NAME
+
+modelLV
+
+********** MODEL NOTES
+
+Simple Lotka Volterra
+
+********** MODEL STATES
+d/dt(x1) = -1 * p1 * x1 + x2 + u0
+d/dt(x2) = p3 * x1 - p4 * x2 + x3
+d/dt(x3) = p6 * x1 - p7 * x3
+d/dt(u0) = 1
+
+********** MODEL PARAMETERS
+
+p1 = 0.2
+p3 = 0.3
+p4 = 0.5
+p6 = 0.6
+p7 = -0.2
+
+********** MODEL VARIABLES
+
+OUTPUT1 = x1
+OUTPUT2 = u0
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+
