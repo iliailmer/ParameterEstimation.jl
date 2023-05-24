@@ -32,6 +32,7 @@ Manifest.toml
 .vscode
 benchmarks/matlab*/src
 *.txt
+!benchmarks/matlab*/iqm/*/*/*/*.txt
 timecommand
 objf*.m
 sharable
