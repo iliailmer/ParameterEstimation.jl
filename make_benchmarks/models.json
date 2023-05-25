@@ -11,6 +11,7 @@
 			"1 / b * (x1)"
 		],
 		"output_variables": ["Y1", "Y2"],
-		"output_eqns": ["x1", "x2"]
+		"output_eqns": ["x1", "x2"],
+		"output_data_filename": "simple.csv"
 	}]
 }

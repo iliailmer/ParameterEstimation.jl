@@ -1,5 +1,7 @@
 import json
-
+import csv
+import os
+data_dir = "data"
 
 class Benchmarks:
     def __init__(self, models_filename):
@@ -19,7 +21,7 @@ class Benchmarks:
         for model in self.models:
             run(model)
 
-    def run():
+    def run(self):
         self.run_amigo()
         self.run_iqm()
 
@@ -37,7 +39,17 @@ class Model:
         output_eqns,
         output_data_filename,
     ):
-        pass
+        self.output_data_filename = output_data_filename
+        self.__read_data_file()
+
+    def __read_data_file(self):
+        with open(os.path.join(data_dir, self.output_data_filename), newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                assert 't' in row
+                for varname in self.output_variables:
+                    assert f'{varname}(t)' in row
+                print(row)
 
 
 if __name__ == "__main__":
