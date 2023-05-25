@@ -1,7 +1,2 @@
-
-
-class Model:
-    pass
-
-class Benchmarks:
+def run(model):
     pass

@@ -9,6 +9,19 @@ class Benchmarks:
             for model_obj in models_json_obj["models"]:
                 self.models.append(Model(**model_obj))
 
+    def run_amigo(self):
+        from amigo import run
+        for model in self.models:
+            run(model)
+
+    def run_iqm(self):
+        from iqm import run
+        for model in self.models:
+            run(model)
+
+    def run():
+        self.run_amigo()
+        self.run_iqm()
 
 class Model:
     def __init__(
@@ -29,3 +42,4 @@ class Model:
 
 if __name__ == "__main__":
     b = Benchmarks("models.json")
+    b.run()
