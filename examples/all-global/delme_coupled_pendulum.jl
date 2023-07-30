@@ -2,7 +2,7 @@ using ParameterEstimation
 using ModelingToolkit, DifferentialEquations
 using BaryRational
 using ForwardDiff
-import HomotopyContinuation as HC
+
 
 
 ######### TODO(orebas)  REFACTOR into bary_derivs or something similiar
@@ -77,12 +77,24 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 	model_states = states(model)
 	model_ps = parameters(model)
 
+	#println("t")
+	#println(t)
+
+	#println("model_eq")
+	#println(model_eq)
+
+	#println("model_states")
+	#println(model_states)
+
+	#println("model_ps")
+	#println(model_ps)
 
 	t_vector = pop!(data_sample, "t") #TODO(orebas) make it use the independent variable name
 	sample_count = length(t_vector)
 	D = Differential(t)
 
-	eqns = []
+
+	eqns = Array{Any}(undef, sample_count)
 
 	interpolants = Dict()
 	for j in measured_quantities  #this loop constructs the interpolators of measured data
@@ -95,82 +107,111 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 	end
 
 
+
 	for i in 1:sample_count
 		equations_time_slice_full = []
 
 		d = Dict()
-
+		#d2 = Dict()
 		for j in eachindex(model_states)
+			#dump(model_states[j])
 			varname = (model_states[j].metadata.value[2])
 			vname2 = Symbol("$(varname)_$(i)")
+			#println(vname2)
 			vname3 = @variables $vname2
 			d[model_states[j]] = (vname3[1])
 
 			dvar = ModelingToolkit.diff2term(expand_derivatives(D(model_states[j])))
+			#println("DVAR ", dvar)
 			dvarname = dvar.metadata.value[2]
 			dvname2 = Symbol("$(dvarname)_$(i)")
 			dvname3 = @variables $dvname2
 			d[dvar] = dvname3[1]
 
 		end
-		equations_time_slice_from_ODE_only = []# assemple the ODE equations
-		equations_time_slice_from_measured_quantities_0th_deriv = []
-		equations_time_slice_from_measured_quantities_1st_deriv = []
 
+		#println(d)
+		#for j in eachindex(model_states)
+		#dump(model_states[j])
+		#	varname = (model_states[j].metadata.value[2])
+		#		vname2 = Symbol("$(varname)_$(i)")
+		#			#println(vname2)
+		#			d[model_states[j]] = (vname2)
+		#			@variables $vname2
+		#			dvar = ModelingToolkit.diff2term(expand_derivatives(D(model_states[j])))
+		#			#println("DVAR ", dvar)
+		#			dvarname = dvar.metadata.value[2]
+		#			dvname2 = Symbol("$(dvarname)_$(i)")
+		##			d[dvar] = dvname2
+
+		#		end
+
+
+
+		equations_time_slice_from_ODE_only = []# assemple the ODE equations
+		#println(d)
 		for j in eachindex(model_eq)
+			println()
+			println(model_eq[j])
 			lhs1 = expand_derivatives(model_eq[j].lhs)
 			rhs1 = expand_derivatives(model_eq[j].rhs)
 			lhs2 = ModelingToolkit.diff2term(lhs1)
 			rhs2 = ModelingToolkit.diff2term(rhs1)
+			println()
+			println(rhs2)
+			println()
+			println(d)
 			lhs3 = substitute(lhs2, d)
 			rhs3 = substitute(rhs2, d)
+			#println(lhs1)
+			#println(rhs1)
+			#println(lhs2)
+			#println(rhs2)
+			println(lhs3)
+			println(rhs3)
 			push!(equations_time_slice_from_ODE_only, lhs3 ~ rhs3)
+			#lhs = ModelingToolkit.diff2term(expand_derivatives(model_eq[j].lhs))
+			#rhs = ModelingToolkit.diff2term(expand_derivatives(model_eq[j].rhs))
+			#println("$i $j:")
+			#println(lhs)
+			#println(substitute(lhs, d))
+			#println(rhs)
+			#println(substitute(rhs, d))
 		end
+		equations_time_slice_from_measured_quantities_0th_deriv = []
 
+		println()
+
+		println()
 
 		for j in measured_quantities
 			r = j.rhs
+			println("DEBUG1  ", r)
 			r1 = ModelingToolkit.diff2term(expand_derivatives(r))
+			println("DEBUG2  ", r1)
+			#dump(r1)
 			r2 = substitute(r1, d)
-			yval = interpolants[r](t_vector[i])
-			eq = yval ~ r2
-			push!(equations_time_slice_from_measured_quantities_0th_deriv, eq)
+			#dump(r2)
+			println("DEBUG3  ", r2)
+
+			#yval = interpolants[r](data_sample[r][i])
+			#eq = yval ~ r2
+			#push!(equations_time_slice_from_measured_quantities_0th_deriv, eq)
 		end
+		println()
 
-		for j in measured_quantities
+		println(equations_time_slice_from_ODE_only)
+		println()
 
-			r = j.rhs
-			dr = D(r)
-			dr1 = ModelingToolkit.diff2term(expand_derivatives(dr))
-			dr2 = substitute(dr1, d)
-			yval = ForwardDiff.derivative(interpolants[r], t_vector[i])
-			eq = yval ~ dr2
-			push!(equations_time_slice_from_measured_quantities_1st_deriv, eq)
-		end
-		#println("ODE ONLY")
-		#println(equations_time_slice_from_ODE_only)
-		#println("0th deriv of measured quantities:")
+		println(equations_time_slice_from_measured_quantities_0th_deriv)
+		println()
 
-		#println(equations_time_slice_from_measured_quantities_0th_deriv)
-		#println("1st deriv of measured quantites")
 
-		#println(equations_time_slice_from_measured_quantities_1st_deriv)
-
-		push!(equations_time_slice_full, equations_time_slice_from_ODE_only)
-		push!(equations_time_slice_full, equations_time_slice_from_measured_quantities_0th_deriv)
-		push!(equations_time_slice_full, equations_time_slice_from_measured_quantities_1st_deriv)
 		#push!(eqns, model_converted)
 		#println(measured_quantities)
 		#println(data_sample)
-		push!(eqns, equations_time_slice_full)
 
-	end
-	for i in eachindex(eqns)
-		for j in eachindex(eqns[i])
-			println()
-			println("$i, $j")
-			println(eqns[i][j])
-		end
+
 	end
 end
 
@@ -185,18 +226,17 @@ function main()
 	states = [theta_1, theta_1_dot, theta_2, theta_2_dot]
 	parameters = [alpha]
 	@named model = ODESystem([
-			D(theta_1) ~ theta_1_dot,
+			D(theta_1) ~ theta_2 + theta_1,
 			D(theta_1_dot) ~ -theta_1 * (alpha + 1) + alpha * theta_2,
 			D(theta_2) ~ theta_2_dot,
 			D(theta_2_dot) ~ alpha * theta_1 - theta_2 * (alpha + 1),
 		], t, states, parameters)
 
-
 	#initial conditions
 	ic = [1.0, 0.0, 0.0, -1.0]
 	p_true = [1.0]
 	time_interval = [0.0, 10.0]
-	datasize = 32
+	datasize = 4
 
 	v = randn(datasize)
 	v = sort((v .- minimum(v)) / (maximum(v) - minimum(v))) * time_interval[2]
@@ -234,9 +274,27 @@ function main()
 	#   println(sample_count)
 
 	#   println(model)
-	#println("data_sample:")
-	#println(data_sample)
-	#println()
+
+	a = theta_2
+	b = alpha * theta_2
+	c = theta_1 + theta_2
+	d = a + b
+
+
+	#println(a)
+	#println(b)
+	#println(c)
+	#println(d)
+
+	#println(typeof(a))
+	#println(typeof(b))
+	#println(typeof(c))
+	#println(typeof(d))
+
+	#dump(a)
+	#dump(b)
+	#dump(c)
+	#dump(d)
 
 
 	SimpleParameterEstimation(model, measured_quantities, data_sample, solver)
