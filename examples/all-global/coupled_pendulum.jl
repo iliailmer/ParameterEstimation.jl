@@ -3,6 +3,8 @@ using ModelingToolkit, DifferentialEquations
 using BaryRational
 using ForwardDiff
 import HomotopyContinuation as HC
+using Optimization
+using OptimizationOptimJL
 
 
 ######### TODO(orebas)  REFACTOR into bary_derivs or something similiar
@@ -124,7 +126,9 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 			rhs2 = ModelingToolkit.diff2term(rhs1)
 			lhs3 = substitute(lhs2, d)
 			rhs3 = substitute(rhs2, d)
-			push!(equations_time_slice_from_ODE_only, lhs3 ~ rhs3)
+			#push!(equations_time_slice_from_ODE_only, lhs3 ~ rhs3)
+			push!(equations_time_slice_from_ODE_only, lhs3 - rhs3)
+
 		end
 
 
@@ -133,7 +137,9 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 			r1 = ModelingToolkit.diff2term(expand_derivatives(r))
 			r2 = substitute(r1, d)
 			yval = interpolants[r](t_vector[i])
-			eq = yval ~ r2
+			#eq = yval ~ r2
+			eq = yval - r2
+
 			push!(equations_time_slice_from_measured_quantities_0th_deriv, eq)
 		end
 
@@ -144,7 +150,9 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 			dr1 = ModelingToolkit.diff2term(expand_derivatives(dr))
 			dr2 = substitute(dr1, d)
 			yval = ForwardDiff.derivative(interpolants[r], t_vector[i])
-			eq = yval ~ dr2
+			#eq = yval ~ dr2
+			eq = yval - dr2
+
 			push!(equations_time_slice_from_measured_quantities_1st_deriv, eq)
 		end
 		#println("ODE ONLY")
@@ -172,6 +180,33 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 			println(eqns[i][j])
 		end
 	end
+	loss = typeof(eqns[1][1][1])(0)
+
+	for i in eachindex(eqns)
+		for j in eachindex(eqns[i])
+			for k in eachindex(eqns[i][j])
+				loss += (eqns[i][j][k])^2
+			end
+		end
+	end
+
+	println(loss)
+	println(typeof(loss))
+
+	lossvars = get_variables(loss)
+
+
+	println(lossvars)
+
+	@named syst = OptimizationSystem(loss, lossvars, [])
+	u0map = Dict()
+	for i in lossvars
+		u0map[i] = 0
+	end
+	loss2(u, p) = loss(u)
+	f = OptimizationFunction(loss2)
+	prob = OptimizationProblem(f, u0map, grad = false, hess = false)
+	solve(prob, NelderMead())
 end
 
 function main()
@@ -196,7 +231,7 @@ function main()
 	ic = [1.0, 0.0, 0.0, -1.0]
 	p_true = [1.0]
 	time_interval = [0.0, 10.0]
-	datasize = 32
+	datasize = 6
 
 	v = randn(datasize)
 	v = sort((v .- minimum(v)) / (maximum(v) - minimum(v))) * time_interval[2]
