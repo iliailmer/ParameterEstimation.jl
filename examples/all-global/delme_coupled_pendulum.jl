@@ -197,22 +197,20 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 
 	println(lossvars)
 
-	f_expr = build_function(loss, lossvars)
+	f_expr = build_function(loss, lossvars, expression = Val{false})
 	f_expr2(u, p) = f_expr(u)
 
 
-	u0map = Dict()
-	for i in lossvars
-		u0map[i] = 0
-	end
-
+	n = length(lossvars)
+u0map = zeros(n)
+	
 
 	println(f_expr)
 	println(typeof(f_expr))
 
 	println(typeof(loss))
 	@syms loss
-	println(loss(u0map))
+	println(f_expr(u0map))
 
 	@named syst = OptimizationSystem(f_expr2, lossvars, [])
 	u0map = Dict()
@@ -223,8 +221,9 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 	loss2(u, p) = loss(u)
 	println(f_expr(u0map))
 	#f = OptimizationFunction(loss2)
-	#prob = OptimizationProblem(f_expr2, u0map)
-	#solve(prob, SimulatedAnnealing())
+	prob = OptimizationProblem(f_expr2, u0map)
+	sol = solve(prob, SimulatedAnnealing())
+	print(sol)
 end
 
 function main()

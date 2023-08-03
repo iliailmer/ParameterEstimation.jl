@@ -16,17 +16,7 @@ function main()
 	lossvars = get_variables(loss_f)
 	f_expr = build_function(loss_f, lossvars, expression = Val{false})
 
-	#################################  THIS WORKS
-	f_expr2(u, p) = f_expr(u)
-	u0map = zeros((length(lossvars)))
-	g = OptimizationFunction(f_expr2, AutoZygote())
-	prob = OptimizationProblem(g, u0map)
-	sol = solve(prob, BFGS())
-	println("First Version solution:")
-	println(sol)
-	println(sol.original)
-	#########################################3
-
+	
 	#####################################THIS DOESN'T WORK
 	@named sys = OptimizationSystem(loss_f, lossvars,[])
 
@@ -42,15 +32,21 @@ function main()
 	println("Second Version solution:")
 	println(sol2)
 	println(sol2.original)
-##############################
+    ##############################
 
-
-
+    #################################  THIS WORKS
+	#f_expr2(u, p) = f_expr(u)
+	#u0map = zeros((length(lossvars)))
+	#g = OptimizationFunction(f_expr2, AutoZygote())
+	#prob = OptimizationProblem(g, u0map)
+	#sol = solve(prob, BFGS())
+	#println("First Version solution:")
+	#println(sol)
+	#println(sol.original)
+	#########################################3
 end
 
 main()
-
-#res = ParameterEstimation.estimate(model, measured_quantities, data_sample, solver=solver)
 
 
 
