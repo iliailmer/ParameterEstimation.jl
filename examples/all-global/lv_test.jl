@@ -218,7 +218,7 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 
 		pnull = Dict()
 		prob2 = OptimizationProblem(sys, u0dict, pnull, grad = true, hess = true)
-		sol2 = solve(prob2, BFGS())
+		sol2 = solve(prob2, NewtonTrustRegion())
 	end
 	println("Second Version solution:")
 	println(sol2)
@@ -236,7 +236,7 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 			end
 		end
 		for (key, value) in icdict
-			boolval = (Symbol(lossvars[i]) == Symbol(value)) 
+			boolval = (Symbol(lossvars[i]) == Symbol(value))
 			#println(" $value $(lossvars[i]) $boolval")
 			if (boolval)
 				println(" $(lossvars[i]): $((sol2.u)[i])")
@@ -271,23 +271,23 @@ function main()
 	@parameters k1 k2 k3
 	@variables t r(t) w(t) y1(t) y2(t)
 	D = Differential(t)
-	
+
 	ic = [100.0, 100.0]
 	time_interval = [0.0, 1.0]
-	datasize = 64
-	sampling_times = range(time_interval[1], time_interval[2], length=datasize)
+	datasize = 16
+	sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 	p_true = [0.02, 0.03, 0.05] # True Parameters
-	measured_quantities = [y1 ~ r, y2 ~ w]
+	measured_quantities = [y1 ~ r]
 	states = [r, w]
 	parameters = [k1, k2, k3]
-	
+
 	@named model = ODESystem([D(r) ~ k1 * r - k2 * r * w,
 			D(w) ~ k2 * r * w - k3 * w],
 		t, states, parameters)
-	
+
 	data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
-		p_true, ic, datasize; solver=solver)
-	
+		p_true, ic, datasize; solver = solver)
+
 	sample_count = length(data_sample["t"])
 
 	SimpleParameterEstimation(model, measured_quantities, data_sample, solver)
