@@ -4,8 +4,10 @@ authors = ["Soo Go <sgo@gradcenter.cuny.edu>", "Hoon Hong <hong@ncsu.edu>", "Ili
 version = "0.2.1"
 
 [deps]
+BaryRational = "91aaffc3-5777-4842-85b7-5d3d5d6a3494"
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 Groebner = "0b43b601-686d-58a3-8a1c-6623616c7cd4"
 HomotopyContinuation = "f213a82b-91d6-5c5d-acf7-10f1c761b327"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"

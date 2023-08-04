@@ -2,6 +2,8 @@ module ParameterEstimation
 import DifferentialEquations: Tsit5
 import TaylorSeries: Taylor1
 import OrderedCollections: OrderedDict
+using BaryRational: BaryRational
+using ForwardDiff: ForwardDiff
 
 using ProgressMeter, Logging, Printf
 using ModelingToolkit, LinearSolve, LinearAlgebra
