@@ -30,7 +30,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 	inputs::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation
 	}(),
 	at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
-	interpolators = Dict("AAA" => [aaad]), real_tol = 1e-10,
+	interpolators = nothing, real_tol = 1e-10,
 	threaded = Threads.nthreads() > 1) where {T <: Float}
 
 	println("DEBUG")

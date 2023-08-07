@@ -109,7 +109,7 @@ This function performs a rational interpolation of the data `sample` at the poin
 It returns an `Interpolant` object that contains the interpolated function and its derivatives.
 """
 function interpolate(time, sample, interpolator, diff_order::Int = 1)
-	interpolated_function = ((interpolator.second)[1])(time, sample)
+	interpolated_function = ((interpolator.second))(time, sample)
 	return Interpolant(interpolated_function)
 end
 

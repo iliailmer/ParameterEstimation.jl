@@ -4,6 +4,7 @@ import TaylorSeries: Taylor1
 import OrderedCollections: OrderedDict
 using BaryRational: BaryRational
 using ForwardDiff: ForwardDiff
+using LinearAlgebra: LinearAlgebra
 
 using ProgressMeter, Logging, Printf
 using ModelingToolkit, LinearSolve, LinearAlgebra
