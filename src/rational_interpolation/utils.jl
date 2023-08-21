@@ -18,6 +18,7 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
 		for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
 			if occursin(y_function_name, string(y_func))
 				y_derivs_vals = Dict(ParameterEstimation.nemo2hc(y_func) => (nth_deriv_at(interpolant.f, y_deriv_order, at_time)))  #check for off-by-one in derivb o
+				#println(y_derivs_vals)  #DEBUG
 				polynomial_system = HomotopyContinuation.evaluate(ParameterEstimation.nemo2hc.(polynomial_system),
 					y_derivs_vals)
 			end

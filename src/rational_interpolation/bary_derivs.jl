@@ -1,3 +1,50 @@
+"""
+	rational_interpolation_coefficients(x, y, n)
+CODE COPIED FROM ParameterEstimation.jl
+Perform a rational interpolation of the data `y` at the points `x` with numerator degree `n`.
+This function only returns the coefficients of the numerator and denominator polynomials.
+
+# Arguments
+- `x`: the points where the data is sampled (e.g. time points).
+- `y`: the data sample.
+- `n`: the degree of the numerator.
+
+# Returns
+- `c`: the coefficients of the numerator polynomial.
+- `d`: the coefficients of the denominator polynomial.
+"""
+function rational_interpolation_coefficients(x, y, n)
+	N = length(x)
+	m = N - n - 1
+	A = zeros(N, N)
+	if m > 0
+		A_left_submatrix = reduce(hcat, [x .^ (i) for i in 0:(n)])
+		A_right_submatrix = reduce(hcat, [x .^ (i) for i in 0:(m-1)])
+		A = hcat(A_left_submatrix, -y .* A_right_submatrix)
+		b = y .* (x .^ m)
+		try
+			prob = LinearSolve.LinearProblem(A, b)
+			c = LinearSolve.solve(prob)
+			return c[1:(n+1)], [c[(n+2):end]; 1]
+		catch SingularException
+			lu_res = lu(A)
+			y = lu_res.L \ lu_res.P * b
+			c = lu_res.U \ y
+			return c[1:(n+1)], [c[(n+2):end]; 1]
+		end
+
+	else
+		A = reduce(hcat, [x .^ i for i in 0:n])
+		b = y
+		prob = LinearSolve.LinearProblem(A, b)
+		c = LinearSolve.solve(prob)
+		return c, [1]
+	end
+end
+
+
+
+
 
 ######### TODO(orebas)  REFACTOR into bary_derivs or something similiar
 #to use the below, you can just pass vectors of xvalues and yvalues like so:
@@ -18,7 +65,7 @@ function baryEval(z, f::Vector{T}, x::Vector{T}, w::Vector{T}, tol = 1e-13) wher
 		t = w[j] / (z - x[j])
 		num += t * f[j]
 		den += t
-		if (abs(z - x[j]) < tol)
+		if ((z - x[j])^2 < sqrt(tol))
 			breakflag = true
 			breakindex = j
 		end
@@ -51,13 +98,23 @@ end
 (y::FHDapprox)(z) = baryEval(z, y.internalFHD.f, y.internalFHD.x, y.internalFHD.w)
 (y::AAADapprox)(z) = baryEval(z, y.internalAAA.f, y.internalAAA.x, y.internalAAA.w)
 
-function nth_deriv_at(f, n::Int, t)  #todo(orebas) make this more efficient.
+function nth_deriv_at_deprecated(f, n::Int, t)  #todo(orebas) make this more efficient.
 	if (n == 0)
 		return f(t)
 	elseif (n == 1)
 		return ForwardDiff.derivative(f, t)
 	else
-		return nth_deriv_at(f, n - 1, t)
+		g(t) = nth_deriv_at(f, n - 1, t)
+		return ForwardDiff.derivative(g, t)
+	end
+end
+
+
+function nth_deriv_at(f, n::Int, t)  #todo(orebas) make this more efficient.
+	if (n == 0)
+		return f(t)
+	else
+		return TaylorDiff.derivative(f, t, n)
 	end
 end
 
@@ -196,7 +253,27 @@ function simpleratinterp(xs, ys, d1::Int)
 		[1; X[(d1+2):end]])
 end
 
+
+
+
+
+
+function betterratinterp(xs, ys, d1::Int)
+	@assert length(xs) == length(ys)
+	N = length(xs)
+	(c, d) = rational_interpolation_coefficients(xs, ys, d1)
+	return RationalFunction(c, d)
+end
+
+
+
 function SimpleRationalInterp(numerator_degree::Int)
 	f(xs, ys) = simpleratinterp(xs, ys, numerator_degree)
 	return f
 end
+
+function SimpleRationalInterpOld(numerator_degree::Int)
+	f(xs, ys) = betterratinterp(xs, ys, numerator_degree)
+	return f
+end
+

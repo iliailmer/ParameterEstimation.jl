@@ -8,14 +8,16 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	check_inputs(measured_quantities, data_sample)
 	datasize = length(first(values(data_sample)))
 	if interpolators === nothing
-		interpolators = Dict("AAA" => aaad,
-			"FHD3" => fhdn(3),
-			"FHD6" => fhdn(6),
-			"FHD8" => fhdn(8),
-			"Fourier" => FourierInterp,
-			"BaryLagrange" => BarycentricLagrange)
-		for i in 1:(datasize-1)
-			interpolators["Rational($i)"] = SimpleRationalInterp(i)
+		interpolators = Dict(
+			"AAA" => aaad,
+			#"FHD3" => fhdn(3),
+			#"FHD6" => fhdn(6),
+			"FHD8" => fhdn(8), "Fourier" => FourierInterp,
+			#"BaryLagrange" => BarycentricLagrange)
+		)
+		stepsize = max(1, datasize ÷ 4)
+		for i in range(1, (datasize - 2), step = stepsize)
+			interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
 		end
 	end
 	id = ParameterEstimation.check_identifiability(model;

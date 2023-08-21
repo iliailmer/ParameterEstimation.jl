@@ -1,46 +1,4 @@
-"""
-	rational_interpolation_coefficients(x, y, n)
 
-Perform a rational interpolation of the data `y` at the points `x` with numerator degree `n`.
-This function only returns the coefficients of the numerator and denominator polynomials.
-
-# Arguments
-- `x`: the points where the data is sampled (e.g. time points).
-- `y`: the data sample.
-- `n`: the degree of the numerator.
-
-# Returns
-- `c`: the coefficients of the numerator polynomial.
-- `d`: the coefficients of the denominator polynomial.
-"""
-function rational_interpolation_coefficients(x, y, n)
-	N = length(x)
-	m = N - n - 1
-	A = zeros(N, N)
-	if m > 0
-		A_left_submatrix = reduce(hcat, [x .^ (i) for i in 0:(n)])
-		A_right_submatrix = reduce(hcat, [x .^ (i) for i in 0:(m-1)])
-		A = hcat(A_left_submatrix, -y .* A_right_submatrix)
-		b = y .* (x .^ m)
-		try
-			prob = LinearSolve.LinearProblem(A, b)
-			c = LinearSolve.solve(prob)
-			return c[1:(n+1)], [c[(n+2):end]; 1]
-		catch SingularException
-			lu_res = lu(A)
-			y = lu_res.L \ lu_res.P * b
-			c = lu_res.U \ y
-			return c[1:(n+1)], [c[(n+2):end]; 1]
-		end
-
-	else
-		A = reduce(hcat, [x .^ i for i in 0:n])
-		b = y
-		prob = LinearSolve.LinearProblem(A, b)
-		c = LinearSolve.solve(prob)
-		return c, [1]
-	end
-end
 
 """
 	interpolate(identifiability_result, data_sample,
