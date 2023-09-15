@@ -15,10 +15,10 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 			"FHD8" => fhdn(8), "Fourier" => FourierInterp,
 			#"BaryLagrange" => BarycentricLagrange)
 		)
-		stepsize = max(1, datasize ÷ 4)
-		for i in range(1, (datasize - 2), step = stepsize)
-			interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
-		end
+		#stepsize = max(1, datasize ÷ 4)
+		#for i in range(1, (datasize - 2), step = stepsize)
+		#	interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
+		#end
 	end
 	id = ParameterEstimation.check_identifiability(model;
 		measured_quantities = measured_quantities,

@@ -29,3 +29,6 @@ data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_i
                                               p_true, ic, datasize; solver = solver)
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
+
+
+alg= Tsit5()

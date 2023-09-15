@@ -46,7 +46,7 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
 			if occursin(y_function_name, string(y_func))
 				push!(y_derivs, y_func)
 				push!(y_vals,
-					rationalize(Float64nth_deriv_at(interpolant.f, y_deriv_order, at_time)))
+					rationalize(Float64(nth_deriv_at(interpolant.f, y_deriv_order, at_time))))
 			end
 		end
 		for (u_funct, u_deriv_order) in pairs(identifiability_result["u_variables"])
