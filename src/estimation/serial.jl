@@ -12,7 +12,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 			"AAA" => aaad,
 			#"FHD3" => fhdn(3),
 			#"FHD6" => fhdn(6),
-			"FHD8" => fhdn(8), "Fourier" => FourierInterp,
+		#	"FHD8" => fhdn(8), "Fourier" => FourierInterp,
 			#"BaryLagrange" => BarycentricLagrange)
 		)
 		#stepsize = max(1, datasize ÷ 4)
@@ -34,7 +34,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 		if length(unfiltered) > 0
 			filtered = filter_solutions(unfiltered, id, model, inputs, data_sample;
 				solver = solver)
-			push!(estimates, filtered)
+				push!(estimates, filtered)
 		else
 			push!(estimates,
 				[

@@ -15,6 +15,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 - `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample, a dictionary with keys being the measured quantities and
 																values being the corresponding data. Must include the time vector;
 - `at_time::T = 0.0`: the time used for derivative computation;
+- `report_time = nothing`: specify a time T, at which the initial conditions (state variables) will be estimated.  If "nothing", use the leftmost time.
 - `method = :homotopy`: the method used for polynomial system solving. Can be one of :homotopy (recommended) or :msolve;
 - `solver`: the ODE solver used for ODE solution computation (default: Tsit5());
 - `degree_range = nothing`: the range of interpolation degrees to be used. If `nothing`, the range is computed automatically;
@@ -30,6 +31,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 	inputs::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation
 	}(),
 	at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
+	report_time = nothing,
 	interpolators = nothing, real_tol = 1e-10,
 	threaded = Threads.nthreads() > 1) where {T <: Float}
 
@@ -45,7 +47,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 			real_tol = real_tol)
 	else
 		result = estimate_serial(model, measured_quantities, inputs, data_sample;
-			solver = solver, at_time = at_time,
+			solver = solver, at_time = at_time, report_time=nothing,
 			interpolators = interpolators, method = method,
 			real_tol = real_tol)
 	end

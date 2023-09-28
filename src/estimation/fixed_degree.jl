@@ -38,7 +38,7 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
 	at_time::T = 0.0,
 	method = :homotopy,
 	real_tol = 1e-10) where {T <: Float}
-	time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]
+	time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]  #TODO(orebas) will this break if key is missing?
 
 	check_inputs(measured_quantities, data_sample)  #TODO(orebas): I took out checking the degree.  Do we want to check the interpolator otherwise?
 	datasize = length(first(values(data_sample)))
@@ -66,8 +66,10 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
 	else
 		throw(ArgumentError("Method $method not supported"))
 	end
+	println(all_solutions)
 	all_solutions = [EstimationResult(model, each, interpolator.first, at_time,
 		interpolants, ReturnCode.Success, datasize)
 					 for each in all_solutions]
+	
 	return all_solutions
 end
