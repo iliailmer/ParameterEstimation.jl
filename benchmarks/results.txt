@@ -377,3 +377,126 @@ DEBUG
   mixed_volume:  58[K[A
 [K[AComputing mixed cells... 55    Time: 0:00:00[K
   mixed_volume:  118[K
+Progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| Time: 0:11:06[K
+2 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+667.562633 seconds (28.34 M allocations: 1.344 GiB, 0.13% gc time, 1.73% compilation time)
+DEBUG
+┌ Warning: No solution found
+└ @ ParameterEstimation ~/.julia/dev/ParameterEstimation/src/estimation/utils.jl:28
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [k1, k2, eB, eA, xC, xB, xA, eC]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [eA, xC, eC]
+[ Info: Locally but not globally identifiable parameters: [k1, k2, xB, eB, xA]
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["Fourier", "AAA", "FHD8"]
+Progress:  67%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                                                                    |  ETA: 0:00:04[KProgress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| Time: 0:00:07[K
+6 Froissart doublets. Number of residues = 10
+7 Froissart doublets. Number of residues = 10
+Parameter(s)        :	 k1 = 0.250,  k2 = 0.500,  eB = 0.750
+Initial Condition(s):	xA(t) = 0.146, xB(t) = 0.277, xC(t) = 0.576, eA(t) = 0.666, eC(t) = 0.833
+
+Parameter(s)        :	 k1 = 0.500,  k2 = 0.250,  eB = 0.708
+Initial Condition(s):	xA(t) = -0.130, xB(t) = 0.553, xC(t) = 0.576, eA(t) = 0.666, eC(t) = 0.833
+
+  9.751745 seconds (7.76 M allocations: 523.557 MiB, 2.88% gc time, 88.40% compilation time)
+For model slowfast: Max abs rel. err: 3.95663476426833e-8
+For model slowfast: Max abs rel. err: 0.9999999208672989
+DEBUG
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: [a_0]
+[ Info: Locally identifiable parameters: [d, Tr, N, In]
+[ Info: Not identifiable parameters:     [a, b, g, nu, S]
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [d, Tr, N, In]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      [a, b, S, g, nu]
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["Fourier", "AAA", "FHD8"]
+Computing mixed cells... 47    Time: 0:00:00[K
+  mixed_volume:  82[K[A
+[K[AComputing mixed cells... 91    Time: 0:00:00[K
+  mixed_volume:  149[K[A
+[K[AComputing mixed cells... 133    Time: 0:00:00[K
+  mixed_volume:  221[K
+Computing mixed cells... 40    Time: 0:00:00[K
+  mixed_volume:  65[K[A
+[K[AComputing mixed cells... 92    Time: 0:00:00[K
+  mixed_volume:  140[K[A
+[K[AComputing mixed cells... 135    Time: 0:00:00[K
+  mixed_volume:  221[K
+Progress:  67%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                                                                    |  ETA: 0:06:53[KComputing mixed cells... 30    Time: 0:00:00[K
+  mixed_volume:  46[K[A
+[K[AComputing mixed cells... 66    Time: 0:00:00[K
+  mixed_volume:  104[K[A
+[K[AComputing mixed cells... 100    Time: 0:00:00[K
+  mixed_volume:  175[K[A
+[K[AComputing mixed cells... 114    Time: 0:00:00[K
+  mixed_volume:  221[K
+Progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| Time: 0:18:02[K
+3 Froissart doublets. Number of residues = 10
+1087.560790 seconds (45.64 M allocations: 2.912 GiB, 0.10% gc time, 1.27% compilation time)
+DEBUG
+┌ Warning: No solution found
+└ @ ParameterEstimation ~/.julia/dev/ParameterEstimation/src/estimation/utils.jl:28
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [mu_N, mu_EE, mu_LE, mu_LL, mu_M, mu_P, mu_PE, mu_PL, delta_NE, delta_EL, delta_LM, rho_E, rho_P, N, M, P, S, E]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [N, delta_EL, mu_PL, M, mu_M, rho_E, mu_LL, mu_PE, mu_LE, mu_EE, E, mu_N, rho_P, P, S, delta_NE, mu_P, delta_LM]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["Fourier", "AAA", "FHD8"]
+Computing mixed cells... 20    Time: 0:00:00[K
+  mixed_volume:  21[K[A
+[K[AComputing mixed cells... 49    Time: 0:00:00[K
+  mixed_volume:  53[K
+Computing mixed cells... 2    Time: 0:00:00[K
+  mixed_volume:  2[K[A
+[K[AComputing mixed cells... 26    Time: 0:00:00[K
+  mixed_volume:  40[K[A
+[K[AComputing mixed cells... 34    Time: 0:00:00[K
+  mixed_volume:  53[K
+Progress:  67%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                                                                    |  ETA: 0:00:18[KComputing mixed cells... 26    Time: 0:00:00[K
+  mixed_volume:  33[K[A
+[K[AComputing mixed cells... 44    Time: 0:00:00[K
+  mixed_volume:  53[K
+Progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| Time: 0:00:46[K
+[ Info: Best estimate found
+3 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 9
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.214, mu_LL = 0.286, mu_M = 0.357, mu_P = 0.429, mu_PE = 0.500, mu_PL = 0.571, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.929
+Initial Condition(s):	N(t) = 0.124, E(t) = 0.358, S(t) = 0.435, M(t) = 0.725, P(t) = 0.786
+
+ 51.949809 seconds (29.68 M allocations: 2.592 GiB, 1.62% gc time, 29.63% compilation time)
+For model Crauste: Max abs rel. err: 0.0012044498772286448
