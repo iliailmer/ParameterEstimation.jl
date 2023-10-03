@@ -23,7 +23,7 @@ measured_quantities = [
 
 ic = [0.0, 0.0, 0.0, 0.0]
 p_true = [2.0, 3.0, 4.0, 5.0]
-time_interval = [0.0, 8.0]
+time_interval = [-4.0, 4.0]
 datasize = 9
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
 	p_true, ic, datasize; solver = solver)

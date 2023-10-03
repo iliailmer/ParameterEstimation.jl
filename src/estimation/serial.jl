@@ -2,7 +2,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	measured_quantities::Vector{ModelingToolkit.Equation},
 	inputs::Vector{ModelingToolkit.Equation},
 	data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
-	at_time::T = 0.0, solver = Tsit5(), interpolators = nothing,
+	at_time::T = 0.0, solver = Tsit5(), interpolators = nothing, report_time = nothing,
 	method = :homotopy,
 	real_tol::Float64 = 1e-10) where {T <: Float}
 	check_inputs(measured_quantities, data_sample)
