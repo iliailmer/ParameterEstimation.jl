@@ -28,14 +28,14 @@ measured quantities `measured_quantities`.
 # Returns
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
-function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
+function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 	measured_quantities::Vector{ModelingToolkit.Equation},
 	inputs::Vector{ModelingToolkit.Equation},
 	data_sample::AbstractDict{Any, Vector{T}} = Dict{Any,
 		Vector{T}}();
 	identifiability_result = Dict{String, Any}(),
 	interpolator = ("AAA" => aaad),
-	at_time::T = 0.0,
+	at_time::T = 0.0, report_time,
 	method = :homotopy,
 	real_tol = 1e-10) where {T <: Float}
 	time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]  #TODO(orebas) will this break if key is missing?
@@ -70,6 +70,6 @@ function estimate_fixed_degree(model::ModelingToolkit.ODESystem,
 	all_solutions = [EstimationResult(model, each, interpolator.first, at_time,
 		interpolants, ReturnCode.Success, datasize)
 					 for each in all_solutions]
-	
+
 	return all_solutions
 end
