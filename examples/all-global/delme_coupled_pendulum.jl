@@ -5,7 +5,7 @@ using ForwardDiff
 import HomotopyContinuation as HC
 using Optimization
 using OptimizationOptimJL
-using Zygote
+
 
 ######### TODO(orebas)  REFACTOR into bary_derivs or something similiar
 #to use the below, you can just pass vectors of xvalues and yvalues like so:
@@ -190,90 +190,66 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 		end
 	end
 
+	println(loss)
+	println(typeof(loss))
 
 	lossvars = get_variables(loss)
 
-
-
 	println(lossvars)
 
-
-	#################################  THIS WORKS
 	f_expr = build_function(loss, lossvars, expression = Val{false})
 	f_expr2(u, p) = f_expr(u)
-	u0map = zeros((length(lossvars)))
-	g = OptimizationFunction(f_expr2, AutoZygote())
-	prob = OptimizationProblem(g, u0map)
-	sol = solve(prob, Newton())
-	println("First Version solution:")
-	println(sol)
-	println(sol.original)
-	#########################################3
 
-	@named sys = OptimizationSystem(loss, lossvars, [])
 
-	u0dict = Dict()
+	n = length(lossvars)
+u0map = zeros(n)
+	
+
+	println(f_expr)
+	println(typeof(f_expr))
+
+	println(typeof(loss))
+	@syms loss
+	println(f_expr(u0map))
+
+	@named syst = OptimizationSystem(f_expr2, lossvars, [])
+	u0map = Dict()
 	for i in lossvars
-		u0dict[i] = 0.0
+		u0map[i] = 0
 	end
-
-	pnull = Dict()
-	prob2 = OptimizationProblem(sys, u0dict, pnull, grad = true, hess = true)
-	sol2 = solve(prob2, Newton())
-
-	println("Second Version solution:")
-	println(sol2)
-	println(sol2.original)
-
-
-	for i in eachindex(model_ps)
-		temp = []
-		#println(i)
-		for j in eachindex(lossvars)
-		#	println(j)
-
-			push!(temp, lossvars[j] === model_ps[i])
-		end
-		j = findfirst(temp)
-		if (!isnothing(j))
-			println(" $(model_ps[i]) : $((sol.u)[j]) ")
-			println(" $(model_ps[i]) : $((sol2.u)[j]) ")
-		end
-	end
-	#	loss2(u, p) = loss(u)
-	#	f = OptimizationFunction(loss2)
-	#	prob = OptimizationProblem(f, u0map, grad = false, hess = false)
-	#	solve(prob, NelderMead())
+	u0map = zeros(length(lossvars))
+	loss2(u, p) = loss(u)
+	println(f_expr(u0map))
+	#f = OptimizationFunction(loss2)
+	prob = OptimizationProblem(f_expr2, u0map)
+	sol = solve(prob, SimulatedAnnealing())
+	print(sol)
 end
 
 function main()
 	solver = Tsit5()
 
 	@parameters alpha
-	@variables t theta_1(t) theta_1_dot(t) theta_2(t) theta_2_dot(t) y1(t) y2(t)
+	@variables t theta_1(t) y1(t)
 	D = Differential(t)
 
 	#coupled pendulum equations
-	states = [theta_1, theta_1_dot, theta_2, theta_2_dot]
+	states = [theta_1]
 	parameters = [alpha]
 	@named model = ODESystem([
-			D(theta_1) ~ theta_1_dot,
-			D(theta_1_dot) ~ -theta_1 * (alpha + 1) + alpha * theta_2,
-			D(theta_2) ~ theta_2_dot,
-			D(theta_2_dot) ~ alpha * theta_1 - theta_2 * (alpha + 1),
-		], t, states, parameters)
+			D(theta_1) ~ alpha * theta_1], t, states, parameters)
 
 
 	#initial conditions
-	ic = [1.0, 0.0, 0.0, -1.0]
-	p_true = [1.1]
-	time_interval = [0.0, 10.0]
-	datasize = 10
+	ic = [2.0]
+	p_true = [0.5]
+	time_interval = [0.0, 3]
+	datasize = 4
 
 	v = randn(datasize)
 	v = sort((v .- minimum(v)) / (maximum(v) - minimum(v))) * time_interval[2]
 
-	measured_quantities = [y1 ~ theta_1, y2 ~ theta_2 + theta_1]
+	measured_quantities = [y1 ~ theta_1]
 	data_sample = Dict{Any, Any}("t" => v)
 	data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
 		p_true, ic, datasize; solver = solver,

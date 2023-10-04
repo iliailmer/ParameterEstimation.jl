@@ -2,7 +2,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	measured_quantities::Vector{ModelingToolkit.Equation},
 	inputs::Vector{ModelingToolkit.Equation},
 	data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
-	at_time::T = 0.0, solver = Tsit5(), interpolators = nothing,
+	at_time::T = 0.0, solver = Tsit5(), interpolators = nothing, report_time = nothing,
 	method = :homotopy,
 	real_tol::Float64 = 1e-10) where {T <: Float}
 	check_inputs(measured_quantities, data_sample)
@@ -12,7 +12,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 			"AAA" => aaad,
 			#"FHD3" => fhdn(3),
 			#"FHD6" => fhdn(6),
-		#	"FHD8" => fhdn(8), "Fourier" => FourierInterp,
+			#	"FHD8" => fhdn(8), "Fourier" => FourierInterp,
 			#"BaryLagrange" => BarycentricLagrange)
 		)
 		#stepsize = max(1, datasize ÷ 4)
@@ -34,7 +34,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 		if length(unfiltered) > 0
 			filtered = filter_solutions(unfiltered, id, model, inputs, data_sample;
 				solver = solver)
-				push!(estimates, filtered)
+			push!(estimates, filtered)
 		else
 			push!(estimates,
 				[
@@ -46,3 +46,4 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	end
 	return post_process(estimates)
 end
+

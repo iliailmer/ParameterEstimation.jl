@@ -47,7 +47,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 			real_tol = real_tol)
 	else
 		result = estimate_serial(model, measured_quantities, inputs, data_sample;
-			solver = solver, at_time = at_time, report_time=nothing,
+			solver = solver, at_time = at_time, report_time ,
 			interpolators = interpolators, method = method,
 			real_tol = real_tol)
 	end

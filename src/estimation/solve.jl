@@ -15,7 +15,7 @@ function solve_via_homotopy(identifiability_result, model; real_tol = 1e-10)
         end
     end
     all_solutions_ = Vector{Dict}([])
-    for sol in all_solutions
+    for sol  in all_solutions
         tmp = Dict()
         sol = map(each -> to_exact(each; tol = real_tol), sol)
         for (idx, v) in enumerate(polynomial_system.variables)

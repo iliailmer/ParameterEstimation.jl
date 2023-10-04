@@ -66,7 +66,7 @@ end
 
 
 
-function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_sample, solver)
+function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_sample, solver, numderivs = 1)
 	println("Starting")
 	#build the equation array.  
 	#eqns[i,*] relates to the time index i, i.e. 1 is the first time and sample_count is the last time
@@ -96,7 +96,7 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 		interpolants[r] = aaad(t_vector, y_vector)
 	end
 
-
+	icdict = Dict()
 	for i in 1:sample_count
 		equations_time_slice_full = []
 
@@ -113,7 +113,9 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 			dvname2 = Symbol("$(dvarname)_$(i)")
 			dvname3 = @variables $dvname2
 			d[dvar] = dvname3[1]
-
+			if (i == 1)
+				icdict = d
+			end
 		end
 		equations_time_slice_from_ODE_only = []# assemple the ODE equations
 		equations_time_slice_from_measured_quantities_0th_deriv = []
@@ -192,51 +194,68 @@ function SimpleParameterEstimation(model::ODESystem, measured_quantities, data_s
 
 
 	lossvars = get_variables(loss)
-
-
-
 	println(lossvars)
 
 
 	#################################  THIS WORKS
-	f_expr = build_function(loss, lossvars, expression = Val{false})
-	f_expr2(u, p) = f_expr(u)
-	u0map = zeros((length(lossvars)))
-	g = OptimizationFunction(f_expr2, AutoZygote())
-	prob = OptimizationProblem(g, u0map)
-	sol = solve(prob, Newton())
-	println("First Version solution:")
-	println(sol)
-	println(sol.original)
+	#if(false)	f_expr = build_function(loss, lossvars, expression = Val{false})
+	#	f_expr2(u, p) = f_expr(u)
+	#	u0map = zeros((length(lossvars)))
+	#	g = OptimizationFunction(f_expr2, AutoZygote())
+	#	prob = OptimizationProblem(g, u0map)
+	#	sol = solve(prob, Newton())
+	#	println("First Version solution:")
+	#	println(sol)
+	#	println(sol.original)
+	#end
 	#########################################3
+	if (true)
+		@named sys = OptimizationSystem(loss, lossvars, [])
+		u0dict = Dict()
+		for i in lossvars
+			u0dict[i] = 0.0
+		end
 
-	@named sys = OptimizationSystem(loss, lossvars, [])
-
-	u0dict = Dict()
-	for i in lossvars
-		u0dict[i] = 0.0
+		pnull = Dict()
+		prob2 = OptimizationProblem(sys, u0dict, pnull, grad = true, hess = true)
+		sol2 = solve(prob2, NewtonTrustRegion())
 	end
-
-	pnull = Dict()
-	prob2 = OptimizationProblem(sys, u0dict, pnull, grad = true, hess = true)
-	sol2 = solve(prob2, Newton())
-
 	println("Second Version solution:")
 	println(sol2)
 	println(sol2.original)
 
+	println(icdict)
+	println(model_ps)
+	println(values(icdict))
+
+	for i in eachindex(lossvars)
+		#	if ((lossvars[i] in model_ps) || (lossvars[i] in values(icdict)))
+		for j in eachindex(model_ps)
+			if (lossvars[i] === model_ps[j])
+				println(" $(lossvars[i]): $((sol2.u)[i])")
+			end
+		end
+		for (key, value) in icdict
+			boolval = (Symbol(lossvars[i]) == Symbol(value)) 
+			#println(" $value $(lossvars[i]) $boolval")
+			if (boolval)
+				println(" $(lossvars[i]): $((sol2.u)[i])")
+			end
+		end
+		#	end
+	end
 
 	for i in eachindex(model_ps)
 		temp = []
 		#println(i)
 		for j in eachindex(lossvars)
-		#	println(j)
+			#	println(j)
 
 			push!(temp, lossvars[j] === model_ps[i])
 		end
 		j = findfirst(temp)
 		if (!isnothing(j))
-			println(" $(model_ps[i]) : $((sol.u)[j]) ")
+			#		println(" $(model_ps[i]) : $((sol.u)[j]) ")
 			println(" $(model_ps[i]) : $((sol2.u)[j]) ")
 		end
 	end
@@ -250,30 +269,27 @@ function main()
 	solver = Tsit5()
 
 	@parameters alpha
-	@variables t theta_1(t) theta_1_dot(t) theta_2(t) theta_2_dot(t) y1(t) y2(t)
+	@variables t x(t) xp(t) y(t) yp(t)
 	D = Differential(t)
 
 	#coupled pendulum equations
-	states = [theta_1, theta_1_dot, theta_2, theta_2_dot]
+	states = [x, xp]
 	parameters = [alpha]
 	@named model = ODESystem([
-			D(theta_1) ~ theta_1_dot,
-			D(theta_1_dot) ~ -theta_1 * (alpha + 1) + alpha * theta_2,
-			D(theta_2) ~ theta_2_dot,
-			D(theta_2_dot) ~ alpha * theta_1 - theta_2 * (alpha + 1),
-		], t, states, parameters)
+			D(x) ~ alpha * xp,
+			D(xp) ~ -alpha * x], t, states, parameters)
 
 
 	#initial conditions
-	ic = [1.0, 0.0, 0.0, -1.0]
-	p_true = [1.1]
-	time_interval = [0.0, 10.0]
-	datasize = 10
+	ic = [0.0, 1.0]
+	p_true = [2.24]
+	time_interval = [0.0, 11]
+	datasize = 72
 
 	v = randn(datasize)
 	v = sort((v .- minimum(v)) / (maximum(v) - minimum(v))) * time_interval[2]
 
-	measured_quantities = [y1 ~ theta_1, y2 ~ theta_2 + theta_1]
+	measured_quantities = [y ~ x, yp ~ xp]
 	data_sample = Dict{Any, Any}("t" => v)
 	data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
 		p_true, ic, datasize; solver = solver,

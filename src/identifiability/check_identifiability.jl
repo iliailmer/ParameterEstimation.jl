@@ -24,7 +24,7 @@ object that contains the results of the identifiability analysis.
 
 [3] - https://github.com/alexeyovchinnikov/SIAN-Julia
 """
-function check_identifiability(ode::ModelingToolkit.ODESystem;
+ function check_identifiability(ode::ModelingToolkit.ODESystem;
                                measured_quantities::Vector{Equation} = Array{Equation}[],
                                inputs::Vector{Num} = Array{Num}[],
                                infolevel = 0)
