@@ -1,0 +1,693 @@
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [lm, d, beta, a, k, u, c, q, b, h, x, y, v, w, z]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [u, beta, k, lm, c, w, q, d, h, v, z, a, x, y, b]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+4 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+6 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(d => 0.2045022236972928, u => 0.24313504958626517, lm => 0.09767140410948877, q => 0.2874365992150185, k => -0.25611027043664025, b => 0.8485390167242602, beta => 0.2063443848126842, z(t) => 0.5589291143145616, y(t) => 0.0844345549316068, a => 0.4560718075889534, v(t) => 0.6457182549141713, h => 0.9540584529833485, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 7.95799321518066), Dict{Any, Any}(d => -0.26991564691065106, u => -0.25005127707174785, lm => 0.1275718738584361, q => 0.2874365992150185, k => 0.19169283933001463, b => 0.8485390167242602, beta => -0.8025708834671333, z(t) => 0.5589291143145616, y(t) => 1.6884146073057038, a => 0.24813427108514807, v(t) => -0.9582617974599256, h => 0.9540584529833485, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 0.3979648199945159), Dict{Any, Any}(d => 0.6937070869433188, u => 1.3857628325004223, lm => 0.2977023039869909, q => 0.7269282196251795, k => -0.3421588273231221, b => 0.8180110839290465, beta => -2.057130798382324, z(t) => 0.5589291143145616, y(t) => 1.0820424667118786, a => 0.41028460263010946, v(t) => -0.3518896568661005, h => 0.908992206844989, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 0.1692405132128528), Dict{Any, Any}(d => 0.18096957531802818, u => 0.5446803368253181, lm => 0.09099165324877902, q => 0.7269282196251795, k => 0.4539398507927195, b => 0.8180110839290465, beta => 0.2731166577311452, z(t) => 0.5589291143145616, y(t) => 0.28816954613580675, a => 0.3639558775303029, v(t) => 0.4419832637099714, h => 0.908992206844989, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 0.6354780539443863)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [a, b, x2, x1]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [b, x2, x1, a]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+1 Froissart doublets. Number of residues = 10
+5 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(a => 0.3330000024260681, x1(t) => 0.20367426641418473, b => 0.6670000000780859, x2(t) => 0.8702709157828508)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+ 11.172861 seconds (5.85 M allocations: 390.393 MiB, 3.86% gc time, 96.54% compilation time)
+For model simple: Max abs rel. err: 7.285489695680586e-9
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [k1, k2, k3, w, r]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [k3, w, r, k1, k2]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+3 Froissart doublets. Number of residues = 8
+Dict[Dict{Any, Any}(k2 => 0.49999876172228547, w(t) => 0.49767299160687406, r(t) => 0.3265459737770305, k1 => 0.24999999557010102, k3 => 0.7499996059588018)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+  7.344116 seconds (5.18 M allocations: 335.689 MiB, 2.98% gc time, 97.66% compilation time)
+For model Lotka_Volterra: Max abs rel. err: 2.476555429065108e-6
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [a, b, x2, x1]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [b, x2, x1, a]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+3 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(a => 0.33300000000799285, x1(t) => 0.4447227127512382, b => 0.6670000000107347, x2(t) => 0.6622489680468941)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+  6.240015 seconds (3.22 M allocations: 214.651 MiB, 3.32% gc time, 98.24% compilation time: <1% of which was recompilation)
+For model vanderpol: Max abs rel. err: 2.400248835190357e-11
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: [x7_0]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [k5, k6, k7, k8, k9, k10, x6, x5, x4]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     [x7]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [k6, k7, x5, k5, x4]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: [k8, x6, k9, k10]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      [x7]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+6 Froissart doublets. Number of residues = 10
+6 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(x6(t) => 4.49424344870949, k9 => 0.22399418187350706, k7 => 0.1108777740006465, x5(t) => 0.3746380772881998, x7(t) => 3980078102300, k10 => 4.849925589558769, k6 => 0.28599873277870363, k5 => 0.14299960576003595, k8 => -4.472372513724476, x4(t) => 0.17186308991398605), Dict{Any, Any}(x6(t) => -0.3556821408492787, k9 => -0.22399418187350706, k7 => 0.1108777740006465, x5(t) => 0.3746380772881998, x7(t) => 3980078102300, k10 => -4.849925589558769, k6 => 0.28599873277870363, k5 => 0.14299960576003595, k8 => 0.37755307583429243, x4(t) => 0.17186308991398605), Dict{Any, Any}(x6(t) => -0.2679410153185191, k9 => -0.715488742362103, k7 => 0.4286653808698044, x5(t) => 0.3746380772881998, x7(t) => 3980078102300, k10 => -0.8543376961450667, k6 => 0.28599873277870363, k5 => 0.14299960576003595, k8 => 1.4262493585042364, x4(t) => 0.17186308991398605), Dict{Any, Any}(x6(t) => 0.5863966808265452, k9 => 0.7154887423621052, k7 => 0.42866538086980505, x5(t) => 0.3746380772881998, x7(t) => 3980078102300, k10 => 0.8543376961450634, k6 => 0.2859987327787038, k5 => 0.142999605760036, k8 => 0.5719116623591751, x4(t) => 0.17186308991398605)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+ 36.556254 seconds (21.88 M allocations: 1.391 GiB, 2.59% gc time, 80.63% compilation time)
+For model BioHydrogenation: Max abs rel. err: 8.832526293738137
+For model BioHydrogenation: Max abs rel. err: 6.65918971943847
+For model BioHydrogenation: Max abs rel. err: 2.002085073336279
+For model BioHydrogenation: Max abs rel. err: 0.0031065389205794615
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [p1, p3, p4, p6, p7, u0, x3, x2, x1]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [p1, p3, u0, x2, x1]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: [p4, x3, p6, p7]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+1 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+ParameterEstimation.EstimationResult[]
+┌ Warning: No solution found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 28
+ 13.426040 seconds (8.70 M allocations: 578.270 MiB, 4.35% gc time, 85.43% compilation time)
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [a12, a13, a21, a31, a01, x2, x3, x1]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [a01, a13, x2, x3, a31, a12, x1, a21]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+3 Froissart doublets. Number of residues = 10
+5 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(a13 => 0.3457994889333555, a31 => 0.6870577043779151, x1(t) => 0.19487147279955802, x3(t) => 0.6715457192497962, a21 => 0.4999999990595542, a12 => 0.16699999964910858, a01 => 0.8052448096894621, x2(t) => 0.512261339344801)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+  9.265131 seconds (5.77 M allocations: 381.986 MiB, 1.96% gc time, 94.73% compilation time)
+For model DAISY_mamil3: Max abs rel. err: 0.03843690370377019
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [k01, k12, k13, k14, k21, k31, k41, x3, x1, x2, x4]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [k12, k21, x1, k01, x2]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: [x4, k13, x3, k41, k14, k31]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+3 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(k21 => 0.624999999438906, k01 => 0.12500000003169587, k14 => 0.3751194076660354, k13 => 0.4999544709064847, x1(t) => 0.264709171136093, x4(t) => 0.580176703441672, x2(t) => 0.4237830153250584, k12 => 0.2499999996455173, x3(t) => 0.7163115985936181, k41 => 0.7506981352696359, k31 => 0.8743203644698584), Dict{Any, Any}(k21 => 0.624999999438906, k01 => 0.12500000003169587, k14 => 0.4999544709064847, k13 => 0.3751194076660354, x1(t) => 0.264709171136093, x4(t) => 0.7163115985936181, x2(t) => 0.4237830153250584, k12 => 0.2499999996455173, x3(t) => 0.580176703441672, k41 => 0.8743203644698584, k31 => 0.7506981352696359)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+ 15.960467 seconds (10.77 M allocations: 717.029 MiB, 3.43% gc time, 63.20% compilation time)
+For model DAISY_mamil4: Max abs rel. err: 0.3332119224172925
+For model DAISY_mamil4: Max abs rel. err: 0.0009308470261812177
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [g, a, b, R, V]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [b, R, V, g, a]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+1 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(a => 0.49999815752251325, R(t) => 2.522510246619151, g => 0.25000275562644003, V(t) => 0.5498456637290101, b => 0.7500085827718344), Dict{Any, Any}(a => -1.378331346297853, R(t) => -0.10689549300084884, g => 1.9462436758889425, V(t) => 0.5498456637290101, b => 8.22307831479569)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+  9.155570 seconds (5.73 M allocations: 379.715 MiB, 2.68% gc time, 97.59% compilation time)
+For model fitzhugh-nagumo: Max abs rel. err: 1.1443695779137878e-5
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: [k2_0, k1_0]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [b, c, d, mu2, s, x1, x4]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     [k1, k2, mu1, q1, q2, x3, x2]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [b, x1, d, s, x4]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: [c, mu2]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      [q1, mu1, k2, x3, k1, q2, x2]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+1 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+ParameterEstimation.EstimationResult[]
+┌ Warning: No solution found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 28
+ 48.555898 seconds (17.21 M allocations: 1.109 GiB, 2.19% gc time, 40.88% compilation time: <1% of which was recompilation)
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [lm, d, beta, a, k, u, c, q, b, h, x, y, v, w, z]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [u, beta, k, lm, c, w, q, d, h, v, z, a, x, y, b]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+4 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+6 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+Dict[Dict{Any, Any}(d => 0.6937070869433188, u => 1.3857628325004223, lm => 0.2977023039869909, q => 0.7269282196251795, k => -0.3421588273231221, b => 0.8180110839290465, beta => -2.057130798382324, z(t) => 0.5589291143145616, y(t) => 1.0820424667118786, a => 0.41028460263010946, v(t) => -0.3518896568661005, h => 0.908992206844989, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 0.1692405132128528), Dict{Any, Any}(d => 0.18096957531802818, u => 0.5446803368253181, lm => 0.09099165324877902, q => 0.7269282196251795, k => 0.4539398507927195, b => 0.8180110839290465, beta => 0.2731166577311452, z(t) => 0.5589291143145616, y(t) => 0.28816954613580675, a => 0.3639558775303029, v(t) => 0.4419832637099714, h => 0.908992206844989, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 0.6354780539443863), Dict{Any, Any}(d => 0.2045022236972928, u => 0.24313504958626517, lm => 0.09767140410948877, q => 0.2874365992150185, k => -0.25611027043664025, b => 0.8485390167242602, beta => 0.2063443848126842, z(t) => 0.5589291143145616, y(t) => 0.0844345549316068, a => 0.4560718075889534, v(t) => 0.6457182549141713, h => 0.9540584529833485, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 7.95799321518066), Dict{Any, Any}(d => -0.26991564691065106, u => -0.25005127707174785, lm => 0.1275718738584361, q => 0.2874365992150185, k => 0.19169283933001463, b => 0.8485390167242602, beta => -0.8025708834671333, z(t) => 0.5589291143145616, y(t) => 1.6884146073057038, a => 0.24813427108514807, v(t) => -0.9582617974599256, h => 0.9540584529833485, w(t) => 0.41968716132343203, x(t) => 0.18523993937939973, c => 0.3979648199945159)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+  2.493044 seconds (3.03 M allocations: 465.784 MiB, 7.22% gc time)
+For model hiv: Max abs rel. err: 0.0023299982577594204
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [a, b, nu, E, In, S, N]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [In, b, N]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: [E, a, nu, S]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+4 Froissart doublets. Number of residues = 9
+Dict[Dict{Any, Any}(N(t) => 0.8, a => 0.25000611744117995, nu => 0.7499894735102028, S(t) => 0.1642868357073057, b => 0.4999746286373492, In(t) => 0.6524095663983311, E(t) => 0.30461190195641485), Dict{Any, Any}(N(t) => 0.8, a => 0.5314795256202721, nu => 0.23569600908910185, S(t) => -0.01012631791161519, b => 2.8660335517977265, In(t) => 0.6524095663983311, E(t) => 1.7484032324036047), Dict{Any, Any}(N(t) => 0.8, a => 0.7499894735102031, nu => 0.2500061174411798, S(t) => 0.49284152995083425, b => 0.4999746286373502, In(t) => 0.6524095663983311, E(t) => 2.2185442907936124), Dict{Any, Any}(N(t) => 0.8, a => 0.23569600908910196, nu => 0.531479525620272, S(t) => -0.004490733139248803, b => 2.8660335517977265, In(t) => 0.6524095663983311, E(t) => 0.41228242636894336)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+  9.626043 seconds (9.78 M allocations: 618.179 MiB, 3.78% gc time, 93.29% compilation time)
+For model SEIR: Max abs rel. err: 5.0742725301589076e-5
+For model SEIR: Max abs rel. err: 4.732067103595453
+For model SEIR: Max abs rel. err: 1.9999578940408123
+For model SEIR: Max abs rel. err: 4.732067103595453
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: [b1_0]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [b0, g, M, mu, nu, i, s, r]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     [b1, x1, x2]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [i, nu, mu, b0, g, s, r]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: [M]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      [x1, x2, b1]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+2 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+Computing mixed cells... 27    Time: 0:00:00[K
+  mixed_volume:  62[K[A
+[K[AComputing mixed cells... 44    Time: 0:00:00[K
+  mixed_volume:  118[K
+ParameterEstimation.EstimationResult[]
+┌ Warning: No solution found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 28
+249.990829 seconds (17.45 M allocations: 1015.643 MiB, 0.33% gc time, 4.45% compilation time)
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [k1, k2, eB, eA, xC, xB, xA, eC]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [eA, xC, eC]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: [k1, k2, xB, eB, xA]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+1 Froissart doublets. Number of residues = 9
+4 Froissart doublets. Number of residues = 7
+Dict[Dict{Any, Any}(k2 => 0.4999999973884497, xA(t) => 0.1464944842092828, eC(t) => 0.833, k1 => 0.25000000215440915, xB(t) => 0.2765542180692936, eA(t) => 0.666, eB => 0.749999999920706, xC(t) => 0.5759512975692757), Dict{Any, Any}(k2 => 0.25000000215440915, xA(t) => -0.13005972620458234, eC(t) => 0.833, k1 => 0.4999999973884497, xB(t) => 0.5531084284831588, eA(t) => 0.666, eB => 0.708000000541664, xC(t) => 0.5759512975692757)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+ 10.328128 seconds (7.49 M allocations: 503.867 MiB, 2.91% gc time, 91.61% compilation time)
+For model slowfast: Max abs rel. err: 8.617636604313361e-9
+For model slowfast: Max abs rel. err: 0.9999999895537988
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: [a_0]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [d, Tr, N, In]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     [a, b, g, nu, S]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [d, Tr, N, In]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      [a, b, S, g, nu]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+3 Froissart doublets. Number of residues = 10
+Computing mixed cells... 48    Time: 0:00:00[K
+  mixed_volume:  63[K[A
+[K[AComputing mixed cells... 98    Time: 0:00:00[K
+  mixed_volume:  137[K[A
+[K[AComputing mixed cells... 144    Time: 0:00:01[K
+  mixed_volume:  187[K[A
+[K[AComputing mixed cells... 172    Time: 0:00:01[K
+  mixed_volume:  221[K
+ParameterEstimation.EstimationResult[]
+┌ Warning: No solution found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 28
+745.083515 seconds (28.84 M allocations: 2.382 GiB, 0.27% gc time, 3.35% compilation time)
+DEBUG
+┌ Info: Preproccessing `ModelingToolkit.ODESystem` object
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/preprocessor.jl: 14
+┌ Info: Solving the problem
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 71
+┌ Info: Constructing the maximal system
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 80
+┌ Info: Truncating
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 113
+┌ Info: Assessing local identifiability
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 185
+┌ Info: Found Pivots: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 222
+┌ Info: Locally identifiable parameters: [mu_N, mu_EE, mu_LE, mu_LL, mu_M, mu_P, mu_PE, mu_PL, delta_NE, delta_EL, delta_LM, rho_E, rho_P, N, M, P, S, E]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 237
+┌ Info: Not identifiable parameters:     []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 238
+┌ Info: Randomizing
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 252
+┌ Info: Gröbner basis computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 306
+┌ Info: Remainder computation
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 325
+┌ Info: === Summary ===
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 367
+┌ Info: Globally identifiable parameters:                 [N, delta_EL, mu_PL, M, mu_M, rho_E, mu_LL, mu_PE, mu_LE, mu_EE, E, mu_N, rho_P, P, S, delta_NE, mu_P, delta_LM]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 368
+┌ Info: Locally but not globally identifiable parameters: []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 369
+┌ Info: Not identifiable parameters:                      []
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 370
+┌ Info: ===============
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/identifiability/check_identifiability.jl: 371
+┌ Info: Estimating via the interpolators: ["AAA"]
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/serial.jl: 28
+4 Froissart doublets. Number of residues = 10
+2 Froissart doublets. Number of residues = 8
+3 Froissart doublets. Number of residues = 9
+4 Froissart doublets. Number of residues = 9
+Computing mixed cells... 25    Time: 0:00:00[K
+  mixed_volume:  31[K[A
+[K[AComputing mixed cells... 43    Time: 0:00:00[K
+  mixed_volume:  53[K
+Dict[Dict{Any, Any}(mu_LE => 0.10051454909960224, S(t) => 2.738655589972357, delta_EL => 0.7139999816977941, mu_PE => 0.022524470686864678, P(t) => 0.7857623093432864, mu_M => -0.04424206751119128, mu_LL => 0.243042725276834, rho_E => 0.856999982470127, mu_PL => 0.027094183024362225, M(t) => -1.5784611928214856, E(t) => 0.3584844843041688, delta_LM => -0.02357037220082931, mu_N => 0.0709999957481672, mu_P => 0.3299337287374316, delta_NE => 0.643000005376654, mu_EE => 0.14300001673596868, N(t) => 0.12423087671136133, rho_P => 0.3636070427537374), Dict{Any, Any}(mu_LE => -3.4772491253153976, S(t) => 0.2661628617606548, delta_EL => 0.7139999816977941, mu_PE => 0.013314823134507714, P(t) => 0.7857623093432864, mu_M => -0.18493483626586138, mu_LL => 10.207886929932117, rho_E => 0.856999982470127, mu_PL => 0.06547663447976543, M(t) => 0.8940315353902164, E(t) => 0.3584844843041688, delta_LM => -0.8584936778187354, mu_N => 0.0709999957481672, mu_P => 0.39919310176705375, delta_NE => 0.643000005376654, mu_EE => 0.14300001673596868, N(t) => 0.12423087671136133, rho_P => 0.37529463553234077), Dict{Any, Any}(mu_LE => -0.536211054076903, S(t) => 0.10459382950437487, delta_EL => 0.7139999816977942, mu_PE => -0.12504273469773936, P(t) => 0.7857623093432864, mu_M => 0.13392998349546734, mu_LL => -0.9687240378128448, rho_E => 0.8569999824701272, mu_PL => -0.28531381794318833, M(t) => 1.0556005676464963, E(t) => 0.3584844843041688, delta_LM => 1.660886355340321, mu_N => 0.07099999574816736, mu_P => 0.38862978697761885, delta_NE => 0.6430000053766538, mu_EE => 0.14300001673596907, N(t) => 0.12423087671136133, rho_P => 0.23857152662033027), Dict{Any, Any}(mu_LE => 0.007576235373256516, S(t) => -40.55628793229966, delta_EL => 0.7139999816977941, mu_PE => 0.2120573303100357, P(t) => 0.7857623093432864, mu_M => -0.6649847451128603, mu_LL => -0.0006506648164978176, rho_E => 0.856999982470127, mu_PL => -0.0030545675280226102, M(t) => 41.716482329450535, E(t) => 0.3584844843041688, delta_LM => 0.9272299997541197, mu_N => 0.0709999957481672, mu_P => 0.4259985385521173, delta_NE => 0.643000005376654, mu_EE => 0.14300001673596868, N(t) => 0.12423087671136133, rho_P => 0.6355591090391784), Dict{Any, Any}(mu_LE => 0.18446884258477797, S(t) => 0.5494749652319348, delta_EL => 0.7139999816977941, mu_PE => 0.057698027542660964, P(t) => 0.7857623093432864, mu_M => 0.7802921101904629, mu_LL => -0.2800627244900339, rho_E => 0.856999982470127, mu_PL => 0.10771305357329745, M(t) => 0.6107194319189364, E(t) => 0.3584844843041688, delta_LM => 0.9102596547448419, mu_N => 0.0709999957481672, mu_P => 0.39588280854539887, delta_NE => 0.643000005376654, mu_EE => 0.14300001673596868, N(t) => 0.12423087671136133, rho_P => 0.4444740479724996), Dict{Any, Any}(mu_LE => -0.08183617639753356, S(t) => -11.276956145235095, delta_EL => 0.7139999816977941, mu_PE => 0.036089756443470726, P(t) => 0.7857623093432864, mu_M => -0.3982881800855431, mu_LL => -0.026680993459949186, rho_E => 0.856999982470127, mu_PL => 0.012677484508163474, M(t) => 12.437150542385966, E(t) => 0.3584844843041688, delta_LM => 0.45508692656651595, mu_N => 0.0709999957481672, mu_P => 0.5458362657905649, delta_NE => 0.643000005376654, mu_EE => 0.14300001673596868, N(t) => 0.12423087671136133, rho_P => 0.3681891012889418), Dict{Any, Any}(mu_LE => -0.09098536796817314, S(t) => -10.991349403763442, delta_EL => 0.7139999816977941, mu_PE => -0.028291688610141127, P(t) => 0.7857623093432864, mu_M => -0.5890677387425073, mu_LL => -0.008378879819087998, rho_E => 0.856999982470127, mu_PL => 0.016249014426442124, M(t) => 12.151543800914313, E(t) => 0.3584844843041688, delta_LM => 0.7480734116171909, mu_N => 0.0709999957481672, mu_P => 0.5019298967597051, delta_NE => 0.643000005376654, mu_EE => 0.14300001673596868, N(t) => 0.12423087671136133, rho_P => 0.23758818656348266), Dict{Any, Any}(mu_LE => -4.287825892597935, S(t) => 2.5162654587277933, delta_EL => 0.7139999816977941, mu_PE => -0.023456288099590425, P(t) => 0.7857623093432864, mu_M => 2.1192739251920885, mu_LL => 1.3542080396073963, rho_E => 0.856999982470127, mu_PL => 0.017274088376709854, M(t) => -1.3560710615769218, E(t) => 0.3584844843041688, delta_LM => -1.233906496450801, mu_N => 0.0709999957481672, mu_P => 0.38244880337970116, delta_NE => 0.643000005376654, mu_EE => 0.14300001673596868, N(t) => 0.12423087671136133, rho_P => 0.37034730262079796)]
+┌ Info: Best estimate found
+└ @ ParameterEstimation /home/orebas/.julia/dev/ParameterEstimation/src/estimation/utils.jl: 25
+ 38.656295 seconds (26.57 M allocations: 2.360 GiB, 3.83% gc time, 38.69% compilation time)
+For model Crauste: Max abs rel. err: 4.387146985359598
