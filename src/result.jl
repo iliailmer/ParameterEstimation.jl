@@ -82,10 +82,16 @@ function Base.show(io::IO, e::EstimationResult)
 	end
 	# println(io, "Interpolation Degree (numerator): ", e.degree)
 	# println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)
-	# if isnothing(e.err)
-	# println(io, "Error: Not yet calculated")
-	# else
-	# println(io, "Error: ", @sprintf("%.4e", e.err))
+	if isnothing(e.err)
+		println(io, "Error: Not yet calculated")
+	else
+		println(io, "Error: ", @sprintf("%.4e", e.err))
+	end
+	if isnothing(e.at_time)
+		println(io, "Time: Not specified")
+	else
+		println(io, "Time: ", @sprintf("%.4e", e.at_time))
+	end
 	# end
 	# println(io, "Return Code: ", e.return_code)
 end

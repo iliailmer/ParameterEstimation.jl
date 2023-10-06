@@ -1,3 +1,58 @@
+
+function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equation}, data_sample;
+	solver = Tsit5())
+	initial_conditions = [E[s] for s in ModelingToolkit.states(model)]
+	parameter_values = [E[p] for p in ModelingToolkit.parameters(model)]
+	tspan = (E.at_time, report_time)  #this is almost always backwards!
+
+	ode_equations = ModelingToolkit.equations(model)
+	ode_equations = substitute(ode_equations,
+		Dict(each.lhs => Num(each.rhs) for each in inputs))
+	t = ModelingToolkit.get_iv(model)
+	@named new_model = ODESystem(ode_equations, t, ModelingToolkit.states(model),
+		ModelingToolkit.parameters(model))
+	println(tspan)
+	prob = ODEProblem(new_model, initial_conditions, tspan, parameter_values)
+	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values,
+		saveat = range(tspan[1], tspan[2],
+			length = length(data_sample["t"])))
+
+
+	state_param_map = (Dict(x => replace(string(x), "(t)" => "")
+							for x in ModelingToolkit.states(model)))
+
+
+	println(state_param_map)
+	newstates = copy(E.states)
+
+	for s in ModelingToolkit.states(model)
+		println("BLAH")
+		println(tspan)
+		println("TEST ", state_param_map[s])
+		println(" E[s] ", E[s])
+		println(ode_solution[begin])
+		println(ode_solution[Symbol(state_param_map[s])])
+
+		println(ode_solution[Symbol(state_param_map[s])][end])
+		temp = ode_solution[Symbol(state_param_map[s])][end]
+		newstates[s] = temp
+	end
+	println(newstates)
+	ER = EstimationResult(E.parameters, newstates, E.degree, report_time,
+		E.err, E.interpolants, E.return_code, E.datasize)
+	println(ER.parameters)
+	println("TEST")
+	println(ER.states)
+	println(ER)
+	return ER
+
+end
+
+
+
+
+
+
 """
 	estimate_fixed_degree(model::ModelingToolkit.ODESystem,
 						measured_quantities::Vector{ModelingToolkit.Equation},
@@ -35,10 +90,11 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 		Vector{T}}();
 	identifiability_result = Dict{String, Any}(),
 	interpolator = ("AAA" => aaad),
-	at_time::T = 0.0, report_time,
+	at_time::T = 0.0, report_time = minimum(data_sample["t"]),
 	method = :homotopy,
 	real_tol = 1e-10) where {T <: Float}
 	time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]  #TODO(orebas) will this break if key is missing?
+
 
 	check_inputs(measured_quantities, data_sample)  #TODO(orebas): I took out checking the degree.  Do we want to check the interpolator otherwise?
 	datasize = length(first(values(data_sample)))
@@ -67,9 +123,15 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 		throw(ArgumentError("Method $method not supported"))
 	end
 	println(all_solutions)
+	println("HERE")
 	all_solutions = [EstimationResult(model, each, interpolator.first, at_time,
 		interpolants, ReturnCode.Success, datasize)
 					 for each in all_solutions]
 
-	return all_solutions
+	all_solutions_R = [backsolve_initial_conditions(model, each, report_time, inputs, data_sample)
+					   for each in all_solutions]
+
+
+	println(all_solutions_R)
+	return all_solutions_R
 end
