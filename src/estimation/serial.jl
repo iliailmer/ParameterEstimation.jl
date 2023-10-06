@@ -7,7 +7,6 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	real_tol::Float64 = 1e-10) where {T <: Float}
 	check_inputs(measured_quantities, data_sample)
 	datasize = length(first(values(data_sample)))
-	println("Report time:", report_time)  #TODO(orebas) remove
 
 	if interpolators === nothing
 		interpolators = Dict(

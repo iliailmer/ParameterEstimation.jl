@@ -11,7 +11,6 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	t = ModelingToolkit.get_iv(model)
 	@named new_model = ODESystem(ode_equations, t, ModelingToolkit.states(model),
 		ModelingToolkit.parameters(model))
-	println(tspan)
 	prob = ODEProblem(new_model, initial_conditions, tspan, parameter_values)
 	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values,
 		saveat = range(tspan[1], tspan[2],
@@ -22,28 +21,27 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 							for x in ModelingToolkit.states(model)))
 
 
-	println(state_param_map)
 	newstates = copy(E.states)
 
 	for s in ModelingToolkit.states(model)
-		println("BLAH")
-		println(tspan)
-		println("TEST ", state_param_map[s])
-		println(" E[s] ", E[s])
-		println(ode_solution[begin])
-		println(ode_solution[Symbol(state_param_map[s])])
+		#	println("BLAH")
+		#	println(tspan)
+		#	println("TEST ", state_param_map[s])
+		#	println(" E[s] ", E[s])
+		#	println(ode_solution[begin])
+		#	println(ode_solution[Symbol(state_param_map[s])])
 
-		println(ode_solution[Symbol(state_param_map[s])][end])
+		#	println(ode_solution[Symbol(state_param_map[s])][end])
 		temp = ode_solution[Symbol(state_param_map[s])][end]
 		newstates[s] = temp
 	end
-	println(newstates)
+	#println(newstates)
 	ER = EstimationResult(E.parameters, newstates, E.degree, report_time,
 		E.err, E.interpolants, E.return_code, E.datasize)
-	println(ER.parameters)
-	println("TEST")
-	println(ER.states)
-	println(ER)
+	#	println(ER.parameters)
+	#	println("TEST")
+	#	println(ER.states)
+	#	println(ER)
 	return ER
 
 end
@@ -122,8 +120,8 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 	else
 		throw(ArgumentError("Method $method not supported"))
 	end
-	println(all_solutions)
-	println("HERE")
+	#println(all_solutions)
+	#println("HERE")
 	all_solutions = [EstimationResult(model, each, interpolator.first, at_time,
 		interpolants, ReturnCode.Success, datasize)
 					 for each in all_solutions]
@@ -132,6 +130,6 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 					   for each in all_solutions]
 
 
-	println(all_solutions_R)
+	#println(all_solutions_R)
 	return all_solutions_R
 end
