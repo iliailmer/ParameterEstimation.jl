@@ -1,3 +1,4 @@
 [deps]
 BaryRational = "91aaffc3-5777-4842-85b7-5d3d5d6a3494"
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
