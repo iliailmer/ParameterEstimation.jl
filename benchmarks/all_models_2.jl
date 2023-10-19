@@ -436,8 +436,24 @@ function vanderpol(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
 end
 
 function analyze_parameter_estimation_problem(PEP::ParameterEstimationProblem)
+
+	interpolators = Dict(
+		"AAA" => ParameterEstimation.aaad,
+		"FHD3" => ParameterEstimation.fhdn(3),
+		"FHD6" => ParameterEstimation.fhdn(6),
+		"FHD8" => ParameterEstimation.fhdn(8),
+		"Fourier" => ParameterEstimation.FourierInterp,
+		"BaryLagrange" => ParameterEstimation.BarycentricLagrange)
+
+	datasize = 71 #TODO(Orebas) magic number
+
+	stepsize = max(1, datasize ÷ 8)
+	for i in range(1, (datasize - 2), step = stepsize)
+		interpolators["RatOld($i)"] = ParameterEstimation.SimpleRationalInterpOld(i)
+	end
+
 	@time res = ParameterEstimation.estimate(PEP.model, PEP.measured_quantities, PEP.data_sample;
-		solver = PEP.solver, interpolators = Dict("AAA" => ParameterEstimation.aaad))
+		solver = PEP.solver, interpolators)
 	all_params = vcat(PEP.ic, PEP.p_true)
 	for each in res
 		estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
@@ -458,24 +474,25 @@ end
 #end
 
 function main()
-	datasize = 21
+	datasize = 71
 	solver = AutoVern8(Rodas4())
+	#solver = Rodas4P()
 	time_interval = [-0.5, 0.5]
 	for PEP in [
-		simple(datasize, time_interval, solver),
-		lotka_volterra(datasize, time_interval, solver),
-		vanderpol(datasize, time_interval, solver),
-		biohydrogenation(datasize, time_interval, solver),
-		daisy_ex3(datasize, time_interval, solver),
-		daisy_mamil3(datasize, time_interval, solver),
-		daisy_mamil4(datasize, time_interval, solver),
-		fitzhugh_nagumo(datasize, time_interval, solver),
-		hiv_local(datasize, time_interval, solver),
-		hiv(datasize, time_interval, solver),
-		seir(datasize, time_interval, solver),
-		sirsforced(datasize, time_interval, Rodas5P()),
-		slowfast(datasize, time_interval, solver),
-		treatment(datasize, time_interval, Rodas5P()),
+		#		simple(datasize, time_interval, solver),
+		#		lotka_volterra(datasize, time_interval, solver),
+		#		vanderpol(datasize, time_interval, solver),
+		#		biohydrogenation(datasize, time_interval, solver),
+		#		daisy_ex3(datasize, time_interval, solver),
+		#		daisy_mamil3(datasize, time_interval, solver),
+		#		daisy_mamil4(datasize, time_interval, solver),
+		#		fitzhugh_nagumo(datasize, time_interval, solver),
+		#		hiv_local(datasize, time_interval, solver),
+		#		hiv(datasize, time_interval, solver),
+		#		seir(datasize, time_interval, solver),
+		#		sirsforced(datasize, time_interval, Rodas5P()),
+		#		slowfast(datasize, time_interval, solver),
+		#		treatment(datasize, time_interval, Rodas5P()),
 		crauste(datasize, time_interval, solver),
 	]
 		analyze_parameter_estimation_problem(PEP)
