@@ -472,11 +472,11 @@ function main()
 		fitzhugh_nagumo(datasize, time_interval, solver),
 		hiv_local(datasize, time_interval, solver),
 		hiv(datasize, time_interval, solver),
-		seir(datasize, time_interval, solver),
-		sirsforced(datasize, time_interval, Rodas5P()),
-		slowfast(datasize, time_interval, solver),
-		treatment(datasize, time_interval, Rodas5P()),
-		crauste(datasize, time_interval, solver),
+		#seir(datasize, time_interval, solver),
+		#sirsforced(datasize, time_interval, Rodas5P()),
+		#slowfast(datasize, time_interval, solver),
+		#treatment(datasize, time_interval, Rodas5P()),
+		#crauste(datasize, time_interval, solver),
 	]
 		analyze_parameter_estimation_problem(PEP)
 
