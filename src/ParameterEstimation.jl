@@ -9,7 +9,7 @@ using TaylorDiff: TaylorDiff
 
 using PrecompileTools    
 
-
+using Suppressor
 using ProgressMeter, Logging, Printf
 using ModelingToolkit, LinearSolve, LinearAlgebra
 using SIAN, HomotopyContinuation, Groebner, Oscar
@@ -21,8 +21,8 @@ include("includes.jl")
 
 export check_identifiability, estimate, filter_solutions
 
-@compile_workload begin
-    
+@compile_workload  begin
+        
     @parameters a b c d
     @variables t x1(t) x2(t) x3(t) x4(t) y1(t) y2(t) y3(t) y4(t)
     D = Differential(t)
@@ -48,7 +48,7 @@ export check_identifiability, estimate, filter_solutions
     datasize = 9
     data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
         p_true, ic, datasize; )
-    res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
+@suppress    res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
     
 
 end

@@ -18,7 +18,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 - `report_time = nothing`: specify a time T, at which the initial conditions (state variables) will be estimated.  If "nothing", use the leftmost time.
 - `method = :homotopy`: the method used for polynomial system solving. Can be one of :homotopy (recommended) or :msolve;
 - `solver`: the ODE solver used for ODE solution computation (default: Tsit5());
-- `degree_range = nothing`: the range of interpolation degrees to be used. If `nothing`, the range is computed automatically;
+- `degree_range = nothing`: the set of interpolators to be used.  See examples. If `nothing`, the range is computed automatically;
 - `real_tol` = 1e-10: the tolerance used for real root finding;
 - `threaded = Threads.nthreads() > 1`: whether to use multiple threads for computation (determined automatically).
 
@@ -53,6 +53,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 			real_tol = real_tol)
 	end
 	for each in result
+
 		display(each)
 	end
 	return result
