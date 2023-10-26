@@ -439,18 +439,17 @@ function analyze_parameter_estimation_problem(PEP::ParameterEstimationProblem)
 
 	interpolators = Dict(
 		"AAA" => ParameterEstimation.aaad,
-		"FHD3" => ParameterEstimation.fhdn(3),
-		"FHD6" => ParameterEstimation.fhdn(6),
-		"FHD8" => ParameterEstimation.fhdn(8),
-		"Fourier" => ParameterEstimation.FourierInterp,
-		"BaryLagrange" => ParameterEstimation.BarycentricLagrange)
-
-	datasize = 71 #TODO(Orebas) magic number
+		#"FHD3" => ParameterEstimation.fhdn(3),
+		#"FHD6" => ParameterEstimation.fhdn(6),
+		#"FHD8" => ParameterEstimation.fhdn(8),
+		#"Fourier" => ParameterEstimation.FourierInterp,
+	)
+	datasize = 21 #TODO(Orebas) magic number
 
 	stepsize = max(1, datasize ÷ 8)
-	for i in range(1, (datasize - 2), step = stepsize)
-		interpolators["RatOld($i)"] = ParameterEstimation.SimpleRationalInterpOld(i)
-	end
+	#for i in range(1, (datasize - 2), step = stepsize)
+	#	interpolators["RatOld($i)"] = ParameterEstimation.SimpleRationalInterpOld(i)
+	#end
 
 	@time res = ParameterEstimation.estimate(PEP.model, PEP.measured_quantities, PEP.data_sample;
 		solver = PEP.solver, interpolators)
@@ -474,28 +473,11 @@ end
 #end
 
 function main()
-	datasize = 71
+	datasize = 21
 	solver = AutoVern8(Rodas4())
 	#solver = Rodas4P()
 	time_interval = [-0.5, 0.5]
 	for PEP in [
-<<<<<<< HEAD
-		#		simple(datasize, time_interval, solver),
-		#		lotka_volterra(datasize, time_interval, solver),
-		#		vanderpol(datasize, time_interval, solver),
-		#		biohydrogenation(datasize, time_interval, solver),
-		#		daisy_ex3(datasize, time_interval, solver),
-		#		daisy_mamil3(datasize, time_interval, solver),
-		#		daisy_mamil4(datasize, time_interval, solver),
-		#		fitzhugh_nagumo(datasize, time_interval, solver),
-		#		hiv_local(datasize, time_interval, solver),
-		#		hiv(datasize, time_interval, solver),
-		#		seir(datasize, time_interval, solver),
-		#		sirsforced(datasize, time_interval, Rodas5P()),
-		#		slowfast(datasize, time_interval, solver),
-		#		treatment(datasize, time_interval, Rodas5P()),
-		crauste(datasize, time_interval, solver),
-=======
 		simple(datasize, time_interval, solver),
 		lotka_volterra(datasize, time_interval, solver),
 		vanderpol(datasize, time_interval, solver),
@@ -506,12 +488,11 @@ function main()
 		fitzhugh_nagumo(datasize, time_interval, solver),
 		hiv_local(datasize, time_interval, solver),
 		hiv(datasize, time_interval, solver),
-		#seir(datasize, time_interval, solver),
-		#sirsforced(datasize, time_interval, Rodas5P()),
-		#slowfast(datasize, time_interval, solver),
-		#treatment(datasize, time_interval, Rodas5P()),
-		#crauste(datasize, time_interval, solver),
->>>>>>> 326b4e0e07adff59e5b5b98fa01bddc0ec383b48
+		seir(datasize, time_interval, solver),
+		sirsforced(datasize, time_interval, Rodas5P()),
+		slowfast(datasize, time_interval, solver),
+		treatment(datasize, time_interval, Rodas5P()),
+		crauste(datasize, time_interval, solver),
 	]
 		analyze_parameter_estimation_problem(PEP)
 
