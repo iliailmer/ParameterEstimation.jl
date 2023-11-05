@@ -8,7 +8,7 @@ function post_process(estimates, filtermode = :new)
 	estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
 
 	if (filtermode == :new)
-		return estimates
+		return collect(Iterators.flatten(estimates))
 	else
 		best_solution = nothing
 		for each in estimates

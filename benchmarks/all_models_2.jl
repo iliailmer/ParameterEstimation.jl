@@ -454,7 +454,13 @@ function analyze_parameter_estimation_problem(PEP::ParameterEstimationProblem)
 	@time res = ParameterEstimation.estimate(PEP.model, PEP.measured_quantities, PEP.data_sample;
 		solver = PEP.solver, interpolators)
 	all_params = vcat(PEP.ic, PEP.p_true)
+	println("TYPERES: ", typeof(res))
+	println(res)
+
+	println(res)
 	for each in res
+		println("TYPE: ", typeof(each))
+		println(each)
 		estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
 		println("For model ", PEP.Name, ": Max abs rel. err: ", maximum(abs.((estimates .- all_params) ./ (all_params))))
 	end
@@ -474,7 +480,7 @@ end
 
 function main()
 	datasize = 21
-	solver = AutoVern8(Rodas4())
+	solver = Tsit5()
 	#solver = Rodas4P()
 	time_interval = [-0.5, 0.5]
 	for PEP in [
