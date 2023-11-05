@@ -1,5 +1,3 @@
-using BaryRational
-using ForwardDiff
 
 
 

@@ -1,6 +1,6 @@
 module ParameterEstimation
-using PrecompileTools
 
+using PrecompileTools
 @recompile_invalidations begin
 
 	import DifferentialEquations: Tsit5
@@ -10,14 +10,16 @@ using PrecompileTools
 	using ForwardDiff: ForwardDiff
 	using LinearAlgebra: LinearAlgebra
 	using TaylorDiff: TaylorDiff
-
-
 	using Suppressor
+
 	using ProgressMeter, Logging, Printf
 	using ModelingToolkit, LinearSolve, LinearAlgebra
 	using SIAN, HomotopyContinuation, Groebner, Oscar
 	using .ReturnCode
 	import StructuralIdentifiability: eval_at_nemo, ODE
+	using BaryRational
+	using ForwardDiff
+
 end
 Float = Union{Float64, Float32, Float16}
 include("includes.jl")

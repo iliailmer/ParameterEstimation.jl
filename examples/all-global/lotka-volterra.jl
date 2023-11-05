@@ -22,8 +22,6 @@ parameters = [k1, k2, k3]
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
 	p_true, ic, datasize; solver = solver)
 
-temp = check_identifiability(model, measured_quantities, data_sample)
-println(temp)
 
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
 	solver = solver)

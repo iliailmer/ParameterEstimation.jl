@@ -32,9 +32,9 @@ function estimate(model::ModelingToolkit.ODESystem,
 	at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
 	report_time = minimum(data_sample["t"]),
 	interpolators = nothing, real_tol = 1e-10,
-	threaded = Threads.nthreads() > 1) where {T <: Float}
+	threaded = Threads.nthreads() > 1, filtermode = :new) where {T <: Float}
 
-	println("DEBUG")
+	#println("DEBUG")
 	if !(method in [:homotopy, :msolve])
 		throw(ArgumentError("Method $method is not supported, must be one of :homotopy or :msolve."))
 	end
@@ -50,7 +50,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 			data_sample;
 			solver = solver, at_time = at_time, report_time,
 			interpolators = interpolators, method = method,
-			real_tol = real_tol)
+			real_tol = real_tol, filtermode)
 	end
 	for each in result
 

@@ -14,10 +14,10 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	prob = ODEProblem(new_model, initial_conditions, tspan, parameter_values)
 	saveat = range(tspan[1], tspan[2], length = length(data_sample["t"]))
 
-	println("Starting backsolving.")
-	println("parameter values: ", parameter_values)
-	println("midpoint initial conditions ", initial_conditions)
-	println("saveat: ", saveat)
+	#println("Starting backsolving.")
+	#println("parameter values: ", parameter_values)
+	#println("midpoint initial conditions ", initial_conditions)
+	#println("saveat: ", saveat)
 	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values, saveat = saveat)
 
 	state_param_map = (Dict(x => replace(string(x), "(t)" => "")
@@ -38,7 +38,7 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 		temp = ode_solution[Symbol(state_param_map[s])][end]
 		newstates[s] = temp
 	end
-	println("startpoint initial conditions: ", newstates)
+	#println("startpoint initial conditions: ", newstates)
 	ER = EstimationResult(E.parameters, newstates, E.degree, report_time,
 		E.err, E.interpolants, E.return_code, E.datasize)
 	#	println(ER.parameters)
