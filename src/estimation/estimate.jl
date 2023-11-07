@@ -32,7 +32,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 	at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
 	report_time = minimum(data_sample["t"]),
 	interpolators = nothing, real_tol = 1e-12,
-	threaded = Threads.nthreads() > 1, filtermode = :new) where {T <: Float}
+	threaded = Threads.nthreads() > 1, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing) where {T <: Float}
 
 	#println("DEBUG")
 	if !(method in [:homotopy, :msolve])
@@ -50,7 +50,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 			data_sample;
 			solver = solver, at_time = at_time, report_time,
 			interpolators = interpolators, method = method,
-			real_tol = real_tol, filtermode)
+			real_tol = real_tol, filtermode, parameter_constraints = parameter_constraints, ic_constraints = ic_constraints)
 	end
 	for each in result
 

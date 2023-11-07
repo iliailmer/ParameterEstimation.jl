@@ -4,7 +4,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
 	at_time::T = 0.0, solver = Tsit5(), interpolators = nothing, report_time = minimum(data_sample["t"]),
 	method = :homotopy,
-	real_tol::Float64 = 1e-10, filtermode = :new) where {T <: Float}
+	real_tol::Float64 = 1e-10, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing) where {T <: Float}
 	check_inputs(measured_quantities, data_sample)
 	datasize = length(first(values(data_sample)))
 
@@ -45,6 +45,6 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 				])
 		end
 	end
-	return post_process(estimates, filtermode)
+	return post_process(estimates, filtermode,parameter_constraints, ic_constraints)
 end
 

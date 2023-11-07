@@ -117,7 +117,7 @@ function filter_solutions(results::Vector{EstimationResult},
 		return results
 	end
 	try
-		solve_ode!(model, results, inputs, data_sample; solver = solver, abstol = 1e-12, reltol = 1e-12) # this solves ODE with new parameters and computes err. between sample and solution
+		solve_ode!(model, results, inputs, data_sample; solver = solver, abstol = abstol, reltol = reltol) # this solves ODE with new parameters and computes err. between sample and solution
 	catch InexactError
 		@debug "InexactError when solving the ODE, no filtering was done."
 		return results
