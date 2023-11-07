@@ -19,7 +19,7 @@ Compute the error between the solution and the data sample. The error is recorde
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
 function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, data_sample;
-	solver = Tsit5(), return_ode = false)
+	solver = Tsit5(), return_ode = false, abstol = 1e-12, reltol = 1e-12)
 	initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
 	parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
 	tspan = (estimate.at_time, data_sample["t"][end] + estimate.at_time)
@@ -32,7 +32,7 @@ function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, 
 	prob = ODEProblem(new_model, initial_conditions, tspan, parameter_values)
 	ode_solution = ModelingToolkit.solve(prob, solver,
 		saveat = range(tspan[1], tspan[2],
-			length = length(data_sample["t"])))
+			length = length(data_sample["t"])), abstol = 1e-12, reltol = 1e-12)
 	if ode_solution.retcode == ReturnCode.Success
 		err = 0
 		for (key, sample) in data_sample
@@ -67,8 +67,8 @@ Run solve_ode for multiple estimates and store the results (error between soluti
 This is done in-place.
 """
 function solve_ode!(model, estimates::Vector{EstimationResult}, inputs::Vector{Equation},
-	data_sample; solver = Tsit5())
-	estimates[:] = map(each -> solve_ode(model, each, inputs, data_sample, solver = solver),
+	data_sample; solver = Tsit5(), abstol = 1e-12, reltol = 1e-12)
+	estimates[:] = map(each -> solve_ode(model, each, inputs, data_sample, solver = solver, abstol, reltol),
 		estimates)
 end
 
@@ -104,7 +104,7 @@ function filter_solutions(results::Vector{EstimationResult},
 	inputs::Vector{ModelingToolkit.Equation},
 	data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
 	solver = Tsit5(),
-	topk = 1, filtermode = :new) where {T <: Float}
+	topk = 1, filtermode = :new, abstol = 1e-12, reltol = 1e-12) where {T <: Float}
 	@debug "Filtering"
 	#if (filtermode == :new)
 	#	println("new mode filtering")
@@ -117,7 +117,7 @@ function filter_solutions(results::Vector{EstimationResult},
 		return results
 	end
 	try
-		solve_ode!(model, results, inputs, data_sample; solver = solver) # this solves ODE with new parameters and computes err. between sample and solution
+		solve_ode!(model, results, inputs, data_sample; solver = solver, abstol = 1e-12, reltol = 1e-12) # this solves ODE with new parameters and computes err. between sample and solution
 	catch InexactError
 		@debug "InexactError when solving the ODE, no filtering was done."
 		return results

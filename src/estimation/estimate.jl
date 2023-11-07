@@ -3,7 +3,7 @@
 			measured_quantities::Vector{ModelingToolkit.Equation},
 			data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
 			at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
-			degree_range = nothing, real_tol = 1e-10,
+			degree_range = nothing, real_tol = 1e-12,
 			threaded = Threads.nthreads() > 1) where {T <: Float}
 
 Run estimation over a range of interpolation degrees. Return the best estimate according to a heuristic:
@@ -19,7 +19,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 - `method = :homotopy`: the method used for polynomial system solving. Can be one of :homotopy (recommended) or :msolve;
 - `solver`: the ODE solver used for ODE solution computation (default: Tsit5());
 - `degree_range = nothing`: the set of interpolators to be used.  See examples. If `nothing`, the range is computed automatically;
-- `real_tol` = 1e-10: the tolerance used for real root finding;
+- `real_tol` = 1e-12: the tolerance used for real root finding;
 - `threaded = Threads.nthreads() > 1`: whether to use multiple threads for computation (determined automatically).
 
 # Returns
@@ -31,7 +31,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 	inputs::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation}(),
 	at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
 	report_time = minimum(data_sample["t"]),
-	interpolators = nothing, real_tol = 1e-10,
+	interpolators = nothing, real_tol = 1e-12,
 	threaded = Threads.nthreads() > 1, filtermode = :new) where {T <: Float}
 
 	#println("DEBUG")

@@ -1,7 +1,7 @@
 function estimate_threaded(model, measured_quantities, inputs, data_sample;
 	at_time::Float = 0.0, solver = solver,
 	degree_range = degree_range,
-	method = :homotopy, real_tol::Float64 = 1e-10)
+	method = :homotopy, real_tol::Float64 = 1e-12)
 	@warn "Using threaded estimation."
 	check_inputs(measured_quantities, data_sample)
 	datasize = length(first(values(data_sample)))

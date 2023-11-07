@@ -1,0 +1,765 @@
+Parameter(s)        :	  a = 2.000,   b = 3.000,   c = 4.000,   d = 5.000
+Initial Condition(s):	x1(t) = 0.000, x2(t) = -0.000, x3(t) = 0.000, x4(t) = -0.000
+Error: 4.6339e+01
+Time: -4.0000e+00
+
+Parameter(s)        :	 lm = 0.098,   d = 0.205, beta = 0.206,   a = 0.456,   k = -0.256,   u = 0.243,   c = 7.959,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.092, v(t) = 0.741, w(t) = 0.667, z(t) = 0.833
+Error: 3.4365e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	 lm = 0.128,   d = -0.270, beta = -0.803,   a = 0.248,   k = 0.192,   u = -0.250,   c = 0.398,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.838, v(t) = -1.005, w(t) = 0.667, z(t) = 0.833
+Error: 3.4370e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	 lm = 0.091,   d = 0.181, beta = 0.273,   a = 0.364,   k = 0.455,   u = 0.545,   c = 0.636,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.333, v(t) = 0.500, w(t) = 0.667, z(t) = 0.833
+Error: 3.4330e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	 lm = 0.298,   d = 0.693, beta = -2.056,   a = 0.410,   k = -0.343,   u = 1.388,   c = 0.169,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.252, v(t) = -0.419, w(t) = 0.667, z(t) = 0.833
+Error: 3.4406e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 4.3680e-03
+Time: -5.0000e-01
+
+  5.873238 seconds (3.10 M allocations: 205.945 MiB, 1.90% gc time, 97.76% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 4.3680e-03
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 4.3680e-03
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 4.3680e-03
+Time: -5.0000e-01
+
+For model simple: Max abs rel. err: 7.758980031848916e-9
+Parameter(s)        :	 k1 = 0.250,  k2 = 0.499,  k3 = 0.750
+Initial Condition(s):	r(t) = 0.333, w(t) = 0.669
+Error: 5.4875e-04
+Time: -5.0000e-01
+
+  6.579113 seconds (5.34 M allocations: 339.729 MiB, 1.33% gc time, 96.78% compilation time: 1% of which was recompilation)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	 k1 = 0.250,  k2 = 0.499,  k3 = 0.750
+Initial Condition(s):	r(t) = 0.333, w(t) = 0.669
+Error: 5.4875e-04
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	 k1 = 0.250,  k2 = 0.499,  k3 = 0.750
+Initial Condition(s):	r(t) = 0.333, w(t) = 0.669
+Error: 5.4875e-04
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 k1 = 0.250,  k2 = 0.499,  k3 = 0.750
+Initial Condition(s):	r(t) = 0.333, w(t) = 0.669
+Error: 5.4875e-04
+Time: -5.0000e-01
+
+For model Lotka_Volterra: Max abs rel. err: 0.002754131659376169
+Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 3.4166e-03
+Time: -5.0000e-01
+
+  6.256559 seconds (3.43 M allocations: 226.338 MiB, 2.97% gc time, 98.52% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 3.4166e-03
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 3.4166e-03
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 3.4166e-03
+Time: -5.0000e-01
+
+For model vanderpol: Max abs rel. err: 6.053147421916786e-8
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = 0.378,  k9 = -0.224, k10 = -4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.372, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 1.427,  k9 = -0.715, k10 = -0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.257, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = -4.472,  k9 = 0.224, k10 = 4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 4.479, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 0.572,  k9 = 0.715, k10 = 0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 0.599, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+ 28.925630 seconds (19.45 M allocations: 1.206 GiB, 0.81% gc time, 83.78% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = 0.378,  k9 = -0.224, k10 = -4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.372, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+, Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 1.427,  k9 = -0.715, k10 = -0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.257, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+, Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = -4.472,  k9 = 0.224, k10 = 4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 4.479, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+, Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 0.572,  k9 = 0.715, k10 = 0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 0.599, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = 0.378,  k9 = -0.224, k10 = -4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.372, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+, Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 1.427,  k9 = -0.715, k10 = -0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.257, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+, Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = -4.472,  k9 = 0.224, k10 = 4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 4.479, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+, Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 0.572,  k9 = 0.715, k10 = 0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 0.599, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = 0.378,  k9 = -0.224, k10 = -4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.372, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+For model BioHydrogenation: Max abs rel. err: 2.4549419680714526e12
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 1.427,  k9 = -0.715, k10 = -0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.257, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+For model BioHydrogenation: Max abs rel. err: 2.4549419680714185e12
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = -4.472,  k9 = 0.224, k10 = 4.851
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 4.479, x7(t) = 1963953574457.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+For model BioHydrogenation: Max abs rel. err: 2.4549419680714526e12
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 0.572,  k9 = 0.715, k10 = 0.856
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 0.599, x7(t) = 1963953574457.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+For model BioHydrogenation: Max abs rel. err: 2.4549419680714185e12
+Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = -0.101,  p6 = 69.636,  p7 = 5.156
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.365, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+
+Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = 5.156,  p6 = 2.319,  p7 = -0.101
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.063, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+
+  9.898106 seconds (8.90 M allocations: 574.175 MiB, 4.26% gc time, 86.13% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = -0.101,  p6 = 69.636,  p7 = 5.156
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.365, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+, Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = 5.156,  p6 = 2.319,  p7 = -0.101
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.063, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = -0.101,  p6 = 69.636,  p7 = 5.156
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.365, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+, Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = 5.156,  p6 = 2.319,  p7 = -0.101
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.063, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = -0.101,  p6 = 69.636,  p7 = 5.156
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.365, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+
+For model DAISY_ex3: Max abs rel. err: 103.40106421495425
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 p1 = -2.120,  p3 = -12.805,  p4 = 5.156,  p6 = 2.319,  p7 = -0.101
+Initial Condition(s):	x1(t) = 0.200, x2(t) = -0.057, x3(t) = 0.063, u0(t) = 0.800
+Error: 1.0596e-02
+Time: -5.0000e-01
+
+For model DAISY_ex3: Max abs rel. err: 39.454381288413714
+Parameter(s)        :	a12 = 0.167, a13 = 0.330, a21 = 0.500, a31 = 0.663, a01 = 0.839
+Initial Condition(s):	x1(t) = 0.250, x2(t) = 0.500, x3(t) = 0.757
+Error: 9.5928e-04
+Time: -5.0000e-01
+
+  7.618476 seconds (5.89 M allocations: 382.150 MiB, 2.27% gc time, 96.12% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	a12 = 0.167, a13 = 0.330, a21 = 0.500, a31 = 0.663, a01 = 0.839
+Initial Condition(s):	x1(t) = 0.250, x2(t) = 0.500, x3(t) = 0.757
+Error: 9.5928e-04
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	a12 = 0.167, a13 = 0.330, a21 = 0.500, a31 = 0.663, a01 = 0.839
+Initial Condition(s):	x1(t) = 0.250, x2(t) = 0.500, x3(t) = 0.757
+Error: 9.5928e-04
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	a12 = 0.167, a13 = 0.330, a21 = 0.500, a31 = 0.663, a01 = 0.839
+Initial Condition(s):	x1(t) = 0.250, x2(t) = 0.500, x3(t) = 0.757
+Error: 9.5928e-04
+Time: -5.0000e-01
+
+For model DAISY_mamil3: Max abs rel. err: 0.009428730015141737
+Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.381, k14 = 0.498, k21 = 0.625, k31 = 0.790, k41 = 0.836
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.615, x4(t) = 0.785
+Error: 1.6178e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.498, k14 = 0.381, k21 = 0.625, k31 = 0.836, k41 = 0.790
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.785, x4(t) = 0.615
+Error: 1.6178e-03
+Time: -5.0000e-01
+
+ 14.652093 seconds (10.32 M allocations: 656.903 MiB, 1.91% gc time, 59.78% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.381, k14 = 0.498, k21 = 0.625, k31 = 0.790, k41 = 0.836
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.615, x4(t) = 0.785
+Error: 1.6178e-03
+Time: -5.0000e-01
+, Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.498, k14 = 0.381, k21 = 0.625, k31 = 0.836, k41 = 0.790
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.785, x4(t) = 0.615
+Error: 1.6178e-03
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.381, k14 = 0.498, k21 = 0.625, k31 = 0.790, k41 = 0.836
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.615, x4(t) = 0.785
+Error: 1.6178e-03
+Time: -5.0000e-01
+, Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.498, k14 = 0.381, k21 = 0.625, k31 = 0.836, k41 = 0.790
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.785, x4(t) = 0.615
+Error: 1.6178e-03
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.381, k14 = 0.498, k21 = 0.625, k31 = 0.790, k41 = 0.836
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.615, x4(t) = 0.785
+Error: 1.6178e-03
+Time: -5.0000e-01
+
+For model DAISY_mamil4: Max abs rel. err: 0.05368794150853917
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.498, k14 = 0.381, k21 = 0.625, k31 = 0.836, k41 = 0.790
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.785, x4(t) = 0.615
+Error: 1.6178e-03
+Time: -5.0000e-01
+
+For model DAISY_mamil4: Max abs rel. err: 0.32682498339902927
+Parameter(s)        :	  g = 1.946,   a = -1.378,   b = 8.223
+Initial Condition(s):	V(t) = 0.335, R(t) = -0.202
+Error: 4.0042e-02
+Time: -5.0000e-01
+
+Parameter(s)        :	  g = 0.250,   a = 0.500,   b = 0.750
+Initial Condition(s):	V(t) = 0.333, R(t) = 0.670
+Error: 3.9937e-02
+Time: -5.0000e-01
+
+  8.094922 seconds (5.76 M allocations: 372.498 MiB, 1.76% gc time, 97.80% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	  g = 1.946,   a = -1.378,   b = 8.223
+Initial Condition(s):	V(t) = 0.335, R(t) = -0.202
+Error: 4.0042e-02
+Time: -5.0000e-01
+, Parameter(s)        :	  g = 0.250,   a = 0.500,   b = 0.750
+Initial Condition(s):	V(t) = 0.333, R(t) = 0.670
+Error: 3.9937e-02
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	  g = 1.946,   a = -1.378,   b = 8.223
+Initial Condition(s):	V(t) = 0.335, R(t) = -0.202
+Error: 4.0042e-02
+Time: -5.0000e-01
+, Parameter(s)        :	  g = 0.250,   a = 0.500,   b = 0.750
+Initial Condition(s):	V(t) = 0.333, R(t) = 0.670
+Error: 3.9937e-02
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  g = 1.946,   a = -1.378,   b = 8.223
+Initial Condition(s):	V(t) = 0.335, R(t) = -0.202
+Error: 4.0042e-02
+Time: -5.0000e-01
+
+For model fitzhugh-nagumo: Max abs rel. err: 9.964120527675119
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  g = 0.250,   a = 0.500,   b = 0.750
+Initial Condition(s):	V(t) = 0.333, R(t) = 0.670
+Error: 3.9937e-02
+Time: -5.0000e-01
+
+For model fitzhugh-nagumo: Max abs rel. err: 2.1741282859958724e-6
+ 46.089511 seconds (17.58 M allocations: 1.084 GiB, 1.29% gc time, 29.28% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[]
+ParameterEstimation.EstimationResult[]
+Parameter(s)        :	 lm = 0.091,   d = 0.181, beta = 0.273,   a = 0.364,   k = 0.455,   u = 0.545,   c = 0.636,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.333, v(t) = 0.500, w(t) = 0.667, z(t) = 0.833
+Error: 3.4330e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	 lm = 0.298,   d = 0.693, beta = -2.056,   a = 0.410,   k = -0.343,   u = 1.388,   c = 0.169,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.252, v(t) = -0.419, w(t) = 0.667, z(t) = 0.833
+Error: 3.4406e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	 lm = 0.128,   d = -0.270, beta = -0.803,   a = 0.248,   k = 0.192,   u = -0.250,   c = 0.398,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.838, v(t) = -1.005, w(t) = 0.667, z(t) = 0.833
+Error: 3.4370e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	 lm = 0.098,   d = 0.205, beta = 0.206,   a = 0.456,   k = -0.256,   u = 0.243,   c = 7.959,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.092, v(t) = 0.741, w(t) = 0.667, z(t) = 0.833
+Error: 3.4365e-03
+Time: -5.0000e-01
+
+  3.291025 seconds (2.63 M allocations: 387.886 MiB, 8.07% gc time, 2.97% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	 lm = 0.091,   d = 0.181, beta = 0.273,   a = 0.364,   k = 0.455,   u = 0.545,   c = 0.636,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.333, v(t) = 0.500, w(t) = 0.667, z(t) = 0.833
+Error: 3.4330e-03
+Time: -5.0000e-01
+, Parameter(s)        :	 lm = 0.298,   d = 0.693, beta = -2.056,   a = 0.410,   k = -0.343,   u = 1.388,   c = 0.169,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.252, v(t) = -0.419, w(t) = 0.667, z(t) = 0.833
+Error: 3.4406e-03
+Time: -5.0000e-01
+, Parameter(s)        :	 lm = 0.128,   d = -0.270, beta = -0.803,   a = 0.248,   k = 0.192,   u = -0.250,   c = 0.398,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.838, v(t) = -1.005, w(t) = 0.667, z(t) = 0.833
+Error: 3.4370e-03
+Time: -5.0000e-01
+, Parameter(s)        :	 lm = 0.098,   d = 0.205, beta = 0.206,   a = 0.456,   k = -0.256,   u = 0.243,   c = 7.959,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.092, v(t) = 0.741, w(t) = 0.667, z(t) = 0.833
+Error: 3.4365e-03
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	 lm = 0.091,   d = 0.181, beta = 0.273,   a = 0.364,   k = 0.455,   u = 0.545,   c = 0.636,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.333, v(t) = 0.500, w(t) = 0.667, z(t) = 0.833
+Error: 3.4330e-03
+Time: -5.0000e-01
+, Parameter(s)        :	 lm = 0.298,   d = 0.693, beta = -2.056,   a = 0.410,   k = -0.343,   u = 1.388,   c = 0.169,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.252, v(t) = -0.419, w(t) = 0.667, z(t) = 0.833
+Error: 3.4406e-03
+Time: -5.0000e-01
+, Parameter(s)        :	 lm = 0.128,   d = -0.270, beta = -0.803,   a = 0.248,   k = 0.192,   u = -0.250,   c = 0.398,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.838, v(t) = -1.005, w(t) = 0.667, z(t) = 0.833
+Error: 3.4370e-03
+Time: -5.0000e-01
+, Parameter(s)        :	 lm = 0.098,   d = 0.205, beta = 0.206,   a = 0.456,   k = -0.256,   u = 0.243,   c = 7.959,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.092, v(t) = 0.741, w(t) = 0.667, z(t) = 0.833
+Error: 3.4365e-03
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 lm = 0.091,   d = 0.181, beta = 0.273,   a = 0.364,   k = 0.455,   u = 0.545,   c = 0.636,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.333, v(t) = 0.500, w(t) = 0.667, z(t) = 0.833
+Error: 3.4330e-03
+Time: -5.0000e-01
+
+For model hiv: Max abs rel. err: 5.9289475298183204e-5
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 lm = 0.298,   d = 0.693, beta = -2.056,   a = 0.410,   k = -0.343,   u = 1.388,   c = 0.169,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.252, v(t) = -0.419, w(t) = 0.667, z(t) = 0.833
+Error: 3.4406e-03
+Time: -5.0000e-01
+
+For model hiv: Max abs rel. err: 8.530932417315125
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 lm = 0.128,   d = -0.270, beta = -0.803,   a = 0.248,   k = 0.192,   u = -0.250,   c = 0.398,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 1.838, v(t) = -1.005, w(t) = 0.667, z(t) = 0.833
+Error: 3.4370e-03
+Time: -5.0000e-01
+
+For model hiv: Max abs rel. err: 4.518841066633294
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 lm = 0.098,   d = 0.205, beta = 0.206,   a = 0.456,   k = -0.256,   u = 0.243,   c = 7.959,   q = 0.287,   b = 0.849,   h = 0.954
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.092, v(t) = 0.741, w(t) = 0.667, z(t) = 0.833
+Error: 3.4365e-03
+Time: -5.0000e-01
+
+For model hiv: Max abs rel. err: 11.514421988302308
+Parameter(s)        :	  a = 0.750,   b = 0.500,  nu = 0.250
+Initial Condition(s):	S(t) = 0.600, E(t) = 2.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	  a = 0.250,   b = 0.500,  nu = 0.750
+Initial Condition(s):	S(t) = 0.200, E(t) = 0.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	  a = 0.531,   b = 2.866,  nu = 0.236
+Initial Condition(s):	S(t) = -0.031, E(t) = 1.989, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	  a = 0.236,   b = 2.866,  nu = 0.531
+Initial Condition(s):	S(t) = -0.014, E(t) = 0.548, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+  9.375432 seconds (9.40 M allocations: 569.703 MiB, 2.02% gc time, 91.36% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	  a = 0.750,   b = 0.500,  nu = 0.250
+Initial Condition(s):	S(t) = 0.600, E(t) = 2.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+, Parameter(s)        :	  a = 0.250,   b = 0.500,  nu = 0.750
+Initial Condition(s):	S(t) = 0.200, E(t) = 0.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+, Parameter(s)        :	  a = 0.531,   b = 2.866,  nu = 0.236
+Initial Condition(s):	S(t) = -0.031, E(t) = 1.989, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+, Parameter(s)        :	  a = 0.236,   b = 2.866,  nu = 0.531
+Initial Condition(s):	S(t) = -0.014, E(t) = 0.548, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	  a = 0.750,   b = 0.500,  nu = 0.250
+Initial Condition(s):	S(t) = 0.600, E(t) = 2.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+, Parameter(s)        :	  a = 0.250,   b = 0.500,  nu = 0.750
+Initial Condition(s):	S(t) = 0.200, E(t) = 0.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+, Parameter(s)        :	  a = 0.531,   b = 2.866,  nu = 0.236
+Initial Condition(s):	S(t) = -0.031, E(t) = 1.989, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+, Parameter(s)        :	  a = 0.236,   b = 2.866,  nu = 0.531
+Initial Condition(s):	S(t) = -0.014, E(t) = 0.548, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  a = 0.750,   b = 0.500,  nu = 0.250
+Initial Condition(s):	S(t) = 0.600, E(t) = 2.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+For model SEIR: Max abs rel. err: 4.999538714953539
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  a = 0.250,   b = 0.500,  nu = 0.750
+Initial Condition(s):	S(t) = 0.200, E(t) = 0.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+For model SEIR: Max abs rel. err: 0.00017816980563342688
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  a = 0.531,   b = 2.866,  nu = 0.236
+Initial Condition(s):	S(t) = -0.031, E(t) = 1.989, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+For model SEIR: Max abs rel. err: 4.731987812247639
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	  a = 0.236,   b = 2.866,  nu = 0.531
+Initial Condition(s):	S(t) = -0.014, E(t) = 0.548, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+For model SEIR: Max abs rel. err: 4.73198781224764
+236.013201 seconds (17.98 M allocations: 1002.120 MiB, 0.17% gc time, 4.73% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[]
+ParameterEstimation.EstimationResult[]
+Parameter(s)        :	 k1 = 0.250,  k2 = 0.500,  eB = 0.750
+Initial Condition(s):	xA(t) = 0.166, xB(t) = 0.333, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+
+Parameter(s)        :	 k1 = 0.500,  k2 = 0.250,  eB = 0.708
+Initial Condition(s):	xA(t) = -0.167, xB(t) = 0.666, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+
+ 10.624817 seconds (7.65 M allocations: 504.779 MiB, 2.62% gc time, 88.17% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	 k1 = 0.250,  k2 = 0.500,  eB = 0.750
+Initial Condition(s):	xA(t) = 0.166, xB(t) = 0.333, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+, Parameter(s)        :	 k1 = 0.500,  k2 = 0.250,  eB = 0.708
+Initial Condition(s):	xA(t) = -0.167, xB(t) = 0.666, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	 k1 = 0.250,  k2 = 0.500,  eB = 0.750
+Initial Condition(s):	xA(t) = 0.166, xB(t) = 0.333, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+, Parameter(s)        :	 k1 = 0.500,  k2 = 0.250,  eB = 0.708
+Initial Condition(s):	xA(t) = -0.167, xB(t) = 0.666, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 k1 = 0.250,  k2 = 0.500,  eB = 0.750
+Initial Condition(s):	xA(t) = 0.166, xB(t) = 0.333, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+
+For model slowfast: Max abs rel. err: 7.746490781499016e-8
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	 k1 = 0.500,  k2 = 0.250,  eB = 0.708
+Initial Condition(s):	xA(t) = -0.167, xB(t) = 0.666, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+
+For model slowfast: Max abs rel. err: 2.006024175331674
+238.070280 seconds (23.38 M allocations: 1.693 GiB, 0.34% gc time, 5.97% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[]
+ParameterEstimation.EstimationResult[]
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.085, mu_LL = -0.028, mu_M = -0.399, mu_P = 0.540, mu_PE = 0.036, mu_PL = 0.013, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.458, rho_E = 0.857, rho_P = 0.368
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -10.944, M(t) = 12.111, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -3.491, mu_LL = 10.231, mu_M = -0.185, mu_P = 0.399, mu_PE = 0.013, mu_PL = 0.066, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.859, rho_E = 0.857, rho_P = 0.375
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.246, M(t) = 0.921, P(t) = 0.833
+Error: 1.0266e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.214, mu_LL = 0.286, mu_M = 0.357, mu_P = 0.429, mu_PE = 0.500, mu_PL = 0.571, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.929
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.500, M(t) = 0.667, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.205, mu_LL = 0.283, mu_M = 0.361, mu_P = 0.426, mu_PE = 0.467, mu_PL = 0.539, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.894
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.501, M(t) = 0.666, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.183, mu_LL = -0.278, mu_M = 0.779, mu_P = 0.396, mu_PE = 0.058, mu_PL = 0.108, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.910, rho_E = 0.857, rho_P = 0.445
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.578, M(t) = 0.589, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -4.287, mu_LL = 1.355, mu_M = 2.118, mu_P = 0.383, mu_PE = -0.023, mu_PL = 0.017, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -1.232, rho_E = 0.857, rho_P = 0.370
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.372, M(t) = -1.205, P(t) = 0.833
+Error: 1.0285e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.092, mu_LL = -0.009, mu_M = -0.588, mu_P = 0.501, mu_PE = -0.027, mu_PL = 0.016, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.747, rho_E = 0.857, rho_P = 0.240
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -11.450, M(t) = 12.617, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.537, mu_LL = -0.969, mu_M = 0.134, mu_P = 0.389, mu_PE = -0.125, mu_PL = -0.285, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 1.661, rho_E = 0.857, rho_P = 0.239
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.144, M(t) = 1.023, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.099, mu_LL = 0.243, mu_M = -0.042, mu_P = 0.329, mu_PE = 0.022, mu_PL = 0.027, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.024, rho_E = 0.857, rho_P = 0.363
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.692, M(t) = -1.525, P(t) = 0.833
+Error: 1.0261e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.007, mu_LL = -0.001, mu_M = -0.665, mu_P = 0.426, mu_PE = 0.211, mu_PL = -0.003, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.927, rho_E = 0.857, rho_P = 0.635
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -46.037, M(t) = 47.204, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+ 37.583182 seconds (23.58 M allocations: 2.077 GiB, 1.86% gc time, 41.70% compilation time)
+TYPERES: Vector{ParameterEstimation.EstimationResult}
+ParameterEstimation.EstimationResult[Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.085, mu_LL = -0.028, mu_M = -0.399, mu_P = 0.540, mu_PE = 0.036, mu_PL = 0.013, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.458, rho_E = 0.857, rho_P = 0.368
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -10.944, M(t) = 12.111, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -3.491, mu_LL = 10.231, mu_M = -0.185, mu_P = 0.399, mu_PE = 0.013, mu_PL = 0.066, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.859, rho_E = 0.857, rho_P = 0.375
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.246, M(t) = 0.921, P(t) = 0.833
+Error: 1.0266e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.214, mu_LL = 0.286, mu_M = 0.357, mu_P = 0.429, mu_PE = 0.500, mu_PL = 0.571, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.929
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.500, M(t) = 0.667, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.205, mu_LL = 0.283, mu_M = 0.361, mu_P = 0.426, mu_PE = 0.467, mu_PL = 0.539, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.894
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.501, M(t) = 0.666, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.183, mu_LL = -0.278, mu_M = 0.779, mu_P = 0.396, mu_PE = 0.058, mu_PL = 0.108, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.910, rho_E = 0.857, rho_P = 0.445
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.578, M(t) = 0.589, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -4.287, mu_LL = 1.355, mu_M = 2.118, mu_P = 0.383, mu_PE = -0.023, mu_PL = 0.017, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -1.232, rho_E = 0.857, rho_P = 0.370
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.372, M(t) = -1.205, P(t) = 0.833
+Error: 1.0285e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.092, mu_LL = -0.009, mu_M = -0.588, mu_P = 0.501, mu_PE = -0.027, mu_PL = 0.016, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.747, rho_E = 0.857, rho_P = 0.240
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -11.450, M(t) = 12.617, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.537, mu_LL = -0.969, mu_M = 0.134, mu_P = 0.389, mu_PE = -0.125, mu_PL = -0.285, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 1.661, rho_E = 0.857, rho_P = 0.239
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.144, M(t) = 1.023, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.099, mu_LL = 0.243, mu_M = -0.042, mu_P = 0.329, mu_PE = 0.022, mu_PL = 0.027, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.024, rho_E = 0.857, rho_P = 0.363
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.692, M(t) = -1.525, P(t) = 0.833
+Error: 1.0261e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.007, mu_LL = -0.001, mu_M = -0.665, mu_P = 0.426, mu_PE = 0.211, mu_PL = -0.003, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.927, rho_E = 0.857, rho_P = 0.635
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -46.037, M(t) = 47.204, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+]
+ParameterEstimation.EstimationResult[Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.085, mu_LL = -0.028, mu_M = -0.399, mu_P = 0.540, mu_PE = 0.036, mu_PL = 0.013, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.458, rho_E = 0.857, rho_P = 0.368
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -10.944, M(t) = 12.111, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -3.491, mu_LL = 10.231, mu_M = -0.185, mu_P = 0.399, mu_PE = 0.013, mu_PL = 0.066, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.859, rho_E = 0.857, rho_P = 0.375
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.246, M(t) = 0.921, P(t) = 0.833
+Error: 1.0266e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.214, mu_LL = 0.286, mu_M = 0.357, mu_P = 0.429, mu_PE = 0.500, mu_PL = 0.571, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.929
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.500, M(t) = 0.667, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.205, mu_LL = 0.283, mu_M = 0.361, mu_P = 0.426, mu_PE = 0.467, mu_PL = 0.539, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.894
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.501, M(t) = 0.666, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.183, mu_LL = -0.278, mu_M = 0.779, mu_P = 0.396, mu_PE = 0.058, mu_PL = 0.108, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.910, rho_E = 0.857, rho_P = 0.445
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.578, M(t) = 0.589, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -4.287, mu_LL = 1.355, mu_M = 2.118, mu_P = 0.383, mu_PE = -0.023, mu_PL = 0.017, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -1.232, rho_E = 0.857, rho_P = 0.370
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.372, M(t) = -1.205, P(t) = 0.833
+Error: 1.0285e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.092, mu_LL = -0.009, mu_M = -0.588, mu_P = 0.501, mu_PE = -0.027, mu_PL = 0.016, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.747, rho_E = 0.857, rho_P = 0.240
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -11.450, M(t) = 12.617, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.537, mu_LL = -0.969, mu_M = 0.134, mu_P = 0.389, mu_PE = -0.125, mu_PL = -0.285, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 1.661, rho_E = 0.857, rho_P = 0.239
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.144, M(t) = 1.023, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.099, mu_LL = 0.243, mu_M = -0.042, mu_P = 0.329, mu_PE = 0.022, mu_PL = 0.027, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.024, rho_E = 0.857, rho_P = 0.363
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.692, M(t) = -1.525, P(t) = 0.833
+Error: 1.0261e-03
+Time: -5.0000e-01
+, Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.007, mu_LL = -0.001, mu_M = -0.665, mu_P = 0.426, mu_PE = 0.211, mu_PL = -0.003, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.927, rho_E = 0.857, rho_P = 0.635
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -46.037, M(t) = 47.204, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+]
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.085, mu_LL = -0.028, mu_M = -0.399, mu_P = 0.540, mu_PE = 0.036, mu_PL = 0.013, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.458, rho_E = 0.857, rho_P = 0.368
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -10.944, M(t) = 12.111, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 22.88860482337159
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -3.491, mu_LL = 10.231, mu_M = -0.185, mu_P = 0.399, mu_PE = 0.013, mu_PL = 0.066, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.859, rho_E = 0.857, rho_P = 0.375
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.246, M(t) = 0.921, P(t) = 0.833
+Error: 1.0266e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 34.774335177271226
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.214, mu_LL = 0.286, mu_M = 0.357, mu_P = 0.429, mu_PE = 0.500, mu_PL = 0.571, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.929
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.500, M(t) = 0.667, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 0.0009110551782743197
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.205, mu_LL = 0.283, mu_M = 0.361, mu_P = 0.426, mu_PE = 0.467, mu_PL = 0.539, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.786, rho_E = 0.857, rho_P = 0.894
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.501, M(t) = 0.666, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 0.0651693582154852
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.183, mu_LL = -0.278, mu_M = 0.779, mu_P = 0.396, mu_PE = 0.058, mu_PL = 0.108, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.910, rho_E = 0.857, rho_P = 0.445
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.578, M(t) = 0.589, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 1.9722524550117118
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -4.287, mu_LL = 1.355, mu_M = 2.118, mu_P = 0.383, mu_PE = -0.023, mu_PL = 0.017, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -1.232, rho_E = 0.857, rho_P = 0.370
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.372, M(t) = -1.205, P(t) = 0.833
+Error: 1.0285e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 21.03251092306109
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.092, mu_LL = -0.009, mu_M = -0.588, mu_P = 0.501, mu_PE = -0.027, mu_PL = 0.016, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.747, rho_E = 0.857, rho_P = 0.240
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -11.450, M(t) = 12.617, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 23.89912896914298
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.537, mu_LL = -0.969, mu_M = 0.134, mu_P = 0.389, mu_PE = -0.125, mu_PL = -0.285, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 1.661, rho_E = 0.857, rho_P = 0.239
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 0.144, M(t) = 1.023, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 4.389337126205393
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.099, mu_LL = 0.243, mu_M = -0.042, mu_P = 0.329, mu_PE = 0.022, mu_PL = 0.027, delta_NE = 0.643, delta_EL = 0.714, delta_LM = -0.024, rho_E = 0.857, rho_P = 0.363
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = 2.692, M(t) = -1.525, P(t) = 0.833
+Error: 1.0261e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 4.38427552122721
+TYPE: ParameterEstimation.EstimationResult
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = 0.007, mu_LL = -0.001, mu_M = -0.665, mu_P = 0.426, mu_PE = 0.211, mu_PL = -0.003, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.927, rho_E = 0.857, rho_P = 0.635
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -46.037, M(t) = 47.204, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+For model Crauste: Max abs rel. err: 93.07339537060119

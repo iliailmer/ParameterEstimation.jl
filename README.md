@@ -17,16 +17,18 @@ Currently is installable via
 ```julia
 
 using Pkg
-Pkg.add("ParameterEstimation.jl")
+Pkg.add(url="https://github.com/orebas/ParameterEstimation.jl")
 ```
 
-or
+The production version of this fork is installable via
 
 ```julia
 
 using Pkg
-Pkg.add(url="https://github.com/iliailmer/ParameterEstimation.jl")
+Pkg.add("ParameterEstimation.jl")
 ```
+
+
 
 ## Toy Example
 

@@ -1,6 +1,6 @@
 
 function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equation}, data_sample;
-	solver = Tsit5())
+	solver = Tsit5(), abstol = 1e-12, reltol = 1e-12)
 	initial_conditions = [E[s] for s in ModelingToolkit.states(model)]
 	parameter_values = [E[p] for p in ModelingToolkit.parameters(model)]
 	tspan = (E.at_time, report_time)  #this is almost always backwards!
@@ -18,7 +18,7 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	#println("parameter values: ", parameter_values)
 	#println("midpoint initial conditions ", initial_conditions)
 	#println("saveat: ", saveat)
-	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values, saveat = saveat)
+	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values, saveat = saveat, abstol = abstol, reltol = reltol)
 
 	state_param_map = (Dict(x => replace(string(x), "(t)" => "")
 							for x in ModelingToolkit.states(model)))
@@ -63,7 +63,7 @@ end
 						interpolation_degree::Int = 1,
 						at_time::T = 0.0,
 						method = :homotopy,
-						real_tol = 1e-10) where {T <: Float}
+						real_tol = 1e-12) where {T <: Float}
 
 Estimate the parameters of a model using the data sample `data_sample` and the
 measured quantities `measured_quantities`.
@@ -79,7 +79,7 @@ measured quantities `measured_quantities`.
 - `interpolation_degree::Int = 1`: the degree of the polynomial interpolation.
 - `at_time::T = 0.0`: the time at which the parameters are estimated.
 - `method = :homotopy`: the method used for solving the polynomial system. Can be one of :homotopy (recommended) and :msolve.
-- `real_tol = 1e-10`: the tolerance for the real solutions of the polynomial system.
+- `real_tol = 1e-12`: the tolerance for the real solutions of the polynomial system.
 
 # Returns
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
@@ -93,7 +93,7 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 	interpolator = ("AAA" => aaad),
 	at_time::T = 0.0, report_time = minimum(data_sample["t"]),
 	method = :homotopy,
-	real_tol = 1e-10) where {T <: Float}
+	real_tol = 1e-12) where {T <: Float}
 	time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]  #TODO(orebas) will this break if key is missing?
 
 

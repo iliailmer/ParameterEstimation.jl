@@ -1,6 +1,13 @@
 name = "ParameterEstimation"
 uuid = "b4cd1eb8-1e24-11e8-3319-93036a3eb9f3"
-authors = ["Soo Go <sgo@gradcenter.cuny.edu>", "Hoon Hong <hong@ncsu.edu>", "Ilia Ilmer <iilmer@gradcenter.cuny.edu>", "Alexey Ovchinnikov <aovchinnikov@qc.cuny.edu>", "Pedro Soto <pedro.soto@maths.ox.ac.uk>", "Chee Yap <cyap@nyu.edu>"]
+authors = [
+    "Soo Go <sgo@gradcenter.cuny.edu>",
+    "Hoon Hong <hong@ncsu.edu>",
+    "Ilia Ilmer <iilmer@gradcenter.cuny.edu>",
+    "Alexey Ovchinnikov <aovchinnikov@qc.cuny.edu>",
+    "Pedro Soto <pedro.soto@maths.ox.ac.uk>",
+    "Chee Yap <cyap@nyu.edu>",
+]
 version = "0.2.1"
 
 [deps]
@@ -24,3 +31,19 @@ Suppressor = "fd094767-a336-5f1f-9728-57cf17d0bbfb"
 Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
 TaylorDiff = "b36ab563-344f-407b-a36a-4f200bebf99c"
 TaylorSeries = "6aa5eb33-94cf-58f4-a9d0-e4b2c4fc25ea"
+
+
+[compat]
+DifferentialEquations = "7"
+Groebner = "0.2 - 0.7"
+HomotopyContinuation = "2"
+LinearSolve = "2"
+ModelingToolkit = "8"
+OrderedCollections = "1"
+Oscar = "0.10 - 0.30"
+ProgressMeter = "1"
+SIAN = "1 - 2"
+StructuralIdentifiability = "0.4.9 - 0.4.30"
+Symbolics = "4, 5,6"
+TaylorSeries = "0.12 - 0.30"
+julia = "1"

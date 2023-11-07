@@ -75,8 +75,8 @@ function check_inputs(measured_quantities::Vector{ModelingToolkit.Equation} = Ve
 	#end
 end
 
-to_real(x::Number; tol = 1e-10) = abs(imag(x)) < tol ? real(x) : x
-function to_exact(x::Number; tol = 1e-10)
+to_real(x::Number; tol = 1e-12) = abs(imag(x)) < tol ? real(x) : x
+function to_exact(x::Number; tol = 1e-12)
 	r = abs(real(x)) < tol ? 0 : real(x)
 	i = abs(imag(x)) < tol ? 0 : imag(x)
 	if i == 0
@@ -95,7 +95,7 @@ function sample_data(model::ModelingToolkit.ODESystem,
 	uneven_sampling = false,
 	uneven_sampling_times = Vector{T}(),
 	solver = Tsit5(), inject_noise = false, mean_noise = 0,
-	stddev_noise = 1) where {T <: Float}
+	stddev_noise = 1, abstol = 1e-12, reltol = 1e-12) where {T <: Float}
 	if uneven_sampling
 		if length(uneven_sampling_times) == 0
 			error("No uneven sampling times provided")
@@ -110,7 +110,7 @@ function sample_data(model::ModelingToolkit.ODESystem,
 	problem = ODEProblem(model, u0, time_interval, p_true)
 	solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
 		saveat = sampling_times;
-		abstol = 1e-10, reltol = 1e-10)
+		abstol, reltol)
 	data_sample = OrderedDict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]
 											  for v in measured_data)
 	if inject_noise
