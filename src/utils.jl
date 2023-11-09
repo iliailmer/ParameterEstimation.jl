@@ -95,7 +95,7 @@ function sample_data(model::ModelingToolkit.ODESystem,
 	uneven_sampling = false,
 	uneven_sampling_times = Vector{T}(),
 	solver = Tsit5(), inject_noise = false, mean_noise = 0,
-	stddev_noise = 1, abstol = 1e-12, reltol = 1e-12) where {T <: Float}
+	stddev_noise = 1, abstol = 1e-13, reltol = 1e-13) where {T <: Number}
 	if uneven_sampling
 		if length(uneven_sampling_times) == 0
 			error("No uneven sampling times provided")

@@ -19,6 +19,7 @@ using PrecompileTools
 	import StructuralIdentifiability: eval_at_nemo, ODE
 	using BaryRational
 	using ForwardDiff
+	using ArbNumerics
 
 end
 Float = Union{Float64, Float32, Float16}
