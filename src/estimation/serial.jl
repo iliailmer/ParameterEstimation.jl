@@ -12,17 +12,17 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 		interpolators = Dict(
 			"AAA" => aaad,
 			"FHD3" => fhdn(3),
-			#"Fourier" => FourierInterp,
-			#"BaryLagrange" => BarycentricLagrange,
+			"Fourier" => FourierInterp,
+			"BaryLagrange" => BarycentricLagrange,
 		)
-		#if (datasize > 10)
-		#	interpolators["FHD8"] = fhdn(8)
-		#	interpolators["FHD6"] = fhdn(6)
-		#	stepsize = max(1, datasize ÷ 4)
-		#	for i in range(1, (datasize - 2), step = stepsize)
-		#		interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
-		#		end
-		#	end
+		if (datasize > 10)
+			interpolators["FHD8"] = fhdn(8)
+			interpolators["FHD6"] = fhdn(6)
+			stepsize = max(1, datasize ÷ 4)
+			for i in range(1, (datasize - 2), step = stepsize)
+				interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
+			end
+		end
 	end
 	id = ParameterEstimation.check_identifiability(model;
 		measured_quantities = measured_quantities,

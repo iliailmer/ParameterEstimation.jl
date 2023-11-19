@@ -28,6 +28,46 @@ function check_constraints(estimate, parameter_constraints, ic_constraints)
 end
 
 
+function compare_estimation_results(a, b)
+	err = 0.0
+	akeys = keys(a.states)
+	bkeys = keys(b.states)
+	for i in akeys
+		if i in bkeys
+			err = max(err, abs(a.states[i] - b.states[i]))
+		else
+			return 1.0e10
+		end
+	end
+	akeysp = keys(a.parameters)
+	bkeysp = keys(b.parameters)
+	for j in akeysp
+		if j in bkeysp
+			err = max(err, abs(a.parameters[j] - b.parameters[j]))
+		else
+			return 1.0e10
+		end
+	end
+	return err
+end
+
+function new_clustering(estimates, tol = 1e-3)
+	new_estimates = []
+	for e in estimates
+		keep = true
+		for f in new_estimates
+			if (((abs(e.err - f.err)) < tol) && (compare_estimation_results(e, f) < tol))
+				keep = false
+			end
+		end
+		if (keep)
+			push!(new_estimates, e)
+		end
+
+	end
+	return new_estimates
+end
+
 function post_process(estimates, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing)
 	if Threads.nthreads() > 1
 		estimates = filter(x -> !isnothing(x), estimates)
@@ -41,7 +81,9 @@ function post_process(estimates, filtermode = :new, parameter_constraints = noth
 		estimates = collect(Iterators.flatten(estimates))
 		estimates = filter(x -> check_constraints(x, parameter_constraints, ic_constraints), estimates)
 		estimates = sort(estimates, by = x -> x.err)
-		return estimates
+
+		estimates_clustered_by_params = new_clustering(estimates, 1e-2)
+		return estimates_clustered_by_params
 	else
 		best_solution = nothing
 		for each in estimates

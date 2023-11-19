@@ -29,7 +29,7 @@ struct EstimationResult
 		poly_sol::AbstractDict, degree,
 		at_time::Float64,
 		interpolants::AbstractDict{Any, Interpolant},
-		return_code, datasize)
+		return_code, datasize, report_time)
 		parameters = OrderedDict{Any, Any}()
 		states = OrderedDict{Any, Any}()
 		for p in ModelingToolkit.parameters(model)
@@ -39,7 +39,7 @@ struct EstimationResult
 			states[ModelingToolkit.Num(s)] = get(poly_sol, s, nothing)
 		end
 		new(parameters, states, degree, at_time, nothing, interpolants, return_code,
-			datasize)
+			datasize,report_time)
 	end
 	function EstimationResult(parameters::AbstractDict, states::AbstractDict, degree,
 		at_time::Float64, err, interpolants, return_code, datasize, report_time::Float64)

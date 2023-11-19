@@ -1,6 +1,6 @@
 using ParameterEstimation
 using ModelingToolkit, DifferentialEquations
-solver = Tsit5()
+solver = Vern9()
 
 @parameters mu_N mu_EE mu_LE mu_LL mu_M mu_P mu_PE mu_PL delta_NE delta_EL delta_LM rho_E rho_P
 @variables t N(t) E(t) S(t) M(t) P(t) y1(t) y2(t) y3(t) y4(t)
@@ -36,9 +36,9 @@ measured_quantities = [y1 ~ N, y2 ~ E, y3 ~ S + M, y4 ~ P]
 
 ic = [1.0, 1.0, 1.0, 1.0, 1.0]
 time_interval = [-0.5, 0.5]
-datasize = 20
+datasize = 21
 p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] # True Parameters
 data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
-	p_true, ic, datasize; solver = solver)
+	p_true, ic, datasize; solver = solver, abstol = 1.0e-14, reltol = 1.0e-14)
 res = ParameterEstimation.estimate(model, measured_quantities, data_sample;
 	solver = solver)

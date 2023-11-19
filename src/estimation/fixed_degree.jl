@@ -126,7 +126,7 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 	#println(all_solutions)
 	#println("HERE")
 	all_solutions = [EstimationResult(model, each, interpolator.first, at_time,
-		interpolants, ReturnCode.Success, datasize)
+		interpolants, ReturnCode.Success, datasize, report_time)
 					 for each in all_solutions]
 
 	all_solutions_R = [backsolve_initial_conditions(model, each, report_time, inputs, data_sample)
