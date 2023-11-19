@@ -40,7 +40,7 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	end
 	#println("startpoint initial conditions: ", newstates)
 	ER = EstimationResult(E.parameters, newstates, E.degree, report_time,
-		E.err, E.interpolants, E.return_code, E.datasize)
+		E.err, E.interpolants, E.return_code, E.datasize, report_time)
 	#	println(ER.parameters)
 	#	println("TEST")
 	#	println(ER.states)

@@ -51,12 +51,12 @@ function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, 
 		EstimationResult(estimate.parameters, estimate.states,
 			estimate.degree, estimate.at_time, err,
 			estimate.interpolants, estimate.return_code,
-			estimate.datasize)
+			estimate.datasize, estimate.report_time)
 	else
 		return EstimationResult(estimate.parameters, estimate.states,
 			estimate.degree, estimate.at_time, err,
 			estimate.interpolants, estimate.return_code,
-			estimate.datasize)
+			estimate.datasize, estimate.report_time)
 	end
 end
 
@@ -68,7 +68,7 @@ This is done in-place.
 """
 function solve_ode!(model, estimates::Vector{EstimationResult}, inputs::Vector{Equation},
 	data_sample; solver = Tsit5(), abstol = 1e-12, reltol = 1e-12)
-	estimates[:] = map(each -> solve_ode(model, each, inputs, data_sample, solver = solver, abstol, reltol),
+	estimates[:] = map(each -> solve_ode(model, each, inputs, data_sample, solver = solver, abstol = abstol, reltol = reltol),
 		estimates)
 end
 
@@ -119,6 +119,7 @@ function filter_solutions(results::Vector{EstimationResult},
 	try
 		solve_ode!(model, results, inputs, data_sample; solver = solver, abstol = abstol, reltol = reltol) # this solves ODE with new parameters and computes err. between sample and solution
 	catch InexactError
+		println("Inexact error")
 		@debug "InexactError when solving the ODE, no filtering was done."
 		return results
 	end

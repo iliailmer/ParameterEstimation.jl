@@ -52,6 +52,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 			interpolators = interpolators, method = method,
 			real_tol = real_tol, filtermode, parameter_constraints = parameter_constraints, ic_constraints = ic_constraints)
 	end
+	println("Final Results:")
 	for each in result
 
 		display(each)

@@ -38,7 +38,7 @@ function estimate_threaded(model, measured_quantities, inputs, data_sample;
 				[
 					EstimationResult(model, Dict(), deg, at_time,
 						Dict{Any, Interpolant}(), ReturnCode.Failure,
-						datasize),
+						datasize, report_time),
 				])
 		end
 	end

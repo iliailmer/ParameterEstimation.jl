@@ -11,20 +11,28 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	if interpolators === nothing
 		interpolators = Dict(
 			"AAA" => aaad,
-			#"FHD3" => fhdn(3),
-			#"FHD6" => fhdn(6),
-			#	"FHD8" => fhdn(8), "Fourier" => FourierInterp,
-			#"BaryLagrange" => BarycentricLagrange)
+			"FHD3" => fhdn(3),
+			#"Fourier" => FourierInterp,
+			#"BaryLagrange" => BarycentricLagrange,
 		)
-		#stepsize = max(1, datasize ÷ 4)
-		#for i in range(1, (datasize - 2), step = stepsize)
-		#	interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
-		#end
+		#if (datasize > 10)
+		#	interpolators["FHD8"] = fhdn(8)
+		#	interpolators["FHD6"] = fhdn(6)
+		#	stepsize = max(1, datasize ÷ 4)
+		#	for i in range(1, (datasize - 2), step = stepsize)
+		#		interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
+		#		end
+		#	end
 	end
 	id = ParameterEstimation.check_identifiability(model;
 		measured_quantities = measured_quantities,
 		inputs = [Num(each.lhs)
 				  for each in inputs])
+	#println("DEBUG ID")
+	#println(id)
+	#println(id["polynomial_system"])
+	#println(id["polynomial_system_to_solve"])
+	#println("DEBUG ID END")
 	estimates = Vector{Vector{ParameterEstimation.EstimationResult}}()
 	@info "Estimating via the interpolators: $(keys(interpolators))"
 	@showprogress for interpolator in interpolators
@@ -41,10 +49,10 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 				[
 					EstimationResult(model, Dict(), interpolator, at_time,
 						Dict{Any, Interpolant}(),
-						ReturnCode.Failure, datasize),
+						ReturnCode.Failure, datasize, report_time),
 				])
 		end
 	end
-	return post_process(estimates, filtermode,parameter_constraints, ic_constraints)
+	return post_process(estimates, filtermode, parameter_constraints, ic_constraints)
 end
 

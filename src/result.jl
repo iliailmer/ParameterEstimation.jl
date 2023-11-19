@@ -24,6 +24,7 @@ struct EstimationResult
 	interpolants::Union{Nothing, AbstractDict{Any, Interpolant}}
 	return_code::Any
 	datasize::Int64
+	report_time::Any
 	function EstimationResult(model::ModelingToolkit.ODESystem,
 		poly_sol::AbstractDict, degree,
 		at_time::Float64,
@@ -41,8 +42,8 @@ struct EstimationResult
 			datasize)
 	end
 	function EstimationResult(parameters::AbstractDict, states::AbstractDict, degree,
-		at_time::Float64, err, interpolants, return_code, datasize)
-		new(parameters, states, degree, at_time, err, interpolants, return_code, datasize)
+		at_time::Float64, err, interpolants, return_code, datasize, report_time::Float64)
+		new(parameters, states, degree, at_time, err, interpolants, return_code, datasize, report_time)
 	end
 end
 
@@ -59,12 +60,18 @@ function Base.getindex(sol::EstimationResult, k)
 end
 
 function Base.show(io::IO, e::EstimationResult)
+	if (!isnothing(e.report_time))
+		report_time_string = @sprintf(", where t = %.3f", e.report_time)
+	else
+		report_time_string = ""
+	end
+
 	if any(isnothing.(values(e.parameters)))
 		println(io, "Parameter(s)        :\t",
 			join([@sprintf("%3s = %3s", k, v) for (k, v) in pairs(e.parameters)],
 				", "))
 		println(io, "Initial Condition(s):\t",
-			join([@sprintf("%3s = %3s", k, v) for (k, v) in pairs(e.states)], ", "))
+			join([@sprintf("%3s = %3s", k, v) for (k, v) in pairs(e.states)], ", "), report_time_string)
 	elseif !all(isreal.(values(e.parameters)))
 		println(io, "Parameter(s)        :\t",
 			join([@sprintf("%3s = %.3f+%.3fim", k, real(v), imag(v))
@@ -72,13 +79,13 @@ function Base.show(io::IO, e::EstimationResult)
 				", "))
 		println(io, "Initial Condition(s):\t",
 			join([@sprintf("%3s = %.3f+%.3fim", k, real(v), imag(v))
-				  for (k, v) in pairs(e.states)], ", "))
+				  for (k, v) in pairs(e.states)], ", "), report_time_string)
 	else
 		println(io, "Parameter(s)        :\t",
 			join([@sprintf("%3s = %.3f", k, v) for (k, v) in pairs(e.parameters)],
 				", "))
 		println(io, "Initial Condition(s):\t",
-			join([@sprintf("%3s = %.3f", k, v) for (k, v) in pairs(e.states)], ", "))
+			join([@sprintf("%3s = %.3f", k, v) for (k, v) in pairs(e.states)], ", "), report_time_string)
 	end
 	# println(io, "Interpolation Degree (numerator): ", e.degree)
 	# println(io, "Interpolation Degree (denominator): ", e.datasize - e.degree - 1)

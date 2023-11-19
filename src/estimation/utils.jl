@@ -40,6 +40,7 @@ function post_process(estimates, filtermode = :new, parameter_constraints = noth
 	if (filtermode == :new)
 		estimates = collect(Iterators.flatten(estimates))
 		estimates = filter(x -> check_constraints(x, parameter_constraints, ic_constraints), estimates)
+		estimates = sort(estimates, by = x -> x.err)
 		return estimates
 	else
 		best_solution = nothing
