@@ -82,7 +82,8 @@ function post_process(estimates, filtermode = :new, parameter_constraints = noth
 		estimates = filter(x -> check_constraints(x, parameter_constraints, ic_constraints), estimates)
 		estimates = sort(estimates, by = x -> x.err)
 
-		estimates_clustered_by_params = new_clustering(estimates, 1e-2)
+		estimates_clustered_by_params = new_clustering(estimates, 1e-2)  #TODO(orebas): this is a magic number.
+		estimates_clustered_by_params = filter(x -> (x.err < 1.0), estimates_clustered_by_params)  #also a magic number
 		return estimates_clustered_by_params
 	else
 		best_solution = nothing

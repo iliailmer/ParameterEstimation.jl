@@ -94,11 +94,11 @@ function Base.show(io::IO, e::EstimationResult)
 	else
 		println(io, "Error: ", @sprintf("%.4e", e.err))
 	end
-	if isnothing(e.at_time)
-		println(io, "Time: Not specified")
-	else
-		println(io, "Time: ", @sprintf("%.4e", e.at_time))
-	end
+#	if isnothing(e.at_time)
+#		println(io, "Time: Not specified")
+#	else
+#		println(io, "Time: ", @sprintf("%.4e", e.at_time))
+#	end
 	# end
 	# println(io, "Return Code: ", e.return_code)
 end
