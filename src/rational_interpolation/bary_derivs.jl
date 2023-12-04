@@ -1,6 +1,6 @@
 """
 	rational_interpolation_coefficients(x, y, n)
-CODE COPIED FROM ParameterEstimation.jl
+CODE COPIED FROM previous version of ParameterEstimation.jl
 Perform a rational interpolation of the data `y` at the points `x` with numerator degree `n`.
 This function only returns the coefficients of the numerator and denominator polynomials.
 

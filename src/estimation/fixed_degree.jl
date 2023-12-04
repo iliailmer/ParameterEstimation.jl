@@ -1,6 +1,6 @@
 
 function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equation}, data_sample;
-	solver = Tsit5(), abstol = 1e-12, reltol = 1e-12)
+	solver = Vern9(), abstol = 1e-14, reltol = 1e-14)
 	initial_conditions = [E[s] for s in ModelingToolkit.states(model)]
 	parameter_values = [E[p] for p in ModelingToolkit.parameters(model)]
 	tspan = (E.at_time, report_time)  #this is almost always backwards!
@@ -91,9 +91,9 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 		Vector{T}}();
 	identifiability_result = Dict{String, Any}(),
 	interpolator = ("AAA" => aaad),
-	at_time::T = 0.0, report_time = minimum(data_sample["t"]),
+	at_time::T, report_time = minimum(data_sample["t"]),
 	method = :homotopy,
-	real_tol = 1e-12) where {T <: Float}
+	real_tol = 1e-14) where {T <: Float}
 	time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"])]  #TODO(orebas) will this break if key is missing?
 
 

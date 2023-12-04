@@ -14,6 +14,8 @@ the error between the estimated ODE solution and the sample data, and the return
 - `interpolants::Union{Nothing, Dict{Any, Interpolant}}`: The rational interpolants used to estimate the parameters and initial conditions.
 - `return_code::Any`: The return code of the estimation.
 - `datasize::Int64`: The number of data points used in the estimation.
+- `report_time::Any`: The time at which the initial conditions are reported (usually the leftmost point in the time span).
+
 """
 struct EstimationResult
 	parameters::AbstractDict
@@ -39,7 +41,7 @@ struct EstimationResult
 			states[ModelingToolkit.Num(s)] = get(poly_sol, s, nothing)
 		end
 		new(parameters, states, degree, at_time, nothing, interpolants, return_code,
-			datasize,report_time)
+			datasize, report_time)
 	end
 	function EstimationResult(parameters::AbstractDict, states::AbstractDict, degree,
 		at_time::Float64, err, interpolants, return_code, datasize, report_time::Float64)
@@ -94,11 +96,11 @@ function Base.show(io::IO, e::EstimationResult)
 	else
 		println(io, "Error: ", @sprintf("%.4e", e.err))
 	end
-#	if isnothing(e.at_time)
-#		println(io, "Time: Not specified")
-#	else
-#		println(io, "Time: ", @sprintf("%.4e", e.at_time))
-#	end
+	#	if isnothing(e.at_time)
+	#		println(io, "Time: Not specified")
+	#	else
+	#		println(io, "Time: ", @sprintf("%.4e", e.at_time))
+	#	end
 	# end
 	# println(io, "Return Code: ", e.return_code)
 end

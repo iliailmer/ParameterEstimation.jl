@@ -2,9 +2,9 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 	measured_quantities::Vector{ModelingToolkit.Equation},
 	inputs::Vector{ModelingToolkit.Equation},
 	data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
-	at_time::T = 0.0, solver = Tsit5(), interpolators = nothing, report_time = minimum(data_sample["t"]),
+	at_time::T, solver = Vern9(), interpolators = nothing, report_time = minimum(data_sample["t"]),
 	method = :homotopy,
-	real_tol::Float64 = 1e-10, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing) where {T <: Float}
+	real_tol::Float64 = 1e-14, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing) where {T <: Float}
 	check_inputs(measured_quantities, data_sample)
 	datasize = length(first(values(data_sample)))
 
@@ -12,16 +12,16 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
 		interpolators = Dict(
 			"AAA" => aaad,
 			"FHD3" => fhdn(3),
-			"Fourier" => FourierInterp,
-			"BaryLagrange" => BarycentricLagrange,
+			#			"Fourier" => FourierInterp,
+			#			"BaryLagrange" => BarycentricLagrange,
 		)
 		if (datasize > 10)
 			interpolators["FHD8"] = fhdn(8)
-			interpolators["FHD6"] = fhdn(6)
-			stepsize = max(1, datasize ÷ 4)
-			for i in range(1, (datasize - 2), step = stepsize)
-				interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
-			end
+			#			interpolators["FHD6"] = fhdn(6)
+			#stepsize = max(1, datasize ÷ 4)
+			#for i in range(1, (datasize - 2), step = stepsize)
+			#	interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
+			#end
 		end
 	end
 	id = ParameterEstimation.check_identifiability(model;

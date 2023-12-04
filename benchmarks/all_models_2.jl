@@ -14,7 +14,7 @@ struct ParameterEstimationProblem
 end
 
 
-function biohydrogenation(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function biohydrogenation(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 	@parameters k5 k6 k7 k8 k9 k10
 	@variables t x4(t) x5(t) x6(t) x7(t) y1(t) y2(t)
 	D = Differential(t)
@@ -40,7 +40,7 @@ function biohydrogenation(datasize = 21, time_interval = [-0.5, 0.5], solver = T
 	return ParameterEstimationProblem("BioHydrogenation", model, measured_quantities, data_sample, solver, p_true, ic)
 end
 
-function crauste(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function crauste(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 	@parameters mu_N mu_EE mu_LE mu_LL mu_M mu_P mu_PE mu_PL delta_NE delta_EL delta_LM rho_E rho_P
 	@variables t N(t) E(t) S(t) M(t) P(t) y1(t) y2(t) y3(t) y4(t)
 	D = Differential(t)
@@ -82,7 +82,7 @@ function crauste(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
 end
 
 
-function daisy_ex3(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function daisy_ex3(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 
 	@parameters p1 p3 p4 p6 p7
 	@variables t x1(t) x2(t) x3(t) u0(t) y1(t) y2(t)
@@ -113,7 +113,7 @@ end
 
 
 
-function daisy_mamil3(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function daisy_mamil3(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 	@parameters a12 a13 a21 a31 a01
 	@variables t x1(t) x2(t) x3(t) y1(t) y2(t)
 	D = Differential(t)
@@ -137,7 +137,7 @@ function daisy_mamil3(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5
 end
 
 
-function daisy_mamil4(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function daisy_mamil4(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 
 	@parameters k01, k12, k13, k14, k21, k31, k41
 	@variables t x1(t) x2(t) x3(t) x4(t) y1(t) y2(t) y3(t)
@@ -163,7 +163,7 @@ function daisy_mamil4(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5
 end
 
 
-function fitzhugh_nagumo(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function fitzhugh_nagumo(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 	@parameters g a b
 	@variables t V(t) R(t) y1(t) y2(t)
 	D = Differential(t)
@@ -188,7 +188,7 @@ end
 
 
 
-function hiv_local(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function hiv_local(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 
 	@parameters b c d k1 k2 mu1 mu2 q1 q2 s
 	@variables t x1(t) x2(t) x3(t) x4(t) y1(t) y2(t)
@@ -218,7 +218,7 @@ function hiv_local(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
 end
 
 
-function hiv(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function hiv(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 
 	@parameters lm d beta a k u c q b h
 	@variables t x(t) y(t) v(t) w(t) z(t) y1(t) y2(t) y3(t) y4(t)
@@ -248,7 +248,7 @@ end
 
 
 
-function lotka_volterra(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function lotka_volterra(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 	@parameters k1 k2 k3
 	@variables t r(t) w(t) y1(t)
 	D = Differential(t)
@@ -270,7 +270,7 @@ function lotka_volterra(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsi
 end
 
 
-function seir(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function seir(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 
 	@parameters a b nu
 	@variables t S(t) E(t) In(t) N(t) y1(t) y2(t)
@@ -301,7 +301,7 @@ end
 
 
 
-function simple(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function simple(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 
 	@parameters a b
 	@variables t x1(t) x2(t) y1(t) y2(t)
@@ -358,7 +358,7 @@ function sirsforced(datasize = 21, time_interval = [-0.5, 0.5], solver = Rodas5P
 
 end
 
-function slowfast(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())  # TODO(orebas):in the old code it was CVODE_BDF.  should we go back to that?
+function slowfast(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())  # TODO(orebas):in the old code it was CVODE_BDF.  should we go back to that?
 	#solver = CVODE_BDF()
 	@parameters k1 k2 eB
 	@variables t xA(t) xB(t) xC(t) eA(t) eC(t) y1(t) y2(t) y3(t) y4(t) #eA(t) eC(t)
@@ -383,7 +383,7 @@ function slowfast(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5()) 
 
 end
 
-function treatment(datasize = 21, time_interval = [-0.5, 0.5], solver = Rodas5P())  #note the solver.  Tsit5 apparently can't handle mass matrices
+function treatment(datasize = 21, time_interval = [-0.5, 0.5], solver = Rodas5P())  #note the solver.  Vern9 apparently can't handle mass matrices
 	@parameters a b d g nu
 	@variables t In(t) N(t) S(t) Tr(t) y1(t) y2(t)
 	D = Differential(t)
@@ -410,7 +410,7 @@ function treatment(datasize = 21, time_interval = [-0.5, 0.5], solver = Rodas5P(
 end
 
 
-function vanderpol(datasize = 21, time_interval = [-0.5, 0.5], solver = Tsit5())
+function vanderpol(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
 
 	@parameters a b
 	@variables t x1(t) x2(t) y1(t) y2(t)
@@ -437,33 +437,36 @@ end
 
 function analyze_parameter_estimation_problem(PEP::ParameterEstimationProblem)
 
-	interpolators = Dict(
-		"AAA" => ParameterEstimation.aaad,
-		#"FHD3" => ParameterEstimation.fhdn(3),
-		#"FHD6" => ParameterEstimation.fhdn(6),
-		#"FHD8" => ParameterEstimation.fhdn(8),
-		#"Fourier" => ParameterEstimation.FourierInterp,
-	)
+	#interpolators = Dict(
+	#"AAA" => ParameterEstimation.aaad,
+	#"FHD3" => ParameterEstimation.fhdn(3),
+	#"FHD6" => ParameterEstimation.fhdn(6),
+	#"FHD8" => ParameterEstimation.fhdn(8),
+	#"Fourier" => ParameterEstimation.FourierInterp,
+	#)
 	datasize = 21 #TODO(Orebas) magic number
 
-	stepsize = max(1, datasize ÷ 8)
+	#stepsize = max(1, datasize ÷ 8)
 	#for i in range(1, (datasize - 2), step = stepsize)
 	#	interpolators["RatOld($i)"] = ParameterEstimation.SimpleRationalInterpOld(i)
 	#end
 
-	@time res = ParameterEstimation.estimate(PEP.model, PEP.measured_quantities, PEP.data_sample;
-		solver = PEP.solver, interpolators)
+	@time res = ParameterEstimation.estimate(PEP.model, PEP.measured_quantities, PEP.data_sample,
+		solver = PEP.solver) #   , interpolators)
 	all_params = vcat(PEP.ic, PEP.p_true)
-	println("TYPERES: ", typeof(res))
-	println(res)
+	#println("TYPERES: ", typeof(res))
+	#println(res)
 
-	println(res)
+	#println(res)
+	besterror = 1e30
 	for each in res
-		println("TYPE: ", typeof(each))
-		println(each)
+		#println("TYPE: ", typeof(each))
+		#println(each)
 		estimates = vcat(collect(values(each.states)), collect(values(each.parameters)))
-		println("For model ", PEP.Name, ": Max abs rel. err: ", maximum(abs.((estimates .- all_params) ./ (all_params))))
+		besterror = min(besterror, maximum(abs.((estimates .- all_params) ./ (all_params))))
 	end
+	println("For model ", PEP.Name, ": The best max abs rel. err: ", besterror)
+
 end
 
 
@@ -480,18 +483,18 @@ end
 
 function main()
 	datasize = 21
-	solver = Tsit5()
+	solver = Vern9()
 	#solver = Rodas4P()
 	time_interval = [-0.5, 0.5]
 	for PEP in [
-		simple(datasize, time_interval, solver),
-		lotka_volterra(datasize, time_interval, solver),
-		vanderpol(datasize, time_interval, solver),
-		biohydrogenation(datasize, time_interval, solver),
-		daisy_ex3(datasize, time_interval, solver),
+		simple(datasize, time_interval, solver),  #works
+		lotka_volterra(datasize, time_interval, solver),  #works
+		vanderpol(datasize, time_interval, solver),  #works
+		biohydrogenation(datasize, time_interval, solver),  #works, but one param unidentifiable
+		#daisy_ex3(datasize, time_interval, solver),
 		daisy_mamil3(datasize, time_interval, solver),
 		daisy_mamil4(datasize, time_interval, solver),
-		fitzhugh_nagumo(datasize, time_interval, solver),
+		#fitzhugh_nagumo(datasize, time_interval, solver),
 		hiv_local(datasize, time_interval, solver),
 		hiv(datasize, time_interval, solver),
 		seir(datasize, time_interval, solver),

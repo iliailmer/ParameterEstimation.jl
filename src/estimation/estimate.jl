@@ -29,9 +29,10 @@ function estimate(model::ModelingToolkit.ODESystem,
 	measured_quantities::Vector{ModelingToolkit.Equation},
 	data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
 	inputs::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation}(),
-	at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
+	at_time::T = data_sample["t"][fld(length((data_sample["t"])), 2)],  #uses something akin to a midpoint by default
+	method = :homotopy, solver = Vern9(),
 	report_time = minimum(data_sample["t"]),
-	interpolators = nothing, real_tol = 1e-12,
+	interpolators = nothing, real_tol = 1e-14,
 	threaded = Threads.nthreads() > 1, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing) where {T <: Float}
 
 	#println("DEBUG")

@@ -94,8 +94,8 @@ function sample_data(model::ModelingToolkit.ODESystem,
 	num_points::Int;
 	uneven_sampling = false,
 	uneven_sampling_times = Vector{T}(),
-	solver = Tsit5(), inject_noise = false, mean_noise = 0,
-	stddev_noise = 1, abstol = 1e-13, reltol = 1e-13) where {T <: Number}
+	solver = Vern9(), inject_noise = false, mean_noise = 0,
+	stddev_noise = 1, abstol = 1e-14, reltol = 1e-14) where {T <: Number}
 	if uneven_sampling
 		if length(uneven_sampling_times) == 0
 			error("No uneven sampling times provided")
