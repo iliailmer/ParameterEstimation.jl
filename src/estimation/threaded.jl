@@ -1,46 +1,50 @@
-function estimate_threaded(model, measured_quantities, inputs, data_sample;
-	at_time::Float = 0.0, solver = solver,
-	degree_range = degree_range,
-	method = :homotopy, real_tol::Float64 = 1e-12)
+function estimate_threaded(model::ModelingToolkit.ODESystem,
+	 measured_quantities::Vector{ModelingToolkit.Equation},
+	 inputs::Vector{ModelingToolkit.Equation},
+	 data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
+	 at_time::T, solver = Vern9(), interpolators = nothing, report_time = minimum(data_sample["t"]),
+	 method = :homotopy, real_tol::Float64 = 1e-14,filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing) where {T <: Float}
 	@warn "Using threaded estimation."
 	check_inputs(measured_quantities, data_sample)
 	datasize = length(first(values(data_sample)))
-	if isnothing(degree_range)
-		degree_range = 1:(length(data_sample[first(keys(data_sample))])-1)
-	end
+	
+    if isnothing(interpolators) === nothing
+        interpolators = default_interpolator(datasize)
+    end
 
-	identifiability_result = ParameterEstimation.check_identifiability(model;
-		measured_quantities = measured_quantities,
-		inputs = [Num(each.lhs)
-				  for each in inputs])
+	id = ParameterEstimation.check_identifiability(model;
+	measured_quantities = measured_quantities,
+	inputs = [Num(each.lhs)
+			  for each in inputs])
+estimates = Vector{Vector{ParameterEstimation.EstimationResult}}()
+@info "Estimating via the interpolators: $(keys(interpolators))"
 	n_threads = Threads.nthreads()
-	N = length(degree_range)
+	N = length(interpolators)
 	estimates = Vector{Any}(nothing, n_threads)
-	@info "Estimating via rational interpolation with degrees between $(degree_range[1]) and $(degree_range[end]) using $n_threads threads"
 	Threads.@threads :static for t in 1:N
-		deg = degree_range[t]
+		interp = interp[t]
 		id = Threads.threadid()
 		if isnothing(estimates[id])
 			estimates[id] = []
 		end
 		unfiltered = estimate_single_interpolator(model, measured_quantities, inputs, data_sample;
-			identifiability_result = identifiability_result,
-			interpolation_degree = deg, at_time = at_time,
+			identifiability_result = id,
+			interpolator=interp, at_time = at_time, report_time,
 			method = method,
 			real_tol = real_tol)
 		if length(unfiltered) > 0
-			filtered = filter_solutions(unfiltered, identifiability_result, model, inputs,
-				data_sample; solver = solver)
+			filtered = filter_solutions(unfiltered, id, model, inputs,
+				data_sample; solver = solver, filtermode)
 			push!(estimates[id], filtered)
 
 		else
 			push!(estimates[id],
 				[
-					EstimationResult(model, Dict(), deg, at_time,
+					EstimationResult(model, Dict(), interp, at_time,
 						Dict{Any, Interpolant}(), ReturnCode.Failure,
 						datasize, report_time),
 				])
 		end
 	end
-	return post_process(estimates)
+	return post_process(estimates,filtermode,parameter_constraints,ic_constraints)
 end

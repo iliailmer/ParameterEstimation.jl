@@ -17,9 +17,9 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 - `at_time::T = 0.0`: the time used for derivative computation;
 - `report_time = nothing`: specify a time T, at which the initial conditions (state variables) will be estimated.  If "nothing", use the leftmost time.
 - `method = :homotopy`: the method used for polynomial system solving. Can be one of :homotopy (recommended) or :msolve;
-- `solver`: the ODE solver used for ODE solution computation (default: Tsit5());
-- `degree_range = nothing`: the set of interpolators to be used.  See examples. If `nothing`, the range is computed automatically;
-- `real_tol` = 1e-12: the tolerance used for real root finding;
+- `solver`: the ODE solver used for ODE solution computation (default: Vern9());
+- `interpolators = nothing`: the set of interpolators to be used.  See examples. If `nothing`, a default is used which includes AAA, FLoater-Hormann, and Fourier interpolations;
+- `real_tol` = 1e-14: the tolerance used for real root finding;
 - `threaded = Threads.nthreads() > 1`: whether to use multiple threads for computation (determined automatically).
 
 # Returns
@@ -40,7 +40,7 @@ function estimate(model::ModelingToolkit.ODESystem,
 		throw(ArgumentError("Method $method is not supported, must be one of :homotopy or :msolve."))
 	end
 	if threaded
-		result = estimate_threaded(model, measured_quantities, inputs, data_sample;  ###TODO(orebas) : I am converting serial first for testing.  threaded will be broken.
+		result = estimate_threaded(model, measured_quantities, inputs, data_sample;  
 			at_time = at_time, solver = solver,
 			interpolators = interpolators,
 			method = method,
@@ -55,7 +55,6 @@ function estimate(model::ModelingToolkit.ODESystem,
 	end
 	println("Final Results:")
 	for each in result
-
 		display(each)
 	end
 	return result

@@ -1,4 +1,13 @@
+"""
+	backsolve_initial_conditions(model, 
+		E, report_time, inputs::Vector{Equation}, data_sample;
+		solver = Vern9(), abstol = 1e-14, reltol = 1e-14)
+		initial_conditions = [E[s] for s in ModelingToolkit.states(model)]
+		parameter_values = [E[p] for p in ModelingToolkit.parameters(model)]
+		tspan = (E.at_time, report_time)
 
+		Given a set of estimated state variables at E.at_time, solves ODE backwards to estimate state variables at report_time.  In most cases tspan will be backwards.
+		"""
 function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equation}, data_sample;
 	solver = Vern9(), abstol = 1e-14, reltol = 1e-14)
 	initial_conditions = [E[s] for s in ModelingToolkit.states(model)]
@@ -14,10 +23,6 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	prob = ODEProblem(new_model, initial_conditions, tspan, parameter_values)
 	saveat = range(tspan[1], tspan[2], length = length(data_sample["t"]))
 
-	#println("Starting backsolving.")
-	#println("parameter values: ", parameter_values)
-	#println("midpoint initial conditions ", initial_conditions)
-	#println("saveat: ", saveat)
 	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values, saveat = saveat, abstol = abstol, reltol = reltol)
 
 	state_param_map = (Dict(x => replace(string(x), "(t)" => "")
@@ -27,24 +32,11 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	newstates = copy(E.states)
 
 	for s in ModelingToolkit.states(model)
-		#	println("BLAH")
-		#	println(tspan)
-		#	println("TEST ", state_param_map[s])
-		#	println(" E[s] ", E[s])
-		#	println(ode_solution[begin])
-		#	println(ode_solution[Symbol(state_param_map[s])])
-
-		#	println(ode_solution[Symbol(state_param_map[s])][end])
 		temp = ode_solution[Symbol(state_param_map[s])][end]
 		newstates[s] = temp
 	end
-	#println("startpoint initial conditions: ", newstates)
 	ER = EstimationResult(E.parameters, newstates, E.degree, report_time,
 		E.err, E.interpolants, E.return_code, E.datasize, report_time)
-	#	println(ER.parameters)
-	#	println("TEST")
-	#	println(ER.states)
-	#	println(ER)
 	return ER
 
 end
@@ -55,15 +47,16 @@ end
 
 
 """
-	estimate_fixed_degree(model::ModelingToolkit.ODESystem,
+	estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 						measured_quantities::Vector{ModelingToolkit.Equation},
 						inputs::Vector{ModelingToolkit.Equation},
 						data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
 						identifiability_result = Dict{String, Any}(),
-						interpolation_degree::Int = 1,
-						at_time::T = 0.0,
+						interpolator = ("AAA" => aaad),
+						at_time::T, 
+						report_time = minimum(data_sample["t"]),
 						method = :homotopy,
-						real_tol = 1e-12) where {T <: Float}
+						real_tol = 1e-14) where {T <: Float}	time_interval = [minimum(data_sample["t"]), maximum(data_sample["t"]) where {T <: Float}
 
 Estimate the parameters of a model using the data sample `data_sample` and the
 measured quantities `measured_quantities`.
@@ -76,10 +69,11 @@ measured quantities `measured_quantities`.
 																The keys of the dictionary are the measured quantities
 																and the values are the corresponding data samples.
 - `identifiability_result = Dict{String, Any}()`: the result of the identifiability assessment.
-- `interpolation_degree::Int = 1`: the degree of the polynomial interpolation.
+- `interpolator = ("AAA" => aaad)`: the interpolator to use, see examples.
 - `at_time::T = 0.0`: the time at which the parameters are estimated.
+- `report_time::T `: the time at which the state variables are to be reported (by default, the earliest time).  These are backsolved from at_time.
 - `method = :homotopy`: the method used for solving the polynomial system. Can be one of :homotopy (recommended) and :msolve.
-- `real_tol = 1e-12`: the tolerance for the real solutions of the polynomial system.
+- `real_tol = 1e-14`: the tolerance for the real solutions of the polynomial system.
 
 # Returns
 - `EstimationResult`: the estimated parameters and initial conditions of the model.

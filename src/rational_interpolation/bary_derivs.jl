@@ -281,3 +281,21 @@ function SimpleRationalInterpOld(numerator_degree::Int)
 	return f
 end
 
+
+function default_interpolator(datasize)
+	interpolators = Dict(
+			"AAA" => aaad,
+			"FHD3" => fhdn(3),
+			#			"Fourier" => FourierInterp,
+			#			"BaryLagrange" => BarycentricLagrange,
+		)
+		if (datasize > 10)
+			interpolators["FHD8"] = fhdn(8)
+			#			interpolators["FHD6"] = fhdn(6)
+			#stepsize = max(1, datasize ÷ 4)
+			#for i in range(1, (datasize - 2), step = stepsize)
+			#	interpolators["RatOld($i)"] = SimpleRationalInterpOld(i)
+			#end
+		end
+return interpolators
+end

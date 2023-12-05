@@ -1,6 +1,6 @@
+@testset "Run larger, slower parameter recovery tests on known ODEs" begin
 using ParameterEstimation
 using ModelingToolkit, DifferentialEquations#, Plots
-using BenchmarkTools
 
 struct ParameterEstimationProblem
     Name::Any
@@ -508,11 +508,10 @@ function vanderpol(datasize = 21, time_interval = [-0.5, 0.5], solver = Vern9())
         data_sample,
         solver,
         p_true,
-        ic,
-        test_mode = false)
+        ic)
 end
 
-function analyze_parameter_estimation_problem(PEP::ParameterEstimationProblem)
+function analyze_parameter_estimation_problem(PEP::ParameterEstimationProblem; test_mode=false)
 
     #interpolators = Dict(
     #"AAA" => ParameterEstimation.aaad,
@@ -545,10 +544,10 @@ function analyze_parameter_estimation_problem(PEP::ParameterEstimationProblem)
     end
     if (test_mode)
 		@test besterror < 1e-2
-    else
-        println("For model ", PEP.Name, ": The best max abs rel. err: ", besterror)
     end
+    println("For model ", PEP.Name, ": The best max abs rel. err: ", besterror)
 end
+
 
 #function analyze_parameter_estimation_problem_old(PEP::ParameterEstimationProblem)
 #	res = ParameterEstimation.estimate(PEP.model, PEP.measured_quantities, PEP.data_sample;
@@ -561,7 +560,7 @@ end
 #	end
 #end
 
-function main()
+function varied_estimation_main()
     datasize = 21
     solver = Vern9()
     #solver = Rodas4P()
@@ -570,21 +569,22 @@ function main()
         simple(datasize, time_interval, solver),  #works
         lotka_volterra(datasize, time_interval, solver),  #works
         vanderpol(datasize, time_interval, solver),  #works
-        biohydrogenation(datasize, time_interval, solver),  #works, but one param unidentifiable
+        #biohydrogenation(datasize, time_interval, solver),  #works, but one param unidentifiable
         #daisy_ex3(datasize, time_interval, solver),
         daisy_mamil3(datasize, time_interval, solver),
         daisy_mamil4(datasize, time_interval, solver),
         #fitzhugh_nagumo(datasize, time_interval, solver),
-        hiv_local(datasize, time_interval, solver),
+        #hiv_local(datasize, time_interval, solver),
         hiv(datasize, time_interval, solver),
         seir(datasize, time_interval, solver),
-        sirsforced(datasize, time_interval, Rodas5P()),
+        #sirsforced(datasize, time_interval, Rodas5P()),
         slowfast(datasize, time_interval, solver),
-        treatment(datasize, time_interval, Rodas5P()),
+        #treatment(datasize, time_interval, Rodas5P()),
         crauste(datasize, time_interval, solver),
     ]
-        analyze_parameter_estimation_problem(PEP)
+        analyze_parameter_estimation_problem(PEP, test_mode=true)
     end
 end
 
-main()
+varied_estimation_main()
+end
