@@ -1,6 +1,7 @@
 include("rational_interpolation/rational_interpolation.jl")
 include("rational_interpolation/interpolant.jl")
 include("rational_interpolation/utils.jl")
+include("rational_interpolation/bary_derivs.jl")
 
 include("identifiability/check_identifiability.jl")
 include("identifiability/preprocessor.jl")

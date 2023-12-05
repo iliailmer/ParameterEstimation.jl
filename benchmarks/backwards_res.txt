@@ -1,0 +1,488 @@
+WARNING: Method definition isapprox(IntervalSets.AbstractInterval{T} where T, IntervalSets.AbstractInterval{T} where T) in module IntervalSets at /home/orebas/.julia/packages/IntervalSets/6RTOk/src/IntervalSets.jl:144 overwritten in module DomainSets at /home/orebas/.julia/packages/DomainSets/aafhp/src/domains/interval.jl:52.
+  ** incremental compilation may be fatally broken for this module **
+
+DEBUG
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [lm, d, beta, a, k, u, c, q, b, h, x, y, v, w, z]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [u, beta, k, lm, c, w, q, d, h, v, z, a, x, y, b]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+Computing mixed cells... 2    Time: 0:00:00[K
+  mixed_volume:  2[K[A
+[K[AComputing mixed cells... 4    Time: 0:00:00[K
+  mixed_volume:  4[K
+4 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+6 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+Parameter(s)        :	 lm = 0.091,   d = 0.181, beta = 0.273,   a = 0.364,   k = 0.454,   u = 0.545,   c = 0.635,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.333, v(t) = 0.500, w(t) = 0.667, z(t) = 0.833
+Error: 3.4330e-03
+Time: -5.0000e-01
+
+DEBUG
+1 Froissart doublets. Number of residues = 10
+5 Froissart doublets. Number of residues = 10
+Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 4.3680e-03
+Time: -5.0000e-01
+
+ 12.353256 seconds (7.31 M allocations: 483.280 MiB, 1.68% gc time, 96.27% compilation time)
+For model simple: Max abs rel. err: 8.216821193133987e-9
+DEBUG
+3 Froissart doublets. Number of residues = 8
+Parameter(s)        :	 k1 = 0.250,  k2 = 0.500,  k3 = 0.750
+Initial Condition(s):	r(t) = 0.333, w(t) = 0.667
+Error: 5.4874e-04
+Time: -5.0000e-01
+
+  6.883697 seconds (5.34 M allocations: 345.916 MiB, 2.97% gc time, 97.90% compilation time: <1% of which was recompilation)
+For model Lotka_Volterra: Max abs rel. err: 2.4765554273997736e-6
+DEBUG
+3 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+Parameter(s)        :	  a = 0.333,   b = 0.667
+Initial Condition(s):	x1(t) = 0.333, x2(t) = 0.667
+Error: 3.4165e-03
+Time: -5.0000e-01
+
+  5.944709 seconds (3.40 M allocations: 226.845 MiB, 98.44% compilation time)
+For model vanderpol: Max abs rel. err: 6.098011933822437e-8
+DEBUG
+6 Froissart doublets. Number of residues = 10
+6 Froissart doublets. Number of residues = 10
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = -4.472,  k9 = 0.224, k10 = 4.850
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 4.478, x7(t) = 3551765860466.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 1.426,  k9 = -0.715, k10 = -0.854
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.256, x7(t) = 3551765860466.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.111,  k8 = 0.378,  k9 = -0.224, k10 = -4.850
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = -0.372, x7(t) = 3551765860466.962
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+Parameter(s)        :	 k5 = 0.143,  k6 = 0.286,  k7 = 0.429,  k8 = 0.572,  k9 = 0.715, k10 = 0.854
+Initial Condition(s):	x4(t) = 0.200, x5(t) = 0.400, x6(t) = 0.598, x7(t) = 3551765860466.935
+Error: 9.8602e-05
+Time: -5.0000e-01
+
+ 29.773833 seconds (21.96 M allocations: 1.400 GiB, 2.68% gc time, 83.04% compilation time)
+For model BioHydrogenation: Max abs rel. err: 4.439707325582703e12
+For model BioHydrogenation: Max abs rel. err: 4.439707325582669e12
+For model BioHydrogenation: Max abs rel. err: 4.439707325582702e12
+For model BioHydrogenation: Max abs rel. err: 4.439707325582669e12
+DEBUG
+1 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+  8.592710 seconds (8.65 M allocations: 574.370 MiB, 3.32% gc time, 87.48% compilation time)
+DEBUG
+3 Froissart doublets. Number of residues = 10
+5 Froissart doublets. Number of residues = 10
+Parameter(s)        :	a12 = 0.167, a13 = 0.346, a21 = 0.500, a31 = 0.687, a01 = 0.805
+Initial Condition(s):	x1(t) = 0.250, x2(t) = 0.500, x3(t) = 0.717
+Error: 9.5935e-04
+Time: -5.0000e-01
+
+ 11.823468 seconds (8.61 M allocations: 570.164 MiB, 2.71% gc time, 96.89% compilation time)
+For model DAISY_mamil3: Max abs rel. err: 0.04446665857000701
+DEBUG
+3 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.500, k14 = 0.375, k21 = 0.625, k31 = 0.874, k41 = 0.751
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.800, x4(t) = 0.600
+Error: 1.6178e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	k01 = 0.125, k12 = 0.250, k13 = 0.375, k14 = 0.500, k21 = 0.625, k31 = 0.751, k41 = 0.874
+Initial Condition(s):	x1(t) = 0.200, x2(t) = 0.400, x3(t) = 0.600, x4(t) = 0.800
+Error: 1.6178e-03
+Time: -5.0000e-01
+
+ 14.358593 seconds (10.84 M allocations: 722.351 MiB, 2.43% gc time, 62.31% compilation time)
+For model DAISY_mamil4: Max abs rel. err: 0.3332119224172925
+For model DAISY_mamil4: Max abs rel. err: 0.0009308470261812177
+DEBUG
+1 Froissart doublets. Number of residues = 10
+Parameter(s)        :	  g = 0.250,   a = 0.500,   b = 0.750
+Initial Condition(s):	V(t) = 0.333, R(t) = 0.670
+Error: 3.9937e-02
+Time: -5.0000e-01
+
+  8.068035 seconds (5.87 M allocations: 389.285 MiB, 3.57% gc time, 97.82% compilation time)
+For model fitzhugh-nagumo: Max abs rel. err: 1.4541186840371288e-5
+DEBUG
+1 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+ 36.762913 seconds (17.75 M allocations: 1.142 GiB, 1.47% gc time, 34.73% compilation time)
+DEBUG
+4 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+6 Froissart doublets. Number of residues = 10
+4 Froissart doublets. Number of residues = 10
+Parameter(s)        :	 lm = 0.091,   d = 0.181, beta = 0.273,   a = 0.364,   k = 0.454,   u = 0.545,   c = 0.635,   q = 0.727,   b = 0.818,   h = 0.909
+Initial Condition(s):	x(t) = 0.167, y(t) = 0.333, v(t) = 0.500, w(t) = 0.667, z(t) = 0.833
+Error: 3.4330e-03
+Time: -5.0000e-01
+
+  3.797847 seconds (3.14 M allocations: 472.273 MiB, 5.87% gc time)
+For model hiv: Max abs rel. err: 0.0023299982577594204
+DEBUG
+4 Froissart doublets. Number of residues = 9
+Parameter(s)        :	  a = 0.750,   b = 0.500,  nu = 0.250
+Initial Condition(s):	S(t) = 0.600, E(t) = 2.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+Parameter(s)        :	  a = 0.250,   b = 0.500,  nu = 0.750
+Initial Condition(s):	S(t) = 0.200, E(t) = 0.400, In(t) = 0.600, N(t) = 0.800
+Error: 1.0245e-03
+Time: -5.0000e-01
+
+ 10.025146 seconds (9.89 M allocations: 615.467 MiB, 3.63% gc time, 91.50% compilation time)
+For model SEIR: Max abs rel. err: 4.999790001393897
+For model SEIR: Max abs rel. err: 7.445569848635314e-5
+DEBUG
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [a, b, x2, x1]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [b, x2, x1, a]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [k1, k2, k3, w, r]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [k3, w, r, k1, k2]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [a, b, x2, x1]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [b, x2, x1, a]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: [x7_0]
+[ Info: Locally identifiable parameters: [k5, k6, k7, k8, k9, k10, x6, x5, x4]
+[ Info: Not identifiable parameters:     [x7]
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [k6, k7, x5, k5, x4]
+[ Info: Locally but not globally identifiable parameters: [k8, x6, k9, k10]
+[ Info: Not identifiable parameters:                      [x7]
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [p1, p3, p4, p6, p7, u0, x3, x2, x1]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [p1, p3, u0, x2, x1]
+[ Info: Locally but not globally identifiable parameters: [p4, x3, p6, p7]
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+┌ Warning: No solution found
+└ @ ParameterEstimation ~/.julia/dev/ParameterEstimation/src/estimation/utils.jl:28
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [a12, a13, a21, a31, a01, x2, x3, x1]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [a01, a13, x2, x3, a31, a12, x1, a21]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [k01, k12, k13, k14, k21, k31, k41, x3, x1, x2, x4]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [k12, k21, x1, k01, x2]
+[ Info: Locally but not globally identifiable parameters: [x4, k13, x3, k41, k14, k31]
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [g, a, b, R, V]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [b, R, V, g, a]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: [k2_0, k1_0]
+[ Info: Locally identifiable parameters: [b, c, d, mu2, s, x1, x4]
+[ Info: Not identifiable parameters:     [k1, k2, mu1, q1, q2, x3, x2]
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [b, x1, d, s, x4]
+[ Info: Locally but not globally identifiable parameters: [c, mu2]
+[ Info: Not identifiable parameters:                      [q1, mu1, k2, x3, k1, q2, x2]
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+┌ Warning: No solution found
+└ @ ParameterEstimation ~/.julia/dev/ParameterEstimation/src/estimation/utils.jl:28
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [lm, d, beta, a, k, u, c, q, b, h, x, y, v, w, z]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [u, beta, k, lm, c, w, q, d, h, v, z, a, x, y, b]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [a, b, nu, E, In, S, N]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [In, b, N]
+[ Info: Locally but not globally identifiable parameters: [E, a, nu, S]
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: [b1_0]
+[ Info: Locally identifiable parameters: [b0, g, M, mu, nu, i, s, r]
+[ Info: Not identifiable parameters:     [b1, x1, x2]
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [i, nu, mu, b0, g, s, r]
+[ Info: Locally but not globally identifiable parameters: [M]
+[ Info: Not identifiable parameters:                      [x1, x2, b1]
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+Computing mixed cells... 21    Time: 0:00:00[K
+  mixed_volume:  60[K[A
+[K[AComputing mixed cells... 52    Time: 0:00:00[K
+  mixed_volume:  118[K
+2 Froissart doublets. Number of residues = 10
+3 Froissart doublets. Number of residues = 10
+294.187442 seconds (19.28 M allocations: 1.046 GiB, 0.22% gc time, 3.63% compilation time)
+DEBUG
+1 Froissart doublets. Number of residues = 9
+4 Froissart doublets. Number of residues = 7
+Parameter(s)        :	 k1 = 0.500,  k2 = 0.250,  eB = 0.708
+Initial Condition(s):	xA(t) = -0.167, xB(t) = 0.666, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+
+Parameter(s)        :	 k1 = 0.250,  k2 = 0.500,  eB = 0.750
+Initial Condition(s):	xA(t) = 0.166, xB(t) = 0.333, xC(t) = 0.500, eA(t) = 0.666, eC(t) = 0.833
+Error: 2.6110e-04
+Time: -5.0000e-01
+
+ 10.135238 seconds (7.58 M allocations: 508.869 MiB, 3.08% gc time, 85.32% compilation time)
+For model slowfast: Max abs rel. err: 2.006024059928685
+For model slowfast: Max abs rel. err: 9.966318433180567e-9
+DEBUG
+┌ Warning: No solution found
+└ @ ParameterEstimation ~/.julia/dev/ParameterEstimation/src/estimation/utils.jl:28
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [k1, k2, eB, eA, xC, xB, xA, eC]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [eA, xC, eC]
+[ Info: Locally but not globally identifiable parameters: [k1, k2, xB, eB, xA]
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+[ Info: Best estimate found
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: [a_0]
+[ Info: Locally identifiable parameters: [d, Tr, N, In]
+[ Info: Not identifiable parameters:     [a, b, g, nu, S]
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [d, Tr, N, In]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      [a, b, S, g, nu]
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+Computing mixed cells... 52    Time: 0:00:00[K
+  mixed_volume:  54[K[A
+[K[AComputing mixed cells... 133    Time: 0:00:00[K
+  mixed_volume:  143[K[A
+[K[AComputing mixed cells... 180    Time: 0:00:01[K
+  mixed_volume:  221[K
+3 Froissart doublets. Number of residues = 10
+436.213103 seconds (30.90 M allocations: 2.446 GiB, 0.22% gc time, 3.03% compilation time)
+DEBUG
+┌ Warning: No solution found
+└ @ ParameterEstimation ~/.julia/dev/ParameterEstimation/src/estimation/utils.jl:28
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [mu_N, mu_EE, mu_LE, mu_LL, mu_M, mu_P, mu_PE, mu_PL, delta_NE, delta_EL, delta_LM, rho_E, rho_P, N, M, P, S, E]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: Gröbner basis computation
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [N, delta_EL, mu_PL, M, mu_M, rho_E, mu_LL, mu_PE, mu_LE, mu_EE, E, mu_N, rho_P, P, S, delta_NE, mu_P, delta_LM]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+[ Info: Estimating via the interpolators: ["AAA"]
+Computing mixed cells... 15    Time: 0:00:00[K
+  mixed_volume:  24[K[A
+[K[AComputing mixed cells... 29    Time: 0:00:00[K
+  mixed_volume:  48[K[A
+[K[AComputing mixed cells... 33    Time: 0:00:00[K
+  mixed_volume:  53[K
+[ Info: Best estimate found
+4 Froissart doublets. Number of residues = 10
+2 Froissart doublets. Number of residues = 8
+3 Froissart doublets. Number of residues = 9
+4 Froissart doublets. Number of residues = 9
+Parameter(s)        :	mu_N = 0.071, mu_EE = 0.143, mu_LE = -0.082, mu_LL = -0.027, mu_M = -0.398, mu_P = 0.546, mu_PE = 0.036, mu_PL = 0.013, delta_NE = 0.643, delta_EL = 0.714, delta_LM = 0.455, rho_E = 0.857, rho_P = 0.368
+Initial Condition(s):	N(t) = 0.167, E(t) = 0.333, S(t) = -11.359, M(t) = 12.526, P(t) = 0.833
+Error: 1.0260e-03
+Time: -5.0000e-01
+
+ 36.450014 seconds (26.74 M allocations: 2.377 GiB, 2.50% gc time, 42.42% compilation time)
+For model Crauste: Max abs rel. err: 23.71880485343265
