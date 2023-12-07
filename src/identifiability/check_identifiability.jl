@@ -1,20 +1,18 @@
 """
-function check_identifiability(ode::ModelingToolkit.ODESystem;
-                               measured_quantities = Array{ModelingToolkit.Equation}[],
-                               inputs::Vector{Num} = Array{Num}[],
-                               infolevel = 0)
+    check_identifiability(ode::ModelingToolkit.ODESystem;
+                                measured_quantities = Array{ModelingToolkit.Equation}[],
+                                inputs::Vector{Num} = Array{Num}[],
+                                infolevel = 0)
 
 Check identifiability of parameters in the ODE system `ode` using the
 algorithm described in [1]. The function returns a `ParameterEstimation.IdentifiabilityData`
 object that contains the results of the identifiability analysis.
 
 # Arguments
-    - `ode::ModelingToolkit.ODESystem`: The ODE system to be analyzed
-    - `measured_quantities = Array{ModelingToolkit.Equation}[]`: A list of equations
-        that define the measured quantities. If not provided, the outputs of the ODE
-        system will be used.
-    - `inputs::Vector{Num} = Array{Num}[]`: A list of input functions, if any are present.
-    - `infolevel::Int`: The level of information to be printed during the analysis.
+- `ode::ModelingToolkit.ODESystem`: The ODE system to be analyzed.
+- `measured_quantities = Array{ModelingToolkit.Equation}[]`: A list of equations that define the measured quantities. If not provided, the outputs of the ODE system will be used.
+- `inputs::Vector{Num} = Array{Num}[]`: A list of input functions, if any are present.
+- `infolevel::Int`: The level of information to be printed during the analysis.
 
 # References
 
