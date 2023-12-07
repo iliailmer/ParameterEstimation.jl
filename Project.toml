@@ -29,6 +29,7 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 
 [compat]
+ArbNumerics = "1"
 BaryRational = "1"
 DifferentialEquations = "7"
 ForwardDiff = "0.10"
