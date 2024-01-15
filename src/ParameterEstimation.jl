@@ -1,28 +1,28 @@
 module ParameterEstimation
 
 using PrecompileTools
-@recompile_invalidations begin
+#@recompile_invalidations begin
 
-	import DifferentialEquations: Tsit5
-	import DifferentialEquations: Vern9
-	import TaylorSeries: Taylor1
-	import OrderedCollections: OrderedDict
-	using BaryRational: BaryRational
-	using ForwardDiff: ForwardDiff
-	using LinearAlgebra: LinearAlgebra
-	using TaylorDiff: TaylorDiff
-	using Suppressor
+import DifferentialEquations: Tsit5
+import DifferentialEquations: Vern9
+import TaylorSeries: Taylor1
+import OrderedCollections: OrderedDict
+using BaryRational: BaryRational
+using ForwardDiff: ForwardDiff
+using LinearAlgebra: LinearAlgebra
+using TaylorDiff: TaylorDiff
+using Suppressor
 
-	using ProgressMeter, Logging, Printf
-	using ModelingToolkit, LinearSolve, LinearAlgebra
-	using SIAN, HomotopyContinuation, Groebner, Oscar
-	using .ReturnCode
-	import StructuralIdentifiability: eval_at_nemo, ODE
-	using BaryRational
-	using ForwardDiff
-	using ArbNumerics
+using ProgressMeter, Logging, Printf
+using ModelingToolkit, LinearSolve, LinearAlgebra
+using SIAN, HomotopyContinuation, Groebner, Oscar
+using .ReturnCode
+import StructuralIdentifiability: eval_at_nemo, ODE
+using BaryRational
+using ForwardDiff
+using ArbNumerics
 
-end
+#end
 Float = Union{Float64, Float32, Float16, BigFloat}
 include("includes.jl")
 
