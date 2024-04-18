@@ -37,7 +37,7 @@ struct EstimationResult
 		for p in ModelingToolkit.parameters(model)
 			parameters[ModelingToolkit.Num(p)] = get(poly_sol, p, nothing)
 		end
-		for s in ModelingToolkit.states(model)
+		for s in ModelingToolkit.unknowns(model)
 			states[ModelingToolkit.Num(s)] = get(poly_sol, s, nothing)
 		end
 		new(parameters, states, degree, at_time, nothing, interpolants, return_code,

@@ -1,6 +1,6 @@
 using Test, TestSetExtensions
 using ModelingToolkit, SIAN, HomotopyContinuation
-using ParameterEstimation, Oscar
+using ParameterEstimation
 
 @info "Testing started"
 

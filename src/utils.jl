@@ -23,7 +23,7 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
 	end
 end
 
-function nemo2hc(expr_tree::fmpq_mpoly)
+function nemo2hc(expr_tree::QQMPolyRingElem)
 	# println(expr_tree)
 	return nemo2hc(Meta.parse(string(expr_tree)))
 end
@@ -32,8 +32,8 @@ function nemo2hc(expr_tree::Number)
 	return expr_tree
 end
 
-function nemo2hc(expr_tree::Oscar.Generic.Frac)
-	numer, denom = Oscar.numerator(expr_tree), Oscar.denominator(expr_tree)
+function nemo2hc(expr_tree::Nemo.Generic.FracFieldElem)
+	numer, denom = Nemo.numerator(expr_tree), Nemo.denominator(expr_tree)
 	return nemo2hc(numer) / nemo2hc(denom)
 end
 
