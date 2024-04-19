@@ -22,15 +22,15 @@ function algebraic_independence(Et::Vector{Nemo.QQMPolyRingElem},
         row = U[row_idx, :]
         if !all(row .== 0)
             pivot_col = findfirst(row .!= 0)
-            push!(pivots, indets[pivot_col[2]])
+            push!(pivots, indets[pivot_col])
         end
     end
     current_idx = 1
-    output_rows = Jacobian[current_idx, :]
+    output_rows = Jacobian[[current_idx], :]
     current_rank = 1
     output_ids = [1]
     for current_idx in 2:length(Et)
-        current = [output_rows; Jacobian[current_idx, :]]
+        current = vcat(output_rows, Jacobian[[current_idx], :])
         if Nemo.rank(current) > current_rank
             output_rows = current
             push!(output_ids, current_idx)

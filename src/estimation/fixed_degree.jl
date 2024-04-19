@@ -13,14 +13,14 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	initial_conditions = [E[s] for s in ModelingToolkit.unknowns(model)]
 	parameter_values = [E[p] for p in ModelingToolkit.parameters(model)]
 	tspan = (E.at_time, report_time)  #this is almost always backwards!
-
+	
 	ode_equations = ModelingToolkit.equations(model)
 	ode_equations = substitute(ode_equations,
 		Dict(each.lhs => Num(each.rhs) for each in inputs))
 	t = ModelingToolkit.get_iv(model)
 	@named new_model = ODESystem(ode_equations, t, ModelingToolkit.unknowns(model),
 		ModelingToolkit.parameters(model))
-	prob = ModelingToolkit.complete(ODEProblem(new_model, initial_conditions, tspan, parameter_values))
+	prob = ODEProblem(ModelingToolkit.complete(new_model), initial_conditions, tspan, parameter_values)
 	saveat = range(tspan[1], tspan[2], length = length(data_sample["t"]))
 
 	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values, saveat = saveat, abstol = abstol, reltol = reltol)
@@ -107,7 +107,7 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 		diff_order = num_parameters + 1,   #todo(OREBAS): is this always forcing num_parameters + 1 derivatives?
 		at_t = at_time,
 		method = method)
-
+		
 	if method == :homotopy
 		all_solutions = solve_via_homotopy(identifiability_result, model;
 			real_tol = real_tol)
@@ -117,8 +117,7 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 	else
 		throw(ArgumentError("Method $method not supported"))
 	end
-	#println(all_solutions)
-	#println("HERE")
+
 	all_solutions = [EstimationResult(model, each, interpolator.first, at_time,
 		interpolants, ReturnCode.Success, datasize, report_time)
 					 for each in all_solutions]

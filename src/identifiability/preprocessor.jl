@@ -15,8 +15,7 @@ function preprocess_ode(de::ModelingToolkit.ODESystem,
     diff_eqs = filter(eq -> !(ModelingToolkit.isoutput(eq.lhs)),
         ModelingToolkit.equations(de))
     y_functions = [each.lhs for each in measured_quantities]
-    state_vars = filter(s -> !(ModelingToolkit.isinput(s) || ModelingToolkit.isoutput(s)),
-        ModelingToolkit.unknowns(de))
+    state_vars = ModelingToolkit.unknowns(de)
     params = ModelingToolkit.parameters(de)
     t = ModelingToolkit.arguments(measured_quantities[1].lhs)[1]
     params_from_measured_quantities = ModelingToolkit.parameters(ModelingToolkit.ODESystem(

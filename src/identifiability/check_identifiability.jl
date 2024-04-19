@@ -216,7 +216,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         end
     end
     x_theta_vars_reorder = vcat(theta_l,
-                                reverse([x for x in x_theta_vars if !(x in theta_l)]))
+                                reverse([x for x in x_theta_vars if !(x in theta_l)]))    
     Et_ids, alg_indep = algebraic_independence(Et_eval_base, x_theta_vars_reorder,
                                                all_x_theta_vars_subs)
     @info "Found Pivots: [$(join(alg_indep, ", "))]"
