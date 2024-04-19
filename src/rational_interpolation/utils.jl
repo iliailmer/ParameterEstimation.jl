@@ -39,9 +39,9 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
 		end
 	elseif isequal(method, :msolve)
 		y_derivs = Vector{Nemo.QQMPolyRingElem}()
-		y_vals = Vector{Nemo.fmpq}()
+		y_vals = Vector{Nemo.QQFieldElem}()
 		u_derivs = Vector{Nemo.QQMPolyRingElem}()
-		u_vals = Vector{Nemo.fmpq}()
+		u_vals = Vector{Nemo.QQFieldElem}()
 		for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
 			if occursin(y_function_name, string(y_func))
 				push!(y_derivs, y_func)
