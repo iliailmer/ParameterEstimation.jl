@@ -107,7 +107,7 @@ function sample_data(model::ModelingToolkit.ODESystem,
 	else
 		sampling_times = range(time_interval[1], time_interval[2], length = num_points)
 	end
-	problem = ODEProblem(model, u0, time_interval, p_true)
+	problem = ODEProblem(ModelingToolkit.complete(model), u0, time_interval, p_true)
 	solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
 		saveat = sampling_times;
 		abstol, reltol)

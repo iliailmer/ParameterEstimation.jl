@@ -68,8 +68,8 @@ function new_clustering(estimates, tol = 1e-3)
 	return new_estimates
 end
 
-function post_process(estimates, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing)
-	if Threads.nthreads() > 1
+function post_process(estimates, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing; threaded=false)
+	if threaded
 		estimates = filter(x -> !isnothing(x), estimates)
 		estimates = vcat(estimates...)
 	end

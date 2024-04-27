@@ -8,7 +8,7 @@ function estimate_threaded(model::ModelingToolkit.ODESystem,
 	check_inputs(measured_quantities, data_sample)
 	datasize = length(first(values(data_sample)))
 	
-    if isnothing(interpolators) === nothing
+    if isnothing(interpolators)
         interpolators = default_interpolator(datasize)
     end
 
@@ -20,12 +20,13 @@ estimates = Vector{Vector{ParameterEstimation.EstimationResult}}()
 @info "Estimating via the interpolators: $(keys(interpolators))"
 	n_threads = Threads.nthreads()
 	N = length(interpolators)
+	interpolators = collect(interpolators)
 	estimates = Vector{Any}(nothing, n_threads)
 	Threads.@threads :static for t in 1:N
-		interp = interp[t]
-		id = Threads.threadid()
-		if isnothing(estimates[id])
-			estimates[id] = []
+		interp = interpolators[t]
+		tid = Threads.threadid()
+		if isnothing(estimates[tid])
+			estimates[tid] = []
 		end
 		unfiltered = estimate_single_interpolator(model, measured_quantities, inputs, data_sample;
 			identifiability_result = id,
@@ -35,10 +36,10 @@ estimates = Vector{Vector{ParameterEstimation.EstimationResult}}()
 		if length(unfiltered) > 0
 			filtered = filter_solutions(unfiltered, id, model, inputs,
 				data_sample; solver = solver, filtermode)
-			push!(estimates[id], filtered)
+			push!(estimates[tid], filtered)
 
 		else
-			push!(estimates[id],
+			push!(estimates[tid],
 				[
 					EstimationResult(model, Dict(), interp, at_time,
 						Dict{Any, Interpolant}(), ReturnCode.Failure,
@@ -46,5 +47,5 @@ estimates = Vector{Vector{ParameterEstimation.EstimationResult}}()
 				])
 		end
 	end
-	return post_process(estimates,filtermode,parameter_constraints,ic_constraints)
+	return post_process(estimates,filtermode,parameter_constraints,ic_constraints,threaded=true)
 end
