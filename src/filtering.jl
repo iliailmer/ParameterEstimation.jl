@@ -29,7 +29,11 @@ function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, 
 	t = ModelingToolkit.get_iv(model)
 	@named new_model = ODESystem(ode_equations, t, ModelingToolkit.unknowns(model),
 		ModelingToolkit.parameters(model))
-	prob = ODEProblem(ModelingToolkit.complete(new_model), initial_conditions, tspan, parameter_values)
+	prob = ODEProblem(
+		ModelingToolkit.complete(new_model), 
+		initial_conditions, tspan, 
+		Dict(ModelingToolkit.parameters(new_model) .=> parameter_values)
+	)
 	ode_solution = ModelingToolkit.solve(prob, solver,
 		saveat = range(tspan[1], tspan[2],
 			length = length(data_sample["t"])), abstol = 1e-12, reltol = 1e-12)

@@ -20,10 +20,14 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
 	t = ModelingToolkit.get_iv(model)
 	@named new_model = ODESystem(ode_equations, t, ModelingToolkit.unknowns(model),
 		ModelingToolkit.parameters(model))
-	prob = ODEProblem(ModelingToolkit.complete(new_model), initial_conditions, tspan, parameter_values)
+	prob = ODEProblem(
+		ModelingToolkit.complete(new_model), 
+		initial_conditions, 
+		tspan, 
+		Dict(ModelingToolkit.parameters(model) .=> parameter_values))
 	saveat = range(tspan[1], tspan[2], length = length(data_sample["t"]))
 
-	ode_solution = ModelingToolkit.solve(prob, solver, p = parameter_values, saveat = saveat, abstol = abstol, reltol = reltol)
+	ode_solution = ModelingToolkit.solve(prob, solver, saveat = saveat, abstol = abstol, reltol = reltol)
 
 	state_param_map = (Dict(x => replace(string(x), "(t)" => "")
 							for x in ModelingToolkit.unknowns(model)))
