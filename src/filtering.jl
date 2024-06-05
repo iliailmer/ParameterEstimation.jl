@@ -20,16 +20,20 @@ Compute the error between the solution and the data sample. The error is recorde
 """
 function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, data_sample;
 	solver = Tsit5(), return_ode = false, abstol = 1e-12, reltol = 1e-12)
-	initial_conditions = [estimate[s] for s in ModelingToolkit.states(model)]
+	initial_conditions = [estimate[s] for s in ModelingToolkit.unknowns(model)]
 	parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
 	tspan = (estimate.at_time, data_sample["t"][end] + estimate.at_time)
 	ode_equations = ModelingToolkit.equations(model)
 	ode_equations = substitute(ode_equations,
 		Dict(each.lhs => Num(each.rhs) for each in inputs))
 	t = ModelingToolkit.get_iv(model)
-	@named new_model = ODESystem(ode_equations, t, ModelingToolkit.states(model),
+	@named new_model = ODESystem(ode_equations, t, ModelingToolkit.unknowns(model),
 		ModelingToolkit.parameters(model))
-	prob = ODEProblem(new_model, initial_conditions, tspan, parameter_values)
+	prob = ODEProblem(
+		ModelingToolkit.complete(new_model), 
+		initial_conditions, tspan, 
+		Dict(ModelingToolkit.parameters(new_model) .=> parameter_values)
+	)
 	ode_solution = ModelingToolkit.solve(prob, solver,
 		saveat = range(tspan[1], tspan[2],
 			length = length(data_sample["t"])), abstol = 1e-12, reltol = 1e-12)

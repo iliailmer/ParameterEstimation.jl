@@ -15,9 +15,10 @@ using Suppressor
 
 using ProgressMeter, Logging, Printf
 using ModelingToolkit, LinearSolve, LinearAlgebra
-using SIAN, HomotopyContinuation, Groebner, Oscar
+using SIAN, HomotopyContinuation, Groebner, Nemo
 using .ReturnCode
-import StructuralIdentifiability: eval_at_nemo, ODE
+import StructuralIdentifiability
+import StructuralIdentifiability: ODE
 using BaryRational
 using ForwardDiff
 using ArbNumerics
@@ -53,10 +54,10 @@ export check_identifiability, estimate, filter_solutions
 		p_true = [2.0, 3.0, 4.0, 5.0]
 		time_interval = [-4.0, 4.0]
 		datasize = 9
+		model = complete(model)
 		data_sample = ParameterEstimation.sample_data(model, measured_quantities, time_interval,
 			p_true, ic, datasize;)
 		res = ParameterEstimation.estimate(model, measured_quantities, data_sample)
 	end
 end
 end
-

@@ -38,10 +38,10 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
 			end
 		end
 	elseif isequal(method, :msolve)
-		y_derivs = Vector{SIAN.Nemo.fmpq_mpoly}()
-		y_vals = Vector{SIAN.Nemo.fmpq}()
-		u_derivs = Vector{SIAN.Nemo.fmpq_mpoly}()
-		u_vals = Vector{SIAN.Nemo.fmpq}()
+		y_derivs = Vector{Nemo.QQMPolyRingElem}()
+		y_vals = Vector{Nemo.QQFieldElem}()
+		u_derivs = Vector{Nemo.QQMPolyRingElem}()
+		u_vals = Vector{Nemo.QQFieldElem}()
 		for (y_func, y_deriv_order) in pairs(identifiability_result["Y_eq"])
 			if occursin(y_function_name, string(y_func))
 				push!(y_derivs, y_func)
@@ -62,7 +62,7 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
 				end
 			end
 		end
-		polynomial_system = [SIAN.Nemo.evaluate(poly, y_derivs, y_vals)
+		polynomial_system = [Nemo.evaluate(poly, y_derivs, y_vals)
 							 for poly in polynomial_system]
 	end
 	return polynomial_system

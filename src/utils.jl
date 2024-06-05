@@ -23,7 +23,7 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
 	end
 end
 
-function nemo2hc(expr_tree::fmpq_mpoly)
+function nemo2hc(expr_tree::QQMPolyRingElem)
 	# println(expr_tree)
 	return nemo2hc(Meta.parse(string(expr_tree)))
 end
@@ -32,8 +32,8 @@ function nemo2hc(expr_tree::Number)
 	return expr_tree
 end
 
-function nemo2hc(expr_tree::Oscar.Generic.Frac)
-	numer, denom = Oscar.numerator(expr_tree), Oscar.denominator(expr_tree)
+function nemo2hc(expr_tree::Nemo.Generic.FracFieldElem)
+	numer, denom = Nemo.numerator(expr_tree), Nemo.denominator(expr_tree)
 	return nemo2hc(numer) / nemo2hc(denom)
 end
 
@@ -107,8 +107,8 @@ function sample_data(model::ModelingToolkit.ODESystem,
 	else
 		sampling_times = range(time_interval[1], time_interval[2], length = num_points)
 	end
-	problem = ODEProblem(model, u0, time_interval, p_true)
-	solution_true = ModelingToolkit.solve(problem, solver, p = p_true,
+	problem = ODEProblem(ModelingToolkit.complete(model), u0, time_interval, Dict(ModelingToolkit.parameters(model) .=> p_true))
+	solution_true = ModelingToolkit.solve(problem, solver,
 		saveat = sampling_times;
 		abstol, reltol)
 	data_sample = OrderedDict{Any, Vector{T}}(Num(v.rhs) => solution_true[Num(v.rhs)]

@@ -1,6 +1,6 @@
 @testset "Check size of transcendence_basis of polynomial systems" begin
-    R, (a, b, c) = SIAN.Nemo.PolynomialRing(SIAN.Nemo.QQ, ["a", "b", "c"];
-                                            ordering = :degrevlex)
+    R, (a, b, c) = Nemo.polynomial_ring(Nemo.QQ, ["a", "b", "c"];
+        internal_ordering = :degrevlex)
     Et = [a + b, a + b + c]
     vals = [1, 1, 1]
     _, tr_basis = ParameterEstimation.algebraic_independence(Et, [a, b, c], vals)
@@ -21,8 +21,8 @@
     _, tr_basis = ParameterEstimation.algebraic_independence(Et, [a, b, c], vals)
     @test length(tr_basis) == 0
 
-    R, (a, b, c, d) = SIAN.Nemo.PolynomialRing(SIAN.Nemo.QQ, ["a", "b", "c", "d"];
-                                               ordering = :degrevlex)
+    R, (a, b, c, d) = Nemo.polynomial_ring(Nemo.QQ, ["a", "b", "c", "d"];
+        internal_ordering = :degrevlex)
     vals = [1, 1, 1, 1]
     Et = [a + d, b + c, a + a * b * c + a^2 * d]
     _, tr_basis = ParameterEstimation.algebraic_independence(Et, [a, b, d, c], vals)
