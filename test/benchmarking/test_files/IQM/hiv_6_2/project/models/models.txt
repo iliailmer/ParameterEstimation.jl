@@ -1,0 +1,45 @@
+********** MODEL NAME
+
+hiv_6
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(x) = lm - d * x - beta * x * vv
+d/dt(yy) = beta * x * vv - a * yy
+d/dt(vv) = k * yy - uu * vv
+d/dt(w) = c * x * yy * w - c * q * yy * w - b * w
+d/dt(z) = c * q * yy * w - h * z
+
+********** MODEL PARAMETERS
+
+lm = 0.355
+d = 0.634
+beta = 0.205
+a = 0.673
+k = 0.332
+uu = 0.247
+c = 0.569
+q = 0.116
+b = 0.763
+h = 0.104
+
+********** MODEL VARIABLES
+
+OUTPUT1 = w
+OUTPUT2 = z
+OUTPUT3 = x
+OUTPUT4 = yy+vv
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

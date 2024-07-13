@@ -1,0 +1,16 @@
+********** EXPERIMENT NAME
+lotka_volterra_1
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+k1 = (1.0 - 0.0)*rand(1) + 0.0
+k2 = (1.0 - 0.0)*rand(1) + 0.0
+k3 = (1.0 - 0.0)*rand(1) + 0.0
+r = (1.0 - 0.0)*rand(1) + 0.0
+w = (1.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

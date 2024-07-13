@@ -1,0 +1,35 @@
+********** MODEL NAME
+
+seir_9
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(S) = -b * S * In / NN
+d/dt(E) = b * S * In / NN - nu * E
+d/dt(In) = nu * E - a * In
+d/dt(NN) = 0
+
+********** MODEL PARAMETERS
+
+a = 0.211
+b = 0.257
+nu = 0.395
+
+********** MODEL VARIABLES
+
+OUTPUT1 = In
+OUTPUT2 = NN
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

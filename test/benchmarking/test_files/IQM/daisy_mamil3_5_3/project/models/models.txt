@@ -1,0 +1,36 @@
+********** MODEL NAME
+
+daisy_mamil3_5
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(x1) = -(a21 + a31 + a01) * x1 + a12 * x2 + a13 * x3
+d/dt(x2) = a21 * x1 - a12 * x2
+d/dt(x3) = a31 * x1 - a13 * x3
+
+********** MODEL PARAMETERS
+
+a12 = 0.388
+a13 = 0.45
+a21 = 0.658
+a31 = 0.148
+a01 = 0.633
+
+********** MODEL VARIABLES
+
+OUTPUT1 = x1
+OUTPUT2 = x2
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

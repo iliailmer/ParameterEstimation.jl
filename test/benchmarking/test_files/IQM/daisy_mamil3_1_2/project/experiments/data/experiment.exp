@@ -1,0 +1,19 @@
+********** EXPERIMENT NAME
+daisy_mamil3_1
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+a12 = (2.0 - 0.0)*rand(1) + 0.0
+a13 = (2.0 - 0.0)*rand(1) + 0.0
+a21 = (2.0 - 0.0)*rand(1) + 0.0
+a31 = (2.0 - 0.0)*rand(1) + 0.0
+a01 = (2.0 - 0.0)*rand(1) + 0.0
+x1 = (2.0 - 0.0)*rand(1) + 0.0
+x2 = (2.0 - 0.0)*rand(1) + 0.0
+x3 = (2.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

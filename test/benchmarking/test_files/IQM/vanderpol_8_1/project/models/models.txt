@@ -1,0 +1,32 @@
+********** MODEL NAME
+
+vanderpol_8
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(x1) = a * x2
+d/dt(x2) = -(x1) - b * (x1^2 - 1) * (x2)
+
+********** MODEL PARAMETERS
+
+a = 0.465
+b = 0.555
+
+********** MODEL VARIABLES
+
+OUTPUT1 = x1
+OUTPUT2 = x2
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

@@ -1,0 +1,16 @@
+********** EXPERIMENT NAME
+fitzhugh_nagumo_6
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+g = (2.0 - 0.0)*rand(1) + 0.0
+a = (2.0 - 0.0)*rand(1) + 0.0
+b = (2.0 - 0.0)*rand(1) + 0.0
+V = (2.0 - 0.0)*rand(1) + 0.0
+R = (2.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

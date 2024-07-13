@@ -1,0 +1,15 @@
+********** EXPERIMENT NAME
+vanderpol_0
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+a = (3.0 - 0.0)*rand(1) + 0.0
+b = (3.0 - 0.0)*rand(1) + 0.0
+x1 = (3.0 - 0.0)*rand(1) + 0.0
+x2 = (3.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

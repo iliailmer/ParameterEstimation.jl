@@ -1,0 +1,32 @@
+********** MODEL NAME
+
+fitzhugh_nagumo_2
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(V) = g * (V - V^3 / 3 + R)
+d/dt(R) = 1 / g * (V - a + b * R)
+
+********** MODEL PARAMETERS
+
+g = 0.733
+a = 0.523
+b = 0.554
+
+********** MODEL VARIABLES
+
+OUTPUT1 = V
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+
