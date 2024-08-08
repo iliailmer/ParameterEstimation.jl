@@ -1,0 +1,29 @@
+********** EXPERIMENT NAME
+crauste_4
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+muN = (2.0 - 0.0)*rand(1) + 0.0
+muEE = (2.0 - 0.0)*rand(1) + 0.0
+muLE = (2.0 - 0.0)*rand(1) + 0.0
+muLL = (2.0 - 0.0)*rand(1) + 0.0
+muM = (2.0 - 0.0)*rand(1) + 0.0
+muP = (2.0 - 0.0)*rand(1) + 0.0
+muPE = (2.0 - 0.0)*rand(1) + 0.0
+muPL = (2.0 - 0.0)*rand(1) + 0.0
+deltaNE = (2.0 - 0.0)*rand(1) + 0.0
+deltaEL = (2.0 - 0.0)*rand(1) + 0.0
+deltaLM = (2.0 - 0.0)*rand(1) + 0.0
+rhoE = (2.0 - 0.0)*rand(1) + 0.0
+rhoP = (2.0 - 0.0)*rand(1) + 0.0
+n = (2.0 - 0.0)*rand(1) + 0.0
+e = (2.0 - 0.0)*rand(1) + 0.0
+s = (2.0 - 0.0)*rand(1) + 0.0
+m = (2.0 - 0.0)*rand(1) + 0.0
+p = (2.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

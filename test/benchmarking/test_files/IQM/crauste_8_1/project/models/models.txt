@@ -1,0 +1,48 @@
+********** MODEL NAME
+
+crauste_8
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(n) = -1 * n * muN - n * p * deltaNE
+d/dt(e) = n * p * deltaNE - e * e * muEE - e * deltaEL + e * p * rhoE
+d/dt(s) = s * deltaEL - s * deltaLM - s * s * muLL - e * s * muLE
+d/dt(m) = s * deltaLM - muM * m
+d/dt(p) = p * p * rhoP - p * muP - e * p * muPE - s * p * muPL
+
+********** MODEL PARAMETERS
+
+muN = 0.745
+muEE = 0.663
+muLE = 0.18
+muLL = 0.836
+muM = 0.671
+muP = 0.899
+muPE = 0.22
+muPL = 0.795
+deltaNE = 0.23
+deltaEL = 0.592
+deltaLM = 0.199
+rhoE = 0.778
+rhoP = 0.746
+
+********** MODEL VARIABLES
+
+OUTPUT1 = n
+OUTPUT2 = e
+OUTPUT3 = s+m
+OUTPUT4 = p
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

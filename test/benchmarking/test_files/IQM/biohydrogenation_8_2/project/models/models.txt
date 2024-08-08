@@ -1,0 +1,38 @@
+********** MODEL NAME
+
+biohydrogenation_8
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(x4) = - k5 * x4 / (k6 + x4)
+d/dt(x5) = k5 * x4 / (k6 + x4) - k7 * x5/(k8 + x5 + x6)
+d/dt(x6) = k7 * x5 / (k8 + x5 + x6) - k9 * x6 * (k10 - x6) / k10
+d/dt(x7) = k9 * x6 * (k10 - x6) / k10
+
+********** MODEL PARAMETERS
+
+k5 = 0.355
+k6 = 0.634
+k7 = 0.205
+k8 = 0.673
+k9 = 0.332
+k10 = 0.247
+
+********** MODEL VARIABLES
+
+OUTPUT1 = x4
+OUTPUT2 = x5
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

@@ -1,0 +1,18 @@
+********** EXPERIMENT NAME
+seir_8
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+a = (1.0 - 0.0)*rand(1) + 0.0
+b = (1.0 - 0.0)*rand(1) + 0.0
+nu = (1.0 - 0.0)*rand(1) + 0.0
+S = (1.0 - 0.0)*rand(1) + 0.0
+E = (1.0 - 0.0)*rand(1) + 0.0
+In = (1.0 - 0.0)*rand(1) + 0.0
+NN = (1.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

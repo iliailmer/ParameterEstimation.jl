@@ -1,0 +1,21 @@
+********** EXPERIMENT NAME
+biohydrogenation_4
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+k5 = (1.0 - 0.0)*rand(1) + 0.0
+k6 = (1.0 - 0.0)*rand(1) + 0.0
+k7 = (1.0 - 0.0)*rand(1) + 0.0
+k8 = (1.0 - 0.0)*rand(1) + 0.0
+k9 = (1.0 - 0.0)*rand(1) + 0.0
+k10 = (1.0 - 0.0)*rand(1) + 0.0
+x4 = (1.0 - 0.0)*rand(1) + 0.0
+x5 = (1.0 - 0.0)*rand(1) + 0.0
+x6 = (1.0 - 0.0)*rand(1) + 0.0
+x7 = (1.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

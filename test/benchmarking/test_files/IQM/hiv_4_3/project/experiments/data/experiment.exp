@@ -1,0 +1,26 @@
+********** EXPERIMENT NAME
+hiv_4
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+lm = (3.0 - 0.0)*rand(1) + 0.0
+d = (3.0 - 0.0)*rand(1) + 0.0
+beta = (3.0 - 0.0)*rand(1) + 0.0
+a = (3.0 - 0.0)*rand(1) + 0.0
+k = (3.0 - 0.0)*rand(1) + 0.0
+uu = (3.0 - 0.0)*rand(1) + 0.0
+c = (3.0 - 0.0)*rand(1) + 0.0
+q = (3.0 - 0.0)*rand(1) + 0.0
+b = (3.0 - 0.0)*rand(1) + 0.0
+h = (3.0 - 0.0)*rand(1) + 0.0
+x = (3.0 - 0.0)*rand(1) + 0.0
+yy = (3.0 - 0.0)*rand(1) + 0.0
+vv = (3.0 - 0.0)*rand(1) + 0.0
+w = (3.0 - 0.0)*rand(1) + 0.0
+z = (3.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

@@ -1,0 +1,32 @@
+********** MODEL NAME
+
+harmonic_3
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(x1) = -a*x2
+d/dt(x2) = +x1/b
+
+********** MODEL PARAMETERS
+
+a = 0.554
+b = 0.84
+
+********** MODEL VARIABLES
+
+OUTPUT1 = x1
+OUTPUT2 = x2
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

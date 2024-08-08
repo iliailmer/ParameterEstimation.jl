@@ -1,0 +1,22 @@
+********** EXPERIMENT NAME
+daisy_mamil4_8
+
+********** EXPERIMENT NOTES
+
+
+********** EXPERIMENT INITIAL PARAMETER AND STATE SETTINGS
+k01 = (3.0 - 0.0)*rand(1) + 0.0
+k12 = (3.0 - 0.0)*rand(1) + 0.0
+k13 = (3.0 - 0.0)*rand(1) + 0.0
+k14 = (3.0 - 0.0)*rand(1) + 0.0
+k21 = (3.0 - 0.0)*rand(1) + 0.0
+k31 = (3.0 - 0.0)*rand(1) + 0.0
+k41 = (3.0 - 0.0)*rand(1) + 0.0
+x1 = (3.0 - 0.0)*rand(1) + 0.0
+x2 = (3.0 - 0.0)*rand(1) + 0.0
+x3 = (3.0 - 0.0)*rand(1) + 0.0
+x4 = (3.0 - 0.0)*rand(1) + 0.0
+
+********** EXPERIMENT PARAMETER CHANGES
+
+********** EXPERIMENT STATE CHANGES

@@ -1,0 +1,32 @@
+********** MODEL NAME
+
+lotka_volterra_9
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(r) = k1*r - k2*r*w
+d/dt(w) = k2*r*w - k3*w
+
+********** MODEL PARAMETERS
+
+k1 = 0.637
+k2 = 0.268
+k3 = 0.203
+
+********** MODEL VARIABLES
+
+OUTPUT1 = r
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+

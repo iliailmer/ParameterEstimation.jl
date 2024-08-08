@@ -1,0 +1,40 @@
+********** MODEL NAME
+
+daisy_mamil4_0
+
+********** MODEL NOTES
+
+
+********** MODEL STATES
+
+d/dt(x1) = -k01 * x1 + k12 * x2 + k13 * x3 + k14 * x4 - k21 * x1 - k31 * x1 - k41 * x1
+d/dt(x2) = -k12 * x2 + k21 * x1
+d/dt(x3) = -k13 * x3 + k31 * x1
+d/dt(x4) = -k14 * x4 + k41 * x1
+
+********** MODEL PARAMETERS
+
+k01 = 0.539
+k12 = 0.672
+k13 = 0.582
+k14 = 0.536
+k21 = 0.439
+k31 = 0.617
+k41 = 0.45
+
+********** MODEL VARIABLES
+
+OUTPUT1 = x1
+OUTPUT2 = x2
+OUTPUT3 = x3 + x4
+
+********** MODEL REACTIONS
+
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+
+
+
