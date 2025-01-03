@@ -4,7 +4,6 @@ authors = ["Oren Bassik <orebas@yahoo.com>", "Yosef Berman <yberman1@gradcenter.
 version = "0.4.1"
 
 [deps]
-ArbNumerics = "7e558dbc-694d-5a72-987c-6f4ebed21442"
 BaryRational = "91aaffc3-5777-4842-85b7-5d3d5d6a3494"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
@@ -29,7 +28,6 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 
 [compat]
-ArbNumerics = "1"
 BaryRational = "1"
 DifferentialEquations = "7"
 ForwardDiff = "0.10"
