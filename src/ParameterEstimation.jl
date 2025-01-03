@@ -21,7 +21,6 @@ import StructuralIdentifiability
 import StructuralIdentifiability: ODE
 using BaryRational
 using ForwardDiff
-using ArbNumerics
 
 #end
 Float = Union{Float64, Float32, Float16, BigFloat}
