@@ -1,5 +1,9 @@
-function check_constraints(estimate, parameter_constraints, ic_constraints)
+function check_constraints(estimate, id, parameter_constraints, ic_constraints)
 	sat = true
+	
+	nonid = string.(id.identifiability["nonidentifiable"])
+	nonid = map(k -> replace(string(k), r"\([t0-9\.]*\)" => ""), nonid)
+
 	if (!isnothing(parameter_constraints))
 		#		println("Here: ", typeof(estimate))
 
@@ -7,6 +11,9 @@ function check_constraints(estimate, parameter_constraints, ic_constraints)
 
 		#		println("Here: ", estimate.parameters)
 		for (k, v) in pairs(estimate.parameters)
+			if string(k) in nonid
+				continue
+			end
 			if (haskey(parameter_constraints, k))
 				if !(parameter_constraints[k][1] <= v && v <= parameter_constraints[k][2])
 					sat = false
@@ -17,6 +24,9 @@ function check_constraints(estimate, parameter_constraints, ic_constraints)
 
 	if (!isnothing(ic_constraints))
 		for (k, v) in pairs(estimate.states)
+			if replace(string(k), r"\([t0-9\.]*\)" => "") in nonid
+                                continue
+                        end
 			if (haskey(ic_constraints, k))
 				if !(ic_constraints[k][1] <= v && v <= ic_constraints[k][2])
 					sat = false
@@ -68,18 +78,19 @@ function new_clustering(estimates, tol = 1e-3)
 	return new_estimates
 end
 
-function post_process(estimates, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing; threaded=false)
+function post_process(id, estimates, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing; threaded=false)
 	if threaded
 		estimates = filter(x -> !isnothing(x), estimates)
 		estimates = vcat(estimates...)
 	end
+
 	#filter out the empty vectors
 	estimates = filter(x -> length(x) > 0, estimates)
 	estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)
 
 	if (filtermode == :new)
 		estimates = collect(Iterators.flatten(estimates))
-		estimates = filter(x -> check_constraints(x, parameter_constraints, ic_constraints), estimates)
+		estimates = filter(x -> check_constraints(x, id, parameter_constraints, ic_constraints), estimates)
 		estimates = sort(estimates, by = x -> x.err)
 
 		estimates_clustered_by_params = new_clustering(estimates, 1e-2)  #TODO(orebas): this is a magic number.

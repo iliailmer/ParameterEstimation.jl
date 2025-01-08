@@ -38,5 +38,5 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
                 ])
         end
     end
-    return post_process(estimates, filtermode, parameter_constraints, ic_constraints; threaded=false)
+    return post_process(id,estimates, filtermode, parameter_constraints, ic_constraints; threaded=false)
 end
