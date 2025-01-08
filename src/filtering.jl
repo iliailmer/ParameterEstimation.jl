@@ -8,14 +8,13 @@ Compute the error between the solution and the data sample. The error is recorde
 # Arguments
 - `model`: the ODE system to be solved.
 - `estimate::EstimationResult`: the parameters and initial conditions of the ODE system.
-- `data_sample`: the data sample used for estimation (same functions as `measured_quantities`).
-				 The keys of the dictionary are the measured quantities
-				 and the values are the corresponding data samples.
+- `data_sample`: the data sample used for estimation (same functions as `measured_quantities`). \
+				 The keys of the dictionary are the measured quantities and the values are the corresponding data samples.
 - `solver = Tsit5()`: (optional) the solver used to solve the ODE system, see `DifferentialEquations` for available solvers.
 - `return_ode = false`: (optional) whether to return the ODE solution.
 
 # Returns
-- ode_solution: the solution of the ODE system (if `return_ode` is set to `true`).
+- `ode_solution`: the solution of the ODE system (if `return_ode` is set to `true`).
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
 function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, data_sample;
@@ -93,9 +92,8 @@ In addition, takes into account global and local identifiability of parameters w
 - `identifiability_result::IdentifiabilityData`: the result of identifiability analysis.
 - `model::ModelingToolkit.ODESystem`: the ODE system.
 - `inputs::Vector{ModelingToolkit.Equation}`: the inputs of the ODE system.
-- `data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
-																The keys of the dictionary are the measured quantities
-																and the values are the corresponding data samples.
+- `data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`). \
+																        The keys of the dictionary are the measured quantities and the values are the corresponding data samples.
 - `time_interval::Vector{T} = Vector{T}()`: the time interval of the ODE system.
 - `topk = 1`: (optional) the number of best estimates to return.
 

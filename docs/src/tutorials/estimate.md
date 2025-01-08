@@ -12,7 +12,7 @@ If we collect the sample at 4 time points between 0 and 1, we obtain a collectio
 
 ```
 "t"     => [0.000, 0.333, 0.666, 1.000],
-  x^2 + x => [2.000, 1.563, 1.229, 0.974]
+x^2 + x => [2.000, 1.563, 1.229, 0.974]
 ```
 
 This is all that is needed for the program: a symbolic model (ODE and outputs) and a dictionary of data.
@@ -20,12 +20,12 @@ This is all that is needed for the program: a symbolic model (ODE and outputs) a
 ## Code
 Below is the working code example:
 
-```julia
+```@example tutorial
 using ParameterEstimation
 using ModelingToolkit
 
 # Input:
-# -- Differential model
+# -- MTK model
 @parameters mu
 @variables t x(t) y(t)
 D = Differential(t)
@@ -36,8 +36,9 @@ outs = [y ~ x^2 + x]
 # -- Data
 data = Dict(
   "t"     => [0.000, 0.333, 0.666, 1.000],
-  x^2 + x => [2.000, 1.563, 1.229, 0.974])
+  x^2 + x => [2.000, 1.563, 1.229, 0.974]
+)
 
 # Run
-res = estimate(Sigma, outs, data);
+res = estimate(Sigma, outs, data)
 ```

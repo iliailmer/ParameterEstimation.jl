@@ -7,9 +7,8 @@
 				method::Symbol = :homotopy)
 
 This function performs the key step in parameter estimation.
-
-	It interpolates the data in `data_sample` and computes the `TaylorSeries` expansion.
-	These results are stored in the `Interpolant` object and are applied to the polynomial system in `identifiability_result`.
+It interpolates the data in `data_sample` and computes the `TaylorSeries` expansion.
+These results are stored in the `Interpolant` object and are applied to the polynomial system in `identifiability_result`.
 
 # Arguments
 - `identifiability_result`: the result of the identifiability check.
