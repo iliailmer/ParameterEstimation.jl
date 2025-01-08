@@ -12,7 +12,6 @@ function check_constraints(estimate, id, parameter_constraints, ic_constraints)
 		#		println("Here: ", estimate.parameters)
 		for (k, v) in pairs(estimate.parameters)
 			if string(k) in nonid
-				# @error "Skip filtering for $k"
 				continue
 			end
 			if (haskey(parameter_constraints, k))
@@ -26,7 +25,6 @@ function check_constraints(estimate, id, parameter_constraints, ic_constraints)
 	if (!isnothing(ic_constraints))
 		for (k, v) in pairs(estimate.states)
 			if replace(string(k), r"\([t0-9\.]*\)" => "") in nonid
-                                # @error "Skip filtering for $k"
                                 continue
                         end
 			if (haskey(ic_constraints, k))
@@ -85,9 +83,6 @@ function post_process(id, estimates, filtermode = :new, parameter_constraints = 
 		estimates = filter(x -> !isnothing(x), estimates)
 		estimates = vcat(estimates...)
 	end
-	
-	println(id.identifiability)
-	println(estimates)
 
 	#filter out the empty vectors
 	estimates = filter(x -> length(x) > 0, estimates)
