@@ -1,0 +1,60 @@
+System of length 57
+ 57 variables: Akt_0, Akt_1, Akt_2, Akt_3, Akt_4, Akt_5, EGF_EGFR_0, EGF_EGFR_1, EGF_EGFR_2, EGF_EGFR_3, EGF_EGFR_4, EGF_EGFR_5, S6_0, S6_1, S6_2, S6_3, S6_4, pAkt_0, pAkt_1, pAkt_2, pAkt_3, pAkt_4, pAkt_5, pAkt_S6_0, pAkt_S6_1, pAkt_S6_2, pAkt_S6_3, pAkt_S6_4, pAkt_S6_5, pEGFR_0, pEGFR_1, pEGFR_2, pEGFR_3, pEGFR_4, pEGFR_5, pEGFR_6, pEGFR_Akt_0, pEGFR_Akt_1, pEGFR_Akt_2, pEGFR_Akt_3, pEGFR_Akt_4, pEGFR_Akt_5, pEGFR_Akt_6, pS6_0, pS6_1, pS6_2, pS6_3, pS6_4, pS6_5, reaction_2_k2_0, reaction_3_k1_0, reaction_4_k1_0, reaction_5_k1_0, reaction_6_k1_0, reaction_7_k1_0, reaction_8_k1_0, reaction_9_k1_0
+
+ 0.207687931931692 + (-1/10)*pEGFR_0 + (-1/10)*pEGFR_Akt_0
+ pEGFR_Akt_1 + (-1/10)*Akt_0*pEGFR_0 + reaction_2_k2_0*pEGFR_Akt_0 + reaction_3_k1_0*pEGFR_Akt_0
+ pEGFR_1 + (1/10)*Akt_0*pEGFR_0 + pEGFR_0*reaction_4_k1_0 - reaction_2_k2_0*pEGFR_Akt_0 - reaction_3_k1_0*pEGFR_Akt_0 - reaction_9_k1_0*EGF_EGFR_0
+ 0.189561844075554 + (-1/10)*pAkt_0 + (-1/10)*pAkt_S6_0
+ pAkt_1 + (-1/10)*pAkt_S6_0 + pAkt_0*reaction_7_k1_0 - pAkt_S6_0*reaction_6_k1_0 - reaction_3_k1_0*pEGFR_Akt_0 + S6_0*pAkt_0*reaction_5_k1_0
+ (1/10)*pAkt_S6_0 + pAkt_S6_1 + pAkt_S6_0*reaction_6_k1_0 - S6_0*pAkt_0*reaction_5_k1_0
+ 0.0950184339735898 + (-1/10)*pS6_0
+ pS6_1 - pAkt_S6_0*reaction_6_k1_0 + pS6_0*reaction_8_k1_0
+ 0.00769592250478927 + (-1/10)*pEGFR_1 + (-1/10)*pEGFR_Akt_1
+ pEGFR_2 + (1/10)*Akt_0*pEGFR_1 + (1/10)*Akt_1*pEGFR_0 + pEGFR_1*reaction_4_k1_0 - reaction_2_k2_0*pEGFR_Akt_1 - reaction_3_k1_0*pEGFR_Akt_1 - reaction_9_k1_0*EGF_EGFR_1
+ pEGFR_Akt_2 + (-1/10)*Akt_0*pEGFR_1 + (-1/10)*Akt_1*pEGFR_0 + reaction_2_k2_0*pEGFR_Akt_1 + reaction_3_k1_0*pEGFR_Akt_1
+ Akt_1 + (1/10)*Akt_0*pEGFR_0 - pAkt_0*reaction_7_k1_0 - reaction_2_k2_0*pEGFR_Akt_0
+ (-192342775423222464709/10)*EGF_EGFR_0 + EGF_EGFR_1 + reaction_9_k1_0*EGF_EGFR_0
+ -0.0236916892431975 + (-1/10)*pAkt_1 + (-1/10)*pAkt_S6_1
+ pAkt_2 + (-1/10)*pAkt_S6_1 + pAkt_1*reaction_7_k1_0 - pAkt_S6_1*reaction_6_k1_0 - reaction_3_k1_0*pEGFR_Akt_1 + S6_0*pAkt_1*reaction_5_k1_0 + S6_1*pAkt_0*reaction_5_k1_0
+ (1/10)*pAkt_S6_1 + pAkt_S6_2 + pAkt_S6_1*reaction_6_k1_0 - S6_0*pAkt_1*reaction_5_k1_0 - S6_1*pAkt_0*reaction_5_k1_0
+ S6_1 + (-1/10)*pAkt_S6_0 - pS6_0*reaction_8_k1_0 + S6_0*pAkt_0*reaction_5_k1_0
+ -0.0108745900672574 + (-1/10)*pS6_1
+ pS6_2 - pAkt_S6_1*reaction_6_k1_0 + pS6_1*reaction_8_k1_0
+ -0.0363682102116581 + (-1/10)*pEGFR_2 + (-1/10)*pEGFR_Akt_2
+ pEGFR_Akt_3 + (-1/10)*Akt_0*pEGFR_2 + (-1/5)*Akt_1*pEGFR_1 + (-1/10)*Akt_2*pEGFR_0 + reaction_2_k2_0*pEGFR_Akt_2 + reaction_3_k1_0*pEGFR_Akt_2
+ pEGFR_3 + (1/10)*Akt_0*pEGFR_2 + (1/5)*Akt_1*pEGFR_1 + (1/10)*Akt_2*pEGFR_0 + pEGFR_2*reaction_4_k1_0 - reaction_2_k2_0*pEGFR_Akt_2 - reaction_3_k1_0*pEGFR_Akt_2 - reaction_9_k1_0*EGF_EGFR_2
+ (-192342775423222464709/10)*EGF_EGFR_1 + EGF_EGFR_2 + reaction_9_k1_0*EGF_EGFR_1
+ Akt_2 + (1/10)*Akt_0*pEGFR_1 + (1/10)*Akt_1*pEGFR_0 - pAkt_1*reaction_7_k1_0 - reaction_2_k2_0*pEGFR_Akt_1
+ -0.000409079408074396 + (-1/10)*pAkt_2 + (-1/10)*pAkt_S6_2
+ pAkt_3 + (-1/10)*pAkt_S6_2 + pAkt_2*reaction_7_k1_0 - pAkt_S6_2*reaction_6_k1_0 - reaction_3_k1_0*pEGFR_Akt_2 + S6_0*pAkt_2*reaction_5_k1_0 + 2*S6_1*pAkt_1*reaction_5_k1_0 + S6_2*pAkt_0*reaction_5_k1_0
+ (1/10)*pAkt_S6_2 + pAkt_S6_3 + pAkt_S6_2*reaction_6_k1_0 - S6_0*pAkt_2*reaction_5_k1_0 - 2*S6_1*pAkt_1*reaction_5_k1_0 - S6_2*pAkt_0*reaction_5_k1_0
+ S6_2 + (-1/10)*pAkt_S6_1 - pS6_1*reaction_8_k1_0 + S6_0*pAkt_1*reaction_5_k1_0 + S6_1*pAkt_0*reaction_5_k1_0
+ 0.001394737932278 + (-1/10)*pS6_2
+ pS6_3 - pAkt_S6_2*reaction_6_k1_0 + pS6_2*reaction_8_k1_0
+ 0.0329042959139023 + (-1/10)*pEGFR_3 + (-1/10)*pEGFR_Akt_3
+ pEGFR_4 + (1/10)*Akt_0*pEGFR_3 + (3/10)*Akt_1*pEGFR_2 + (3/10)*Akt_2*pEGFR_1 + (1/10)*Akt_3*pEGFR_0 + pEGFR_3*reaction_4_k1_0 - reaction_2_k2_0*pEGFR_Akt_3 - reaction_3_k1_0*pEGFR_Akt_3 - reaction_9_k1_0*EGF_EGFR_3
+ pEGFR_Akt_4 + (-1/10)*Akt_0*pEGFR_3 + (-3/10)*Akt_1*pEGFR_2 + (-3/10)*Akt_2*pEGFR_1 + (-1/10)*Akt_3*pEGFR_0 + reaction_2_k2_0*pEGFR_Akt_3 + reaction_3_k1_0*pEGFR_Akt_3
+ (-192342775423222464709/10)*EGF_EGFR_2 + EGF_EGFR_3 + reaction_9_k1_0*EGF_EGFR_2
+ Akt_3 + (1/10)*Akt_0*pEGFR_2 + (1/5)*Akt_1*pEGFR_1 + (1/10)*Akt_2*pEGFR_0 - pAkt_2*reaction_7_k1_0 - reaction_2_k2_0*pEGFR_Akt_2
+ 0.00997878984767711 + (-1/10)*pAkt_3 + (-1/10)*pAkt_S6_3
+ (1/10)*pAkt_S6_3 + pAkt_S6_4 + pAkt_S6_3*reaction_6_k1_0 - S6_0*pAkt_3*reaction_5_k1_0 - 3*S6_1*pAkt_2*reaction_5_k1_0 - 3*S6_2*pAkt_1*reaction_5_k1_0 - S6_3*pAkt_0*reaction_5_k1_0
+ pAkt_4 + (-1/10)*pAkt_S6_3 + pAkt_3*reaction_7_k1_0 - pAkt_S6_3*reaction_6_k1_0 - reaction_3_k1_0*pEGFR_Akt_3 + S6_0*pAkt_3*reaction_5_k1_0 + 3*S6_1*pAkt_2*reaction_5_k1_0 + 3*S6_2*pAkt_1*reaction_5_k1_0 + S6_3*pAkt_0*reaction_5_k1_0
+ S6_3 + (-1/10)*pAkt_S6_2 - pS6_2*reaction_8_k1_0 + S6_0*pAkt_2*reaction_5_k1_0 + 2*S6_1*pAkt_1*reaction_5_k1_0 + S6_2*pAkt_0*reaction_5_k1_0
+ 0.00257894924539056 + (-1/10)*pS6_3
+ pS6_4 - pAkt_S6_3*reaction_6_k1_0 + pS6_3*reaction_8_k1_0
+ -0.0238179675477608 + (-1/10)*pEGFR_4 + (-1/10)*pEGFR_Akt_4
+ pEGFR_5 + (1/10)*Akt_0*pEGFR_4 + (2/5)*Akt_1*pEGFR_3 + (3/5)*Akt_2*pEGFR_2 + (2/5)*Akt_3*pEGFR_1 + (1/10)*Akt_4*pEGFR_0 + pEGFR_4*reaction_4_k1_0 - reaction_2_k2_0*pEGFR_Akt_4 - reaction_3_k1_0*pEGFR_Akt_4 - reaction_9_k1_0*EGF_EGFR_4
+ pEGFR_Akt_5 + (-1/10)*Akt_0*pEGFR_4 + (-2/5)*Akt_1*pEGFR_3 + (-3/5)*Akt_2*pEGFR_2 + (-2/5)*Akt_3*pEGFR_1 + (-1/10)*Akt_4*pEGFR_0 + reaction_2_k2_0*pEGFR_Akt_4 + reaction_3_k1_0*pEGFR_Akt_4
+ (-192342775423222464709/10)*EGF_EGFR_3 + EGF_EGFR_4 + reaction_9_k1_0*EGF_EGFR_3
+ Akt_4 + (1/10)*Akt_0*pEGFR_3 + (3/10)*Akt_1*pEGFR_2 + (3/10)*Akt_2*pEGFR_1 + (1/10)*Akt_3*pEGFR_0 - pAkt_3*reaction_7_k1_0 - reaction_2_k2_0*pEGFR_Akt_3
+ -0.0158547543252677 + (-1/10)*pAkt_4 + (-1/10)*pAkt_S6_4
+ pAkt_5 + (-1/10)*pAkt_S6_4 + pAkt_4*reaction_7_k1_0 - pAkt_S6_4*reaction_6_k1_0 - reaction_3_k1_0*pEGFR_Akt_4 + S6_0*pAkt_4*reaction_5_k1_0 + 4*S6_1*pAkt_3*reaction_5_k1_0 + 6*S6_2*pAkt_2*reaction_5_k1_0 + 4*S6_3*pAkt_1*reaction_5_k1_0 + S6_4*pAkt_0*reaction_5_k1_0
+ (1/10)*pAkt_S6_4 + pAkt_S6_5 + pAkt_S6_4*reaction_6_k1_0 - S6_0*pAkt_4*reaction_5_k1_0 - 4*S6_1*pAkt_3*reaction_5_k1_0 - 6*S6_2*pAkt_2*reaction_5_k1_0 - 4*S6_3*pAkt_1*reaction_5_k1_0 - S6_4*pAkt_0*reaction_5_k1_0
+ S6_4 + (-1/10)*pAkt_S6_3 - pS6_3*reaction_8_k1_0 + S6_0*pAkt_3*reaction_5_k1_0 + 3*S6_1*pAkt_2*reaction_5_k1_0 + 3*S6_2*pAkt_1*reaction_5_k1_0 + S6_3*pAkt_0*reaction_5_k1_0
+ -0.00699841251297166 + (-1/10)*pS6_4
+ pS6_5 - pAkt_S6_4*reaction_6_k1_0 + pS6_4*reaction_8_k1_0
+ 0.0132755069188255 + (-1/10)*pEGFR_5 + (-1/10)*pEGFR_Akt_5
+ pEGFR_6 + (1/10)*Akt_0*pEGFR_5 + (1/2)*Akt_1*pEGFR_4 + Akt_2*pEGFR_3 + Akt_3*pEGFR_2 + (1/2)*Akt_4*pEGFR_1 + (1/10)*Akt_5*pEGFR_0 + pEGFR_5*reaction_4_k1_0 - reaction_2_k2_0*pEGFR_Akt_5 - reaction_3_k1_0*pEGFR_Akt_5 - reaction_9_k1_0*EGF_EGFR_5
+ pEGFR_Akt_6 + (-1/10)*Akt_0*pEGFR_5 + (-1/2)*Akt_1*pEGFR_4 - Akt_2*pEGFR_3 - Akt_3*pEGFR_2 + (-1/2)*Akt_4*pEGFR_1 + (-1/10)*Akt_5*pEGFR_0 + reaction_2_k2_0*pEGFR_Akt_5 + reaction_3_k1_0*pEGFR_Akt_5
+ Akt_5 + (1/10)*Akt_0*pEGFR_4 + (2/5)*Akt_1*pEGFR_3 + (3/5)*Akt_2*pEGFR_2 + (2/5)*Akt_3*pEGFR_1 + (1/10)*Akt_4*pEGFR_0 - pAkt_4*reaction_7_k1_0 - reaction_2_k2_0*pEGFR_Akt_4
+ (-192342775423222464709/10)*EGF_EGFR_4 + EGF_EGFR_5 + reaction_9_k1_0*EGF_EGFR_4

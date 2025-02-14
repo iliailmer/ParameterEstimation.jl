@@ -1,0 +1,7 @@
+[deps]
+AbstractAlgebra = "c3fe647b-3220-5bb0-a1ea-a7954cac585d"
+MPFI = "e50a78b8-6e2f-482e-b7c3-776aa2235d1a"
+ParameterEstimation = "b4cd1eb8-1e24-11e8-3319-93036a3eb9f3"
+RS = "01933e51-4c7d-4354-b809-e991ab46e7ed"
+RationalUnivariateRepresentation = "17246082-4fa7-4287-87d4-6a5617fca855"
+StructuralIdentifiability = "220ca800-aa68-49bb-acd8-6037fa93a544"

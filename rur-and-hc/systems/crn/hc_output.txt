@@ -1,0 +1,290 @@
+julia> ParameterEstimation.MODEL[] = "crn"; ParameterEstimation.OUTPUT_DIR[] = "case_by_case/crn"; include("case_by_case/crn/crn.jl")
+[ Info: CRN: 6 states, 6 parameters
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [k1, k2, k3, k4, k5, k6, x6, x3, x1, x5, x2, x4]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: transcendence substitutions = Nemo.QQFieldElem[]
+[ Info: Gröbner basis computation
+[ Info: System with 46 equations and 45 indeterminates
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [k1, x3, x5, k5, k2, k3, x6, x1, x4, k4, k6, x2]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+┌ Info: 
+│   full_result["full_polynomial_system"] =
+│    46-element Vector{Nemo.QQMPolyRingElem}:
+│     -x2_0 + y2_0
+│     x1_0*x2_0*k1_0 - x4_0*k2_0 - x4_0*k3_0 + x2_1
+│     -x3_0 + y1_0
+│     -x6_0*k5_0 + x3_0*x5_0*k6_0 - x4_0*k3_0 + x3_1
+│     -x2_1 + y2_1
+│     x1_0*x2_1*k1_0 + x2_0*x1_1*k1_0 - x4_1*k2_0 - x4_1*k3_0 + x2_2
+│     -x1_0*x2_0*k1_0 + x4_0*k2_0 + x4_0*k3_0 + x4_1
+│     -x6_0*k4_0 + x1_0*x2_0*k1_0 - x4_0*k2_0 + x1_1
+│     -x3_1 + y1_1
+│     x3_0*x5_1*k6_0 + x5_0*x3_1*k6_0 - x6_1*k5_0 - x4_1*k3_0 + x3_2
+│     x6_0*k4_0 + x6_0*k5_0 - x3_0*x5_0*k6_0 + x6_1
+│     -x6_0*k4_0 - x6_0*k5_0 + x3_0*x5_0*k6_0 + x5_1
+│     ⋮
+│     -x3_0*x5_3*k6_0 - x5_0*x3_3*k6_0 - 3*x3_1*x5_2*k6_0 - 3*x5_1*x3_2*k6_0 + x6_3*k4_0 + x6_3*k5_0 + x6_4
+│     -x2_5 + y2_5
+│     x1_0*x2_5*k1_0 + x2_0*x1_5*k1_0 + 5*x1_1*x2_4*k1_0 + 5*x2_1*x1_4*k1_0 + 10*x1_2*x2_3*k1_0 + 10*x2_2*x1_3*k1_0 - x4_5*k2_0 - x4_5*k3_0 + x2_6
+│     x1_0*x2_4*k1_0 + x2_0*x1_4*k1_0 + 4*x1_1*x2_3*k1_0 + 4*x2_1*x1_3*k1_0 + 6*x1_2*x2_2*k1_0 - x6_4*k4_0 - x4_4*k2_0 + x1_5
+│     -x1_0*x2_4*k1_0 - x2_0*x1_4*k1_0 - 4*x1_1*x2_3*k1_0 - 4*x2_1*x1_3*k1_0 - 6*x1_2*x2_2*k1_0 + x4_4*k2_0 + x4_4*k3_0 + x4_5
+│     -x3_5 + y1_5
+│     x3_0*x5_5*k6_0 + x5_0*x3_5*k6_0 + 5*x3_1*x5_4*k6_0 + 5*x5_1*x3_4*k6_0 + 10*x3_2*x5_3*k6_0 + 10*x5_2*x3_3*k6_0 - x6_5*k5_0 - x4_5*k3_0 + x3_6
+│     x3_0*x5_4*k6_0 + x5_0*x3_4*k6_0 + 4*x3_1*x5_3*k6_0 + 4*x5_1*x3_3*k6_0 + 6*x3_2*x5_2*k6_0 - x6_4*k4_0 - x6_4*k5_0 + x5_5
+│     -x3_0*x5_4*k6_0 - x5_0*x3_4*k6_0 - 4*x3_1*x5_3*k6_0 - 4*x5_1*x3_3*k6_0 - 6*x3_2*x5_2*k6_0 + x6_4*k4_0 + x6_4*k5_0 + x6_5
+│     -x2_6 + y2_6
+└     -x3_6 + y1_6
+[ Info: Estimating via the interpolators: ["AAA"]
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_6 => -2.24015e-7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_4 => -9.41883e-6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_13 => -1.88599e-11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_11 => -9.8483e-11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_3 => 5.8687e-5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_12 => 3.81907e-11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_9 => 1.81129e-12
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_7 => 3.10838e-8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_2 => -0.00037532
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_5 => 1.4822e-6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_0 => 1.11699
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_1 => 0.00304203
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_10 => 1.85313e-10
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_8 => -3.37709e-9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_4 => -1.41111e-5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_6 => -1.50393e-7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_12 => 1.00126e-11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_11 => -6.95568e-11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_13 => -2.52537e-12
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_0 => 1.27005
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_1 => 0.00836626
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_3 => 0.000117897
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_5 => 1.59278e-6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_2 => -0.00097439
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_7 => 5.62833e-9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_8 => 2.63805e-9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_9 => -1.12029e-9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_10 => 3.08521e-10
+┌ Info: 
+│   interpolants =
+│    Dict{Any, ParameterEstimation.Interpolant} with 2 entries:
+│      x3(t) => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, 30…
+└      x2(t) => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, 30…
+[ Info: Solving via homotopy
+[ Info: Hello
+[ Info: Computing gb modulo Prime field of characteristic 1073741827
+  0.003717 seconds (19.52 k allocations: 6.743 MiB)
+┌ Info: 
+│   length(gb) = 59
+└   length(quotient_basis(gb)) = 7
+Computing mixed cells... 763    Time: 0:00:06
+  mixed_volume:  1625
+260.656488 seconds (16.21 M allocations: 829.259 MiB, 0.22% gc time, 1.84% compilation time: <1% of which was recompilation)
+┌ Info: 
+└   length(all_solutions) = 7
+┌ Warning: At t=9.829665536545802, dt was forced below floating point epsilon -1.5506057672331188e-15, and step error estimate = 1.4811858360467125. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+Final Results:
+Parameter(s)        :    k1 = 0.030,  k2 = 0.019,  k3 = 0.049,  k4 = 0.030,  k5 = 0.019,  k6 = 0.050
+Initial Condition(s):   x1(t) = 1.040, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.031, x5(t) = 0.998, x6(t) = 1.023, where t = 0.000
+Error: 2.9760e-07
+
+Parameter(s)        :    k1 = 0.029,  k2 = 0.027,  k3 = 0.047,  k4 = 0.032,  k5 = 0.044,  k6 = 0.028
+Initial Condition(s):   x1(t) = 0.891, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 0.887, x5(t) = 1.908, x6(t) = 0.709, where t = 0.000
+Error: 1.5991e-06
+
+Parameter(s)        :    k1 = 0.022,  k2 = 0.021,  k3 = 0.027,  k4 = 0.042,  k5 = 0.039,  k6 = 0.016
+Initial Condition(s):   x1(t) = 2.309, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.871, x5(t) = 4.419, x6(t) = 0.972, where t = 0.000
+Error: 2.3405e-06
+
+Parameter(s)        :    k1 = 0.063,  k2 = 0.017,  k3 = 0.161,  k4 = -0.074,  k5 = 0.030,  k6 = 0.116
+Initial Condition(s):   x1(t) = -0.948, x2(t) = 1.000, x3(t) = 0.999, x4(t) = -0.111, x5(t) = -0.129, x6(t) = 0.784, where t = 0.000
+Error: 5.5609e-05
+
+Parameter(s)        :    k1 = 0.119,  k2 = -0.046,  k3 = 0.043,  k4 = 0.168,  k5 = -0.243,  k6 = 0.352
+Initial Condition(s):   x1(t) = -0.524, x2(t) = 1.002, x3(t) = 1.003, x4(t) = 7.471, x5(t) = -0.519, x6(t) = 1.990, where t = 0.000
+Error: 2.3377e-04
+
+Parameter(s)        :    k1 = -0.207,  k2 = -0.159,  k3 = -0.610,  k4 = 0.310,  k5 = 0.088,  k6 = -0.231
+Initial Condition(s):   x1(t) = 0.478, x2(t) = 1.000, x3(t) = 1.001, x4(t) = 0.077, x5(t) = 0.627, x6(t) = -0.892, where t = 0.000
+Error: 1.7634e-03
+
+Parameter(s)        :    k1 = 8.789,  k2 = -3.486,  k3 = 0.037,  k4 = 0.119,  k5 = -1.519,  k6 = 1.317
+Initial Condition(s):   x1(t) = -0.048, x2(t) = 1.261, x3(t) = 1.106, x4(t) = 0.194, x5(t) = -0.002, x6(t) = 0.005, where t = 0.000
+Error: 3.5712e-02
+
+7-element Vector{Any}:
+ Parameter(s)        :   k1 = 0.030,  k2 = 0.019,  k3 = 0.049,  k4 = 0.030,  k5 = 0.019,  k6 = 0.050
+Initial Condition(s):   x1(t) = 1.040, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.031, x5(t) = 0.998, x6(t) = 1.023, where t = 0.000
+Error: 2.9760e-07
+
+ Parameter(s)        :   k1 = 0.029,  k2 = 0.027,  k3 = 0.047,  k4 = 0.032,  k5 = 0.044,  k6 = 0.028
+Initial Condition(s):   x1(t) = 0.891, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 0.887, x5(t) = 1.908, x6(t) = 0.709, where t = 0.000
+Error: 1.5991e-06
+
+ Parameter(s)        :   k1 = 0.022,  k2 = 0.021,  k3 = 0.027,  k4 = 0.042,  k5 = 0.039,  k6 = 0.016
+Initial Condition(s):   x1(t) = 2.309, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.871, x5(t) = 4.419, x6(t) = 0.972, where t = 0.000
+Error: 2.3405e-06
+
+ Parameter(s)        :   k1 = 0.063,  k2 = 0.017,  k3 = 0.161,  k4 = -0.074,  k5 = 0.030,  k6 = 0.116
+Initial Condition(s):   x1(t) = -0.948, x2(t) = 1.000, x3(t) = 0.999, x4(t) = -0.111, x5(t) = -0.129, x6(t) = 0.784, where t = 0.000
+Error: 5.5609e-05
+
+ Parameter(s)        :   k1 = 0.119,  k2 = -0.046,  k3 = 0.043,  k4 = 0.168,  k5 = -0.243,  k6 = 0.352
+Initial Condition(s):   x1(t) = -0.524, x2(t) = 1.002, x3(t) = 1.003, x4(t) = 7.471, x5(t) = -0.519, x6(t) = 1.990, where t = 0.000
+Error: 2.3377e-04
+
+ Parameter(s)        :   k1 = -0.207,  k2 = -0.159,  k3 = -0.610,  k4 = 0.310,  k5 = 0.088,  k6 = -0.231
+Initial Condition(s):   x1(t) = 0.478, x2(t) = 1.000, x3(t) = 1.001, x4(t) = 0.077, x5(t) = 0.627, x6(t) = -0.892, where t = 0.000
+Error: 1.7634e-03
+
+ Parameter(s)        :   k1 = 8.789,  k2 = -3.486,  k3 = 0.037,  k4 = 0.119,  k5 = -1.519,  k6 = 1.317
+Initial Condition(s):   x1(t) = -0.048, x2(t) = 1.261, x3(t) = 1.106, x4(t) = 0.194, x5(t) = -0.002, x6(t) = 0.005, where t = 0.000
+Error: 3.5712e-02
+
+
+julia> 
+
+julia> res[1]
+Parameter(s)        :    k1 = 0.030,  k2 = 0.019,  k3 = 0.049,  k4 = 0.030,  k5 = 0.019,  k6 = 0.050
+Initial Condition(s):   x1(t) = 1.040, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.031, x5(t) = 0.998, x6(t) = 1.023, where t = 0.000
+Error: 2.9760e-07
+
+
+julia> res[2]
+Parameter(s)        :    k1 = 0.029,  k2 = 0.027,  k3 = 0.047,  k4 = 0.032,  k5 = 0.044,  k6 = 0.028
+Initial Condition(s):   x1(t) = 0.891, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 0.887, x5(t) = 1.908, x6(t) = 0.709, where t = 0.000
+Error: 1.5991e-06
+
+
+julia> res[3]
+Parameter(s)        :    k1 = 0.022,  k2 = 0.021,  k3 = 0.027,  k4 = 0.042,  k5 = 0.039,  k6 = 0.016
+Initial Condition(s):   x1(t) = 2.309, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.871, x5(t) = 4.419, x6(t) = 0.972, where t = 0.000
+Error: 2.3405e-06
+
+
+julia> res[4]
+Parameter(s)        :    k1 = 0.063,  k2 = 0.017,  k3 = 0.161,  k4 = -0.074,  k5 = 0.030,  k6 = 0.116
+Initial Condition(s):   x1(t) = -0.948, x2(t) = 1.000, x3(t) = 0.999, x4(t) = -0.111, x5(t) = -0.129, x6(t) = 0.784, where t = 0.000
+Error: 5.5609e-05
+
+
+julia> res[5]
+Parameter(s)        :    k1 = 0.119,  k2 = -0.046,  k3 = 0.043,  k4 = 0.168,  k5 = -0.243,  k6 = 0.352
+Initial Condition(s):   x1(t) = -0.524, x2(t) = 1.002, x3(t) = 1.003, x4(t) = 7.471, x5(t) = -0.519, x6(t) = 1.990, where t = 0.000
+Error: 2.3377e-04
+
+
+julia> res[1]
+Parameter(s)        :    k1 = 0.030,  k2 = 0.019,  k3 = 0.049,  k4 = 0.030,  k5 = 0.019,  k6 = 0.050
+Initial Condition(s):   x1(t) = 1.040, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.031, x5(t) = 0.998, x6(t) = 1.023, where t = 0.000
+Error: 2.9760e-07
+
+
+julia> res[1].parameters
+OrderedCollections.OrderedDict{Any, Any} with 6 entries:
+  k1 => 0.0298276
+  k2 => 0.019479
+  k3 => 0.0494286
+  k4 => 0.0304424
+  k5 => 0.0189836
+  k6 => 0.0504628
+
+julia> (0.02- 0.0189836) / 0.02
+0.05082000000000003
+
+julia> (0.02- 0.0189836) / 0.02 * 100
+5.082000000000003

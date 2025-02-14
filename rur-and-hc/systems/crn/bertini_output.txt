@@ -1,0 +1,21 @@
+
+   Bertini(TM) v1.6
+    (May 22, 2018)
+
+ D.J. Bates, J.D. Hauenstein,
+ A.J. Sommese, C.W. Wampler
+
+(using GMP v6.0.0, MPFR v3.1.2)
+
+
+
+NOTE: You have requested to use adaptive path tracking.  Please make sure that you have
+setup the following tolerances appropriately:
+CoeffBound: 1.659577000000e+01, DegreeBound: 3.000000000000e+00
+AMPSafetyDigits1: 1, AMPSafetyDigits2: 1, AMPMaxPrec: 1024
+
+
+
+ERROR: The number of startpoints must be positive!
+Bertini will now exit due to this error.
+

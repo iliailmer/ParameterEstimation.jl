@@ -1,0 +1,887 @@
+julia> ParameterEstimation.MODEL[] = "nfkb_lilliput"; ParameterEstimation.OUTPUT_DIR[] = "case_by_case/nfkb_lilliput/"; include("case_by_case/nfkb_lilliput/nfkb_lilliput.jl")
+[ Info: NFkB: 16 states, 5 parameters
+┌ Info: 
+│   data_sample =
+│    OrderedCollections.OrderedDict{Any, Vector{Float64}} with 8 entries:
+│      x7(t)                 => [1.0, 0.99603, 0.992118, 0.988264, 0.984465, 0.980721, 0.97703, 0.973391, 0.969803, …
+│      x13(t) + x10(t)       => [2.0, 1.98009, 1.96038, 1.94088, 1.92161, 1.90258, 1.8838, 1.86529, 1.84706, 1.8291 …
+│      x9(t)                 => [1.0, 0.995022, 0.990089, 0.9852, 0.980355, 0.975552, 0.970792, 0.966073, 0.961397, …
+│      x3(t) + x1(t) + x2(t) => [3.0, 3.04914, 3.0966, 3.14246, 3.18678, 3.22963, 3.27106, 3.31115, 3.34993, 3.38747…
+│      x2(t)                 => [1.0, 1.03403, 1.06616, 1.09648, 1.12505, 1.15196, 1.17727, 1.20105, 1.22336, 1.2442…
+│      x12(t)                => [1.0, 1.00498, 1.00991, 1.0148, 1.01965, 1.02445, 1.02921, 1.03393, 1.0386, 1.04324 …
+│      u(t)                  => [1.0, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45  …  1.55, 1.6, 1.65, 1.7, 1.7…
+└      "t"                   => [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45  …  0.55, 0.6, 0.65, 0.7, 0.7…
+Num[i1, i1a, k_prod, t1, t2]
+[0.2, 0.30000000000000004, 0.4, 0.5, 0.6]
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.2 will be converted to -1//5.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.010000000000000002 will be converted to -27191544919973//2719154491997299.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.010000000000000002 will be converted to -27191544919973//2719154491997299.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value -0.1 will be converted to -1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+┌ Warning: Floating point value 0.1 will be converted to 1//10.
+└ @ ModelingToolkitSIExt ~/.julia/packages/StructuralIdentifiability/91lNL/ext/ModelingToolkitSIExt.jl:69
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: [x15_0]
+[ Info: Locally identifiable parameters: [i1, i1a, k_prod, t1, t2, x12, x14, x3, x5, x1, x11, x4, x13, x2, u, x9, x10, x8, x7, x6]
+[ Info: Not identifiable parameters:     [x15]
+[ Info: Randomizing
+[ Info: transcendence substitutions = Nemo.QQFieldElem[11500575223038528278]
+[ Info: Gröbner basis computation
+[ Info: System with 85 equations and 74 indeterminates
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [x12, x14, t2, x3, x5, x1, i1, x11, t1, x4, x13, x2, u, x9, x10, x8, x7, i1a, x6, k_prod]
+[ Info: Locally but not globally identifiable parameters: []
+[ Info: Not identifiable parameters:                      [x15]
+[ Info: ===============
+┌ Info: 
+│   full_result["full_polynomial_system"] =
+│    85-element Vector{Nemo.QQMPolyRingElem}:
+│     -x7_0 + y1_0
+│     1//10*x11_0*x7_0 - 1//10*x6_0*i1_0 + x7_1
+│     -x9_0 + y3_0
+│     1//10*x9_0 + 1//10*x7_0 + x9_1 - 1//10
+│     -x3_0 - x1_0 - x2_0 + y4_0
+│     -x5_0*t2_0 - 1//10*x1_0*u_0 - x4_0*t1_0 + 1//10*x13_0*x2_0 + 1//10*x2_0*u_0*x8_0 + 1//10*x2_0*x10_0 + 1//5*x2_0 + x2_1
+│     1//10*x1_0*u_0 + 1//10*x1_0 + x1_1 - k_prod_0
+│     1//10*x3_0 - 1//10*x2_0*u_0*x8_0 - 1//10*x2_0 + x3_1
+│     -x13_0 - x10_0 + y2_0
+│     -1//10*x14_0 + 1//10*x13_0*x2_0 + 1//10*x13_0 - 1//10*x10_0*x6_0 + x13_1
+│     -1//10*x12_0 - 1//10*x11_0 + 1//10*x2_0*x10_0 + 1//10*x10_0*x6_0 + x10_0*i1a_0 + 1//10*x10_0 + x10_1
+│     -x2_0 + y5_0
+│     ⋮
+│     -x9_1 + y3_1
+│     -x9_2 + y3_2
+│     -x3_4 - x1_4 - x2_4 + y4_4
+│     -x13_4 - x10_4 + y2_4
+│     -x2_4 + y5_4
+│     -x12_1 + y6_1
+│     -x12_2 + y6_2
+│     -x12_3 + y6_3
+│     -u_1 + y7_1
+│     -u_2 + y7_2
+└     -u_3 + y7_3
+[ Info: Estimating via the interpolators: ["AAA"]
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_19 => -1.97504e26
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_0 => 0.966265
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_16 => 1.47152e18
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_20 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_17 => -2.26026e21
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_5 => -0.00547031
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_14 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_2 => 0.0194833
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_13 => -8.77095e10
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_6 => 0.00627109
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_4 => 0.00565281
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_8 => 0.159543
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_18 => 7.71501e23
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_10 => -20911.6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_22 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_12 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_7 => -0.00623214
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_9 => 20.4215
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_15 => 1.14963e16
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_21 => 1.29436e31
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_3 => -0.00855425
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_11 => 1.33834e6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_1 => -0.0702701
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_16 => -6.0947e13
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_8 => 0.446588
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_13 => 1.45309e7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_11 => -886.896
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_5 => 0.253914
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_2 => 0.115529
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_7 => 0.125669
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_12 => 1.13523e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_15 => -2.38074e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_21 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_10 => 13.8578
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_14 => -3.71991e9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_22 => 4.28877e27
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_9 => -1.84048
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_18 => 1.99711e18
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_4 => -0.16829
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_19 => -2.5563e20
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_0 => 1.8291
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_6 => -0.275808
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_3 => 0.0514437
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_17 => 2.34037e16
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_1 => -0.356254
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_20 => -1.96324e23
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_12 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_10 => 5.7627
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_11 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_6 => 0.000615694
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_4 => 0.00121283
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_0 => 0.956761
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_1 => -0.0923027
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_19 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_21 => 6.96667e24
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_5 => -0.000686564
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_20 => 8.16407e22
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_8 => 0.00140691
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_22 => -7.13387e27
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_18 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_14 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_3 => -0.00357406
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_2 => 0.0162573
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_17 => -6.48822e15
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_7 => -0.000692463
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_16 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_15 => 1.98005e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_9 => -0.0900421
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_13 => -1.20853e7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_2 => -0.478317
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_22 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_1 => 0.738669
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_7 => 0.200649
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_0 => 3.38747
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_4 => -0.392213
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_8 => 0.428216
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_19 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_11 => 1733.66
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_16 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_9 => -2.32791
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_18 => 1.95192e18
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_13 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_3 => 0.388669
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_14 => -3.63574e9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_20 => -1.27921e23
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_5 => 0.419253
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_12 => 2.21908e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_21 => 3.27478e25
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_15 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_17 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_10 => -0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_6 => -0.397416
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_0 => 1.24426
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_18 => 2.94759e23
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_14 => -1.71572e13
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_19 => 7.54582e25
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_5 => 0.336265
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_22 => 5.06391e33
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_15 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_6 => -0.265717
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_12 => 5.23597e8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_16 => -2.24883e18
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_4 => -0.38567
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_1 => 0.4043
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_2 => -0.540062
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_13 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_8 => 0.365728
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_21 => -3.95618e31
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_10 => -3994.72
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_20 => -7.72692e28
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_9 => -62.4176
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_3 => 0.456282
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_7 => 0.0590498
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_11 => 1.02265e6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y5_17 => -1.1514e21
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_5 => 0.000686562
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_18 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_21 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_10 => -5.76257
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_20 => -5.44259e22
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_15 => 3.96e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_6 => -0.00061568
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_7 => 0.000692447
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_2 => -0.0162573
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_9 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_13 => -3.62549e7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_4 => -0.00121283
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_16 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_22 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_0 => 1.04324
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_8 => -0.000703438
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_1 => 0.0923027
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_12 => 1.88828e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_11 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_3 => 0.00357406
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_19 => 2.12601e20
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_14 => 1.54688e9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y6_17 => -6.48807e15
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_5 => 1.5917e-13
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_13 => 0.0437522
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_22 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_7 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_6 => -1.01869e-11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_14 => -0.700036
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_9 => 4.17254e-8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_1 => 1.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_11 => -4.27268e-5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_8 => 2.60784e-9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_19 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_21 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_3 => 1.24351e-15
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_17 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_0 => 1.45
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_12 => -0.00136726
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_18 => 7.34041e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_10 => 1.33521e-6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_4 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_2 => 1.81553e-13
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_16 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_15 => -67.2034
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y7_20 => 0.0
+┌ Info: 
+│   interpolants =
+│    Dict{Any, ParameterEstimation.Interpolant} with 7 entries:
+│      x2(t)                 => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, …
+│      x7(t)                 => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, …
+│      u(t)                  => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([1.0, …
+│      x13(t) + x10(t)       => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, …
+│      x12(t)                => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, …
+│      x9(t)                 => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, …
+└      x3(t) + x1(t) + x2(t) => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0, …
+[ Info: Solving via homotopy
+[ Info: Hello
+[ Info: Computing gb modulo Prime field of characteristic 1073741827
+  0.097588 seconds (135.35 k allocations: 38.546 MiB, 17.66% gc time)
+┌ Info: 
+│   length(gb) = 226
+└   length(quotient_basis(gb)) = 34
+Computing mixed cells... 67    Time: 0:00:16
+  mixed_volume:  148
+ 87.250118 seconds (20.00 M allocations: 1.345 GiB, 0.25% gc time, 8.34% compilation time)
+┌ Info: 
+└   length(all_solutions) = 7
+┌ Info: 
+│   key = x15_0
+└   val = 11500575223038528278
+┌ Info: 
+│   key = x15_0
+└   val = 11500575223038528278
+┌ Info: 
+│   key = x15_0
+└   val = 11500575223038528278
+┌ Info: 
+│   key = x15_0
+└   val = 11500575223038528278
+┌ Info: 
+│   key = x15_0
+└   val = 11500575223038528278
+┌ Info: 
+│   key = x15_0
+└   val = 11500575223038528278
+┌ Info: 
+│   key = x15_0
+└   val = 11500575223038528278
+Final Results:
+Parameter(s)        :    i1 = 0.200, i1a = 0.300, k_prod = 0.400,  t1 = 0.500,  t2 = 0.600
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.000, x5(t) = 1.000, x6(t) = 1.000, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 1.000, x11(t) = 1.000, x12(t) = 1.000, x13(t) = 1.000, x14(t) = 1.000, x15(t) = 12029922088274204672.000, u(t) = 1.000, where t = 0.000
+Error: 1.0066e-11
+
+Parameter(s)        :    i1 = 0.156, i1a = 0.192, k_prod = 0.400,  t1 = 0.417,  t2 = 0.564
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 0.498, x5(t) = 1.580, x6(t) = 1.883, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 1.440, x11(t) = 1.094, x12(t) = 1.000, x13(t) = 0.560, x14(t) = 0.668, x15(t) = 12029922088274206720.000, u(t) = 1.000, where t = 0.000
+Error: 1.6820e-06
+
+Parameter(s)        :    i1 = 0.720, i1a = 0.352, k_prod = 0.400,  t1 = 0.615,  t2 = 0.116
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.434, x5(t) = 1.870, x6(t) = 0.250, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 0.937, x11(t) = 0.980, x12(t) = 1.000, x13(t) = 1.063, x14(t) = 1.319, x15(t) = 12029922088274204672.000, u(t) = 1.000, where t = 0.000
+Error: 2.9817e-06
+
+Parameter(s)        :    i1 = 0.155, i1a = 0.172, k_prod = 0.400,  t1 = 0.319,  t2 = 0.549
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 0.464, x5(t) = 1.732, x6(t) = 2.025, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 1.584, x11(t) = 1.114, x12(t) = 1.000, x13(t) = 0.416, x14(t) = 0.610, x15(t) = 12029922088274204672.000, u(t) = 1.000, where t = 0.000
+Error: 3.4155e-06
+
+Parameter(s)        :    i1 = 0.150, i1a = -0.120, k_prod = 0.400,  t1 = 0.221,  t2 = -0.532
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 8.635, x5(t) = 1.529, x6(t) = -2.278, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 6.201, x11(t) = 0.459, x12(t) = 1.000, x13(t) = -4.200, x14(t) = -8.881, x15(t) = 12029922088274202624.000, u(t) = 1.000, where t = 0.000
+Error: 6.7094e-06
+
+Parameter(s)        :    i1 = 0.300, i1a = -1.374, k_prod = 0.400,  t1 = 0.568,  t2 = 0.614
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.677, x5(t) = 0.240, x6(t) = 9.454, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = -1.681, x11(t) = 3.638, x12(t) = 1.000, x13(t) = 3.681, x14(t) = 18.472, x15(t) = 12029922088274208768.000, u(t) = 1.000, where t = 0.000
+Error: 9.4374e-06
+
+Parameter(s)        :    i1 = 0.675, i1a = -1.046, k_prod = 0.400,  t1 = 0.872,  t2 = -0.640
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.001, x3(t) = 1.000, x4(t) = 0.335, x5(t) = -1.254, x6(t) = 7.035, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = -3.912, x11(t) = 5.550, x12(t) = 1.000, x13(t) = 5.911, x14(t) = 34.391, x15(t) = 12029922088274202624.000, u(t) = 1.000, where t = 0.000
+Error: 6.1897e-05
+
+7-element Vector{Any}:
+ Parameter(s)        :   i1 = 0.200, i1a = 0.300, k_prod = 0.400,  t1 = 0.500,  t2 = 0.600
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.000, x5(t) = 1.000, x6(t) = 1.000, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 1.000, x11(t) = 1.000, x12(t) = 1.000, x13(t) = 1.000, x14(t) = 1.000, x15(t) = 12029922088274204672.000, u(t) = 1.000, where t = 0.000
+Error: 1.0066e-11
+
+ Parameter(s)        :   i1 = 0.156, i1a = 0.192, k_prod = 0.400,  t1 = 0.417,  t2 = 0.564
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 0.498, x5(t) = 1.580, x6(t) = 1.883, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 1.440, x11(t) = 1.094, x12(t) = 1.000, x13(t) = 0.560, x14(t) = 0.668, x15(t) = 12029922088274206720.000, u(t) = 1.000, where t = 0.000
+Error: 1.6820e-06
+
+ Parameter(s)        :   i1 = 0.720, i1a = 0.352, k_prod = 0.400,  t1 = 0.615,  t2 = 0.116
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.434, x5(t) = 1.870, x6(t) = 0.250, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 0.937, x11(t) = 0.980, x12(t) = 1.000, x13(t) = 1.063, x14(t) = 1.319, x15(t) = 12029922088274204672.000, u(t) = 1.000, where t = 0.000
+Error: 2.9817e-06
+
+ Parameter(s)        :   i1 = 0.155, i1a = 0.172, k_prod = 0.400,  t1 = 0.319,  t2 = 0.549
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 0.464, x5(t) = 1.732, x6(t) = 2.025, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 1.584, x11(t) = 1.114, x12(t) = 1.000, x13(t) = 0.416, x14(t) = 0.610, x15(t) = 12029922088274204672.000, u(t) = 1.000, where t = 0.000
+Error: 3.4155e-06
+
+ Parameter(s)        :   i1 = 0.150, i1a = -0.120, k_prod = 0.400,  t1 = 0.221,  t2 = -0.532
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 8.635, x5(t) = 1.529, x6(t) = -2.278, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = 6.201, x11(t) = 0.459, x12(t) = 1.000, x13(t) = -4.200, x14(t) = -8.881, x15(t) = 12029922088274202624.000, u(t) = 1.000, where t = 0.000
+Error: 6.7094e-06
+
+ Parameter(s)        :   i1 = 0.300, i1a = -1.374, k_prod = 0.400,  t1 = 0.568,  t2 = 0.614
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.000, x3(t) = 1.000, x4(t) = 1.677, x5(t) = 0.240, x6(t) = 9.454, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = -1.681, x11(t) = 3.638, x12(t) = 1.000, x13(t) = 3.681, x14(t) = 18.472, x15(t) = 12029922088274208768.000, u(t) = 1.000, where t = 0.000
+Error: 9.4374e-06
+
+ Parameter(s)        :   i1 = 0.675, i1a = -1.046, k_prod = 0.400,  t1 = 0.872,  t2 = -0.640
+Initial Condition(s):   x1(t) = 1.000, x2(t) = 1.001, x3(t) = 1.000, x4(t) = 0.335, x5(t) = -1.254, x6(t) = 7.035, x7(t) = 1.000, x8(t) = 1.000, x9(t) = 1.000, x10(t) = -3.912, x11(t) = 5.550, x12(t) = 1.000, x13(t) = 5.911, x14(t) = 34.391, x15(t) = 12029922088274202624.000, u(t) = 1.000, where t = 0.000
+Error: 6.1897e-05

@@ -1,0 +1,740 @@
+julia> include("case_by_case/crauste_two_squared/crauste_two_squared.jl")
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: []
+[ Info: Locally identifiable parameters: [mu_N, mu_EE, mu_LE, mu_LL, mu_M, mu_P, mu_PE, mu_PL, delta_NE, delta_EL, delta_LM, rho_E, rho_P, N, M, P, S, E]
+[ Info: Not identifiable parameters:     []
+[ Info: Randomizing
+[ Info: transcendence substitutions = Nemo.QQFieldElem[]
+[ Info: Gröbner basis computation
+[ Info: System with 49 equations and 44 indeterminates
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [N, delta_EL, mu_PL, M, mu_M, rho_E, mu_LL, mu_PE, mu_LE, mu_EE, E, rho_P, P, S, delta_NE, mu_P, delta_LM]
+[ Info: Locally but not globally identifiable parameters: [mu_N]
+[ Info: Not identifiable parameters:                      []
+[ Info: ===============
+┌ Info: 
+│   full_result["full_polynomial_system"] =
+│    49-element Vector{Nemo.QQMPolyRingElem}:
+│     -E_0 + y2_0
+│     -N_0*P_0*delta_NE_0 - P_0*E_0*rho_E_0 + E_0^2*mu_EE_0 + E_0*delta_EL_0 + E_1
+│     -N_0 + y1_0
+│     N_0*P_0*delta_NE_0^2 + N_0*mu_N_0^2 + N_1
+│     -P_0 + y4_0
+│     -P_0^2*rho_P_0 + P_0*S_0*mu_PL_0 + P_0*E_0*mu_PE_0 + P_0*mu_P_0 + P_1
+│     -M_0 - S_0 + y3_0
+│     M_0*mu_M_0 - S_0*delta_LM_0 + M_1
+│     S_0^2*mu_LL_0 + S_0*E_0*mu_LE_0 - S_0*delta_EL_0 + S_0*delta_LM_0 + S_1
+│     -E_1 + y2_1
+│     ⋮
+│     -2*P_0*P_5*rho_P_0 + P_0*S_5*mu_PL_0 + P_0*E_5*mu_PE_0 + S_0*P_5*mu_PL_0 + E_0*P_5*mu_PE_0 - 10*P_1*P_4*rho_P_0 + 5*P_1*S_4*mu_PL_0 + 5*P_1*E_4*mu_PE_0 + 5*S_1*P_4*mu_PL_0 + 5*E_1*P_4*mu_PE_0 - 20*P_2*P_3*rho_P_0 + 10*P_2*S_3*mu_PL_0 + 10*P_2*E_3*mu_PE_0 + 10*S_2*P_3*mu_PL_0 + 10*E_2*P_3*mu_PE_0 + P_5*mu_P_0 + P_6
+│     -N_0*P_4*delta_NE_0 - P_0*N_4*delta_NE_0 - P_0*E_4*rho_E_0 - E_0*P_4*rho_E_0 + 2*E_0*E_4*mu_EE_0 - 4*N_1*P_3*delta_NE_0 - 4*P_1*N_3*delta_NE_0 - 4*P_1*E_3*rho_E_0 - 4*E_1*P_3*rho_E_0 + 8*E_1*E_3*mu_EE_0 - 6*N_2*P_2*delta_NE_0 - 6*P_2*E_2*rho_E_0 + 6*E_2^2*mu_EE_0 + E_4*delta_EL_0 + E_5
+│     N_0*P_3*delta_NE_0^2 + P_0*N_3*delta_NE_0^2 + 3*N_1*P_2*delta_NE_0^2 + 3*P_1*N_2*delta_NE_0^2 + N_3*mu_N_0^2 + N_4
+│     -E_4 + y2_4
+│     -E_5 + y2_5
+│     -N_3 + y1_3
+│     -N_4 + y1_4
+│     -P_6 + y4_6
+└     -M_5 - S_5 + y3_5
+[ Info: Estimating via the interpolators: ["AAA"]
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_8 => 5461.54
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_13 => -2.46952e8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_11 => -2.46001e6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_0 => 0.450568
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_10 => 2.86516e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_17 => -1.15288e13
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_9 => -37277.9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_18 => 1.47569e15
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_14 => 2.85863e9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_1 => -0.716653
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_7 => -911.608
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_6 => 176.087
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_4 => 10.8818
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_3 => -3.56861
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_16 => 4.50345e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_15 => -3.65905e10
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_19 => 2.83332e17
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_5 => -40.0498
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_12 => 2.34574e7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_2 => 1.43146
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_5 => 66.6761
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_6 => -392.831
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_8 => -12834.8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_14 => 9.48022e9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_3 => 1.17215
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_17 => -2.05073e12
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_15 => -1.03095e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_0 => 0.6965
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_11 => -1.94396e6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_13 => -7.49937e8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_18 => -1.43116e14
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_16 => 8.68728e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_9 => 62829.4
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_19 => 4.85297e15
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_10 => -1.64627e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_2 => 0.454311
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_7 => 2288.58
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_12 => 4.93993e7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_1 => -0.69087
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_4 => -10.7966
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_18 => 1.19396e15
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_11 => -1.04495e7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_15 => -2.70674e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_5 => -61.8452
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_4 => 12.3062
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_14 => 1.8639e10
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_3 => -3.16552
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_9 => -1.23366e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_7 => -2252.59
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_16 => 4.1964e12
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_17 => -6.87474e13
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_0 => 1.29541
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_6 => 354.451
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_19 => -2.08401e16
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_2 => 1.37633
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_1 => -1.06618
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_13 => -1.39083e9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_8 => 15828.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_10 => 1.07243e6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y3_12 => 1.14197e8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_7 => -550.823
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_16 => 9.75519e11
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_3 => -1.52822
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_2 => 0.808449
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_11 => -2.59718e6
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_18 => 2.45937e14
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_0 => 0.590557
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_10 => 2.55497e5
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_5 => -20.2267
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_6 => 97.9642
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_13 => -3.59786e8
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_17 => -1.48492e13
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_12 => 2.92913e7
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_15 => -6.62863e10
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_4 => 4.83795
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_8 => 3653.99
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_19 => -5.05235e15
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_14 => 4.74065e9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_1 => -0.647134
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y4_9 => -28445.2
+┌ Info: 
+│   interpolants =
+│    Dict{Any, ParameterEstimation.Interpolant} with 4 entries:
+│      E(t)        => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+│      P(t)        => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+│      S(t) + M(t) => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+└      N(t)        => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+[ Info: Solving via homotopy
+[ Info: Hello
+[ Info: Computing gb modulo Prime field of characteristic 1073741827
+  0.063917 seconds (236.29 k allocations: 58.563 MiB)
+┌ Info: 
+│   length(gb) = 224
+└   length(quotient_basis(gb)) = 128
+ 17.549538 seconds (12.15 M allocations: 672.546 MiB, 0.61% gc time, 24.29% compilation time)
+┌ Info: 
+└   length(all_solutions) = 44
+Final Results:
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5321e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5321e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 30.819, mu_LL = 11.811, mu_M = -2.059, mu_P = -0.864, mu_PE = -18.805, mu_PL = -7.532, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.751, rho_E = 0.900, rho_P = 0.781
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.889, M(t) = 4.889, P(t) = 1.001, where t = -0.500
+Error: 1.5348e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 30.819, mu_LL = 11.811, mu_M = -2.059, mu_P = -0.864, mu_PE = -18.805, mu_PL = -7.532, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.751, rho_E = 0.900, rho_P = 0.781
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.889, M(t) = 4.889, P(t) = 1.001, where t = -0.500
+Error: 1.5348e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.929, mu_LL = 1.126, mu_M = 7.079, mu_P = 2.209, mu_PE = -1.024, mu_PL = -4.207, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.239, rho_E = 0.900, rho_P = -7.008
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.642, M(t) = 0.358, P(t) = 0.998, where t = -0.500
+Error: 1.5348e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.929, mu_LL = 1.126, mu_M = 7.079, mu_P = 2.209, mu_PE = -1.024, mu_PL = -4.207, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.239, rho_E = 0.900, rho_P = -7.008
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.642, M(t) = 0.358, P(t) = 0.998, where t = -0.500
+Error: 1.5348e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.843, mu_LL = 0.889, mu_M = 0.341, mu_P = 1.141, mu_PE = -0.689, mu_PL = -0.346, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.129, rho_E = 0.900, rho_P = -0.265
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.686, M(t) = 3.684, P(t) = 1.000, where t = -0.500
+Error: 1.5361e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.843, mu_LL = 0.889, mu_M = 0.341, mu_P = 1.141, mu_PE = -0.689, mu_PL = -0.346, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.129, rho_E = 0.900, rho_P = -0.265
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.686, M(t) = 3.684, P(t) = 1.000, where t = -0.500
+Error: 1.5361e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.903, mu_LL = 0.814, mu_M = -7.972, mu_P = 2.693, mu_PE = -1.623, mu_PL = -4.291, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.221, rho_E = 0.900, rho_P = -10.148
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 2.317, M(t) = -0.313, P(t) = 0.997, where t = -0.500
+Error: 1.5436e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.903, mu_LL = 0.814, mu_M = -7.972, mu_P = 2.693, mu_PE = -1.623, mu_PL = -4.291, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.221, rho_E = 0.900, rho_P = -10.148
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 2.317, M(t) = -0.313, P(t) = 0.997, where t = -0.500
+Error: 1.5436e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -1.926, mu_LL = 3.110, mu_M = 1.802, mu_P = 1.230, mu_PE = -0.518, mu_PL = -0.464, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.700, rho_E = 0.900, rho_P = -0.759
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.363, M(t) = 1.628, P(t) = 1.000, where t = -0.500
+Error: 1.5464e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -1.926, mu_LL = 3.110, mu_M = 1.802, mu_P = 1.230, mu_PE = -0.518, mu_PL = -0.464, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.700, rho_E = 0.900, rho_P = -0.759
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.363, M(t) = 1.628, P(t) = 1.000, where t = -0.500
+Error: 1.5464e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = 1.849, mu_LL = 1.195, mu_M = 0.485, mu_P = 1.125, mu_PE = -0.490, mu_PL = -0.357, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 2.536, rho_E = 6.694, rho_P = -0.246
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = -1.157, M(t) = 3.156, P(t) = 1.000, where t = -0.500
+Error: 1.5524e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = 1.849, mu_LL = 1.195, mu_M = 0.485, mu_P = 1.125, mu_PE = -0.490, mu_PL = -0.357, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 2.536, rho_E = 6.694, rho_P = -0.246
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = -1.157, M(t) = 3.156, P(t) = 1.000, where t = -0.500
+Error: 1.5524e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 20.081, mu_LL = 14.328, mu_M = 1.210, mu_P = 0.612, mu_PE = 1.194, mu_PL = 1.494, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.521, rho_E = 0.900, rho_P = -1.377
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.251, M(t) = 3.261, P(t) = 1.001, where t = -0.500
+Error: 1.5525e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 20.081, mu_LL = 14.328, mu_M = 1.210, mu_P = 0.612, mu_PE = 1.194, mu_PL = 1.494, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.521, rho_E = 0.900, rho_P = -1.377
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.251, M(t) = 3.261, P(t) = 1.001, where t = -0.500
+Error: 1.5525e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = 2.537, mu_LL = 2.160, mu_M = 0.787, mu_P = 0.975, mu_PE = 0.588, mu_PL = 1.491, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.334, rho_E = 6.694, rho_P = 0.998
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.495, M(t) = 1.503, P(t) = 1.000, where t = -0.500
+Error: 1.5543e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = 2.537, mu_LL = 2.160, mu_M = 0.787, mu_P = 0.975, mu_PE = 0.588, mu_PL = 1.491, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.334, rho_E = 6.694, rho_P = 0.998
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.495, M(t) = 1.503, P(t) = 1.000, where t = -0.500
+Error: 1.5543e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = -0.351, mu_LL = 3.257, mu_M = 0.683, mu_P = -0.427, mu_PE = 1.033, mu_PL = 2.980, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.498, rho_E = 6.694, rho_P = 2.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = 1.010, M(t) = 0.993, P(t) = 1.001, where t = -0.500
+Error: 1.5578e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = -0.351, mu_LL = 3.257, mu_M = 0.683, mu_P = -0.427, mu_PE = 1.033, mu_PL = 2.980, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.498, rho_E = 6.694, rho_P = 2.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = 1.010, M(t) = 0.993, P(t) = 1.001, where t = -0.500
+Error: 1.5578e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = -2.048, mu_LL = 3.214, mu_M = 1.953, mu_P = 1.211, mu_PE = -0.395, mu_PL = -0.503, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 1.051, rho_E = 6.694, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.412, M(t) = 1.582, P(t) = 1.000, where t = -0.500
+Error: 1.5606e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = -2.048, mu_LL = 3.214, mu_M = 1.953, mu_P = 1.211, mu_PE = -0.395, mu_PL = -0.503, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 1.051, rho_E = 6.694, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.412, M(t) = 1.582, P(t) = 1.000, where t = -0.500
+Error: 1.5606e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = 21.450, mu_LL = 14.899, mu_M = 1.373, mu_P = 0.697, mu_PE = 0.567, mu_PL = 0.989, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.902, rho_E = 6.694, rho_P = -1.295
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = -1.248, M(t) = 3.271, P(t) = 1.002, where t = -0.500
+Error: 1.5982e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = 21.450, mu_LL = 14.899, mu_M = 1.373, mu_P = 0.697, mu_PE = 0.567, mu_PL = 0.989, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.902, rho_E = 6.694, rho_P = -1.295
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = -1.248, M(t) = 3.271, P(t) = 1.002, where t = -0.500
+Error: 1.5982e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.635, mu_LL = 0.177, mu_M = 0.676, mu_P = 1.091, mu_PE = 5.297, mu_PL = -0.450, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.790, rho_E = 0.900, rho_P = 6.483
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.019, M(t) = 5.064, P(t) = 0.998, where t = -0.500
+Error: 1.6091e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.635, mu_LL = 0.177, mu_M = 0.676, mu_P = 1.091, mu_PE = 5.297, mu_PL = -0.450, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.790, rho_E = 0.900, rho_P = 6.483
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.019, M(t) = 5.064, P(t) = 0.998, where t = -0.500
+Error: 1.6091e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = -13.394, mu_LL = -53.617, mu_M = 0.411, mu_P = 1.098, mu_PE = -3.195, mu_PL = -1.329, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 4.689, rho_E = 6.694, rho_P = -3.490
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.986, S(t) = -0.041, M(t) = 1.946, P(t) = 1.015, where t = -0.500
+Error: 1.7538e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = -13.394, mu_LL = -53.617, mu_M = 0.411, mu_P = 1.098, mu_PE = -3.195, mu_PL = -1.329, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 4.689, rho_E = 6.694, rho_P = -3.490
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.986, S(t) = -0.041, M(t) = 1.946, P(t) = 1.015, where t = -0.500
+Error: 1.7538e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = -6.519, mu_LL = 5.109, mu_M = 6.071, mu_P = -0.027, mu_PE = -15.131, mu_PL = 3.494, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.202, rho_E = 6.694, rho_P = -12.682
+Initial Condition(s):   N(t) = 1.002, E(t) = 0.979, S(t) = 1.120, M(t) = 0.962, P(t) = 1.046, where t = -0.500
+Error: 1.7575e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = -6.519, mu_LL = 5.109, mu_M = 6.071, mu_P = -0.027, mu_PE = -15.131, mu_PL = 3.494, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.202, rho_E = 6.694, rho_P = -12.682
+Initial Condition(s):   N(t) = 1.002, E(t) = 0.979, S(t) = 1.120, M(t) = 0.962, P(t) = 1.046, where t = -0.500
+Error: 1.7575e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = 2.036, mu_LL = 0.164, mu_M = 0.696, mu_P = 1.052, mu_PE = -7.992, mu_PL = 0.293, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 5.801, rho_E = 6.694, rho_P = -9.658
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.989, S(t) = -4.938, M(t) = 7.083, P(t) = 1.005, where t = -0.500
+Error: 1.7884e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = 2.036, mu_LL = 0.164, mu_M = 0.696, mu_P = 1.052, mu_PE = -7.992, mu_PL = 0.293, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 5.801, rho_E = 6.694, rho_P = -9.658
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.989, S(t) = -4.938, M(t) = 7.083, P(t) = 1.005, where t = -0.500
+Error: 1.7884e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.546, mu_LL = 0.912, mu_M = 0.194, mu_P = 34.603, mu_PE = -8.572, mu_PL = -24.159, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.179, rho_E = 0.900, rho_P = -41.032
+Initial Condition(s):   N(t) = 0.986, E(t) = 1.028, S(t) = 2.724, M(t) = -0.724, P(t) = 0.557, where t = -0.500
+Error: 2.1027e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.546, mu_LL = 0.912, mu_M = 0.194, mu_P = 34.603, mu_PE = -8.572, mu_PL = -24.159, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.179, rho_E = 0.900, rho_P = -41.032
+Initial Condition(s):   N(t) = 0.986, E(t) = 1.028, S(t) = 2.724, M(t) = -0.724, P(t) = 0.557, where t = -0.500
+Error: 2.1027e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 9.323, mu_LL = -0.113, mu_M = 7.061, mu_P = 1.052, mu_PE = 5.653, mu_PL = 0.062, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -1.812, rho_E = 0.900, rho_P = 7.011
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.001, S(t) = 23.737, M(t) = -24.180, P(t) = 0.994, where t = -0.500
+Error: 5.4773e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 9.323, mu_LL = -0.113, mu_M = 7.061, mu_P = 1.052, mu_PE = 5.653, mu_PL = 0.062, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -1.812, rho_E = 0.900, rho_P = 7.011
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.001, S(t) = 23.737, M(t) = -24.180, P(t) = 0.994, where t = -0.500
+Error: 5.4773e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -8.284, mu_LL = -17.562, mu_M = 0.337, mu_P = 1.587, mu_PE = -34.992, mu_PL = -22.559, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.760, rho_E = 0.900, rho_P = -29.974
+Initial Condition(s):   N(t) = 1.086, E(t) = 0.842, S(t) = -0.250, M(t) = 2.215, P(t) = 13.418, where t = -0.500
+Error: 1.3924e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -8.284, mu_LL = -17.562, mu_M = 0.337, mu_P = 1.587, mu_PE = -34.992, mu_PL = -22.559, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.760, rho_E = 0.900, rho_P = -29.974
+Initial Condition(s):   N(t) = 1.086, E(t) = 0.842, S(t) = -0.250, M(t) = 2.215, P(t) = 13.418, where t = -0.500
+Error: 1.3924e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.854, mu_LE = 14.629, mu_LL = -0.109, mu_M = 10.763, mu_P = 1.074, mu_PE = -7.350, mu_PL = -0.024, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -4.357, rho_E = 6.694, rho_P = -8.927
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.981, S(t) = 47.518, M(t) = -64.122, P(t) = 1.032, where t = -0.500
+Error: 3.0685e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.854, mu_LE = 14.629, mu_LL = -0.109, mu_M = 10.763, mu_P = 1.074, mu_PE = -7.350, mu_PL = -0.024, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -4.357, rho_E = 6.694, rho_P = -8.927
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.981, S(t) = 47.518, M(t) = -64.122, P(t) = 1.032, where t = -0.500
+Error: 3.0685e-01
+
+40-element Vector{Any}:
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5321e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5321e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 30.819, mu_LL = 11.811, mu_M = -2.059, mu_P = -0.864, mu_PE = -18.805, mu_PL = -7.532, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.751, rho_E = 0.900, rho_P = 0.781
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.889, M(t) = 4.889, P(t) = 1.001, where t = -0.500
+Error: 1.5348e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 30.819, mu_LL = 11.811, mu_M = -2.059, mu_P = -0.864, mu_PE = -18.805, mu_PL = -7.532, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.751, rho_E = 0.900, rho_P = 0.781
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.889, M(t) = 4.889, P(t) = 1.001, where t = -0.500
+Error: 1.5348e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.929, mu_LL = 1.126, mu_M = 7.079, mu_P = 2.209, mu_PE = -1.024, mu_PL = -4.207, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.239, rho_E = 0.900, rho_P = -7.008
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.642, M(t) = 0.358, P(t) = 0.998, where t = -0.500
+Error: 1.5348e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.929, mu_LL = 1.126, mu_M = 7.079, mu_P = 2.209, mu_PE = -1.024, mu_PL = -4.207, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.239, rho_E = 0.900, rho_P = -7.008
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.642, M(t) = 0.358, P(t) = 0.998, where t = -0.500
+Error: 1.5348e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.843, mu_LL = 0.889, mu_M = 0.341, mu_P = 1.141, mu_PE = -0.689, mu_PL = -0.346, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.129, rho_E = 0.900, rho_P = -0.265
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.686, M(t) = 3.684, P(t) = 1.000, where t = -0.500
+Error: 1.5361e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.843, mu_LL = 0.889, mu_M = 0.341, mu_P = 1.141, mu_PE = -0.689, mu_PL = -0.346, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.129, rho_E = 0.900, rho_P = -0.265
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.686, M(t) = 3.684, P(t) = 1.000, where t = -0.500
+Error: 1.5361e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.903, mu_LL = 0.814, mu_M = -7.972, mu_P = 2.693, mu_PE = -1.623, mu_PL = -4.291, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.221, rho_E = 0.900, rho_P = -10.148
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 2.317, M(t) = -0.313, P(t) = 0.997, where t = -0.500
+Error: 1.5436e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.903, mu_LL = 0.814, mu_M = -7.972, mu_P = 2.693, mu_PE = -1.623, mu_PL = -4.291, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.221, rho_E = 0.900, rho_P = -10.148
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 2.317, M(t) = -0.313, P(t) = 0.997, where t = -0.500
+Error: 1.5436e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -1.926, mu_LL = 3.110, mu_M = 1.802, mu_P = 1.230, mu_PE = -0.518, mu_PL = -0.464, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.700, rho_E = 0.900, rho_P = -0.759
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.363, M(t) = 1.628, P(t) = 1.000, where t = -0.500
+Error: 1.5464e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = -1.926, mu_LL = 3.110, mu_M = 1.802, mu_P = 1.230, mu_PE = -0.518, mu_PL = -0.464, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.700, rho_E = 0.900, rho_P = -0.759
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.363, M(t) = 1.628, P(t) = 1.000, where t = -0.500
+Error: 1.5464e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = 1.849, mu_LL = 1.195, mu_M = 0.485, mu_P = 1.125, mu_PE = -0.490, mu_PL = -0.357, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 2.536, rho_E = 6.694, rho_P = -0.246
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = -1.157, M(t) = 3.156, P(t) = 1.000, where t = -0.500
+Error: 1.5524e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = 1.849, mu_LL = 1.195, mu_M = 0.485, mu_P = 1.125, mu_PE = -0.490, mu_PL = -0.357, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 2.536, rho_E = 6.694, rho_P = -0.246
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = -1.157, M(t) = 3.156, P(t) = 1.000, where t = -0.500
+Error: 1.5524e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 20.081, mu_LL = 14.328, mu_M = 1.210, mu_P = 0.612, mu_PE = 1.194, mu_PL = 1.494, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.521, rho_E = 0.900, rho_P = -1.377
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.251, M(t) = 3.261, P(t) = 1.001, where t = -0.500
+Error: 1.5525e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 20.081, mu_LL = 14.328, mu_M = 1.210, mu_P = 0.612, mu_PE = 1.194, mu_PL = 1.494, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.521, rho_E = 0.900, rho_P = -1.377
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -1.251, M(t) = 3.261, P(t) = 1.001, where t = -0.500
+Error: 1.5525e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = 2.537, mu_LL = 2.160, mu_M = 0.787, mu_P = 0.975, mu_PE = 0.588, mu_PL = 1.491, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.334, rho_E = 6.694, rho_P = 0.998
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.495, M(t) = 1.503, P(t) = 1.000, where t = -0.500
+Error: 1.5543e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = 2.537, mu_LL = 2.160, mu_M = 0.787, mu_P = 0.975, mu_PE = 0.588, mu_PL = 1.491, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.334, rho_E = 6.694, rho_P = 0.998
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.495, M(t) = 1.503, P(t) = 1.000, where t = -0.500
+Error: 1.5543e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = -0.351, mu_LL = 3.257, mu_M = 0.683, mu_P = -0.427, mu_PE = 1.033, mu_PL = 2.980, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.498, rho_E = 6.694, rho_P = 2.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = 1.010, M(t) = 0.993, P(t) = 1.001, where t = -0.500
+Error: 1.5578e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = -0.351, mu_LL = 3.257, mu_M = 0.683, mu_P = -0.427, mu_PE = 1.033, mu_PL = 2.980, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.498, rho_E = 6.694, rho_P = 2.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = 1.010, M(t) = 0.993, P(t) = 1.001, where t = -0.500
+Error: 1.5578e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = -2.048, mu_LL = 3.214, mu_M = 1.953, mu_P = 1.211, mu_PE = -0.395, mu_PL = -0.503, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 1.051, rho_E = 6.694, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.412, M(t) = 1.582, P(t) = 1.000, where t = -0.500
+Error: 1.5606e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = -2.048, mu_LL = 3.214, mu_M = 1.953, mu_P = 1.211, mu_PE = -0.395, mu_PL = -0.503, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 1.051, rho_E = 6.694, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.991, S(t) = 0.412, M(t) = 1.582, P(t) = 1.000, where t = -0.500
+Error: 1.5606e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = 21.450, mu_LL = 14.899, mu_M = 1.373, mu_P = 0.697, mu_PE = 0.567, mu_PL = 0.989, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.902, rho_E = 6.694, rho_P = -1.295
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = -1.248, M(t) = 3.271, P(t) = 1.002, where t = -0.500
+Error: 1.5982e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = 21.450, mu_LL = 14.899, mu_M = 1.373, mu_P = 0.697, mu_PE = 0.567, mu_PL = 0.989, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -0.902, rho_E = 6.694, rho_P = -1.295
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.990, S(t) = -1.248, M(t) = 3.271, P(t) = 1.002, where t = -0.500
+Error: 1.5982e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.635, mu_LL = 0.177, mu_M = 0.676, mu_P = 1.091, mu_PE = 5.297, mu_PL = -0.450, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.790, rho_E = 0.900, rho_P = 6.483
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.019, M(t) = 5.064, P(t) = 0.998, where t = -0.500
+Error: 1.6091e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.635, mu_LL = 0.177, mu_M = 0.676, mu_P = 1.091, mu_PE = 5.297, mu_PL = -0.450, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 4.790, rho_E = 0.900, rho_P = 6.483
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.019, M(t) = 5.064, P(t) = 0.998, where t = -0.500
+Error: 1.6091e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = -13.394, mu_LL = -53.617, mu_M = 0.411, mu_P = 1.098, mu_PE = -3.195, mu_PL = -1.329, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 4.689, rho_E = 6.694, rho_P = -3.490
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.986, S(t) = -0.041, M(t) = 1.946, P(t) = 1.015, where t = -0.500
+Error: 1.7538e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = -13.394, mu_LL = -53.617, mu_M = 0.411, mu_P = 1.098, mu_PE = -3.195, mu_PL = -1.329, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 4.689, rho_E = 6.694, rho_P = -3.490
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.986, S(t) = -0.041, M(t) = 1.946, P(t) = 1.015, where t = -0.500
+Error: 1.7538e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = -6.519, mu_LL = 5.109, mu_M = 6.071, mu_P = -0.027, mu_PE = -15.131, mu_PL = 3.494, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.202, rho_E = 6.694, rho_P = -12.682
+Initial Condition(s):   N(t) = 1.002, E(t) = 0.979, S(t) = 1.120, M(t) = 0.962, P(t) = 1.046, where t = -0.500
+Error: 1.7575e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = -6.519, mu_LL = 5.109, mu_M = 6.071, mu_P = -0.027, mu_PE = -15.131, mu_PL = 3.494, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 0.202, rho_E = 6.694, rho_P = -12.682
+Initial Condition(s):   N(t) = 1.002, E(t) = 0.979, S(t) = 1.120, M(t) = 0.962, P(t) = 1.046, where t = -0.500
+Error: 1.7575e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = 2.036, mu_LL = 0.164, mu_M = 0.696, mu_P = 1.052, mu_PE = -7.992, mu_PL = 0.293, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 5.801, rho_E = 6.694, rho_P = -9.658
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.989, S(t) = -4.938, M(t) = 7.083, P(t) = 1.005, where t = -0.500
+Error: 1.7884e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = 2.036, mu_LL = 0.164, mu_M = 0.696, mu_P = 1.052, mu_PE = -7.992, mu_PL = 0.293, delta_NE = -1.000, delta_EL = 1.183, delta_LM = 5.801, rho_E = 6.694, rho_P = -9.658
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.989, S(t) = -4.938, M(t) = 7.083, P(t) = 1.005, where t = -0.500
+Error: 1.7884e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.546, mu_LL = 0.912, mu_M = 0.194, mu_P = 34.603, mu_PE = -8.572, mu_PL = -24.159, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.179, rho_E = 0.900, rho_P = -41.032
+Initial Condition(s):   N(t) = 0.986, E(t) = 1.028, S(t) = 2.724, M(t) = -0.724, P(t) = 0.557, where t = -0.500
+Error: 2.1027e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.546, mu_LL = 0.912, mu_M = 0.194, mu_P = 34.603, mu_PE = -8.572, mu_PL = -24.159, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -0.179, rho_E = 0.900, rho_P = -41.032
+Initial Condition(s):   N(t) = 0.986, E(t) = 1.028, S(t) = 2.724, M(t) = -0.724, P(t) = 0.557, where t = -0.500
+Error: 2.1027e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 9.323, mu_LL = -0.113, mu_M = 7.061, mu_P = 1.052, mu_PE = 5.653, mu_PL = 0.062, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -1.812, rho_E = 0.900, rho_P = 7.011
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.001, S(t) = 23.737, M(t) = -24.180, P(t) = 0.994, where t = -0.500
+Error: 5.4773e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 9.323, mu_LL = -0.113, mu_M = 7.061, mu_P = 1.052, mu_PE = 5.653, mu_PL = 0.062, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -1.812, rho_E = 0.900, rho_P = 7.011
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.001, S(t) = 23.737, M(t) = -24.180, P(t) = 0.994, where t = -0.500
+Error: 5.4773e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -8.284, mu_LL = -17.562, mu_M = 0.337, mu_P = 1.587, mu_PE = -34.992, mu_PL = -22.559, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.760, rho_E = 0.900, rho_P = -29.974
+Initial Condition(s):   N(t) = 1.086, E(t) = 0.842, S(t) = -0.250, M(t) = 2.215, P(t) = 13.418, where t = -0.500
+Error: 1.3924e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = -8.284, mu_LL = -17.562, mu_M = 0.337, mu_P = 1.587, mu_PE = -34.992, mu_PL = -22.559, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.760, rho_E = 0.900, rho_P = -29.974
+Initial Condition(s):   N(t) = 1.086, E(t) = 0.842, S(t) = -0.250, M(t) = 2.215, P(t) = 13.418, where t = -0.500
+Error: 1.3924e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.854, mu_LE = 14.629, mu_LL = -0.109, mu_M = 10.763, mu_P = 1.074, mu_PE = -7.350, mu_PL = -0.024, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -4.357, rho_E = 6.694, rho_P = -8.927
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.981, S(t) = 47.518, M(t) = -64.122, P(t) = 1.032, where t = -0.500
+Error: 3.0685e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.854, mu_LE = 14.629, mu_LL = -0.109, mu_M = 10.763, mu_P = 1.074, mu_PE = -7.350, mu_PL = -0.024, delta_NE = -1.000, delta_EL = 1.183, delta_LM = -4.357, rho_E = 6.694, rho_P = -8.927
+Initial Condition(s):   N(t) = 1.001, E(t) = 0.981, S(t) = 47.518, M(t) = -64.122, P(t) = 1.032, where t = -0.500
+Error: 3.0685e-01
+
+julia> p_true
+13-element Vector{Float64}:
+ 1.0
+ 1.3
+ 1.1
+ 1.2
+ 1.1
+ 1.0
+ 0.5
+ 1.0
+ 1.0
+ 1.0
+ 1.0
+ 0.9
+ 1.2
+
+julia> res[2]
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5321e-02
+
+
+julia> res[2].parameters
+OrderedCollections.OrderedDict{Any, Any} with 13 entries:
+  mu_N     => 1.0
+  mu_EE    => 1.3
+  mu_LE    => 1.1
+  mu_LL    => 1.2
+  mu_M     => 1.1
+  mu_P     => 1.0
+  mu_PE    => 0.5
+  mu_PL    => 1.0
+  delta_NE => 1.0
+  delta_EL => 1.0
+  delta_LM => 1.0
+  rho_E    => 0.9
+  rho_P    => 1.2
+
