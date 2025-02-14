@@ -1,0 +1,835 @@
+└      y4_9 => -42188.5
+┌ Info: 
+│   interpolants =
+│    Dict{Any, ParameterEstimation.Interpolant} with 4 entries:
+│      E(t)        => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+│      P(t)        => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+│      S(t) + M(t) => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+└      N(t)        => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([-0.5, …
+[ Info: Solving via homotopy
+[ Info: Hello
+[ Info: Computing gb modulo Prime field of characteristic 1073741827
+  0.049093 seconds (186.37 k allocations: 50.996 MiB)
+┌ Info: 
+│   length(gb) = 217
+└   length(quotient_basis(gb)) = 512
+ 57.015301 seconds (12.02 M allocations: 667.039 MiB, 0.15% gc time, 7.54% compilation time)
+┌ Info: 
+└   length(all_solutions) = 144
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+┌ Warning: At t=-0.07096842834603127, dt was forced below floating point epsilon -1.2353663216708376e-17, and step error estimate = 1.151597339130877. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+└ @ SciMLBase ~/.julia/packages/SciMLBase/BaHpR/src/integrator_interface.jl:623
+Final Results:
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = 0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = -0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = 0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = 0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = 0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = -0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = -0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = -0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = 0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = -0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = 0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = -0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = 0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = -0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = 0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = -8.552, mu_LL = -20.306, mu_M = 0.398, mu_P = 1.102, mu_PE = 3.853, mu_PL = 1.838, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 3.050, rho_E = -0.900, rho_P = 3.429
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -0.169, M(t) = 2.134, P(t) = 0.996, where t = -0.500
+Error: 1.6356e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = 0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = -0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = -0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = 0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = 0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = -0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = -0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.902, mu_LL = 0.246, mu_M = 0.658, mu_P = 1.132, mu_PE = 2.236, mu_PL = -0.115, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 5.179, rho_E = 0.900, rho_P = 2.495
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -3.550, M(t) = 5.624, P(t) = 0.999, where t = -0.500
+Error: 1.6917e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = 4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = -4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = 4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = -4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = 4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = -4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = 4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 2.169, mu_LL = -1.682, mu_M = 8.780, mu_P = 5.298, mu_PE = 3.775, mu_PL = -16.529, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.069, rho_E = -4.659, rho_P = -15.104
+Initial Condition(s):   N(t) = 0.998, E(t) = 0.706, S(t) = 1.326, M(t) = 0.653, P(t) = 0.956, where t = -0.500
+Error: 2.1734e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = 4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = 4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = -4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = -4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = -4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = 4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = -4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 1.549, mu_LL = 7.293, mu_M = 0.722, mu_P = 0.622, mu_PE = 0.280, mu_PL = 1.507, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.677, rho_E = 4.659, rho_P = 0.296
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.651, S(t) = 0.458, M(t) = 1.530, P(t) = 0.995, where t = -0.500
+Error: 2.1757e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = -4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = -4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = 4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = -4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = -4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = 4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = 4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -2.416, mu_LL = 3.918, mu_M = 2.173, mu_P = 1.241, mu_PE = -0.291, mu_PL = -0.892, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 1.892, rho_E = 4.659, rho_P = -0.688
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = 0.420, M(t) = 1.596, P(t) = 1.004, where t = -0.500
+Error: 2.1997e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = 4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = -4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = 4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = -4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = 4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = -4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = 4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 2.911, mu_LL = 2.272, mu_M = 0.546, mu_P = 1.106, mu_PE = -0.311, mu_PL = -0.569, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 3.541, rho_E = -4.659, rho_P = -0.016
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.639, S(t) = -0.778, M(t) = 2.815, P(t) = 1.004, where t = -0.500
+Error: 2.2309e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = 4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = -4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = -4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = 4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = -4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = -4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = 4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 7.796, mu_LL = -7.373, mu_M = 0.694, mu_P = 0.966, mu_PE = 0.277, mu_PL = 1.514, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.605, rho_E = 4.659, rho_P = 0.370
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.655, S(t) = 0.240, M(t) = 1.708, P(t) = 0.992, where t = -0.500
+Error: 2.2363e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = 4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = -4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = 4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = -4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = 4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = -4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = 4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -0.967, mu_LL = 1.177, mu_M = -0.019, mu_P = -5.139, mu_PE = 0.418, mu_PL = 3.479, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -0.047, rho_E = -4.659, rho_P = 5.105
+Initial Condition(s):   N(t) = 1.000, E(t) = 0.637, S(t) = 3.292, M(t) = -1.205, P(t) = 1.006, where t = -0.500
+Error: 2.3119e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = 0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = -0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = 0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = -0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = 0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = -0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = 0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 62.862, mu_LL = 9.474, mu_M = -6.287, mu_P = -5.109, mu_PE = -50.640, mu_PL = -7.771, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 9.139, rho_E = -0.900, rho_P = 0.504
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -7.408, M(t) = 9.417, P(t) = 1.002, where t = -0.500
+Error: 4.0015e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = 0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = -0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = -0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = 0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = -0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = 0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = -0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = 0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+Parameter(s)        :   mu_N = -1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+Parameter(s)        :   mu_N = 1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+136-element Vector{Any}:
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = 0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = -0.920, mu_LL = 1.077, mu_M = 5.582, mu_P = 2.309, mu_PE = 1.122, mu_PL = -4.420, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.194, rho_E = -0.900, rho_P = -4.435
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.489, M(t) = 0.510, P(t) = 0.999, where t = -0.500
+Error: 1.5753e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = 0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 1.300, mu_LE = 2.426, mu_LL = 0.932, mu_M = 0.362, mu_P = 1.152, mu_PE = -1.447, mu_PL = -0.442, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 2.220, rho_E = -0.900, rho_P = -0.709
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = -2.009, M(t) = 4.006, P(t) = 1.000, where t = -0.500
+Error: 1.5770e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = 0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -1.300, mu_LE = -2.091, mu_LL = 2.755, mu_M = 1.851, mu_P = 1.324, mu_PE = -1.290, mu_PL = -0.800, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 0.718, rho_E = -0.900, rho_P = -1.562
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 0.362, M(t) = 1.629, P(t) = 1.001, where t = -0.500
+Error: 1.5883e-02
+
+ ⋮
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -1.300, mu_LE = 12.220, mu_LL = -0.171, mu_M = 8.026, mu_P = 1.123, mu_PE = 2.266, mu_PL = 0.014, delta_NE = 1.000, delta_EL = 1.000, delta_LM = -2.371, rho_E = 0.900, rho_P = 2.550
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 28.903, M(t) = -31.648, P(t) = 0.997, where t = -0.500
+Error: 9.2146e-02
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = -4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.333, mu_LE = -43.504, mu_LL = -551.480, mu_M = 0.494, mu_P = -87.619, mu_PE = -2228.474, mu_PL = -291.867, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.306, rho_E = 4.659, rho_P = -2441.178
+Initial Condition(s):   N(t) = 0.450, E(t) = 0.619, S(t) = -0.028, M(t) = 1.337, P(t) = 0.598, where t = -0.500
+Error: 2.2543e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = 4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -4.333, mu_LE = -15.461, mu_LL = 9.628, mu_M = 16.828, mu_P = 3.504, mu_PE = 51.475, mu_PL = -0.943, delta_NE = -1.000, delta_EL = 2.052, delta_LM = -1.610, rho_E = -4.659, rho_P = 55.102
+Initial Condition(s):   N(t) = 0.994, E(t) = 0.925, S(t) = 0.086, M(t) = 23.562, P(t) = 0.916, where t = -0.500
+Error: 3.4471e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+ Parameter(s)        :  mu_N = -1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = 4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = 4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+ Parameter(s)        :  mu_N = 1.000, mu_EE = -4.333, mu_LE = 4.124, mu_LL = 0.183, mu_M = 0.736, mu_P = 3.071, mu_PE = 49.440, mu_PL = -0.070, delta_NE = -1.000, delta_EL = 2.052, delta_LM = 14.572, rho_E = -4.659, rho_P = 54.568
+Initial Condition(s):   N(t) = 0.995, E(t) = 0.834, S(t) = -68.264, M(t) = 130.984, P(t) = 0.902, where t = -0.500
+Error: 9.6593e-01
+
+
+julia> res[1]
+Parameter(s)        :   mu_N = -1.000, mu_EE = -1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = -0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+
+julia> res[2]
+Parameter(s)        :   mu_N = 1.000, mu_EE = 1.300, mu_LE = 1.100, mu_LL = 1.200, mu_M = 1.100, mu_P = 1.000, mu_PE = 0.500, mu_PL = 1.000, delta_NE = 1.000, delta_EL = 1.000, delta_LM = 1.000, rho_E = 0.900, rho_P = 1.200
+Initial Condition(s):   N(t) = 1.000, E(t) = 1.000, S(t) = 1.000, M(t) = 1.000, P(t) = 1.000, where t = -0.500
+Error: 1.5709e-02
+
+
+julia> res[2].parameters
+OrderedCollections.OrderedDict{Any, Any} with 13 entries:
+  mu_N     => 1.0
+  mu_EE    => 1.3
+  mu_LE    => 1.1
+  mu_LL    => 1.2
+  mu_M     => 1.1
+  mu_P     => 1.0
+  mu_PE    => 0.5
+  mu_PL    => 1.0
+  delta_NE => 1.0
+  delta_EL => 1.0
+  delta_LM => 1.0
+  rho_E    => 0.9
+  rho_P    => 1.2
+
+julia> res[2].
+at_time       datasize
+degree        err
+interpolants  parameters
+report_time   return_code
+states
+julia> res[1].parameters
+OrderedCollections.OrderedDict{Any, Any} with 13 entries:
+  mu_N     => -1.0
+  mu_EE    => -1.3
+  mu_LE    => 1.1
+  mu_LL    => 1.2
+  mu_M     => 1.1
+  mu_P     => 1.0
+  mu_PE    => 0.5
+  mu_PL    => 1.0
+  delta_NE => 1.0
+  delta_EL => 1.0
+  delta_LM => 1.0
+  rho_E    => -0.9
+  rho_P    => 1.2

@@ -1,0 +1,279 @@
+julia> include("parameter_estimation_systems/case_by_case/crauste/sys_crauste_AAA_abstract_algebra.txt");
+
+julia> sys = map(f -> map_coefficients(c -> rationalize(BigInt, round(BigFloat(c), digits=8)), f), sys);
+
+julia> rur, sep = zdim_parameterization(sys, get_separating_element=true);
+
+       # Find solutions
+primes of bitsize 28
+G-Q-Pt-FG-LT-LP(C)
+Dimension of the quotient :32
+Degree of the radical :32
+Use last variable as separating element
+Run Groebner learn
+Test cyclic optimizationBad prime number for parameterization (32,31)
+Switch off cyclic optimization 
+Multi-modular computation (1 threads): G-Q-Pt-FG-LT-LP(C)
+5-9-13-17-21-25-29-33-37-41-45-49-53-61-69-77-85-93-105-117-129-141-157-173-193-213-237-261-289-317-349-385-425-469-517-569-625-689-757-833-917-
+check-G-Q-Pt-FG-LT-LP(C)
+Nb Primes used :917
+
+julia> sol = RS.rs_isolate(rur, sep, output_precision=Int32(16));
+
+julia> sol_i = filter(x -> abs(x[end][1] - 1.2) < 0.01, sol)
+1-element Vector{Vector{Vector{BigFloat}}}:
+ [[0.696487, 0.696503], [-0.690872, -0.690857], [0.454308, 0.454315], [1.17215, 1.17218], [-10.7966, -10.7964], [66.6758, 66.6777], [0.839172, 0.839188], [-0.466888, -0.466881], [-0.0857334, -0.0857315], [1.55634, 1.55637]  …  [1.29999, 1.30002], [1.09998, 1.10001], [1.19998, 1.20001], [1.09998, 1.10001], [0.999985, 1.0], [0.499992, 0.5], [0.999985, 1.0], [1.0, 1.00003], [0.899994, 0.900009], [1.19998, 1.20001]]
+
+julia> sol_i
+1-element Vector{Vector{Vector{BigFloat}}}:
+ [[0.696487, 0.696503], [-0.690872, -0.690857], [0.454308, 0.454315], [1.17215, 1.17218], [-10.7966, -10.7964], [66.6758, 66.6777], [0.839172, 0.839188], [-0.466888, -0.466881], [-0.0857334, -0.0857315], [1.55634, 1.55637]  …  [1.29999, 1.30002], [1.09998, 1.10001], [1.19998, 1.20001], [1.09998, 1.10001], [0.999985, 1.0], [0.499992, 0.5], [0.999985, 1.0], [1.0, 1.00003], [0.899994, 0.900009], [1.19998, 1.20001]]
+
+julia> sol_i[1]
+43-element Vector{Vector{BigFloat}}:
+ [0.696487, 0.696503]
+ [-0.690872, -0.690857]
+ [0.454308, 0.454315]
+ [1.17215, 1.17218]
+ [-10.7966, -10.7964]
+ [66.6758, 66.6777]
+ [0.839172, 0.839188]
+ [-0.466888, -0.466881]
+ [-0.0857334, -0.0857315]
+ [1.55634, 1.55637]
+ [-6.43396, -6.43384]
+ [25.8174, 25.8179]
+ [0.450562, 0.450569]
+ [-0.71666, -0.716644]
+ [1.43143, 1.43146]
+ [-3.56866, -3.5686]
+ [10.8816, 10.8818]
+ [0.590546, 0.590561]
+ [-0.647141, -0.647125]
+ [0.808441, 0.808456]
+ [-1.52823, -1.5282]
+ [4.83789, 4.83801]
+ [-20.2271, -20.2266]
+ [97.9629, 97.9648]
+ [0.456215, 0.456223]
+ [-0.599304, -0.599289]
+ [1.46204, 1.46207]
+ [-4.72192, -4.7218]
+ [18.7397, 18.7402]
+ [-87.6641, -87.6621]
+ [1.0, 1.00003]
+ [1.0, 1.00003]
+ [1.0, 1.00003]
+ [1.29999, 1.30002]
+ [1.09998, 1.10001]
+ [1.19998, 1.20001]
+ [1.09998, 1.10001]
+ [0.999985, 1.0]
+ [0.499992, 0.5]
+ [0.999985, 1.0]
+ [1.0, 1.00003]
+ [0.899994, 0.900009]
+ [1.19998, 1.20001]
+
+julia> p_true = [1, 1.3, 1.1, 1.2, 1.1, 1, 0.5, 1.0, 1.0, 1.0, 1.0, 0.9, 1.2] 
+13-element Vector{Float64}:
+ 1.0
+ 1.3
+ 1.1
+ 1.2
+ 1.1
+ 1.0
+ 0.5
+ 1.0
+ 1.0
+ 1.0
+ 1.0
+ 0.9
+ 1.2
+
+julia> gens(R)
+43-element Vector{AbstractAlgebra.Generic.MPoly{Rational{BigInt}}}:
+ E_0
+ E_1
+ E_2
+ E_3
+ E_4
+ E_5
+ M_0
+ M_1
+ M_2
+ M_3
+ M_4
+ M_5
+ N_0
+ N_1
+ N_2
+ N_3
+ N_4
+ P_0
+ P_1
+ P_2
+ P_3
+ P_4
+ P_5
+ P_6
+ S_0
+ S_1
+ S_2
+ S_3
+ S_4
+ S_5
+ delta_EL_0
+ delta_LM_0
+ delta_NE_0
+ mu_EE_0
+ mu_LE_0
+ mu_LL_0
+ mu_M_0
+ mu_N_0
+ mu_PE_0
+ mu_PL_0
+ mu_P_0
+ rho_E_0
+ rho_P_0
+
+julia> 
+
+julia> #=
+       parameters = [
+                      mu_N,
+                      mu_EE,
+                      mu_LE,
+                      mu_LL,
+                      mu_M,
+                      mu_P,
+                      mu_PE,
+                      mu_PL,
+                      delta_NE,
+                      delta_EL,
+                      delta_LM,
+                      rho_E,
+                      rho_P,
+              ]
+              =#
+
+
+julia> sys = map(f -> map_coefficients(c -> rationalize(BigInt, round(BigFloat(c), digits=3)), f), sys)
+43-element Vector{AbstractAlgebra.Generic.MPoly{Rational{BigInt}}}:
+ -E_0 + 697//1000
+ -N_0*P_0*delta_NE_0 + E_0^2*mu_EE_0 - E_0*P_0*rho_E_0 + E_0*delta_EL_0 + E_1
+ -N_0 + 451//1000
+ N_0*P_0*delta_NE_0 + N_0*mu_N_0 + N_1
+ -P_0 + 591//1000
+ E_0*P_0*mu_PE_0 + P_0*S_0*mu_PL_0 - P_0^2*rho_P_0 + P_0*mu_P_0 + P_1
+ -M_0 - S_0 + 259//200
+ -S_0*delta_LM_0 + M_0*mu_M_0 + M_1
+ E_0*S_0*mu_LE_0 + S_0^2*mu_LL_0 - S_0*delta_EL_0 + S_0*delta_LM_0 + S_1
+ -E_1 - 691//1000
+ -N_1*P_0*delta_NE_0 - N_0*P_1*delta_NE_0 + 2*E_0*E_1*mu_EE_0 - E_1*P_0*rho_E_0 - E_0*P_1*rho_E_0 + E_1*delta_EL_0 + E_2
+ -N_1 - 717//1000
+ N_1*P_0*delta_NE_0 + N_0*P_1*delta_NE_0 + N_1*mu_N_0 + N_2
+ -P_1 - 647//1000
+ E_1*P_0*mu_PE_0 + E_0*P_1*mu_PE_0 + P_1*S_0*mu_PL_0 + P_0*S_1*mu_PL_0 - 2*P_0*P_1*rho_P_0 + P_1*mu_P_0 + P_2
+ -M_1 - S_1 - 533//500
+ E_1*S_0*mu_LE_0 + E_0*S_1*mu_LE_0 + 2*S_0*S_1*mu_LL_0 - S_1*delta_EL_0 + S_1*delta_LM_0 + S_2
+ -S_1*delta_LM_0 + M_1*mu_M_0 + M_2
+ -E_2 + 227//500
+ -N_2*P_0*delta_NE_0 - 2*N_1*P_1*delta_NE_0 - N_0*P_2*delta_NE_0 + 2*E_1^2*mu_EE_0 + 2*E_0*E_2*mu_EE_0 - E_2*P_0*rho_E_0 - 2*E_1*P_1*rho_E_0 - E_0*P_2*rho_E_0 + E_2*delta_EL_0 + E_3
+ -N_2 + 1431//1000
+ N_2*P_0*delta_NE_0 + 2*N_1*P_1*delta_NE_0 + N_0*P_2*delta_NE_0 + N_2*mu_N_0 + N_3
+ -P_2 + 101//125
+ E_2*P_0*mu_PE_0 + 2*E_1*P_1*mu_PE_0 + E_0*P_2*mu_PE_0 + P_2*S_0*mu_PL_0 + 2*P_1*S_1*mu_PL_0 + P_0*S_2*mu_PL_0 - 2*P_1^2*rho_P_0 - 2*P_0*P_2*rho_P_0 + P_2*mu_P_0 + P_3
+ -M_2 - S_2 + 172//125
+ E_2*S_0*mu_LE_0 + 2*E_1*S_1*mu_LE_0 + E_0*S_2*mu_LE_0 + 2*S_1^2*mu_LL_0 + 2*S_0*S_2*mu_LL_0 - S_2*delta_EL_0 + S_2*delta_LM_0 + S_3
+ -S_2*delta_LM_0 + M_2*mu_M_0 + M_3
+ -E_3 + 293//250
+ -N_3*P_0*delta_NE_0 - 3*N_2*P_1*delta_NE_0 - 3*N_1*P_2*delta_NE_0 - N_0*P_3*delta_NE_0 + 6*E_1*E_2*mu_EE_0 + 2*E_0*E_3*mu_EE_0 - E_3*P_0*rho_E_0 - 3*E_2*P_1*rho_E_0 - 3*E_1*P_2*rho_E_0 - E_0*P_3*rho_E_0 + E_3*delta_EL_0 + E_4
+ -P_3 - 191//125
+ E_3*P_0*mu_PE_0 + 3*E_2*P_1*mu_PE_0 + 3*E_1*P_2*mu_PE_0 + E_0*P_3*mu_PE_0 + P_3*S_0*mu_PL_0 + 3*P_2*S_1*mu_PL_0 + 3*P_1*S_2*mu_PL_0 + P_0*S_3*mu_PL_0 - 6*P_1*P_2*rho_P_0 - 2*P_0*P_3*rho_P_0 + P_3*mu_P_0 + P_4
+ -M_3 - S_3 - 1583//500
+ E_3*S_0*mu_LE_0 + 3*E_2*S_1*mu_LE_0 + 3*E_1*S_2*mu_LE_0 + E_0*S_3*mu_LE_0 + 6*S_1*S_2*mu_LL_0 + 2*S_0*S_3*mu_LL_0 - S_3*delta_EL_0 + S_3*delta_LM_0 + S_4
+ -S_3*delta_LM_0 + M_3*mu_M_0 + M_4
+ -P_4 + 2419//500
+ E_4*P_0*mu_PE_0 + 4*E_3*P_1*mu_PE_0 + 6*E_2*P_2*mu_PE_0 + 4*E_1*P_3*mu_PE_0 + E_0*P_4*mu_PE_0 + P_4*S_0*mu_PL_0 + 4*P_3*S_1*mu_PL_0 + 6*P_2*S_2*mu_PL_0 + 4*P_1*S_3*mu_PL_0 + P_0*S_4*mu_PL_0 - 6*P_2^2*rho_P_0 - 8*P_1*P_3*rho_P_0 - 2*P_0*P_4*rho_P_0 + P_4*mu_P_0 + P_5
+ -M_4 - S_4 + 6153//500
+ -S_4*delta_LM_0 + M_4*mu_M_0 + M_5
+ E_4*S_0*mu_LE_0 + 4*E_3*S_1*mu_LE_0 + 6*E_2*S_2*mu_LE_0 + 4*E_1*S_3*mu_LE_0 + E_0*S_4*mu_LE_0 + 6*S_2^2*mu_LL_0 + 8*S_1*S_3*mu_LL_0 + 2*S_0*S_4*mu_LL_0 - S_4*delta_EL_0 + S_4*delta_LM_0 + S_5
+ -P_5 - 20227//1000
+ E_5*P_0*mu_PE_0 + 5*E_4*P_1*mu_PE_0 + 10*E_3*P_2*mu_PE_0 + 10*E_2*P_3*mu_PE_0 + 5*E_1*P_4*mu_PE_0 + E_0*P_5*mu_PE_0 + P_5*S_0*mu_PL_0 + 5*P_4*S_1*mu_PL_0 + 10*P_3*S_2*mu_PL_0 + 10*P_2*S_3*mu_PL_0 + 5*P_1*S_4*mu_PL_0 + P_0*S_5*mu_PL_0 - 20*P_2*P_3*rho_P_0 - 10*P_1*P_4*rho_P_0 - 2*P_0*P_5*rho_P_0 + P_5*mu_P_0 + P_6
+ -N_4*P_0*delta_NE_0 - 4*N_3*P_1*delta_NE_0 - 6*N_2*P_2*delta_NE_0 - 4*N_1*P_3*delta_NE_0 - N_0*P_4*delta_NE_0 + 6*E_2^2*mu_EE_0 + 8*E_1*E_3*mu_EE_0 + 2*E_0*E_4*mu_EE_0 - E_4*P_0*rho_E_0 - 4*E_3*P_1*rho_E_0 - 6*E_2*P_2*rho_E_0 - 4*E_1*P_3*rho_E_0 - E_0*P_4*rho_E_0 + E_4*delta_EL_0 + E_5
+ N_3*P_0*delta_NE_0 + 3*N_2*P_1*delta_NE_0 + 3*N_1*P_2*delta_NE_0 + N_0*P_3*delta_NE_0 + N_3*mu_N_0 + N_4
+
+julia> @time rur, sep = zdim_parameterization(sys, get_separating_element=true);
+
+       # Find solutions
+primes of bitsize 28
+G-Q-Pt-FG-LT-LP(C)
+Dimension of the quotient :32
+Degree of the radical :32
+Use last variable as separating element
+Run Groebner learn
+Test cyclic optimizationBad prime number for parameterization (32,31)
+Switch off cyclic optimization 
+Multi-modular computation (1 threads): G-Q-Pt-FG-LT-LP(C)
+5-9-13-17-21-25-29-33-37-41-45-49-53-61-69-77-85-93-105-117-129-141-157-173-193-213-237-261-289-317-
+check-G-Q-Pt-FG-LT-LP(C)
+Nb Primes used :317
+  0.954974 seconds (8.66 M allocations: 714.878 MiB, 19.56% gc time)
+
+julia> sol = RS.rs_isolate(rur, sep, output_precision=Int32(16));
+
+julia> sol_i = filter(x -> abs(x[end][1] - 1.2) < 0.01, sol)
+1-element Vector{Vector{Vector{BigFloat}}}:
+ [[0.696991, 0.697006], [-0.69101, -0.690994], [0.453995, 0.454002], [1.172, 1.17203], [-10.7874, -10.7871], [66.5879, 66.5898], [0.843445, 0.84346], [-0.471634, -0.471626], [-0.0770779, -0.077076], [1.53275, 1.53278]  …  [1.30057, 1.3006], [1.11038, 1.11041], [1.20816, 1.20819], [1.09283, 1.09286], [1.00018, 1.00021], [0.501526, 0.501541], [1.00424, 1.00427], [0.99942, 0.999435], [0.902985, 0.903], [1.19745, 1.19748]]
+
+julia> sol_i[1]
+43-element Vector{Vector{BigFloat}}:
+ [0.696991, 0.697006]
+ [-0.69101, -0.690994]
+ [0.453995, 0.454002]
+ [1.172, 1.17203]
+ [-10.7874, -10.7871]
+ [66.5879, 66.5898]
+ [0.843445, 0.84346]
+ [-0.471634, -0.471626]
+ [-0.0770779, -0.077076]
+ [1.53275, 1.53278]
+ [-6.35913, -6.35901]
+ [25.5557, 25.5562]
+ [0.450996, 0.451004]
+ [-0.71701, -0.716995]
+ [1.431, 1.43103]
+ [-3.56421, -3.56415]
+ [10.8586, 10.8589]
+ [0.590988, 0.591003]
+ [-0.647003, -0.646988]
+ [0.807999, 0.808014]
+ [-1.52802, -1.52798]
+ [4.83789, 4.83801]
+ [-20.2271, -20.2266]
+ [98.002, 98.0039]
+ [0.451546, 0.451553]
+ [-0.594376, -0.59436]
+ [1.45306, 1.45309]
+ [-4.69885, -4.69873]
+ [18.665, 18.6655]
+ [-87.3652, -87.3633]
+ [1.00006, 1.00009]
+ [0.996857, 0.996872]
+ [0.99765, 0.997665]
+ [1.30057, 1.3006]
+ [1.11038, 1.11041]
+ [1.20816, 1.20819]
+ [1.09283, 1.09286]
+ [1.00018, 1.00021]
+ [0.501526, 0.501541]
+ [1.00424, 1.00427]
+ [0.99942, 0.999435]
+ [0.902985, 0.903]
+ [1.19745, 1.19748]
+
+julia> (1.20 - 1.19745) / 1.20
+0.0021250000000000435
+
+julia> (1.20 - 1.19745) / 1.20 * 100
+0.21250000000000435

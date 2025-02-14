@@ -1,0 +1,162 @@
+julia> ParameterEstimation.MODEL[] = "treatment"; ParameterEstimation.OUTPUT_DIR[] = "case_by_case/treatment"; include("case_by_case/treatment/treatment.jl")
+[ Info: Treatment_io: 4 states, 5 parameters
+┌ Info: 
+│   data_sample =
+│    OrderedCollections.OrderedDict{Any, Vector{Float64}} with 3 entries:
+│      Tr(t) => [1.0, 0.9949, 0.989602, 0.984108, 0.978419, 0.972541, 0.966475, 0.960227, 0.953801, 0.9472  …  0.933…
+│      N(t)  => [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0  …  1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1…
+└      "t"   => [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45  …  0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.…
+Num[a, b, d, g, nu]
+[0.2, 0.30000000000000004, 0.4, 0.5, 0.6]
+[ Info: Preproccessing `ModelingToolkit.ODESystem` object
+[ Info: Solving the problem
+[ Info: Constructing the maximal system
+[ Info: Truncating
+[ Info: Assessing local identifiability
+[ Info: Found Pivots: [a_0]
+[ Info: Locally identifiable parameters: [nu, N, Tr]
+[ Info: Not identifiable parameters:     [a, b, d, g, In, S]
+[ Info: Randomizing
+[ Info: transcendence substitutions = Nemo.QQFieldElem[30722543396040]
+[ Info: Gröbner basis computation
+[ Info: System with 37 equations and 33 indeterminates
+[ Info: Remainder computation
+[ Info: === Summary ===
+[ Info: Globally identifiable parameters:                 [N, Tr]
+[ Info: Locally but not globally identifiable parameters: [nu]
+[ Info: Not identifiable parameters:                      [a, b, d, In, g, S]
+[ Info: ===============
+┌ Info: 
+│   full_result["full_polynomial_system"] =
+│    37-element Vector{Nemo.QQMPolyRingElem}:
+│     -Tr_0 + y1_0
+│     Tr_0*nu_0 - In_0*g_0 + Tr_1
+│     -N_0 + y2_0
+│     N_1
+│     -Tr_1 + y1_1
+│     Tr_1*nu_0 - In_1*g_0 + Tr_2
+│     N_0*In_0*g_0 + 30722543396040*N_0*In_0 + N_0*In_1 - Tr_0*S_0*b_0*d_0 - In_0*S_0*b_0
+│     -Tr_2 + y1_2
+│     Tr_2*nu_0 - In_2*g_0 + Tr_3
+│     N_0*In_1*g_0 + 30722543396040*N_0*In_1 + N_0*In_2 - Tr_0*S_1*b_0*d_0 + In_0*N_1*g_0 + 30722543396040*In_0*N_1 - In_0*S_1*b_0 - S_0*Tr_1*b_0*d_0 - S_0*In_1*b_0 + N_1*In_1
+│     N_0*S_1 + Tr_0*S_0*b_0*d_0 + In_0*S_0*b_0
+│     -Tr_3 + y1_3
+│     ⋮
+│     -Tr_6 + y1_6
+│     Tr_6*nu_0 - In_6*g_0 + Tr_7
+│     N_0*In_5*g_0 + 30722543396040*N_0*In_5 + N_0*In_6 - Tr_0*S_5*b_0*d_0 + In_0*N_5*g_0 + 30722543396040*In_0*N_5 - In_0*S_5*b_0 - S_0*Tr_5*b_0*d_0 - S_0*In_5*b_0 + 5*N_1*In_4*g_0 + 153612716980200*N_1*In_4 + 5*N_1*In_5 - 5*Tr_1*S_4*b_0*d_0 + 5*In_1*N_4*g_0 + 153612716980200*In_1*N_4 - 5*In_1*S_4*b_0 + In_1*N_5 - 5*S_1*Tr_4*b_0*d_0 - 5*S_1*In_4*b_0 + 10*N_2*In_3*g_0 + 307225433960400*N_2*In_3 + 10*N_2*In_4 - 10*Tr_2*S_3*b_0*d_0 + 10*In_2*N_3*g_0 + 307225433960400*In_2*N_3 - 10*In_2*S_3*b_0 + 5*In_2*N_4 - 10*S_2*Tr_3*b_0*d_0 - 10*S_2*In_3*b_0 + 10*N_3*In_3
+│     N_5
+│     N_0*S_5 + Tr_0*S_4*b_0*d_0 + In_0*S_4*b_0 + S_0*Tr_4*b_0*d_0 + S_0*In_4*b_0 + 4*N_1*S_4 + 4*Tr_1*S_3*b_0*d_0 + 4*In_1*S_3*b_0 + 4*S_1*Tr_3*b_0*d_0 + 4*S_1*In_3*b_0 + S_1*N_4 + 6*N_2*S_3 + 6*Tr_2*S_2*b_0*d_0 + 6*In_2*S_2*b_0 + 4*S_2*N_3
+│     -Tr_7 + y1_7
+│     -N_1 + y2_1
+│     -N_2 + y2_2
+│     -N_3 + y2_3
+│     -N_4 + y2_4
+└     -N_5 + y2_5
+[ Info: Estimating via the interpolators: ["AAA"]
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_4 => 0.042377
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_10 => 13199.9
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_7 => -0.0228164
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_1 => -0.133709
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_5 => -0.107626
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_2 => -0.0674538
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_8 => -0.302121
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_6 => 0.112226
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_9 => 51.5619
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_0 => 0.9472
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y1_3 => 0.0414759
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_4 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_1 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_3 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_6 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_0 => 1.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_9 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_8 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_7 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_5 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_10 => 0.0
+┌ Info: 
+│   y_derivs_vals =
+│    Dict{HomotopyContinuation.ModelKit.Expression, Float64} with 1 entry:
+└      y2_2 => 0.0
+┌ Info: 
+│   interpolants =
+│    Dict{Any, ParameterEstimation.Interpolant} with 2 entries:
+│      N(t)  => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([0.0], [1.0], [1.0], […
+└      Tr(t) => Interpolant(AAADapprox{AAAapprox{Vector{Float64}}}(AAAapprox{Vector{Float64}}([1.0, 0.0, 0.8, 0.4, 0…
+[ Info: Solving via homotopy
+[ Info: Hello
+[ Info: Computing gb modulo Prime field of characteristic 1073741827
+  0.966156 seconds (1.59 M allocations: 110.165 MiB, 99.69% compilation time)
+┌ Info: 
+│   length(gb) = 67
+└   length(quotient_basis(gb)) = 12
+ 21.481592 seconds (10.93 M allocations: 610.172 MiB, 0.63% gc time, 22.08% compilation time)
+┌ Info: 
+└   length(all_solutions) = 0
+Final Results:
+Any[]
+
