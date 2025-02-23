@@ -22,6 +22,8 @@ import StructuralIdentifiability: ODE
 using BaryRational
 using ForwardDiff
 
+using RationalUnivariateRepresentation, RS
+
 #end
 Float = Union{Float64, Float32, Float16, BigFloat}
 include("includes.jl")
