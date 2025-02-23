@@ -6,7 +6,8 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
         report_time = minimum(data_sample["t"]),
         method = :homotopy,
         real_tol::Float64 = 1e-14, filtermode = :new, parameter_constraints = nothing,
-        ic_constraints = nothing) where {T <: Float}
+        ic_constraints = nothing,
+	dump_systems_to=nothing) where {T <: Float}
     check_inputs(measured_quantities, data_sample)
     datasize = length(first(values(data_sample)))
 
@@ -24,7 +25,7 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
             data_sample;  #TODO(orebas) we will rename estimated_fixed_degree to estimate_single_interpolator
             identifiability_result = id,
             interpolator = interpolator, at_time = at_time, report_time,
-            method = method, real_tol = real_tol)
+            method = method, real_tol = real_tol, dump_systems_to=dump_systems_to)
         if length(unfiltered) > 0
             filtered = filter_solutions(unfiltered, id, model, inputs, data_sample;
                 solver = solver, filtermode)

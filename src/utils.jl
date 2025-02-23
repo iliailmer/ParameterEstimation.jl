@@ -9,6 +9,9 @@ function nemo2hc(expr_tree::Union{Expr, Symbol})
 		return HomotopyContinuation.Expression(HomotopyContinuation.variables(expr_tree)[1])
 	end
 	if typeof(expr_tree) == Expr
+		if expr_tree.head == :macrocall
+			return eval(expr_tree)
+		end
 		if expr_tree.head == :call
 			if expr_tree.args[1] in [:+, :-, :*, :/, :^, ://]
 				if length(expr_tree.args) == 2
@@ -35,6 +38,18 @@ end
 function nemo2hc(expr_tree::Nemo.Generic.FracFieldElem)
 	numer, denom = Nemo.numerator(expr_tree), Nemo.denominator(expr_tree)
 	return nemo2hc(numer) / nemo2hc(denom)
+end
+
+function hc2nemo(sys)
+        vars = variables(HomotopyContinuation.System(sys))
+        ring, aa_vars = polynomial_ring(QQ, map(string, vars), internal_ordering=:degrevlex)
+        dicts = map(f -> HomotopyContinuation.to_dict(HomotopyContinuation.expand(f), vars), sys)
+        aa_sys = Vector{elem_type(ring)}()
+        for dict in dicts
+                poly = sum(e_c -> rationalize(BigInt, to_number(e_c[2]); tol=0) * prod(aa_vars .^ e_c[1]), collect(dict))
+                push!(aa_sys, poly)
+        end
+        aa_sys
 end
 
 """
