@@ -31,8 +31,9 @@ function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, 
 		ModelingToolkit.parameters(model))
 	prob = ODEProblem(
 		ModelingToolkit.complete(new_model), 
-		initial_conditions, tspan, 
-		Dict(ModelingToolkit.parameters(new_model) .=> parameter_values)
+		merge(Dict(ModelingToolkit.unknowns(new_model) .=> initial_conditions), 
+		      Dict(ModelingToolkit.parameters(new_model) .=> parameter_values)), 
+		tspan
 	)
 	ode_solution = ModelingToolkit.solve(prob, solver,
 		saveat = range(tspan[1], tspan[2],
