@@ -1,0 +1,13 @@
+diff a/src/filtering.jl b/src/filtering.jl	(rejected hunks)
+@@ -31,9 +31,8 @@ function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation},
+ 		ModelingToolkit.parameters(model))
+ 	prob = ODEProblem(
+ 		ModelingToolkit.complete(new_model), 
+-		merge(Dict(ModelingToolkit.unknowns(new_model) .=> initial_conditions), 
+-		      Dict(ModelingToolkit.parameters(new_model) .=> parameter_values)), 
+-		tspan
++		initial_conditions, tspan,
++		Dict(ModelingToolkit.parameters(new_model) .=> parameter_values)
+ 	)
+ 	ode_solution = ModelingToolkit.solve(prob, solver,
+ 		saveat = range(tspan[1], tspan[2],

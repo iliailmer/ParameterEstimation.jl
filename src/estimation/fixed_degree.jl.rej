@@ -1,0 +1,14 @@
+diff a/src/estimation/fixed_degree.jl b/src/estimation/fixed_degree.jl	(rejected hunks)
+@@ -22,9 +22,9 @@ function backsolve_initial_conditions(model, E, report_time, inputs::Vector{Equa
+ 		ModelingToolkit.parameters(model))
+ 	prob = ODEProblem(
+ 		ModelingToolkit.complete(new_model), 
+-		merge(Dict(ModelingToolkit.unknowns(new_model) .=> initial_conditions),  
+-		      Dict(ModelingToolkit.parameters(new_model) .=> parameter_values)),
+-		tspan)
++		initial_conditions,
++		tspan,
++		Dict(ModelingToolkit.parameters(model) .=> parameter_values))
+ 	saveat = range(tspan[1], tspan[2], length = length(data_sample["t"]))
+ 
+ 	ode_solution = ModelingToolkit.solve(prob, solver, saveat = saveat, abstol = abstol, reltol = reltol)

@@ -1,0 +1,10 @@
+diff a/src/utils.jl b/src/utils.jl	(rejected hunks)
+@@ -107,7 +107,7 @@ function sample_data(model::ModelingToolkit.ODESystem,
+ 	else
+ 		sampling_times = range(time_interval[1], time_interval[2], length = num_points)
+ 	end
+-	problem = ODEProblem(ModelingToolkit.complete(model), merge(Dict(ModelingToolkit.unknowns(model) .=> u0), Dict(ModelingToolkit.parameters(model) .=> p_true)), time_interval)
++	problem = ODEProblem(ModelingToolkit.complete(model), u0, time_interval, Dict(ModelingToolkit.parameters(model) .=> p_true))
+ 	solution_true = ModelingToolkit.solve(problem, solver,
+ 		saveat = sampling_times;
+ 		abstol, reltol)
