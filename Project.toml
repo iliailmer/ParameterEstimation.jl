@@ -29,7 +29,7 @@ TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 [compat]
 BaryRational = "1"
 DifferentialEquations = "7"
-ForwardDiff = "0.10"
+ForwardDiff = "0.10, 1"
 Groebner = "0.9, 0.10"
 HomotopyContinuation = "2"
 LinearSolve = "3"
