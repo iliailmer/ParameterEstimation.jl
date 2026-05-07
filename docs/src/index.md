@@ -11,8 +11,6 @@ using Pkg
 Pkg.add("ParameterEstimation")
 ```
 
-To
-
 ## Citation
 
 TBA
@@ -20,4 +18,4 @@ TBA
 ## Feature Summary
 
 - Parameter estimation based on sample data
-- Estimated values are reported based on identifiability: local (finitely many), global (unque), unidentifiable.
+- Estimated values are reported based on identifiability: local (finitely many), global (unique), unidentifiable.
