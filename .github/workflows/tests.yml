@@ -3,17 +3,17 @@ on:
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - "README.md"
-      - "Dockerfile"
-      - ".gitignore"
+    paths:
+      - "src/**"
+      - "test/**"
+      - "Project.toml"
   push:
     branches:
       - master
-    paths-ignore:
-      - "README.md"
-      - "Dockerfile"
-      - ".gitignore"
+    paths:
+      - "src/**"
+      - "test/**"
+      - "Project.toml"
 jobs:
   run-tests:
     runs-on: ${{ matrix.os }}
