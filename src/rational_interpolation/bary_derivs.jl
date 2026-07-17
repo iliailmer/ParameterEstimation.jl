@@ -114,7 +114,7 @@ function nth_deriv_at(f, n::Int, t)  #todo(orebas) make this more efficient.
 	if (n == 0)
 		return f(t)
 	else
-		return TaylorDiff.derivative(f, t, n)
+		return TaylorDiff.derivative(f, t, Val(n))
 	end
 end
 
