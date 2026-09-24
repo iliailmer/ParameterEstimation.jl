@@ -22,7 +22,7 @@ function solve_ode(model, estimate::EstimationResult, inputs::Vector{Equation}, 
 	solver = Tsit5(), return_ode = false, abstol = 1e-12, reltol = 1e-12)
 	initial_conditions = [estimate[s] for s in ModelingToolkit.unknowns(model)]
 	parameter_values = [estimate[p] for p in ModelingToolkit.parameters(model)]
-	tspan = (estimate.at_time, data_sample["t"][end] + estimate.at_time)
+	tspan = (estimate.at_time, data_sample["t"][end])
 	ode_equations = ModelingToolkit.equations(model)
 	ode_equations = substitute(ode_equations,
 		Dict(each.lhs => Num(each.rhs) for each in inputs))
