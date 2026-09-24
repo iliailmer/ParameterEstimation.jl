@@ -5,11 +5,6 @@ function check_constraints(estimate, id, parameter_constraints, ic_constraints)
 	nonid = map(k -> replace(string(k), r"\([t0-9\.]*\)" => ""), nonid)
 
 	if (!isnothing(parameter_constraints))
-		#		println("Here: ", typeof(estimate))
-
-		#		println("Here: ", estimate)
-
-		#		println("Here: ", estimate.parameters)
 		for (k, v) in pairs(estimate.parameters)
 			if string(k) in nonid
 				continue
