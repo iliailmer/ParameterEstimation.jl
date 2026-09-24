@@ -11,7 +11,6 @@ using BaryRational: BaryRational
 using ForwardDiff: ForwardDiff
 using LinearAlgebra: LinearAlgebra
 using TaylorDiff: TaylorDiff
-using Suppressor
 
 using ProgressMeter, Logging, Printf
 using ModelingToolkit, LinearSolve, LinearAlgebra
