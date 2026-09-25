@@ -11,21 +11,11 @@ Symbolic-Numeric package for parameter estimation in ODEs
 
 ## Installation
 
-Currently is installable via
-
-
-```julia
-
-using Pkg
-Pkg.add(url="https://github.com/orebas/ParameterEstimation.jl")
-```
-
-The production version of this fork is installable via
+Install from the General registry:
 
 ```julia
-
 using Pkg
-Pkg.add("ParameterEstimation.jl")
+Pkg.add("ParameterEstimation")
 ```
 
 
