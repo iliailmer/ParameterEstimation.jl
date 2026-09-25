@@ -35,7 +35,6 @@ function estimate(model::ModelingToolkit.ODESystem,
 	interpolators = nothing, real_tol = 1e-14,
 	threaded = Threads.nthreads() > 1, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing) where {T <: Float}
 
-	#println("DEBUG")
 	if !(method in [:homotopy, :msolve])
 		throw(ArgumentError("Method $method is not supported, must be one of :homotopy or :msolve."))
 	end

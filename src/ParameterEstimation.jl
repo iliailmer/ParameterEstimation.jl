@@ -1,7 +1,6 @@
 module ParameterEstimation
 
 using PrecompileTools
-#@recompile_invalidations begin
 
 import DifferentialEquations: Tsit5
 import DifferentialEquations: Vern9
@@ -18,11 +17,8 @@ using SIAN, HomotopyContinuation, Groebner, Nemo
 using .ReturnCode
 import StructuralIdentifiability
 import StructuralIdentifiability: ODE
-using BaryRational
-using ForwardDiff
 
-#end
-Float = Union{Float64, Float32, Float16, BigFloat}
+const Float = Union{Float64, Float32, Float16, BigFloat}
 include("includes.jl")
 
 export check_identifiability, estimate, filter_solutions
