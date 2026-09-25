@@ -78,12 +78,7 @@ function new_clustering(estimates, tol = 1e-3)
 	return new_estimates
 end
 
-function post_process(id, estimates, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing; threaded=false)
-	if threaded
-		estimates = filter(x -> !isnothing(x), estimates)
-		estimates = vcat(estimates...)
-	end
-
+function post_process(id, estimates, filtermode = :new, parameter_constraints = nothing, ic_constraints = nothing)
 	#filter out the empty vectors
 	estimates = filter(x -> length(x) > 0, estimates)
 	estimates = filter(x -> x[1].return_code == ReturnCode.Success, estimates)

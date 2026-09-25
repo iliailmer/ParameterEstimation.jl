@@ -40,11 +40,10 @@ function estimate(model::ModelingToolkit.ODESystem,
 		throw(ArgumentError("Method $method is not supported, must be one of :homotopy or :msolve."))
 	end
 	if threaded
-		result = estimate_threaded(model, measured_quantities, inputs, data_sample;  
-			at_time = at_time, solver = solver,
-			interpolators = interpolators,
-			method = method,
-			real_tol = real_tol)
+		result = estimate_threaded(model, measured_quantities, inputs, data_sample;
+			at_time = at_time, solver = solver, report_time,
+			interpolators = interpolators, method = method,
+			real_tol = real_tol, filtermode, parameter_constraints = parameter_constraints, ic_constraints = ic_constraints)
 	else
 		result = estimate_serial(model, measured_quantities,
 			inputs,
