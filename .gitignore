@@ -40,3 +40,4 @@ sharable
 .R*
 *.png
 !point_error_data/data/*/*.txt
+.DS_Store
