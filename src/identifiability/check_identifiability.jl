@@ -24,15 +24,15 @@ object that contains the results of the identifiability analysis.
 
 [3] - https://github.com/alexeyovchinnikov/SIAN-Julia
 """
- function check_identifiability(ode::ModelingToolkit.ODESystem;
-                               measured_quantities::Vector{Equation} = Array{Equation}[],
-                               inputs::Vector{Num} = Array{Num}[],
-                               infolevel = 0)
+function check_identifiability(ode::ModelingToolkit.ODESystem;
+        measured_quantities::Vector{Equation} = Array{Equation}[],
+        inputs::Vector{Num} = Array{Num}[],
+        infolevel = 0)
     if length(measured_quantities) == 0
         if any(ModelingToolkit.isoutput(eq.lhs) for eq in ModelingToolkit.equations(ode))
             @info "Measured quantities are not provided, trying to find the outputs in input ODE."
             measured_quantities = filter(eq -> (ModelingToolkit.isoutput(eq.lhs)),
-                                         ModelingToolkit.equations(ode))
+                ModelingToolkit.equations(ode))
         else
             throw(error("Measured quantities (output functions) were not provided and no outputs were found."))
         end
@@ -43,9 +43,9 @@ object that contains the results of the identifiability analysis.
     nemo2mtk = Dict(gens_ .=> input_syms)
 
     res = ParameterEstimation.identifiability_ode(ode_prep, params_to_assess_; p = 0.99,
-                                                  p_mod = 0, infolevel = infolevel,
-                                                  weighted_ordering = true,
-                                                  local_only = false)
+        p_mod = 0, infolevel = infolevel,
+        weighted_ordering = true,
+        local_only = false)
 
     @debug "Post-Processing: Converting Nemo output to ModelingToolkit types"
     out = Dict()
@@ -67,7 +67,7 @@ Base function for identifiability assessment implmented in SIAN.jl. Detailed doc
 `check_identifiability` function as well as in https://github.com/alexeyovchinnikov/SIAN-Julia.
 """
 function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolevel = 0,
-                             weighted_ordering = false, local_only = false)
+        weighted_ordering = false, local_only = false)
     @info "Solving the problem"
 
     if p_mod != 0
@@ -79,7 +79,8 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
 
     @info "Constructing the maximal system"
 
-    eqs, Q, x_eqs, y_eqs, x_vars, y_vars, u_vars, mu, all_indets, gens_Rjet = SIAN.get_equations(ode)
+    eqs, Q, x_eqs, y_eqs, x_vars, y_vars, u_vars, mu,
+    all_indets, gens_Rjet = SIAN.get_equations(ode)
 
     non_jet_ring = ode.poly_ring
     z_aux = gens_Rjet[end - length(mu)]
@@ -95,12 +96,12 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     x_variables = gens_Rjet[1:n]
     for i in 1:(s + 1)
         x_variables = vcat(x_variables,
-                           gens_Rjet[(i * (n + m + u) + 1):(i * (n + m + u) + n)])
+            gens_Rjet[(i * (n + m + u) + 1):(i * (n + m + u) + n)])
     end
     u_variables = gens_Rjet[(n + m + 1):(n + m + u)]
     for i in 1:(s + 1)
         u_variables = vcat(u_variables,
-                           gens_Rjet[((n + m + u) * i + n + m + 1):((n + m + u) * (i + 1))])
+            gens_Rjet[((n + m + u) * i + n + m + 1):((n + m + u) * (i + 1))])
     end
 
     # (b,c) -------------
@@ -113,13 +114,15 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     @info "Truncating"
 
     # (a) -----------------------
-    d0 = BigInt(maximum(vcat([Nemo.total_degree(SIAN.unpack_fraction(Q * eq[2])[1])
-                              for eq in eqs], Nemo.total_degree(Q))))
+    d0 = BigInt(maximum(vcat(
+        [Nemo.total_degree(SIAN.unpack_fraction(Q * eq[2])[1])
+         for eq in eqs],
+        Nemo.total_degree(Q))))
 
     # (b) -----------------------
     D1 = floor(BigInt,
-               (length(params_to_assess) + 1) * 2 * d0 * s * (n + 1) * (1 + 2 * d0 * s) /
-               (1 - p))
+        (length(params_to_assess) + 1) * 2 * d0 * s * (n + 1) * (1 + 2 * d0 * s) /
+        (1 - p))
 
     # (c, d) ---------------
     sample = SIAN.sample_point(D1, x_vars, y_vars, u_variables, all_params, X_eq, Y_eq, Q)
@@ -143,7 +146,7 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             if prolongation_possible[i] == 1
                 eqs_i = vcat(Et, Y[i][beta[i] + 1])
                 evl = [Nemo.evaluate(eq, vcat(u_hat[1], y_hat[1]),
-                                          vcat(u_hat[2], y_hat[2]))
+                           vcat(u_hat[2], y_hat[2]))
                        for eq in eqs_i if !(eq in eqs_i_old)]
                 evl_old = vcat(evl_old, evl)
                 JacX = SIAN.jacobi_matrix(evl_old, x_theta_vars, all_x_theta_vars_subs)
@@ -158,12 +161,12 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                         vrs = Set{Nemo.QQMPolyRingElem}()
                         for poly in polys_to_process
                             vrs = union(vrs,
-                                        [v
-                                         for v in Nemo.vars(poly) if v in x_variables])
+                                [v
+                                 for v in Nemo.vars(poly) if v in x_variables])
                         end
                         vars_to_add = Set{Nemo.QQMPolyRingElem}(v
-                                                                for v in vrs
-                                                                if !(v in x_theta_vars))
+                        for v in vrs
+                        if !(v in x_theta_vars))
                         for v in vars_to_add
                             x_theta_vars = vcat(x_theta_vars, v)
                             ord_var = SIAN.get_order_var2(v, all_indets, n + m + u, s)
@@ -203,12 +206,12 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
     theta_l = Array{Nemo.QQMPolyRingElem}(undef, 0)
     params_to_assess_ = [SIAN.add_to_var(param, Rjet, 0) for param in params_to_assess]
     Et_eval_base = [Nemo.evaluate(e, vcat(u_hat[1], y_hat[1]),
-                                       vcat(u_hat[2], y_hat[2]))
+                        vcat(u_hat[2], y_hat[2]))
                     for e in Et]
     for param_0 in params_to_assess_
         other_params = [v for v in x_theta_vars if v != param_0]
         Et_subs = [Nemo.evaluate(e, [param_0],
-                                      [Nemo.evaluate(param_0, all_x_theta_vars_subs)])
+                       [Nemo.evaluate(param_0, all_x_theta_vars_subs)])
                    for e in Et_eval_base]
         JacX = SIAN.jacobi_matrix(Et_subs, other_params, all_x_theta_vars_subs)
         if LinearAlgebra.rank(JacX) != max_rank
@@ -216,9 +219,9 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         end
     end
     x_theta_vars_reorder = vcat(theta_l,
-                                reverse([x for x in x_theta_vars if !(x in theta_l)]))    
+        reverse([x for x in x_theta_vars if !(x in theta_l)]))
     Et_ids, alg_indep = algebraic_independence(Et_eval_base, x_theta_vars_reorder,
-                                               all_x_theta_vars_subs)
+        all_x_theta_vars_subs)
     @info "Found Pivots: [$(join(alg_indep, ", "))]"
 
     if length(theta_l) == 0
@@ -229,20 +232,20 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         @info "Not identifiable parameters:                      [$(join(params_to_assess, ", "))]"
 
         return Dict("identifiability" => Dict("locally_identifiable" => [],
-                                              "globally_identifiable" => [],
-                                              "non_identifiable" => Set(SIAN.get_order_var(th,
-                                                                                           non_jet_ring)[1]
-                                                                        for th in params_to_assess)))
+            "globally_identifiable" => [],
+            "non_identifiable" => Set(SIAN.get_order_var(th,
+                    non_jet_ring)[1]
+            for th in params_to_assess)))
     else
         @info "Locally identifiable parameters: [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in theta_l], ", "))]"
         @info "Not identifiable parameters:     [$(join([SIAN.get_order_var(th, non_jet_ring)[1] for th in setdiff(params_to_assess_, theta_l)], ", "))]"
 
         non_identifiable_parameters = Set(SIAN.get_order_var(th, non_jet_ring)[1]
-                                          for th in setdiff(params_to_assess_, theta_l))
+        for th in setdiff(params_to_assess_, theta_l))
 
         if local_only
             return Dict("non_identifiable" => non_identifiable_parameters,
-                        "locally_identifiable" => theta_l)
+                "locally_identifiable" => theta_l)
         end
         weights = Dict()
         if weighted_ordering
@@ -253,12 +256,12 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         # (a) ------------
         deg_variety = foldl(*, [BigInt(Nemo.total_degree(e)) for e in Et])
         D2 = floor(BigInt,
-                   3 / 4 * 6 * length(theta_l) * deg_variety *
-                   (1 + 2 * d0 * maximum(beta)) /
-                   (1 - p))
+            3 / 4 * 6 * length(theta_l) * deg_variety *
+            (1 + 2 * d0 * maximum(beta)) /
+            (1 - p))
         # (b, c) ---------
         sample = SIAN.sample_point(D2, x_vars, y_vars, u_variables, all_params, X_eq, Y_eq,
-                                   Q)
+            Q)
         y_hat = sample[1]
         u_hat = sample[2]
         theta_hat = sample[3]
@@ -280,10 +283,12 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
         end
         Et_x_vars = setdiff(Et_x_vars, not_int_cond_params)
         Q_hat = Nemo.evaluate(Q, u_hat[1], u_hat[2])
-        vrs_sorted = vcat(sort([e for e in Et_x_vars],
-                               lt = (x, y) -> SIAN.compare_diff_var(x, y, all_indets,
-                                                                    n + m + u, s)), z_aux,
-                          sort(not_int_cond_params, rev = true))
+        vrs_sorted = vcat(
+            sort([e for e in Et_x_vars],
+                lt = (x, y) -> SIAN.compare_diff_var(x, y, all_indets,
+                    n + m + u, s)),
+            z_aux,
+            sort(not_int_cond_params, rev = true))
 
         # assign weights to variables
         if weighted_ordering
@@ -291,15 +296,15 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
                 for _var in Set(Nemo.vars(Et_hat[i]))
                     _var_non_jet, _var_order = SIAN.get_order_var(_var, non_jet_ring)
                     Et_hat[i] = SIAN.make_substitution(Et_hat[i], _var,
-                                                       _var^get(weights, _var_non_jet, 1),
-                                                       parent(_var)(1))
+                        _var^get(weights, _var_non_jet, 1),
+                        parent(_var)(1))
                 end
             end
             for _var in Set(Nemo.vars(Q_hat))
                 _var_non_jet, _var_order = SIAN.get_order_var(_var, non_jet_ring)
                 Q_hat = SIAN.make_substitution(Q_hat, _var,
-                                               _var^get(weights, _var_non_jet, 1),
-                                               parent(_var)(1))
+                    _var^get(weights, _var_non_jet, 1),
+                    parent(_var)(1))
             end
         end
         # 4. Determine.
@@ -310,12 +315,12 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             z_aux = SIAN._reduce_poly_mod_p(z_aux, p_mod)
             Q_hat = SIAN._reduce_poly_mod_p(Q_hat, p_mod)
             Rjet_new, vrs_sorted = Nemo.polynomial_ring(Nemo.Native.GF(p_mod),
-                                                            [string(v) for v in vrs_sorted],
-                                                            internal_ordering = :degrevlex)
+                [string(v) for v in vrs_sorted],
+                internal_ordering = :degrevlex)
         else
             Rjet_new, vrs_sorted = Nemo.polynomial_ring(Nemo.QQ,
-                                                            [string(v) for v in vrs_sorted],
-                                                            internal_ordering = :degrevlex)
+                [string(v) for v in vrs_sorted],
+                internal_ordering = :degrevlex)
         end
 
         Et_hat = [SIAN.parent_ring_change(e, Rjet_new) for e in Et_hat]
@@ -326,14 +331,17 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
 
         if p_mod > 0
             theta_l_new = [SIAN.parent_ring_change(SIAN._reduce_poly_mod_p(th, p_mod),
-                                                   Rjet_new) for th in theta_l]
+                               Rjet_new) for th in theta_l]
 
             for i in eachindex(theta_l)
                 _var_non_jet, _var_order = SIAN.get_order_var(theta_l_new[i], non_jet_ring)
                 if Groebner.normalform(gb, theta_l_new[i]^get(weights, _var_non_jet, 1)) ==
-                   SIAN.parent_ring_change(SIAN._reduce_poly_mod_p(Rjet(theta_hat[2][findfirst(isequal(theta_l[i]),
-                                                                                               theta_hat[1])]),
-                                                                   p_mod), Rjet_new)
+                   SIAN.parent_ring_change(
+                    SIAN._reduce_poly_mod_p(
+                        Rjet(theta_hat[2][findfirst(isequal(theta_l[i]),
+                            theta_hat[1])]),
+                        p_mod),
+                    Rjet_new)
                     theta_g = vcat(theta_g, theta_l_new[i])
                 end
             end
@@ -343,27 +351,29 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             for i in eachindex(theta_l)
                 _var_non_jet, _var_order = SIAN.get_order_var(theta_l_new[i], non_jet_ring)
                 if Groebner.normalform(gb, theta_l_new[i]^get(weights, _var_non_jet, 1)) ==
-                   SIAN.parent_ring_change(Rjet(theta_hat[2][findfirst(isequal(theta_l[i]),
-                                                                       theta_hat[1])]),
-                                           Rjet_new)
+                   SIAN.parent_ring_change(
+                    Rjet(theta_hat[2][findfirst(isequal(theta_l[i]),
+                        theta_hat[1])]),
+                    Rjet_new)
                     theta_g = vcat(theta_g, theta_l_new[i])
                 end
             end
         end
         id_res_nemo = Dict("globally" => theta_g,
-                           "locally_not_globally" => setdiff(theta_l_new, theta_g),
-                           "nonidentifiable" => setdiff(params_to_assess_, theta_l))
-        identifiability_result = Dict("globally" => Set(SIAN.get_order_var(th,
-                                                                           non_jet_ring)[1]
-                                                        for th in theta_g),
-                                      "locally_not_globally" => Set(SIAN.get_order_var(th,
-                                                                                       non_jet_ring)[1]
-                                                                    for th in setdiff(theta_l_new,
-                                                                                      theta_g)),
-                                      "nonidentifiable" => Set(SIAN.get_order_var(th,
-                                                                                  non_jet_ring)[1]
-                                                               for th in setdiff(params_to_assess_,
-                                                                                 theta_l)))
+            "locally_not_globally" => setdiff(theta_l_new, theta_g),
+            "nonidentifiable" => setdiff(params_to_assess_, theta_l))
+        identifiability_result = Dict(
+            "globally" => Set(SIAN.get_order_var(th,
+                                  non_jet_ring)[1]
+            for th in theta_g),
+            "locally_not_globally" => Set(SIAN.get_order_var(th,
+                    non_jet_ring)[1]
+            for th in setdiff(theta_l_new,
+                theta_g)),
+            "nonidentifiable" => Set(SIAN.get_order_var(th,
+                    non_jet_ring)[1]
+            for th in setdiff(params_to_assess_,
+                theta_l)))
         @info "=== Summary ==="
         @info "Globally identifiable parameters:                 [$(join(identifiability_result["globally"], ", "))]"
         @info "Locally but not globally identifiable parameters: [$(join(identifiability_result["locally_not_globally"], ", "))]"
@@ -382,25 +392,26 @@ function identifiability_ode(ode, params_to_assess; p = 0.99, p_mod = 0, infolev
             u_derivative_dict[each] = order
         end
         Et_ = [Et[idx] for idx in Et_ids]
-        full_result = Dict("full_polynomial_system" => [Nemo.evaluate(e, alg_indep,
-                                                                           transcendence_substitutions)
-                                                        for e in Et],
-                           "polynomial_system" => [Nemo.evaluate(e, alg_indep,
-                                                                      transcendence_substitutions)
-                                                   for e in Et_],
-                           "polynomial_system_to_solve" => HomotopyContinuation.System([]),
-                           "denominator" => Q,
-                           "Y_eq" => y_derivative_dict,
-                           "u_variables" => u_derivative_dict,
-                           "vars" => vrs_sorted,
-                           "vals" => all_subs,
-                           "transcendence_basis_subs" => Dict(alg_indep .=>
-                                                                  transcendence_substitutions),
-                           "identifiability_nemo" => id_res_nemo,
-                           "identifiability" => identifiability_result,
-                           "basis" => gb,
-                           "weights" => weights,
-                           "non_jet_ring" => non_jet_ring)
+        full_result = Dict(
+            "full_polynomial_system" => [Nemo.evaluate(e, alg_indep,
+                 transcendence_substitutions)
+             for e in Et],
+            "polynomial_system" => [Nemo.evaluate(e, alg_indep,
+                 transcendence_substitutions)
+             for e in Et_],
+            "polynomial_system_to_solve" => HomotopyContinuation.System([]),
+            "denominator" => Q,
+            "Y_eq" => y_derivative_dict,
+            "u_variables" => u_derivative_dict,
+            "vars" => vrs_sorted,
+            "vals" => all_subs,
+            "transcendence_basis_subs" => Dict(alg_indep .=>
+                transcendence_substitutions),
+            "identifiability_nemo" => id_res_nemo,
+            "identifiability" => identifiability_result,
+            "basis" => gb,
+            "weights" => weights,
+            "non_jet_ring" => non_jet_ring)
         return full_result
     end
 end

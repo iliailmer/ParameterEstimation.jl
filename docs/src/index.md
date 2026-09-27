@@ -19,5 +19,5 @@ TBA
 
 ## Feature Summary
 
-- Parameter estimation based on sample data
-- Estimated values are reported based on identifiability: local (finitely many), global (unque), unidentifiable.
+  - Parameter estimation based on sample data
+  - Estimated values are reported based on identifiability: local (finitely many), global (unque), unidentifiable.

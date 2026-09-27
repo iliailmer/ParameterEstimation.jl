@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: julia-formatter
+        name: JuliaFormatter
+        language: system
+        entry: julia --project=@JuliaFormatter -e 'using JuliaFormatter; format(ARGS) || exit(1)'
+        files: \.jl$
+        exclude: ^(benchmarks|test/benchmarking|rur-and-hc)/

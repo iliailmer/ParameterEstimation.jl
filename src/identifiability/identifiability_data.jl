@@ -38,12 +38,12 @@ mutable struct IdentifiabilityData
     function IdentifiabilityData(input::AbstractDict)
         # solution_counts = count_solutions(input)
         return new(input["full_polynomial_system"], input["polynomial_system"],
-                   input["polynomial_system_to_solve"],
-                   input["denominator"], input["vars"],
-                   input["vals"], input["identifiability_nemo"], input["identifiability"],
-                   input["transcendence_basis_subs"], input["Y_eq"], input["u_variables"],
-                   input["basis"],
-                   input["weights"], input["non_jet_ring"], input["nemo_mtk"],
+            input["polynomial_system_to_solve"],
+            input["denominator"], input["vars"],
+            input["vals"], input["identifiability_nemo"], input["identifiability"],
+            input["transcendence_basis_subs"], input["Y_eq"], input["u_variables"],
+            input["basis"],
+            input["weights"], input["non_jet_ring"], input["nemo_mtk"],
             Dict())#solution_counts)
     end
 end

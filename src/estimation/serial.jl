@@ -33,8 +33,8 @@ function estimate_serial(model::ModelingToolkit.ODESystem,
             push!(estimates,
                 [
                     EstimationResult(model, Dict(), interpolator, at_time,
-                        Dict{Any, Interpolant}(),
-                        ReturnCode.Failure, datasize, report_time),
+                    Dict{Any, Interpolant}(),
+                    ReturnCode.Failure, datasize, report_time),
                 ])
         end
     end

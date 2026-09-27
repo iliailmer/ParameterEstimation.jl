@@ -8,5 +8,5 @@ A structure that stores information about the interpolation result.
 - `dIdt`: the `TaylorSeries` derivative of `I`.
 """
 struct Interpolant
-	f::Any
+    f::Any
 end

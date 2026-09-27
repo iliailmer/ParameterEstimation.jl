@@ -41,16 +41,19 @@ function preprocess_ode(de::ModelingToolkit.ODESystem,
 
     for i in eachindex(diff_eqs)
         if !(typeof(diff_eqs[i].rhs) <: Number)
-            state_eqn_dict[substitute(state_vars[i], input_symbols .=> gens_)] = StructuralIdentifiability.eval_at_nemo(
+            state_eqn_dict[substitute(state_vars[i],
+                input_symbols .=> gens_)] = StructuralIdentifiability.eval_at_nemo(
                 diff_eqs[i].rhs,
                 Dict(input_symbols .=>
                     gens_))
         else
-            state_eqn_dict[substitute(state_vars[i], input_symbols .=> gens_)] = R(diff_eqs[i].rhs)
+            state_eqn_dict[substitute(state_vars[i], input_symbols .=>
+                gens_)] = R(diff_eqs[i].rhs)
         end
     end
     for i in 1:length(measured_quantities)
-        out_eqn_dict[substitute(y_functions[i], input_symbols .=> gens_)] = StructuralIdentifiability.eval_at_nemo(
+        out_eqn_dict[substitute(y_functions[i],
+            input_symbols .=> gens_)] = StructuralIdentifiability.eval_at_nemo(
             measured_quantities[i].rhs,
             Dict(input_symbols .=>
                 gens_))
