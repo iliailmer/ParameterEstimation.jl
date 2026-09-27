@@ -1,11 +1,10 @@
 # ParameterEstimation.jl
 
-
 [![Tests](https://github.com/iliailmer/ParameterEstimation.jl/actions/workflows/tests.yml/badge.svg)](https://github.com/iliailmer/ParameterEstimation.jl/actions/workflows/tests.yml) [![Documentation](https://github.com/iliailmer/ParameterEstimation.jl/actions/workflows/Documentation.yml/badge.svg)](https://github.com/iliailmer/ParameterEstimation.jl/actions/workflows/Documentation.yml)
+
 <!-- [![SciML Code Style](https://img.shields.io/static/v1?label=code%20style&message=SciML&color=9558b2&labelColor=389826)](https://github.com/SciML/SciMLStyle) -->
 
 <p><a href="https://GitHub.com/iliailmer/ParameterEstimation.jl/releases/"><img alt="GitHub release" src="https://img.shields.io/github/release/iliailmer/ParameterEstimation.jl.svg"></a> <a href="https://GitHub.com/iliailmer/ParameterEstimation.jl/stargazers/"> <img alt="GitHub stars" src="https://img.shields.io/github/stars/iliailmer/ParameterEstimation.jl.svg?style=social&amp;label=Star&amp;maxAge=2592000"></a> </p>
-
 
 Symbolic-Numeric package for parameter estimation in ODEs
 
@@ -17,8 +16,6 @@ Install from the General registry:
 using Pkg
 Pkg.add("ParameterEstimation")
 ```
-
-
 
 ## Toy Example
 
@@ -32,13 +29,13 @@ using ModelingToolkit
 @variables t x(t) y(t)
 D = Differential(t)
 @named Sigma = ODESystem([D(x) ~ -mu * x],
-                         t, [x], [mu])
+    t, [x], [mu])
 outs = [y ~ x^2 + x]
 
 # -- Data
 data = Dict(
-  "t"     => [0.000, 0.333, 0.666, 1.000],
-  x^2 + x => [2.000, 1.563, 1.229, 0.974])
+    "t" => [0.000, 0.333, 0.666, 1.000],
+    x^2 + x => [2.000, 1.563, 1.229, 0.974])
 
 # Run
 res = estimate(Sigma, outs, data);

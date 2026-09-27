@@ -8,7 +8,7 @@
     @named model = ODESystem([D(x1) ~ -mu * x1], t, [x1], [mu])
     outs = [y1 ~ x1 + x1^2]
     data = Dict{Any, Vector{Float64}}("t" => [0.0, 1 / 3, 2 / 3, 1.0],
-                                      x1 + x1^2 => [2.0, 1.56301, 1.22995, 0.97441])
+        x1 + x1^2 => [2.0, 1.56301, 1.22995, 0.97441])
 
     for threaded in (false, true)
         res = ParameterEstimation.estimate(model, outs, data; threaded)
@@ -17,7 +17,7 @@
         @test isapprox(res[1].states[x1], 1.0, atol = 1e-3)
 
         constrained = ParameterEstimation.estimate(model, outs, data; threaded,
-                                                   parameter_constraints = Dict(mu => (0.6, 1.0)))
+            parameter_constraints = Dict(mu => (0.6, 1.0)))
         @test isempty(constrained)
     end
 end
