@@ -6,3 +6,4 @@ whitespace_typedefs = true
 normalize_line_endings = "unix"
 short_to_long_function_def = false
 format_markdown = true
+ignore = ["benchmarks", "test/benchmarking", "rur-and-hc"]
