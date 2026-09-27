@@ -1,0 +1,18 @@
+name: "Format"
+on:
+  pull_request:
+    branches:
+      - main
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: julia-actions/julia-format@v4
+        with:
+          version: "2"
