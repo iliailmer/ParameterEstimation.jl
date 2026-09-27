@@ -105,7 +105,7 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 		@warn "No sampling time points found in data sample. Assuming uniform sampling t ∈ [$(time_interval[1]), $(time_interval[2])]."
 		data_sample["t"] = range(time_interval[1], time_interval[2], length = datasize)
 	end
-	interpolants = ParameterEstimation.interpolate(identifiability_result,
+	interpolants, polynomial_system = ParameterEstimation.interpolate(identifiability_result,
 		data_sample, measured_quantities, inputs;
 		interpolator = interpolator,
 		diff_order = num_parameters + 1,   #todo(OREBAS): is this always forcing num_parameters + 1 derivatives?
@@ -113,10 +113,10 @@ function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
 		method = method)
 		
 	if method == :homotopy
-		all_solutions = solve_via_homotopy(identifiability_result, model;
+		all_solutions = solve_via_homotopy(identifiability_result, polynomial_system, model;
 			real_tol = real_tol)
 	elseif method == :msolve
-		all_solutions = solve_via_msolve(identifiability_result, model;
+		all_solutions = solve_via_msolve(identifiability_result, polynomial_system, model;
 			real_tol = real_tol)
 	else
 		throw(ArgumentError("Method $method not supported"))
