@@ -21,6 +21,7 @@ This function performs the key step in parameter estimation.
 - `method::Symbol = :homotopy`: the method used to solve the polynomial system. Can be one of :homotopy (recommended) and :msolve.
 
 # Returns
+- interpolants: 
 - `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
 """
 function interpolate(identifiability_result, data_sample,
@@ -48,16 +49,15 @@ function interpolate(identifiability_result, data_sample,
 	end
 	if isequal(method, :homotopy)
 		try
-			identifiability_result["polynomial_system_to_solve"] = HomotopyContinuation.System(polynomial_system)
+			polynomial_system= HomotopyContinuation.System(polynomial_system)
 		catch KeyError
 			throw(ArgumentError("HomotopyContinuation threw a KeyError, it is possible that " *
 								"you are using Unicode characters in your input. Consider " *
 								"using ASCII characters instead."))
 		end
-	else
-		identifiability_result["polynomial_system_to_solve"] = polynomial_system
-	end
-	return interpolants
+  end
+  identifiability_result["polynomial_system_to_solve"] = polynomial_system
+  return interpolants, polynomial_system
 end
 
 """

@@ -1,7 +1,6 @@
-function solve_via_homotopy(identifiability_result, model; real_tol = 1e-12)
-	@debug "Solving $(length(identifiability_result["polynomial_system_to_solve"])) polynomial equations in $(length(identifiability_result["polynomial_system_to_solve"].variables)) variables"
+function solve_via_homotopy(identifiability_result, polynomial_system, model; real_tol = 1e-12)
+	@debug "Solving $(length(polynomial_system)) polynomial equations in $(length(polynomial_system.variables)) variables"
 
-	polynomial_system = identifiability_result["polynomial_system_to_solve"]
 	state_param_map = merge(Dict(replace(string(x), "(t)" => "") => x
 								 for x in ModelingToolkit.unknowns(model)),
 		Dict(string(x) => x for x in ModelingToolkit.parameters(model)))
@@ -33,7 +32,7 @@ function solve_via_homotopy(identifiability_result, model; real_tol = 1e-12)
 	return all_solutions_
 end
 
-function solve_via_msolve(identifiability_result, model; real_tol = 1e-12)
+function solve_via_msolve(identifiability_result, polynomial_system, model; real_tol = 1e-12)
     throw("Not implemented, sorry.")
     # polynomial_system = identifiability_result["polynomial_system_to_solve"]
     # state_param_map = merge(Dict(replace(string(x), "(t)" => "") => x
