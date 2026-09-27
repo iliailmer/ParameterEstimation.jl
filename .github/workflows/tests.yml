@@ -7,6 +7,7 @@ on:
       - "src/**"
       - "test/**"
       - "Project.toml"
+      - ".github/workflows/tests.yml"
   push:
     branches:
       - main
@@ -14,10 +15,14 @@ on:
       - "src/**"
       - "test/**"
       - "Project.toml"
+      - ".github/workflows/tests.yml"
   workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+permissions:
+  actions: write
+  contents: read
 jobs:
   run-tests:
     runs-on: ${{ matrix.os }}
@@ -25,18 +30,32 @@ jobs:
       fail-fast: false
       matrix:
         julia-version: ["1", "lts"]
-        julia-arch: [x64]
         os: [macos-latest, ubuntu-latest]
 
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: "Setup Julia"
-        uses: julia-actions/setup-julia@v2
+        uses: julia-actions/setup-julia@v3
         with:
           version: ${{ matrix.julia-version }}
-          arch: ${{ matrix.julia-arch }}
+      - name: "Get CPU model"
+        id: cpu
+        run: |
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            model=$(sysctl -n machdep.cpu.brand_string)
+          else
+            model=$(lscpu | sed -n 's/^Model name:[[:space:]]*//p')
+          fi
+          echo "CPU: $model"
+          echo "model=$(printf %s "$model" | tr -c 'A-Za-z0-9.-' '_')" >> "$GITHUB_OUTPUT"
+      - name: "Cache Julia depot"
+        uses: julia-actions/cache@v3
+        with:
+          cache-name: julia-cache;workflow=${{ github.workflow }};job=${{ github.job }};cpu=${{ steps.cpu.outputs.model }}
       - name: "Build Package"
         uses: julia-actions/julia-buildpkg@v1
       - name: "Run tests"
         uses: julia-actions/julia-runtest@v1
+        with:
+          coverage: false
