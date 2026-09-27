@@ -39,8 +39,20 @@ jobs:
         uses: julia-actions/setup-julia@v3
         with:
           version: ${{ matrix.julia-version }}
+      - name: "Get CPU model"
+        id: cpu
+        run: |
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            model=$(sysctl -n machdep.cpu.brand_string)
+          else
+            model=$(lscpu | sed -n 's/^Model name:[[:space:]]*//p')
+          fi
+          echo "CPU: $model"
+          echo "model=$(printf %s "$model" | tr -c 'A-Za-z0-9.-' '_')" >> "$GITHUB_OUTPUT"
       - name: "Cache Julia depot"
         uses: julia-actions/cache@v3
+        with:
+          cache-name: julia-cache;workflow=${{ github.workflow }};job=${{ github.job }};cpu=${{ steps.cpu.outputs.model }}
       - name: "Build Package"
         uses: julia-actions/julia-buildpkg@v1
       - name: "Run tests"
