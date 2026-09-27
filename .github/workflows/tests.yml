@@ -20,6 +20,9 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+permissions:
+  actions: write
+  contents: read
 jobs:
   run-tests:
     runs-on: ${{ matrix.os }}
@@ -36,6 +39,8 @@ jobs:
         uses: julia-actions/setup-julia@v3
         with:
           version: ${{ matrix.julia-version }}
+      - name: "Cache Julia depot"
+        uses: julia-actions/cache@v3
       - name: "Build Package"
         uses: julia-actions/julia-buildpkg@v1
       - name: "Run tests"
