@@ -20,6 +20,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 - `solver`: the ODE solver used for ODE solution computation (default: Vern9());
 - `interpolators = nothing`: the set of interpolators to be used.  See examples. If `nothing`, a default is used which includes AAA, FLoater-Hormann, and Fourier interpolations;
 - `real_tol` = 1e-14: the tolerance used for real root finding;
+- `seed = 42`: the random seed for identifiability analysis and polynomial system solving. Results are reproducible for a fixed seed; the caller's random number state is not changed. If expected solutions are missing, try another seed;
 - `threaded = Threads.nthreads() > 1`: whether to use multiple threads for computation (determined automatically).
 
 # Returns
@@ -32,26 +33,32 @@ function estimate(model::ModelingToolkit.ODESystem,
         at_time::T = data_sample["t"][fld(length((data_sample["t"])), 2)],  #uses something akin to a midpoint by default
         method = :homotopy, solver = Vern9(),
         report_time = minimum(data_sample["t"]),
-        interpolators = nothing, real_tol = 1e-14,
+        interpolators = nothing, real_tol = 1e-14, seed = 42,
         threaded = Threads.nthreads() > 1, filtermode = :new, parameter_constraints = nothing,
         ic_constraints = nothing) where {T <: Float}
     if !(method in [:homotopy, :msolve])
         throw(ArgumentError("Method $method is not supported, must be one of :homotopy or :msolve."))
     end
-    if threaded
-        result = estimate_threaded(model, measured_quantities, inputs, data_sample;
-            at_time = at_time, solver = solver, report_time,
-            interpolators = interpolators, method = method,
-            real_tol = real_tol, filtermode, parameter_constraints = parameter_constraints,
-            ic_constraints = ic_constraints)
-    else
-        result = estimate_serial(model, measured_quantities,
-            inputs,
-            data_sample;
-            solver = solver, at_time = at_time, report_time,
-            interpolators = interpolators, method = method,
-            real_tol = real_tol, filtermode, parameter_constraints = parameter_constraints,
-            ic_constraints = ic_constraints)
+    rng_state = copy(Random.default_rng())
+    Random.seed!(seed)
+    result = try
+        if threaded
+            estimate_threaded(model, measured_quantities, inputs, data_sample;
+                at_time = at_time, solver = solver, report_time,
+                interpolators = interpolators, method = method,
+                real_tol = real_tol, filtermode, parameter_constraints = parameter_constraints,
+                ic_constraints = ic_constraints)
+        else
+            estimate_serial(model, measured_quantities,
+                inputs,
+                data_sample;
+                solver = solver, at_time = at_time, report_time,
+                interpolators = interpolators, method = method,
+                real_tol = real_tol, filtermode, parameter_constraints = parameter_constraints,
+                ic_constraints = ic_constraints)
+        end
+    finally
+        copy!(Random.default_rng(), rng_state)
     end
     println("Final Results:")
     for each in result
