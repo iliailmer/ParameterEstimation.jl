@@ -11,7 +11,7 @@ using ForwardDiff: ForwardDiff
 using LinearAlgebra: LinearAlgebra
 using TaylorDiff: TaylorDiff
 
-using ProgressMeter, Logging, Printf
+using ProgressMeter, Logging, Printf, Random
 using ModelingToolkit, LinearSolve, LinearAlgebra
 using SIAN, HomotopyContinuation, Groebner, Nemo
 using .ReturnCode
