@@ -20,12 +20,12 @@ function solve_via_homotopy(identifiability_result, polynomial_system, model; re
         sol = map(each -> to_exact(each; tol = real_tol), sol)
         for (idx, v) in enumerate(polynomial_system.variables)
             if endswith(string(v), "_0")
-                tmp[state_param_map[string(v)[1:(end - 2)]]] = sol[idx]
+                tmp[state_param_map[chop(string(v), tail = 2)]] = sol[idx]
             end
         end
         for (key, val) in identifiability_result.transcendence_basis_subs
             if endswith(string(key), "_0")
-                tmp[state_param_map[string(key)[1:(end - 2)]]] = Int(Meta.parse("$val"))
+                tmp[state_param_map[chop(string(key), tail = 2)]] = Int(Meta.parse("$val"))
             end
         end
         push!(all_solutions_, tmp)
