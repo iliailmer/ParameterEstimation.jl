@@ -28,7 +28,7 @@ function eval_derivs(polynomial_system, interpolant::Interpolant,
             for input_eq in inputs
                 u_function_name = replace(string(input_eq.lhs), "(t)" => "")
                 if occursin(u_function_name, string(u_funct))
-                    taylor_coeff = substitute(input_eq.rhs, Dict(t => tau))[u_deriv_order]
+                    taylor_coeff = substitute(input_eq.rhs, Dict(t => at_time + tau))[u_deriv_order]
                     derivs_vals[ParameterEstimation.nemo2hc(u_funct)] = taylor_coeff *
                                                                         factorial(u_deriv_order)
                 end

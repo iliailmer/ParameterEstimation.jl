@@ -109,6 +109,12 @@ function sample_data(model::ModelingToolkit.ODESystem,
     else
         sampling_times = range(time_interval[1], time_interval[2], length = num_points)
     end
+    if !isempty(inputs)
+        eqs = substitute(ModelingToolkit.equations(model),
+            Dict(each.lhs => Num(each.rhs) for each in inputs))
+        @named model = ODESystem(eqs, ModelingToolkit.get_iv(model),
+            ModelingToolkit.unknowns(model), ModelingToolkit.parameters(model))
+    end
     problem = ODEProblem(ModelingToolkit.complete(model),
         merge(Dict(ModelingToolkit.unknowns(model) .=> u0), Dict(ModelingToolkit.parameters(model) .=>
             p_true)),
