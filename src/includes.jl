@@ -4,7 +4,6 @@ include("rational_interpolation/utils.jl")
 include("rational_interpolation/bary_derivs.jl")
 
 include("identifiability/check_identifiability.jl")
-include("identifiability/preprocessor.jl")
 include("identifiability/transcendence_basis.jl")
 include("identifiability/identifiability_data.jl")
 include("identifiability/utils.jl")
