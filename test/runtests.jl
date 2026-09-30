@@ -1,5 +1,6 @@
 using Test, TestSetExtensions
-using ModelingToolkit, SIAN, HomotopyContinuation
+using ModelingToolkit, SIAN
+import HomotopyContinuation
 using Nemo
 using ParameterEstimation
 

@@ -1,5 +1,5 @@
 """
-function check_identifiability(ode::ModelingToolkit.ODESystem;
+function check_identifiability(ode::ModelingToolkit.System;
                                measured_quantities = Array{ModelingToolkit.Equation}[],
                                inputs::Vector{Num} = Array{Num}[],
                                infolevel = 0)
@@ -9,7 +9,7 @@ algorithm described in [1]. The function returns a `ParameterEstimation.Identifi
 object that contains the results of the identifiability analysis.
 
 # Arguments
-    - `ode::ModelingToolkit.ODESystem`: The ODE system to be analyzed
+    - `ode::ModelingToolkit.System`: The ODE system to be analyzed
     - `measured_quantities = Array{ModelingToolkit.Equation}[]`: A list of equations
         that define the measured quantities. If not provided, the outputs of the ODE
         system will be used.
@@ -24,7 +24,7 @@ object that contains the results of the identifiability analysis.
 
 [3] - https://github.com/alexeyovchinnikov/SIAN-Julia
 """
-function check_identifiability(ode::ModelingToolkit.ODESystem;
+function check_identifiability(ode::ModelingToolkit.System;
         measured_quantities::Vector{Equation} = Array{Equation}[],
         inputs::Vector{Num} = Array{Num}[],
         infolevel = 0)
@@ -37,7 +37,15 @@ function check_identifiability(ode::ModelingToolkit.ODESystem;
             throw(error("Measured quantities (output functions) were not provided and no outputs were found."))
         end
     end
-    ode_prep, input_syms, gens_ = preprocess_ode(ode, measured_quantities, inputs)
+    if !isempty(inputs)
+        ode = ModelingToolkit.System(ModelingToolkit.equations(ode),
+            ModelingToolkit.get_iv(ode),
+            vcat(ModelingToolkit.unknowns(ode), inputs),
+            ModelingToolkit.parameters(ode); name = nameof(ode))
+    end
+    ode_prep, symb2gens = StructuralIdentifiability.mtk_to_si(ode, measured_quantities)
+    input_syms = collect(keys(symb2gens))
+    gens_ = collect(values(symb2gens))
     t = ModelingToolkit.arguments(ModelingToolkit.unknowns(ode)[1])[1]
     params_to_assess_ = SIAN.get_parameters(ode_prep)
     nemo2mtk = Dict(gens_ .=> input_syms)

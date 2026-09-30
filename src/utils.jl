@@ -88,7 +88,7 @@ function to_exact(x::Number; tol = 1e-12)
     end
 end
 
-function sample_data(model::ModelingToolkit.ODESystem,
+function sample_data(model::ModelingToolkit.System,
         measured_data::Vector{ModelingToolkit.Equation},
         time_interval::Vector{T},
         p_true::Vector{T},
@@ -113,7 +113,7 @@ function sample_data(model::ModelingToolkit.ODESystem,
     if !isempty(inputs)
         eqs = substitute(ModelingToolkit.equations(model),
             Dict(each.lhs => Num(each.rhs) for each in inputs))
-        @named model = ODESystem(eqs, ModelingToolkit.get_iv(model),
+        @named model = ModelingToolkit.System(eqs, ModelingToolkit.get_iv(model),
             ModelingToolkit.unknowns(model), ModelingToolkit.parameters(model))
     end
     problem = ODEProblem(ModelingToolkit.complete(model),

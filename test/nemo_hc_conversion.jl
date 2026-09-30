@@ -1,6 +1,6 @@
 @testset "Convert Nemo polynomial systems into HomotopyContinuation type" begin
     R, (X, Y, Z) = Nemo.polynomial_ring(Nemo.QQ, ["x", "y", "z"])
-    @var x y z
+    HomotopyContinuation.@var x y z
     Et = [X + Y + Z - 1, X + Y - 2, Z * X - 1]
     E = HomotopyContinuation.System([ParameterEstimation.nemo2hc(e) for e in Et])
     E_native = HomotopyContinuation.System([x + y + z - 1, x + y - 2, x * z - 1])

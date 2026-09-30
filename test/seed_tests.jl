@@ -4,9 +4,10 @@
     using Random
 
     @parameters a b c
-    @variables t x1(t) x2(t) y1(t)
+    @independent_variables t
+    @variables x1(t) x2(t) y1(t)
     D = Differential(t)
-    @named model = ODESystem([D(x1) ~ a * x1 - b * x1 * x2, D(x2) ~ -c * x2 + x1 * x2],
+    @named model = System([D(x1) ~ a * x1 - b * x1 * x2, D(x2) ~ -c * x2 + x1 * x2],
         t, [x1, x2], [a, b, c])
     outs = [y1 ~ x1]
     data = ParameterEstimation.sample_data(model, outs, [0.0, 1.0], [0.4, 0.8, 0.3],
