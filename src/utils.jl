@@ -97,7 +97,8 @@ function sample_data(model::ModelingToolkit.ODESystem,
         uneven_sampling = false,
         uneven_sampling_times = Vector{T}(),
         solver = Vern9(), inject_noise = false, mean_noise = 0,
-        stddev_noise = 1, abstol = 1e-14, reltol = 1e-14) where {T <: Number}
+        stddev_noise = 1, abstol = 1e-14, reltol = 1e-14,
+        inputs = Vector{ModelingToolkit.Equation}()) where {T <: Number}
     if uneven_sampling
         if length(uneven_sampling_times) == 0
             error("No uneven sampling times provided")
@@ -108,6 +109,12 @@ function sample_data(model::ModelingToolkit.ODESystem,
         sampling_times = uneven_sampling_times
     else
         sampling_times = range(time_interval[1], time_interval[2], length = num_points)
+    end
+    if !isempty(inputs)
+        eqs = substitute(ModelingToolkit.equations(model),
+            Dict(each.lhs => Num(each.rhs) for each in inputs))
+        @named model = ODESystem(eqs, ModelingToolkit.get_iv(model),
+            ModelingToolkit.unknowns(model), ModelingToolkit.parameters(model))
     end
     problem = ODEProblem(ModelingToolkit.complete(model),
         merge(Dict(ModelingToolkit.unknowns(model) .=> u0), Dict(ModelingToolkit.parameters(model) .=>
