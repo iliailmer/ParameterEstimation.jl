@@ -30,7 +30,7 @@ export check_identifiability, estimate, filter_solutions
         states = [x1, x2, x3, x4]
         parameters = [a, b, c, d]
 
-        @named model = ODESystem(
+        @named model = ModelingToolkit.System(
             [
                 D(x1) ~ a + x2,
                 D(x2) ~ b + x3,

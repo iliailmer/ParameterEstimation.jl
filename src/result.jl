@@ -27,7 +27,7 @@ struct EstimationResult
     return_code::Any
     datasize::Int64
     report_time::Any
-    function EstimationResult(model::ModelingToolkit.ODESystem,
+    function EstimationResult(model::ModelingToolkit.System,
             poly_sol::AbstractDict, degree,
             at_time::Float64,
             interpolants::AbstractDict{Any, Interpolant},

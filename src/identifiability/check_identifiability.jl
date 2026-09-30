@@ -1,5 +1,5 @@
 """
-function check_identifiability(ode::ModelingToolkit.ODESystem;
+function check_identifiability(ode::ModelingToolkit.System;
                                measured_quantities = Array{ModelingToolkit.Equation}[],
                                inputs::Vector{Num} = Array{Num}[],
                                infolevel = 0)
@@ -9,7 +9,7 @@ algorithm described in [1]. The function returns a `ParameterEstimation.Identifi
 object that contains the results of the identifiability analysis.
 
 # Arguments
-    - `ode::ModelingToolkit.ODESystem`: The ODE system to be analyzed
+    - `ode::ModelingToolkit.System`: The ODE system to be analyzed
     - `measured_quantities = Array{ModelingToolkit.Equation}[]`: A list of equations
         that define the measured quantities. If not provided, the outputs of the ODE
         system will be used.
@@ -24,7 +24,7 @@ object that contains the results of the identifiability analysis.
 
 [3] - https://github.com/alexeyovchinnikov/SIAN-Julia
 """
-function check_identifiability(ode::ModelingToolkit.ODESystem;
+function check_identifiability(ode::ModelingToolkit.System;
         measured_quantities::Vector{Equation} = Array{Equation}[],
         inputs::Vector{Num} = Array{Num}[],
         infolevel = 0)

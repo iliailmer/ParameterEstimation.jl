@@ -19,7 +19,8 @@ function backsolve_initial_conditions(
     ode_equations = substitute(ode_equations,
         Dict(each.lhs => Num(each.rhs) for each in inputs))
     t = ModelingToolkit.get_iv(model)
-    @named new_model = ODESystem(ode_equations, t, ModelingToolkit.unknowns(model),
+    @named new_model = ModelingToolkit.System(
+        ode_equations, t, ModelingToolkit.unknowns(model),
         ModelingToolkit.parameters(model))
     prob = ODEProblem(
         ModelingToolkit.complete(new_model),
@@ -46,7 +47,7 @@ function backsolve_initial_conditions(
 end
 
 """
-	estimate_single_interpolator(model::ModelingToolkit.ODESystem,
+	estimate_single_interpolator(model::ModelingToolkit.System,
 						measured_quantities::Vector{ModelingToolkit.Equation},
 						inputs::Vector{ModelingToolkit.Equation},
 						data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
@@ -61,7 +62,7 @@ Estimate the parameters of a model using the data sample `data_sample` and the
 measured quantities `measured_quantities`.
 
 # Arguments
-- `model::ModelingToolkit.ODESystem`: the model with parameters and initial conditions to be estimated.
+- `model::ModelingToolkit.System`: the model with parameters and initial conditions to be estimated.
 - `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities of the model. Used for identifiability assessment.
 - `inputs::Vector{ModelingToolkit.Equation}`: the input equations of the model.
 - `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
@@ -77,7 +78,7 @@ measured quantities `measured_quantities`.
 # Returns
 - `EstimationResult`: the estimated parameters and initial conditions of the model.
 """
-function estimate_single_interpolator(model::ModelingToolkit.ODESystem,
+function estimate_single_interpolator(model::ModelingToolkit.System,
         measured_quantities::Vector{ModelingToolkit.Equation},
         inputs::Vector{ModelingToolkit.Equation},
         data_sample::AbstractDict{Any, Vector{T}} = Dict{Any,

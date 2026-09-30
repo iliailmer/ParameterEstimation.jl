@@ -1,5 +1,5 @@
 """
-	estimate(model::ModelingToolkit.ODESystem,
+	estimate(model::ModelingToolkit.System,
 			measured_quantities::Vector{ModelingToolkit.Equation},
 			data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
 			at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
@@ -10,7 +10,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 	- the best estimate is the one with the smallest error between sample data and ODE solution with current parameters (estimates);
 
 # Arguments
-- `model::ModelingToolkit.ODESystem`: the ODE model;
+- `model::ModelingToolkit.System`: the ODE model;
 - `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities (output functions that were sampled experimentally);
 - `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample, a dictionary with keys being the measured quantities and
 																values being the corresponding data. Must include the time vector;
@@ -26,7 +26,7 @@ Run estimation over a range of interpolation degrees. Return the best estimate a
 # Returns
 - `result::Vector{EstimationResult}`: the result of the estimation, a vector of `EstimationResult` objects.
 """
-function estimate(model::ModelingToolkit.ODESystem,
+function estimate(model::ModelingToolkit.System,
         measured_quantities::Vector{ModelingToolkit.Equation},
         data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
         inputs::Vector{ModelingToolkit.Equation} = Vector{ModelingToolkit.Equation}(),

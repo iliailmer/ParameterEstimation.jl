@@ -28,7 +28,8 @@ function solve_ode(
     ode_equations = substitute(ode_equations,
         Dict(each.lhs => Num(each.rhs) for each in inputs))
     t = ModelingToolkit.get_iv(model)
-    @named new_model = ODESystem(ode_equations, t, ModelingToolkit.unknowns(model),
+    @named new_model = ModelingToolkit.System(
+        ode_equations, t, ModelingToolkit.unknowns(model),
         ModelingToolkit.parameters(model))
     prob = ODEProblem(
         ModelingToolkit.complete(new_model),
@@ -83,7 +84,7 @@ end
 """
 	filter_solutions(results::Vector{EstimationResult},
 					identifiability_result::IdentifiabilityData,
-					model::ModelingToolkit.ODESystem,
+					model::ModelingToolkit.System,
 					inputs::Vector{ModelingToolkit.Equation},
 					data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
 					solver = Tsit5(),
@@ -95,7 +96,7 @@ In addition, takes into account global and local identifiability of parameters w
 # Arguments
 - `results::Vector{EstimationResult}`: the vector of estimation results.
 - `identifiability_result::IdentifiabilityData`: the result of identifiability analysis.
-- `model::ModelingToolkit.ODESystem`: the ODE system.
+- `model::ModelingToolkit.System`: the ODE system.
 - `inputs::Vector{ModelingToolkit.Equation}`: the inputs of the ODE system.
 - `data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
 																The keys of the dictionary are the measured quantities
@@ -108,7 +109,7 @@ In addition, takes into account global and local identifiability of parameters w
 """
 function filter_solutions(results::Vector{EstimationResult},
         identifiability_result::IdentifiabilityData,
-        model::ModelingToolkit.ODESystem,
+        model::ModelingToolkit.System,
         inputs::Vector{ModelingToolkit.Equation},
         data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
         solver = Tsit5(),

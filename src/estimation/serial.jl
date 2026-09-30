@@ -1,4 +1,4 @@
-function estimate_serial(model::ModelingToolkit.ODESystem,
+function estimate_serial(model::ModelingToolkit.System,
         measured_quantities::Vector{ModelingToolkit.Equation},
         inputs::Vector{ModelingToolkit.Equation},
         data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
