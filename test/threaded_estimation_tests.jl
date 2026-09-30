@@ -3,9 +3,10 @@
     using ModelingToolkit
 
     @parameters mu
-    @variables t x1(t) y1(t)
+    @independent_variables t
+    @variables x1(t) y1(t)
     D = Differential(t)
-    @named model = ODESystem([D(x1) ~ -mu * x1], t, [x1], [mu])
+    @named model = System([D(x1) ~ -mu * x1], t, [x1], [mu])
     outs = [y1 ~ x1 + x1^2]
     data = Dict{Any, Vector{Float64}}("t" => [0.0, 1 / 3, 2 / 3, 1.0],
         x1 + x1^2 => [2.0, 1.56301, 1.22995, 0.97441])

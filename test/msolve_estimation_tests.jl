@@ -7,7 +7,7 @@
     #     @parameters mu
     #     @variables t x1(t) y1(t)
     #     D = Differential(t)
-    #     @named model = ODESystem([D(x1) ~ -mu * x1],
+    #     @named model = System([D(x1) ~ -mu * x1],
     #                              t, [x1], [mu])
     #     outs = [y1 ~ x1 + x1^2]
     #     time = [0.0, 1.0] # sampling interval

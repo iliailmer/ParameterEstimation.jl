@@ -3,9 +3,10 @@
     using ModelingToolkit
 
     @parameters α β
-    @variables t θ(t) x2(t) y1(t) y2(t)
+    @independent_variables t
+    @variables θ(t) x2(t) y1(t) y2(t)
     D = Differential(t)
-    @named model = ODESystem([D(θ) ~ -α * θ, D(x2) ~ β * θ - x2], t, [θ, x2], [α, β])
+    @named model = System([D(θ) ~ -α * θ, D(x2) ~ β * θ - x2], t, [θ, x2], [α, β])
     outs = [y1 ~ θ, y2 ~ x2]
     p_true = [0.5, 2.0]
     ic = [1.0, 0.5]
