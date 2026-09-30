@@ -26,9 +26,10 @@ using ModelingToolkit
 # Input:
 # -- Differential model
 @parameters mu
-@variables t x(t) y(t)
+@independent_variables t
+@variables x(t) y(t)
 D = Differential(t)
-@named Sigma = ODESystem([D(x) ~ -mu * x],
+@named Sigma = System([D(x) ~ -mu * x],
     t, [x], [mu])
 outs = [y ~ x^2 + x]
 

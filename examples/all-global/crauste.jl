@@ -3,7 +3,8 @@ using ModelingToolkit, DifferentialEquations
 solver = Vern9()
 
 @parameters mu_N mu_EE mu_LE mu_LL mu_M mu_P mu_PE mu_PL delta_NE delta_EL delta_LM rho_E rho_P
-@variables t N(t) E(t) S(t) M(t) P(t) y1(t) y2(t) y3(t) y4(t)
+@independent_variables t
+@variables N(t) E(t) S(t) M(t) P(t) y1(t) y2(t) y3(t) y4(t)
 D = Differential(t)
 states = [N, E, S, M, P]
 parameters = [
@@ -21,7 +22,7 @@ parameters = [
     rho_E,
     rho_P
 ]
-@named model = ODESystem(
+@named model = System(
     [
         D(N) ~ -N * mu_N - N * P * delta_NE,
         D(E) ~ N * P * delta_NE - E^2 * mu_EE -
