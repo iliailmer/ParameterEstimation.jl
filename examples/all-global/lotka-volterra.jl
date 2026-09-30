@@ -3,7 +3,8 @@ using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters k1 k2 k3
-@variables t r(t) w(t) y1(t)
+@independent_variables t
+@variables r(t) w(t) y1(t)
 D = Differential(t)
 
 ic = [100.0, 100.0]
@@ -15,7 +16,7 @@ measured_quantities = [y1 ~ r]
 states = [r, w]
 parameters = [k1, k2, k3]
 
-@named model = ODESystem([D(r) ~ k1 * r - k2 * r * w,
+@named model = System([D(r) ~ k1 * r - k2 * r * w,
         D(w) ~ k2 * r * w - k3 * w],
     t, states, parameters)
 

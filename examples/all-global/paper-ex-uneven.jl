@@ -3,9 +3,10 @@ using ModelingToolkit # ODE definitions
 
 # define toy model
 @parameters mu
-@variables t x1(t) y1(t) u(t) [input = true]
+@independent_variables t
+@variables x1(t) y1(t) u(t) [input = true]
 D = Differential(t)
-@named model = ODESystem([D(x1) ~ -mu * x1],
+@named model = System([D(x1) ~ -mu * x1],
     t, [x1], [mu])
 # data sampling
 outputs = [y1 ~ x1 + x1^2]

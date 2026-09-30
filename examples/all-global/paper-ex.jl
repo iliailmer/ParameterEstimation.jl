@@ -4,9 +4,10 @@ using ModelingToolkit
 # Input:
 # -- Differential model
 @parameters mu
-@variables t x(t) y(t)
+@independent_variables t
+@variables x(t) y(t)
 D = Differential(t)
-@named Σ = ODESystem([D(x) ~ -mu * x],
+@named Σ = System([D(x) ~ -mu * x],
     t, [x], [mu])
 outs = [y ~ x + x^2]
 

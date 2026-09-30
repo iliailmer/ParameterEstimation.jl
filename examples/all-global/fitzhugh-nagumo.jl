@@ -3,7 +3,8 @@ using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters g a b
-@variables t V(t) R(t) y1(t) y2(t)
+@independent_variables t
+@variables V(t) R(t) y1(t) y2(t)
 D = Differential(t)
 states = [V, R]
 parameters = [g, a, b]
@@ -15,7 +16,7 @@ sampling_times = range(time_interval[1], time_interval[2], length = datasize)
 p_true = [2, 2 / 10, 2 / 10] # True Parameters
 measured_quantities = [y1 ~ V]
 
-@named model = ODESystem(
+@named model = System(
     [
         D(V) ~ g * (V - V^3 / 3 + R),
         D(R) ~ 1 / g * (V - a + b * R)

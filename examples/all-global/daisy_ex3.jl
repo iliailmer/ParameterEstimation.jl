@@ -3,7 +3,8 @@ using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters p1 p3 p4 p6 p7
-@variables t x1(t) x2(t) x3(t) u0(t) y1(t) y2(t)
+@independent_variables t
+@variables x1(t) x2(t) x3(t) u0(t) y1(t) y2(t)
 D = Differential(t)
 
 ic = [1.0, 2.0, 1.0, 1]
@@ -14,7 +15,7 @@ p_true = [0.2, 0.3, 0.5, 0.6, -0.2] # True Parameters
 
 states = [x1, x2, x3, u0]
 parameters = [p1, p3, p4, p6, p7]
-@named model = ODESystem(
+@named model = System(
     [D(x1) ~ -1 * p1 * x1 + x2 + u0,
         D(x2) ~ p3 * x1 - p4 * x2 + x3,
         D(x3) ~ p6 * x1 - p7 * x3,

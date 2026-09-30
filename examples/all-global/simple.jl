@@ -3,12 +3,13 @@ using ModelingToolkit, DifferentialEquations
 solver = Tsit5()
 
 @parameters a b
-@variables t x1(t) x2(t) y1(t) y2(t)
+@independent_variables t
+@variables x1(t) x2(t) y1(t) y2(t)
 D = Differential(t)
 states = [x1, x2]
 parameters = [a, b]
 
-@named model = ODESystem([
+@named model = System([
         D(x1) ~ -a * x2,
         D(x2) ~ 1 / b * (x1)
     ], t, states, parameters)
