@@ -1,21 +1,19 @@
 """
-	EstimationResult
+    EstimationResult
 
-A container for the results of an estimation.
-Contains the estimated parameters and initial conditions (state values at a given time), the degree of the rational interpolation used,
-the error between the estimated ODE solution and the sample data, and the return code.
+A container for one estimate. Indexing with a parameter or a state returns its estimated
+value, for example `result[mu]`.
 
 # Fields
-- `parameters::OrderedDict`: The estimated parameters.
-- `states::OrderedDict`: The estimated initial conditions.
-- `degree::Int64`: The degree of the rational interpolation used.
-- `at_time::Float64`: The time at which the initial conditions are estimated.
-- `err::Union{Nothing, Float64}`: The error between the estimated ODE solution and the sample data.
-- `interpolants::Union{Nothing, Dict{Any, Interpolant}}`: The rational interpolants used to estimate the parameters and initial conditions.
-- `return_code::Any`: The return code of the estimation.
-- `datasize::Int64`: The number of data points used in the estimation.
-- `report_time::Any`: The time at which the initial conditions are reported (usually the leftmost point in the time span).
-
+- `parameters::AbstractDict`: the estimated parameters.
+- `states::AbstractDict`: the estimated states (initial conditions) at time `at_time`.
+- `degree`: the name of the interpolator used, for example `"AAA"`.
+- `at_time::Float64`: the time at which `states` are given. In the results of `estimate` it is equal to `report_time`.
+- `err::Union{Nothing, Float64}`: the mean absolute error between the ODE solution with the estimated values and the data.
+- `interpolants::Union{Nothing, AbstractDict{Any, Interpolant}}`: the interpolants of the measured quantities.
+- `return_code`: `ReturnCode.Success` or `ReturnCode.Failure`.
+- `datasize::Int64`: the number of data points.
+- `report_time`: the time at which the states are reported (by default the first time point).
 """
 struct EstimationResult
     parameters::AbstractDict

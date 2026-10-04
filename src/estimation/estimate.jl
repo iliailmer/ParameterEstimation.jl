@@ -1,30 +1,44 @@
 """
-	estimate(model::ModelingToolkit.System,
-			measured_quantities::Vector{ModelingToolkit.Equation},
-			data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}();
-			at_time::T = 0.0, method = :homotopy, solver = Tsit5(),
-			degree_range = nothing, real_tol = 1e-12,
-			threaded = Threads.nthreads() > 1) where {T <: Float}
+    estimate(model::ModelingToolkit.System,
+             measured_quantities::Vector{ModelingToolkit.Equation},
+             data_sample::AbstractDict{Any, Vector{T}};
+             inputs = ModelingToolkit.Equation[],
+             at_time = data_sample["t"][length(data_sample["t"]) ÷ 2],
+             method = :homotopy, solver = Vern9(),
+             report_time = minimum(data_sample["t"]),
+             interpolators = nothing, real_tol = 1e-14, seed = 42,
+             threaded = Threads.nthreads() > 1, filtermode = :new,
+             parameter_constraints = nothing,
+             ic_constraints = nothing) where {T <: Float}
 
-Run estimation over a range of interpolation degrees. Return the best estimate according to a heuristic:
-	- the best estimate is the one with the smallest error between sample data and ODE solution with current parameters (estimates);
+Estimate the parameters and initial conditions of `model` from `data_sample`.
+
+The data of each measured quantity is interpolated. The derivatives of the interpolants at
+`at_time` are substituted into a polynomial system obtained from identifiability analysis,
+and the system is solved. Each solution is then checked: the ODE is solved with the
+estimated values and compared with the data. This is repeated for every interpolator.
 
 # Arguments
 - `model::ModelingToolkit.System`: the ODE model;
-- `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities (output functions that were sampled experimentally);
-- `data_sample::Dict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample, a dictionary with keys being the measured quantities and
-																values being the corresponding data. Must include the time vector;
-- `at_time::T = 0.0`: the time used for derivative computation;
-- `report_time = nothing`: specify a time T, at which the initial conditions (state variables) will be estimated.  If "nothing", use the leftmost time.
-- `method = :homotopy`: the method used for polynomial system solving. Can be one of :homotopy (recommended) or :msolve;
-- `solver`: the ODE solver used for ODE solution computation (default: Vern9());
-- `interpolators = nothing`: the set of interpolators to be used.  See examples. If `nothing`, a default is used which includes AAA, FLoater-Hormann, and Fourier interpolations;
-- `real_tol` = 1e-14: the tolerance used for real root finding;
+- `measured_quantities::Vector{ModelingToolkit.Equation}`: the measured quantities (outputs), as equations such as `y ~ x^2 + x`;
+- `data_sample`: the data, a dictionary with the time points under the key `"t"` and the samples of each measured quantity under the right-hand side of its equation (`x^2 + x` above).
+
+# Keyword arguments
+- `inputs`: known input functions, as equations such as `u ~ sin(t)`;
+- `at_time`: the time point at which the derivatives are computed. Default: a point near the middle of the data;
+- `report_time`: the time at which the estimated states (initial conditions) are reported. Default: the first time point;
+- `method = :homotopy`: the polynomial system solver. Only `:homotopy` is implemented;
+- `solver = Vern9()`: the ODE solver used to check the estimates;
+- `interpolators = nothing`: a dictionary `name => function` of interpolators. If `nothing`, AAA and Floater-Hormann interpolation are used;
+- `real_tol = 1e-14`: real and imaginary parts of a solution smaller than this are set to zero;
 - `seed = 42`: the random seed for identifiability analysis and polynomial system solving. Results are reproducible for a fixed seed; the caller's random number state is not changed. If expected solutions are missing, try another seed;
-- `threaded = Threads.nthreads() > 1`: whether to use multiple threads for computation (determined automatically).
+- `threaded = Threads.nthreads() > 1`: run the interpolators in parallel threads;
+- `parameter_constraints = nothing`: a dictionary `parameter => (lower, upper)`. Estimates outside the bounds are dropped;
+- `ic_constraints = nothing`: the same for the states;
+- `filtermode = :new`: how the estimates are selected. `:new` returns all estimates that fit the data.
 
 # Returns
-- `result::Vector{EstimationResult}`: the result of the estimation, a vector of `EstimationResult` objects.
+- `Vector{EstimationResult}`: the estimates, sorted by `err` (best first). The vector is empty if no estimate fits the data. Models that are only locally identifiable can return several estimates that fit the data equally well.
 """
 function estimate(model::ModelingToolkit.System,
         measured_quantities::Vector{ModelingToolkit.Equation},

@@ -82,30 +82,31 @@ function solve_ode!(model, estimates::Vector{EstimationResult}, inputs::Vector{E
 end
 
 """
-	filter_solutions(results::Vector{EstimationResult},
-					identifiability_result::IdentifiabilityData,
-					model::ModelingToolkit.System,
-					inputs::Vector{ModelingToolkit.Equation},
-					data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}();
-					solver = Tsit5(),
-					topk = 1) where {T <: Float}
+    filter_solutions(results::Vector{EstimationResult},
+                     identifiability_result::IdentifiabilityData,
+                     model::ModelingToolkit.System,
+                     inputs::Vector{ModelingToolkit.Equation},
+                     data_sample::AbstractDict{Any, Vector{T}};
+                     solver = Tsit5(), topk = 1, filtermode = :new,
+                     abstol = 1e-12, reltol = 1e-12) where {T <: Float}
 
-Filter estimation results stored in `results` vector based on ODE solving and checking against the sample.
-In addition, takes into account global and local identifiability of parameters when filtering.
+Solve the ODE for each estimate in `results` and store the error against the data in its
+`err` field.
 
 # Arguments
-- `results::Vector{EstimationResult}`: the vector of estimation results.
+- `results::Vector{EstimationResult}`: the estimates.
 - `identifiability_result::IdentifiabilityData`: the result of identifiability analysis.
-- `model::ModelingToolkit.System`: the ODE system.
-- `inputs::Vector{ModelingToolkit.Equation}`: the inputs of the ODE system.
-- `data_sample::AbstractDict{Any, Vector{T}} = Dict{Any, Vector{T}}()`: the data sample used for estimation (same functions as `measured_quantities`).
-																The keys of the dictionary are the measured quantities
-																and the values are the corresponding data samples.
-- `time_interval::Vector{T} = Vector{T}()`: the time interval of the ODE system.
-- `topk = 1`: (optional) the number of best estimates to return.
+- `model::ModelingToolkit.System`: the ODE model.
+- `inputs::Vector{ModelingToolkit.Equation}`: known input functions, as equations.
+- `data_sample`: the data, see [`estimate`](@ref).
+
+# Keyword arguments
+- `solver = Tsit5()`, `abstol`, `reltol`: the ODE solver and its tolerances.
+- `filtermode = :new`: with `:new`, all estimates are returned with their `err`. With any other value, only the best estimates are returned, chosen by the identifiability of the parameters.
+- `topk = 1`: the number of best estimates to return when `filtermode` is not `:new` and all parameters are globally identifiable.
 
 # Returns
-- `EstimationResult`: the best estimate (if `topk = 1`) or the vector of best estimates (if `topk > 1`).
+- `Vector{EstimationResult}`: the estimates with `err` set.
 """
 function filter_solutions(results::Vector{EstimationResult},
         identifiability_result::IdentifiabilityData,

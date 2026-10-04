@@ -88,6 +88,36 @@ function to_exact(x::Number; tol = 1e-12)
     end
 end
 
+"""
+    sample_data(model::ModelingToolkit.System,
+                measured_data::Vector{ModelingToolkit.Equation},
+                time_interval::Vector{T}, p_true::Vector{T}, u0::Vector{T},
+                num_points::Int;
+                uneven_sampling = false, uneven_sampling_times = Vector{T}(),
+                solver = Vern9(), inject_noise = false, mean_noise = 0,
+                stddev_noise = 1, abstol = 1e-14, reltol = 1e-14,
+                inputs = ModelingToolkit.Equation[]) where {T <: Number}
+
+Generate data for `model` by solving the ODE with the parameter values `p_true` and the
+initial conditions `u0`, and sampling the measured quantities at `num_points` time points.
+
+# Arguments
+- `model`: the ODE model.
+- `measured_data`: the measured quantities (outputs), as equations such as `y ~ x^2 + x`.
+- `time_interval`: the first and the last time point.
+- `p_true`: the parameter values, in the order of `ModelingToolkit.parameters(model)`.
+- `u0`: the initial conditions, in the order of `ModelingToolkit.unknowns(model)`.
+- `num_points`: the number of time points.
+
+# Keyword arguments
+- `uneven_sampling = false`, `uneven_sampling_times`: use the given time points, not an even grid. Their number must be `num_points`.
+- `solver = Vern9()`, `abstol`, `reltol`: the ODE solver and its tolerances.
+- `inject_noise = false`, `mean_noise = 0`, `stddev_noise = 1`: add normally distributed noise to the samples.
+- `inputs`: known input functions, as equations such as `u ~ sin(t)`.
+
+# Returns
+- An `OrderedDict` with the time points under the key `"t"` and the samples of each measured quantity under the right-hand side of its equation. It can be passed to [`estimate`](@ref).
+"""
 function sample_data(model::ModelingToolkit.System,
         measured_data::Vector{ModelingToolkit.Equation},
         time_interval::Vector{T},
