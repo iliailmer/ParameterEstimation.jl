@@ -13,9 +13,15 @@ on:
       - "src/**"
       - "Project.toml"
       - ".github/workflows/Documentation.yml"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to build and deploy docs for, e.g. v0.5.0. Empty: the selected branch."
+        required: false
+        default: ""
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ inputs.tag || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -23,6 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.tag }}
       - uses: julia-actions/setup-julia@v3
         with:
           version: '1'
@@ -32,4 +40,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For authentication with GitHub Actions token
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }} # For authentication with SSH deploy key
-        run: julia --project=docs/ docs/make.jl
+          TAG: ${{ inputs.tag }}
+        # Documenter deploys a release only when GITHUB_REF is a tag.
+        run: |
+          if [ -n "$TAG" ]; then
+            export GITHUB_REF="refs/tags/$TAG"
+          fi
+          julia --project=docs/ docs/make.jl
