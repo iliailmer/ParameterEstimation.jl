@@ -1,27 +1,25 @@
 
 """
-	interpolate(identifiability_result, data_sample,
-				measured_quantities; interpolation_degree::Int = 1,
-				diff_order::Int = 1, at_t::Float = 0.0,
-				method::Symbol = :homotopy)
+    interpolate(identifiability_result, data_sample, measured_quantities, inputs;
+                interpolator, diff_order::Int = 1, at_t::Float = 0.0,
+                method::Symbol = :homotopy)
 
-This function performs the key step in parameter estimation.
-
-	It interpolates the data in `data_sample` and computes the `TaylorSeries` expansion.
-	These results are stored in the `Interpolant` object and are applied to the polynomial system in `identifiability_result`.
+Interpolate the data of each measured quantity and substitute the derivatives of the
+interpolants at `at_t` into the polynomial system of `identifiability_result`.
 
 # Arguments
-- `identifiability_result`: the result of the identifiability check.
-- `data_sample`: a dictionary of the data samples. The keys are the symbols of the measured quantities and the values are the data samples.
+- `identifiability_result`: the result of `check_identifiability`.
+- `data_sample`: the data, see [`estimate`](@ref).
 - `measured_quantities`: the measured quantities (outputs as equations of the form `y ~ x`).
-- `interpolation_degree::Int = 1`: the degree of the numerator of the rational interpolation.
-- `diff_order::Int = 1`: the order of the derivative to be computed.
-- `at_t::Float = 0.0`: the time point where the Taylor series expansion is computed.
-- `method::Symbol = :homotopy`: the method used to solve the polynomial system. Can be one of :homotopy (recommended) and :msolve.
+- `inputs`: known input functions, as equations.
+- `interpolator`: a pair `name => function`, for example `"AAA" => ParameterEstimation.aaad`.
+- `diff_order::Int = 1`: the highest derivative order to compute.
+- `at_t::Float = 0.0`: the time point at which the derivatives are computed.
+- `method::Symbol = :homotopy`: the polynomial system solver the system is prepared for.
 
 # Returns
-- interpolants: 
-- `System`: the polynomial system with the interpolated data applied. This system is compatible with `HomotopyContinuation` solving.
+- `interpolants`: a dictionary from each measured quantity to its [`ParameterEstimation.Interpolant`](@ref).
+- `polynomial_system`: the polynomial system with the derivative values substituted, a `HomotopyContinuation.System` for `method = :homotopy`.
 """
 function interpolate(identifiability_result, data_sample,
         measured_quantities, inputs; interpolator,

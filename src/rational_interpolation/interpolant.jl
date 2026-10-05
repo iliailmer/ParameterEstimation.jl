@@ -1,11 +1,10 @@
 """
-	Interpolant
+    Interpolant
 
-A structure that stores information about the interpolation result.
+The result of interpolating the data of one measured quantity.
 
 # Fields
-- `I`: the single variable differentiable function, result of interpolation.
-- `dIdt`: the `TaylorSeries` derivative of `I`.
+- `f`: the interpolating function of one variable (time). Its derivatives are computed by automatic differentiation.
 """
 struct Interpolant
     f::Any
