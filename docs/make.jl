@@ -1,21 +1,11 @@
 using Documenter, ParameterEstimation
 
 makedocs(sitename = "ParameterEstimation.jl",
+    modules = [ParameterEstimation],
+    checkdocs = :exports,
+    format = Documenter.HTML(edit_link = "main"),
     pages = ["Home" => "index.md",
-        "Tutorials" => [
-            "Estimation" => [
-            "Simple Example" => "tutorials/estimate.md",
-        #  "Estimation for a single degree" => "tutorials/estimate_single_degree.md",
-        ],
-        ],
-        "Library" => [
-            "Estimation" => "library/estimate.md",
-            "Filtering" => "library/filtering.md",
-            "Identifiability" => "library/identifiability/identifiability.md",
-            "Rational Interpolation" => [
-                "Rational Interpolation" => "library/rational_interpolation/rational_interpolation.md",
-                "Interpolant" => "library/rational_interpolation/interpolant.md"
-            ]
-        ]])
+        "Tutorial" => "tutorials/estimate.md",
+        "API reference" => "api.md"])
 
-deploydocs(repo = "github.com/iliailmer/ParameterEstimation.jl.git")
+deploydocs(repo = "github.com/iliailmer/ParameterEstimation.jl.git", devbranch = "main")
