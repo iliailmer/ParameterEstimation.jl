@@ -1,5 +1,0 @@
-# Interpolant
-
-```@docs
-ParameterEstimation.Interpolant
-```
