@@ -9,6 +9,8 @@
 
 Symbolic-Numeric package for parameter estimation in ODEs
 
+[ODEParameterEstimation.jl](https://github.com/orebas/ODEParameterEstimation.jl) builds on this package's method, adding curve fits that smooth noisy data and refinement of each answer against the data. New users are recommended to start there.
+
 ## Installation
 
 Install from the General registry:
