@@ -1,0 +1,23 @@
+name: Close failed CompatHelper PRs
+on:
+  workflow_run:
+    workflows: ["Tests"]
+    types: [completed]
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  close:
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'failure' &&
+      startsWith(github.event.workflow_run.head_branch, 'compathelper/')
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          gh pr close "$BRANCH" --delete-branch \
+            --comment "Closed automatically: Tests failed (${{ github.event.workflow_run.html_url }})."
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
